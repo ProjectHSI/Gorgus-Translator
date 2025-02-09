@@ -12,7 +12,7 @@ except ModuleNotFoundError:
     GIT_AVAILABLE = False
 
 from textual.app import App, ComposeResult
-from textual.widgets import TextArea, Header, Footer, TabbedContent, TabPane, Select, Label, MarkdownViewer, DataTable, Input, Rule, Checkbox
+from textual.widgets import TextArea, Header, Footer, TabbedContent, TabPane, Select, Label, MarkdownViewer, DataTable, Input, Rule, Checkbox, Button
 from textual.containers import Horizontal, Vertical
 from textual import on, work, log
 from textual.css.query import NoMatches
@@ -55,6 +55,19 @@ class GorgusTranslator(App):
 
         return commits_behind > 0
 
+    @work(thread=True, group="updates", name="check-updates")
+    def update(self):
+        self.query_one("#update-button").disabled = True
+
+        self.notify("Applying updates...")
+        repo = git.Repo(os.getcwd())
+        repo.remotes.origin.fetch()
+
+        #current_branch = repo.active_branch
+
+        repo.remotes.origin.pull()
+        self.notify("Done! Restart for changes to be finished.", title="Updates Complete")
+
     @work(thread=True, group="dictionary", exclusive=True)
     def update_dictionary_table(self, table: DataTable, search: str = None):
         if search:
@@ -94,6 +107,11 @@ class GorgusTranslator(App):
 
         if num_words == 0:
             table.add_row("[blue]Hmm..[/blue]", "[green]No search results found, sorry.[/green]", "[red]:([/red]")
+
+    @on(Button.Pressed)
+    def button_pressed(self, event: Button.Pressed):
+        if event.button.id == "update-button":
+            self.update()
 
     @on(TextArea.Changed)
     def text_changed(self, event: TextArea.Changed):
@@ -184,8 +202,13 @@ These are the people that make this possible! *(all of these are Discord usernam
 - **@spookydervish:** Made the translator, made grammar rules and made words
 - **@plenorf:** Contributed many words""", show_table_of_contents=False)
             with TabPane("Settings"):
-                with Vertical():
-                    yield Label("Settings", variant="primary")
+                settings_panel = Vertical(
+                    Checkbox("Check for updates when openned.", button_first=False, value=True),
+                    Button("Update", variant="success", disabled=True, id="update-button", tooltip="Apply updates"),
+                    id="settings-panel"
+                )
+                settings_panel.border_title = "Settings"
+                yield settings_panel
 
         yield Footer()
 
@@ -193,7 +216,8 @@ These are the people that make this possible! *(all of these are Discord usernam
         worker = event.worker
         if worker.name == "check-updates":
             if worker.state == WorkerState.SUCCESS:
-                log(worker.result)
+                log(f"Updates available: {worker.result}")
+                self.query_one("#update-button").disabled = not worker.result
                 if worker.result == True: # There are updates available!
                     self.notify("Updates available on Github! Go to settings to apply them.", title="Updates Available")
                 elif worker.result == False: # Up to date

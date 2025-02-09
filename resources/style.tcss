@@ -26,3 +26,19 @@ TabPane {
     height: 3;
     max-width: 15%;
 }
+
+#settings-panel {
+    background: $surface;
+    max-width: 75%;
+    max-height: 45%;
+    border: round $primary;
+    padding: 1;
+}
+
+#settings-panel Checkbox {
+    margin-bottom: 1;
+}
+
+#update-button {
+    margin-top: 5;
+}
