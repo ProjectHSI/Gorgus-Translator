@@ -3,7 +3,7 @@ print("Hello. I am loading stuff in the background, gimme a sec plz.")
 
 
 import os
-import subprocess
+import json
 
 GIT_AVAILABLE = True
 try:
@@ -29,6 +29,30 @@ class GorgusTranslator(App):
 
     #ENABLE_COMMAND_PALETTE = False
     #theme = "flexoki"
+
+    def get_settings(self):
+        if not os.path.isfile("settings.json"):
+            initial_data = {
+                "check_updates_on_start": True
+            }
+            with open("settings.json", "w") as file:
+                json.dump(initial_data, file, indent=4)
+            return initial_data
+        else:
+            with open("settings.json", "r") as file:
+                return json.load(file)
+            
+    def modify_json(self, file_path, key, value):
+        # Open the file and load its current data
+        with open(file_path, 'r') as file:
+            data = json.load(file)
+        
+        # Modify or add the key-value pair
+        data[key] = value
+
+        # Write the updated data back to the JSON file
+        with open(file_path, 'w') as file:
+            json.dump(data, file, indent=4)
 
     @work(thread=True, group="updates", name="check-updates")
     def check_for_updates(self):
@@ -107,6 +131,11 @@ class GorgusTranslator(App):
 
         if num_words == 0:
             table.add_row("[blue]Hmm..[/blue]", "[green]No search results found, sorry.[/green]", "[red]:([/red]")
+
+    @on(Checkbox.Changed)
+    def checkbox_changed(self, event: Checkbox.Changed):
+        if "setting" in event.checkbox.classes:
+            self.modify_json("settings.json", event.checkbox.id, event.checkbox.value)
 
     @on(Button.Pressed)
     def button_pressed(self, event: Button.Pressed):
@@ -203,7 +232,7 @@ These are the people that make this possible! *(all of these are Discord usernam
 - **@plenorf:** Contributed many words""", show_table_of_contents=False)
             with TabPane("Settings"):
                 settings_panel = Vertical(
-                    Checkbox("Check for updates when openned.", button_first=False, value=True),
+                    Checkbox("Check for updates when openned.", button_first=False, value=True, id="check_updates_on_start", classes="setting"),
                     Button("Update", variant="success", disabled=True, id="update-button", tooltip="Apply updates"),
                     id="settings-panel"
                 )
@@ -234,8 +263,14 @@ These are the people that make this possible! *(all of these are Discord usernam
             timeout=10
         )
 
-        self.app.notify("Checking for updates...")
-        self.check_for_updates()
+        # get the user's settings
+        settings = self.get_settings()
+
+        self.query_one("#check_updates_on_start").value = settings["check_updates_on_start"]
+
+        if settings["check_updates_on_start"]:
+            self.app.notify("Checking for updates...")
+            self.check_for_updates()
 
 
 if __name__ == "__main__":
