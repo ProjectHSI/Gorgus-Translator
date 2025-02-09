@@ -1,0 +1,7 @@
+setuptools
+wheel
+textual
+zandev_textual_widgets
+spacy
+nltk
+inflect
