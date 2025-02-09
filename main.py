@@ -51,9 +51,9 @@ class GorgusTranslator(App):
 
         # Compare the current branch with the remote tracking branch
         commits_behind = len(list(repo.iter_commits(f'{remote_ref}..{current_branch}')))
-        #commits_ahead = len(list(repo.iter_commits(f'{current_branch}..{remote_ref}')))
+        commits_ahead = len(list(repo.iter_commits(f'{current_branch}..{remote_ref}')))
 
-        return commits_behind > 0
+        return commits_behind != 0 or commits_ahead != 0
 
     @work(thread=True, group="updates", name="check-updates")
     def update(self):
