@@ -3,12 +3,21 @@ print("Hello. I am loading stuff in the background, gimme a sec plz.")
 
 
 import os
+import subprocess
+
+GIT_AVAILABLE = True
+try:
+    import git
+except ModuleNotFoundError:
+    GIT_AVAILABLE = False
 
 from textual.app import App, ComposeResult
-from textual.widgets import TextArea, Header, Footer, TabbedContent, TabPane, Select, Label, MarkdownViewer, DataTable, Input, Rule
+from textual.widgets import TextArea, Header, Footer, TabbedContent, TabPane, Select, Label, MarkdownViewer, DataTable, Input, Rule, Checkbox
 from textual.containers import Horizontal, Vertical
-from textual import on, work
+from textual import on, work, log
 from textual.css.query import NoMatches
+from textual.worker import Worker, WorkerState
+
 from translations import translation_dictionary, phrase_translations, dictionary_information
 from translater import translate
 
@@ -20,6 +29,31 @@ class GorgusTranslator(App):
 
     #ENABLE_COMMAND_PALETTE = False
     #theme = "flexoki"
+
+    @work(thread=True, group="updates", name="check-updates")
+    def check_for_updates(self):
+        """This function will return `True` when updates are available, otherwise it will return `False`.
+        """
+
+        if not GIT_AVAILABLE:
+            self.notify("You can't update because [bold]gitpython[/bold] is not installed. Use pip to install it.", title="Can't Update", severity="warning", timeout=6)
+            return
+
+        # Initialize the repository object
+        repo = git.Repo(os.getcwd())
+
+        # Fetch the latest changes from the remote (to ensure you have the latest state)
+        repo.remotes.origin.fetch()
+
+        # Get the current branch and its corresponding remote tracking branch
+        current_branch = repo.active_branch
+        remote_ref = f'origin/{current_branch.name}'
+
+        # Compare the current branch with the remote tracking branch
+        commits_behind = len(list(repo.iter_commits(f'{remote_ref}..{current_branch}')))
+        #commits_ahead = len(list(repo.iter_commits(f'{current_branch}..{remote_ref}')))
+
+        return commits_behind > 0
 
     @work(thread=True, group="dictionary", exclusive=True)
     def update_dictionary_table(self, table: DataTable, search: str = None):
@@ -149,8 +183,23 @@ These are the people that make this possible! *(all of these are Discord usernam
 - **@pynecoen:** Came up with the idea to make a language and made a majority of the words
 - **@spookydervish:** Made the translator, made grammar rules and made words
 - **@plenorf:** Contributed many words""", show_table_of_contents=False)
+            with TabPane("Settings"):
+                with Vertical():
+                    yield Label("Settings", variant="primary")
 
         yield Footer()
+
+    def on_worker_state_changed(self, event: Worker.StateChanged):
+        worker = event.worker
+        if worker.name == "check-updates":
+            if worker.state == WorkerState.SUCCESS:
+                log(worker.result)
+                if worker.result == True: # There are updates available!
+                    self.notify("Updates available on Github! Go to settings to apply them.", title="Updates Available")
+                elif worker.result == False: # Up to date
+                    self.notify("No updates available, you're up to date!", title="No Updates Available")
+            elif worker.state == WorkerState.ERROR:
+                self.notify("Failed to check for updates. :(", severity="error")
 
     def on_ready(self):
         self.update_dictionary_table(self.query_one("#dict-table"), "")
@@ -160,6 +209,9 @@ These are the people that make this possible! *(all of these are Discord usernam
             severity="information",
             timeout=10
         )
+
+        self.app.notify("Checking for updates...")
+        self.check_for_updates()
 
 
 if __name__ == "__main__":
