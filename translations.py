@@ -19,7 +19,6 @@ translation_dictionary = {
     "doit": "language",
     "chogder": ["yummy", "delicious", "tasty"],
     "trongle": "hungry",
-    "test": "bruh", # this is for testing the update system, gonna delete this line later
 
     # Determiner
     "plomby": "many",
