@@ -115,7 +115,7 @@ class GorgusTranslator(App):
             if gorgus.startswith("<") and gorgus.endswith(">"):
                 continue
             
-            def search_in_string_or_list(search_query: str, data: str | list):
+            def search_in_string_or_list(search_query, data):
                 if isinstance(data, list):
                     for string in data:
                         if search_query in string:
