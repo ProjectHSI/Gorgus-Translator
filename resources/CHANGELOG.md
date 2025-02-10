@@ -1,6 +1,10 @@
 # Changelog
 
-## Version 1.6 (current)
+## Version 1.65 (current)
+- Added a settings tab which will be expanded in the future
+- Automatic update checker! Turn it off in settings.
+
+## Version 1.6
 - **UI update!!!!!** I'm using the `textual` library instead of the regular python console now, so we have a UI!!!
 - Added `Dictionary` page to the UI
 - Added `Credits` page to the UI
