@@ -107,7 +107,7 @@ class GorgusTranslator(App):
         self.notify("Done! Restart for changes to be finished.", title="Updates Complete")
 
     @work(thread=True, group="dictionary", exclusive=True)
-    def update_dictionary_table(self, table: DataTable, search: str):
+    def update_dictionary_table(self, table, search):
         search = search.strip().lower()
         
         num_words = 0
@@ -144,22 +144,22 @@ class GorgusTranslator(App):
             table.add_row("[blue]Hmm..[/blue]", "[green]No search results found, sorry.[/green]", "[red]:([/red]")
 
     @on(Checkbox.Changed)
-    def checkbox_changed(self, event: Checkbox.Changed):
+    def checkbox_changed(self, event):
         if "setting" in event.checkbox.classes:
             self.modify_json("settings.json", event.checkbox.id, event.checkbox.value)
 
     @on(Button.Pressed)
-    def button_pressed(self, event: Button.Pressed):
+    def button_pressed(self, event):
         if event.button.id == "update-button":
             self.update()
 
     @on(TextArea.Changed)
-    def text_changed(self, event: TextArea.Changed):
+    def text_changed(self, event):
         if event.text_area.id != "translate-input": return
         self.update_translation(event.text_area.text)
     
     @on(Input.Changed)
-    def search_dictionary(self, event: Input.Changed):
+    def search_dictionary(self, event):
         if event.input.id == "search-input":
             try:
                 table: DataTable = self.query_one("#dict-table")
@@ -170,7 +170,7 @@ class GorgusTranslator(App):
             self.update_dictionary_table(table, event.input.value)
 
     @on(Select.Changed)
-    def select_changed(self, event: Select.Changed):
+    def select_changed(self, event):
         if event.select.id == "to-select": # change translation mode
             try:
                 input_area = self.query_one("#translate-input")
@@ -191,7 +191,7 @@ class GorgusTranslator(App):
             
 
     @work(thread=True, group="translate", exclusive=True)
-    def update_translation(self, text: str):
+    def update_translation(self, text):
         output_text_area: TextArea = self.app.query_one("#output")
         translate_to_selection: Select = self.query_one("#to-select")
 
@@ -276,7 +276,7 @@ These are the people that make this possible! *(all of these are Discord usernam
 
         yield Footer()
 
-    def on_worker_state_changed(self, event: Worker.StateChanged):
+    def on_worker_state_changed(self, event):
         worker = event.worker
         if worker.name == "check-updates":
             if worker.state == WorkerState.SUCCESS:
