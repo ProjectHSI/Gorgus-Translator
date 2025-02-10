@@ -200,6 +200,12 @@ class GorgusTranslator(App):
             output_text_area.text = translate(text, "english")
 
     def compose(self) -> ComposeResult:
+        try:
+            self.get_settings()["theme-index"]
+        except KeyError: # support older settings.json formats
+            self.modify_json("settings.json", "theme-index", 0)
+            self.modify_json("settings.json", "theme", "textual-dark")
+
         yield Header()
 
         with TabbedContent():
