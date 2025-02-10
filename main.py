@@ -33,7 +33,8 @@ class GorgusTranslator(App):
         if not os.path.isfile("settings.json"):
             initial_data = {
                 "check_updates_on_start": True,
-                "theme": "nord"
+                "theme": "nord",
+                "theme-index": 0
             }
             with open("settings.json", "w") as file:
                 json.dump(initial_data, file, indent=4)
@@ -59,9 +60,14 @@ class GorgusTranslator(App):
         """This function will return `True` when updates are available, otherwise it will return `False`.
         """
 
+        log("Checking for updates..")
+
         if not GIT_AVAILABLE:
+            log("Can't check for updates, gitpython is not installed.")
             self.notify("You can't update because [bold]gitpython[/bold] is not installed. Use pip to install it.", title="Can't Update", severity="warning", timeout=6)
             return
+        
+        
 
         # Initialize the repository object
         repo = git.Repo(os.getcwd())
@@ -83,6 +89,7 @@ class GorgusTranslator(App):
 
     @work(thread=True, group="updates", name="check-updates")
     def update(self):
+        log("Downloading updates from git repo..")
         self.query_one("#update-button").disabled = True
 
         self.notify("Applying updates...")
@@ -170,6 +177,13 @@ class GorgusTranslator(App):
             input_area.text = output_area.text
 
             self.update_translation(input_area.text)
+        elif event.select.id == "theme-select": # changing translator theme in settings
+
+            chosen_theme = event.select._options[event.value][0]
+
+            self.modify_json("settings.json", "theme", chosen_theme)
+            self.modify_json("settings.json", "theme-index", event.value)
+            self.theme = chosen_theme
             
 
     @work(thread=True, group="translate", exclusive=True)
@@ -240,7 +254,7 @@ These are the people that make this possible! *(all of these are Discord usernam
 
                     Horizontal(
                         Label("Theme:"),
-                        Select([(theme,i+1) for i, theme in enumerate(self._registered_themes.keys())], allow_blank=False, value=3, id="theme-select"),
+                        Select([(theme,i) for i, theme in enumerate(self._registered_themes.keys())], allow_blank=False, id="theme-select", value=self.get_settings()["theme-index"]),
                         classes="setting"
                     ),
                     
@@ -277,13 +291,19 @@ These are the people that make this possible! *(all of these are Discord usernam
         # get the user's settings
         settings = self.get_settings()
 
-        self.query_one("#check_updates_on_start").value = settings["check_updates_on_start"]
-
-        if settings["check_updates_on_start"]:
-            self.app.notify("Checking for updates...")
-            self.check_for_updates()
-
-        self.theme = settings["theme"]
+        try:
+            self.query_one("#check_updates_on_start").value = settings["check_updates_on_start"]
+            if settings["check_updates_on_start"]:
+                self.app.notify("Checking for updates...")
+                self.check_for_updates()
+        except KeyError:
+            log("Settings failed to load due to KeyError! Maybe an update broke their settings.json?")
+            self.notify(
+                "Your settings may be out of date. Please delete the [bold]settings.json[/bold] in the translator's directory and restart the translator.",
+                title="Settings Failed to Load",
+                severity="error",
+                timeout=10
+            )
 
 
 if __name__ == "__main__":

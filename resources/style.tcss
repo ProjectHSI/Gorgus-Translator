@@ -1,7 +1,3 @@
-TabbedContent {
-    margin-top: 1;
-}
-
 TabPane {
     align: center middle;
 }
