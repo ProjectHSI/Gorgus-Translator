@@ -27,8 +27,8 @@ class GorgusTranslator(App):
 
     CSS_PATH = "resources/style.tcss"
 
-    #ENABLE_COMMAND_PALETTE = False
-    #theme = "flexoki"
+    ENABLE_COMMAND_PALETTE = False
+    theme = "nord"
 
     def get_settings(self):
         if not os.path.isfile("settings.json"):
@@ -98,27 +98,25 @@ class GorgusTranslator(App):
     def update_dictionary_table(self, table: DataTable, search: str = None):
         if search:
             search = search.strip()
-            if search == "":
-                search = None
         
         num_words = 0
         for gorgus, english in translation_dictionary.items():
             if gorgus.startswith("<") and gorgus.endswith(">"):
                 continue
             
-            if search:
-                english_find = False # this is true if it was found in the english column of the dictionary
-                if type(english) == str:
-                    if english_find == False:
-                        english_find = (english.lower().find(search) != -1)
-                elif type(english) == list:
-                    for thing in english:
-                        if thing.lower().find(search) != -1:
-                            english_find = True
-                            break
-
-                if gorgus.lower().find(search) == -1 and not english_find:
-                    continue
+            def search_in_string_or_list(search_query: str, data: str | list):
+                if isinstance(data, list):
+                    for string in data:
+                        if search_query in string:
+                            return True
+                    return False
+                elif isinstance(data, str):
+                    return search_query in data
+                else:
+                    raise TypeError("Data must be a string or a list of strings")
+                
+            if not search_in_string_or_list(search, gorgus) and not search_in_string_or_list(search, english):
+                continue
 
             info = []
             if gorgus in dictionary_information.get("informal_words"):
