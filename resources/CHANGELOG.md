@@ -1,9 +1,10 @@
 # Changelog
 
 ## Version 1.65 (current)
-- Added a settings tab which will be expanded in the future
-- Automatic update checker! Turn it off in settings.
+- Added a `Settings` page to the UI which will be expanded in the future
+- Automatic update checker! Turn it off in the `Settings` page.
 - Improved the dictionary search a tiny bit.
+- Your theme settings now save and can be found in the `Settings` page.
 
 ## Version 1.6
 - **UI update!!!!!** I'm using the `textual` library instead of the regular python console now, so we have a UI!!!
