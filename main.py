@@ -102,9 +102,8 @@ class GorgusTranslator(App):
         self.notify("Done! Restart for changes to be finished.", title="Updates Complete")
 
     @work(thread=True, group="dictionary", exclusive=True)
-    def update_dictionary_table(self, table: DataTable, search: str = None):
-        if search:
-            search = search.strip()
+    def update_dictionary_table(self, table: DataTable, search: str):
+        search = search.strip().lower()
         
         num_words = 0
         for gorgus, english in translation_dictionary.items():
