@@ -263,6 +263,8 @@ These are the people that make this possible! *(all of these are Discord usernam
             timeout=10
         )
 
+        self.app.notify(message="hi this is another test of automatic updates lol")
+
         # get the user's settings
         settings = self.get_settings()
 
