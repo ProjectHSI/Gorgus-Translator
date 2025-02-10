@@ -1,3 +1,7 @@
+TabbedContent {
+    margin-top: 1;
+}
+
 TabPane {
     align: center middle;
 }
@@ -35,10 +39,20 @@ TabPane {
     padding: 1;
 }
 
-#settings-panel Checkbox {
+#settings-panel .setting {
     margin-bottom: 1;
+    height: 3;
 }
 
+#settings-panel .setting Label {
+    margin-top: 1;
+    width: 35%;
+}
+
+#settings-panel .setting Select {
+    width: 25%;
+} 
+
 #update-button {
-    margin-top: 5;
+    dock: right;
 }

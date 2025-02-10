@@ -231,10 +231,19 @@ These are the people that make this possible! *(all of these are Discord usernam
 - **@spookydervish:** Made the translator, made grammar rules and made words
 - **@plenorf:** Contributed many words""", show_table_of_contents=False)
             with TabPane("Settings"):
-                log([(theme,i) for i, theme in enumerate(self._registered_themes.keys())])
                 settings_panel = Vertical(
-                    Checkbox("Check for updates when openned.", button_first=False, value=True, id="check_updates_on_start", classes="setting"),
-                    Select([(theme,i+1) for i, theme in enumerate(self._registered_themes.keys())], prompt="Select theme", allow_blank=False, value=3, id="theme-select"),
+                    Horizontal(
+                        Label("Check for updates when openned:"),
+                        Checkbox(button_first=False, value=True, id="check_updates_on_start", classes="setting"),
+                        classes="setting"
+                    ),
+
+                    Horizontal(
+                        Label("Theme:"),
+                        Select([(theme,i+1) for i, theme in enumerate(self._registered_themes.keys())], allow_blank=False, value=3, id="theme-select"),
+                        classes="setting"
+                    ),
+                    
                     Button("Update", variant="success", disabled=True, id="update-button", tooltip="Apply updates"),
                     id="settings-panel"
                 )
