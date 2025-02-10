@@ -3,6 +3,7 @@
 ## Version 1.65 (current)
 - Added a settings tab which will be expanded in the future
 - Automatic update checker! Turn it off in settings.
+- Improved the dictionary search a tiny bit.
 
 ## Version 1.6
 - **UI update!!!!!** I'm using the `textual` library instead of the regular python console now, so we have a UI!!!
