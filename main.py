@@ -98,7 +98,12 @@ class GorgusTranslator(App):
 
         #current_branch = repo.active_branch
 
-        repo.remotes.origin.pull()
+        try:
+            repo.remotes.origin.pull()
+        except git.GitCommandError as e:
+            self.notify(f"Updates failed to apply:\n{e}", title="Woops!", severity="error")
+            self.query_one("#update-button").disabled = False
+            return
         self.notify("Done! Restart for changes to be finished.", title="Updates Complete")
 
     @work(thread=True, group="dictionary", exclusive=True)
