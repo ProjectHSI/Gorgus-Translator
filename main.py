@@ -206,7 +206,7 @@ class GorgusTranslator(App):
             self.modify_json("settings.json", "theme-index", 0)
             self.modify_json("settings.json", "theme", "textual-dark")
 
-        yield Header()
+        yield Header(show_clock=True)
 
         with TabbedContent():
             with TabPane("Translator", id="translator"): 
