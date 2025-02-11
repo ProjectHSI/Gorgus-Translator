@@ -5,6 +5,7 @@
 - Automatic update checker! Turn it off in the `Settings` page.
 - Improved the dictionary search a tiny bit.
 - Your theme settings now save and can be found in the `Settings` page.
+- Removed redundant dependency.
 
 ## Version 1.6
 - **UI update!!!!!** I'm using the `textual` library instead of the regular python console now, so we have a UI!!!
