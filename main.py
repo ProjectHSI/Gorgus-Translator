@@ -30,8 +30,9 @@ def install_module(module_name):
     else:
         print(f"{module_name} is already installed.")
 
-install_module("nltk")
-install_module("word_forms")
+with open("requirements.txt", "r") as f:
+    for line in f.readlines():
+        install_module(line.strip("\n"))
 
 from textual.app import App, ComposeResult
 from textual.widgets import TextArea, Header, Footer, TabbedContent, TabPane, Select, Label, MarkdownViewer, DataTable, Input, Rule, Checkbox, Button
