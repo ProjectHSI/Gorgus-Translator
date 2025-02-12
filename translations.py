@@ -66,6 +66,7 @@ translation_dictionary = {
     "molp": ["liquid", "water"],
     "derg": "balloon",
     "srinch": ["ass", "booty"],
+    "spiffo": "zombie",
 
     # seasons
     "uggos": "spring",
@@ -144,8 +145,8 @@ translation_dictionary = {
     "puci": "cut",
     "zunx": "look",
     "sadged": "tear",
-    "glink": "start",
-    "glonk": "stop",
+    "glink": ["start", "begin"],
+    "glonk": ["stop", "end"],
     "muung": "fill",
     "muunged": "filled",
     "rinter": ["get", "fetch"],
@@ -153,6 +154,8 @@ translation_dictionary = {
     "bikto": "break",
     "skoonk": "push",
     "bloont": "pop",
+    "minkat": "crush",
+    "narco": "prepare",
 
     # Proper Nouns
     "googrung": ["you", "yourself"],
