@@ -1,15 +1,37 @@
 __VERSION__ = 1.7
 print("Hello. I am loading stuff in the background, gimme a sec plz.")
 
-
-import os
+import os, sys
 import json
+import importlib
+import platform
+import subprocess
 
 GIT_AVAILABLE = True
 try:
     import git
 except ModuleNotFoundError:
     GIT_AVAILABLE = False
+
+def install_module(module_name):
+    """Ensure NLTK is installed, using the correct pip command based on OS."""
+    if importlib.util.find_spec(module_name) is None:
+        print(f"{module_name} not found. Installing...")
+        
+        # Determine correct pip command
+        pip_cmd = "pip" if platform.system() == "Windows" else "pip3"
+        
+        try:
+            subprocess.check_call([sys.executable, "-m", pip_cmd, "install", module_name])
+            print(f"{module_name} installed successfully!")
+        except subprocess.CalledProcessError:
+            print(f"Error: Failed to install {module_name}. Please install it manually.")
+            sys.exit(1)
+    else:
+        print(f"{module_name} is already installed.")
+
+install_module("nltk")
+install_module("word_forms")
 
 from textual.app import App, ComposeResult
 from textual.widgets import TextArea, Header, Footer, TabbedContent, TabPane, Select, Label, MarkdownViewer, DataTable, Input, Rule, Checkbox, Button
