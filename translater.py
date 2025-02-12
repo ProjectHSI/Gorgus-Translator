@@ -77,8 +77,6 @@ def to_gorgus(user_input: str):
 
     doc = nlp(before_translation)
     for i, token in enumerate(doc):
-        #print(token.pos_, token.text)
-        #print(token.nbor().pos_, token.nbor().text)
         if token.text == "EXAGGERATE":
             modified_verbs[token.head.i] = 1
         elif token.text == "GENTLE":
@@ -128,10 +126,8 @@ def to_gorgus(user_input: str):
         is_actor = False
 
         if is_plural and from_actor_form(word) != word and (to_actor_form(word).find("erser") != -1):
-            #return "a"
             is_actor = True
         if is_actor_form(word):
-            #return "b"
             is_actor = True
 
         if is_actor:
@@ -149,10 +145,6 @@ def to_gorgus(user_input: str):
 
         if plural in ignored_plurals:
             is_plural = False
-
-        #return f"{is_plural, from_actor_form(word), word, to_actor_form(word)}"
-        #return from_actor_form(word)
-        #return f'{"singular:", singular, "plural:", plural, "is plural:", is_plural, "is actor:", is_actor}'
 
         try:
             found = False
