@@ -1,3 +1,8 @@
+#
+#   main.py
+#   Created by Nathaniel Chandler
+#
+
 __VERSION__ = 1.6
 print("Hello. I am loading stuff in the background, gimme a sec plz.")
 

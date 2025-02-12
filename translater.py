@@ -1,3 +1,8 @@
+#
+#   translater.py
+#   Created by Nathaniel Chandler
+#
+
 import string
 import spacy
 import inflect

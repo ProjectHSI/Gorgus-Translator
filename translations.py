@@ -1,3 +1,8 @@
+#
+#   translations.py
+#   Created by Nathaniel Chandler
+#
+
 translation_dictionary = {
     # adjectives
     "zorp": ["bad", "awful", "terrible", "horrible"],

@@ -1,3 +1,8 @@
+#
+#   swap.py
+#   Created by Nathaniel Chandler
+#
+
 def is_verb(word):
     # A basic check for verbs (you can expand this list or use a regex)
     common_verbs = ["run", "runs", "ran", "jump", "jumps", "jumped", "walk", "walks", "walked", "is", "are", "was", "were", "ate", "eat", "eats", "approach", "approaches", "approached"]
