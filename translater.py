@@ -85,7 +85,6 @@ def to_gorgus(user_input: str):
             modified_verbs[token.head.i] = -1
 
     for i, word in enumerate(words):
-        token_word = nlp(word)[0]
         trailing_punctuation = get_trailing_punctuation(word)
 
         word = word.translate(str.maketrans('', '', string.punctuation))
