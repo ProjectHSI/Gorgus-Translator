@@ -234,7 +234,9 @@ translation_dictionary = {
     "kiffer": ["smelly", "stinky"],
     "doit": "language",
     "chogder": ["yummy", "delicious", "tasty"],
-    "trongle": "hungry"
+    "trongle": "hungry",
+    "stirkle": "weak",
+    "ilstirkle": "strong"
 }
 
 dictionary_information = {
