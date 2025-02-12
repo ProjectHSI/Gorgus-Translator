@@ -1,25 +1,4 @@
 translation_dictionary = {
-    # adjectives
-    "zorp": ["bad", "awful", "terrible", "horrible"],
-    "jink": "fuck",
-    "toop": "shit",
-    "jinks": ["fucking", "bloody"],
-    "zorper": ["bitch", "fucker", "asshole", "motherfucker"],
-    "dagunga": ["good", "incredible", "happy", "amazing", "spectacular"],
-    "squumth": ["sad"],
-    "gubbus": ["disappointed"],
-    "zogo": ["idiot", "fool", "dumb", "moron", "clown", "stupid"],
-    "nink": "dweeb",
-    "gdorp": "gdorp",
-    "bikter": ["broken", "destroyed"],
-    "wirsko": "wrong",
-    "wakco": "right",
-    "kiff": ["smell", "stink"],
-    "kiffer": ["smelly", "stinky"],
-    "doit": "language",
-    "chogder": ["yummy", "delicious", "tasty"],
-    "trongle": "hungry",
-
     # Determiner
     "plomby": "many",
 
@@ -27,9 +6,19 @@ translation_dictionary = {
     "lunk": "?",
     "ghron": "the",
     "<PLURAL>": "ik-",
+    "<ACTOR>": "-ak",
     "<EXAGGERATED_VERB>": "\u0302",
     "<GENTLE_VERB>": "\u0303",
     "<SENTENCE_END>": "$",
+
+    # Pronouns :)
+
+    "nack": "he",
+    "snack": "she",
+    "kracken": "its",
+    "knacken": "his",
+    "ksnacken": "hers",
+    "shrem": "their" ,
 
     # Nouns
     "neeper": ["baby", "child", "infant", "kid"],
@@ -74,6 +63,9 @@ translation_dictionary = {
     "lebron": "god",
     "bilko": "mercy",
     "blork": "cannon",
+    "molp": ["liquid", "water"],
+    "derg": "balloon",
+    "srinch": ["ass", "booty"],
 
     # seasons
     "uggos": "spring",
@@ -159,6 +151,8 @@ translation_dictionary = {
     "rinter": ["get", "fetch"],
     "glomp": "produce",
     "bikto": "break",
+    "skoonk": "push",
+    "bloont": "pop",
 
     # Proper Nouns
     "googrung": ["you", "yourself"],
@@ -218,14 +212,26 @@ translation_dictionary = {
     "cupoo": "inside",
     "cupee": "outside",
 
-    # Pronouns :)
-
-    "nack": "he",
-    "snack": "she",
-    "kracken": "its",
-    "knacken": "his",
-    "ksnacken": "hers",
-    "shrem": "their" 
+    # adjectives
+    "zorp": ["bad", "awful", "terrible", "horrible"],
+    "jink": "fuck",
+    "toop": "shit",
+    "jinks": ["fucking", "bloody"],
+    "zorper": ["bitch", "fucker", "asshole", "motherfucker"],
+    "dagunga": ["good", "incredible", "happy", "amazing", "spectacular"],
+    "squumth": ["sad"],
+    "gubbus": ["disappointed"],
+    "zogo": ["idiot", "fool", "dumb", "moron", "clown", "stupid"],
+    "nink": "dweeb",
+    "gdorp": "gdorp",
+    "bikter": ["broken", "destroyed"],
+    "wirsko": "wrong",
+    "wakco": "right",
+    "kiff": ["smell", "stink"],
+    "kiffer": ["smelly", "stinky"],
+    "doit": "language",
+    "chogder": ["yummy", "delicious", "tasty"],
+    "trongle": "hungry"
 }
 
 dictionary_information = {
@@ -238,12 +244,17 @@ dictionary_information = {
         "quam",
         "bozer",
         "toop",
-        "agger",
         "huffer",
         "pliop",
         "nink",
-        "zogo"
-    ]
+        "zogo",
+        "srinch",
+        "gumblegoge"
+    ],
+    "extra_info": {
+        "agger": "[bright_green]platonic[/bright_green]",
+        "forp": "[deep_pink1]romantic[/deep_pink1]"
+    }
 }
 
 phrase_translations = {
@@ -270,5 +281,5 @@ ignored_plurals = [
     "it",
     "is",
     "yes",
-    "a"
+    "a",
 ]

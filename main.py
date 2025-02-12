@@ -1,4 +1,4 @@
-__VERSION__ = 1.6
+__VERSION__ = 1.7
 print("Hello. I am loading stuff in the background, gimme a sec plz.")
 
 
@@ -16,7 +16,8 @@ from textual.widgets import TextArea, Header, Footer, TabbedContent, TabPane, Se
 from textual.containers import Horizontal, Vertical
 from textual import on, work, log
 from textual.css.query import NoMatches
-from textual.worker import Worker, WorkerState
+from textual.worker import WorkerState
+from textual.binding import Binding
 
 from translations import translation_dictionary, phrase_translations, dictionary_information
 from translater import translate
@@ -28,6 +29,10 @@ class GorgusTranslator(App):
     CSS_PATH = "resources/style.tcss"
 
     ENABLE_COMMAND_PALETTE = False
+
+    BINDINGS = [
+        Binding("ctrl+q", "quit", "Quit", show=True, priority=True)
+    ]
 
     def get_settings(self):
         if not os.path.isfile("settings.json"):
@@ -132,6 +137,9 @@ class GorgusTranslator(App):
             info = []
             if gorgus in dictionary_information.get("informal_words"):
                 info.append("[red]informal[/red]")
+            extra_info = dictionary_information.get("extra_info").get(gorgus)
+            if extra_info:
+                info.append(extra_info)
             info = ', '.join(info)
 
             if type(english) == str:
@@ -190,8 +198,8 @@ class GorgusTranslator(App):
             self.theme = chosen_theme
             
 
-    @work(thread=True, group="translate", exclusive=True)
-    def update_translation(self, text):
+    @work(group="translate")
+    async def update_translation(self, text):
         output_text_area: TextArea = self.app.query_one("#output")
         translate_to_selection: Select = self.query_one("#to-select")
 

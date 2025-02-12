@@ -4,3 +4,5 @@ textual
 spacy
 nltk
 inflect
+gitpython
+word_forms

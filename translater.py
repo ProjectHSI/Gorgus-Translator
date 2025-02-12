@@ -5,14 +5,45 @@ import re
 
 from translations import *
 from swap import swap_verbs_and_adverbs
-from nltk.corpus import wordnet as wn
-from sys import exit
+from word_forms.word_forms import get_word_forms
 from typing import Literal
 
+ACTOR_SUFFIXES = ["er", "or", "ist"]
 
 inflect_engine = inflect.engine()
 nlp = spacy.load("en_core_web_sm")
 
+
+def is_actor_form(word: str) -> bool:
+    """Check if a word is in actor form based on common English suffixes."""
+    return any(word.endswith(suffix) for suffix in ACTOR_SUFFIXES)
+
+
+def to_actor_form(root: str) -> str:
+    """Convert a root word to its actor form following English rules."""
+    if root.endswith("e"):
+        return root + "r"  # e.g., "bake" → "baker"
+    elif re.match(r".*[aeiou][bcdfghjklmnpqrstvwxyz]$", root):
+        return root + root[-1] + "er"  # e.g., "run" → "runner"
+    else:
+        return root + "er"  # Default case
+
+
+def from_actor_form(actor, lemma: bool = True):
+    """
+    Convert an actor form word back to its root.
+    """
+    #! I AM AWARE THIS IS COMPLETE AND UTTER DOGSHIT!!!!
+    #! THIS IS TURNING AN O(1) OPERATION INTO AN O(n) OPERATION!!!!
+    #! BUT THIS SET IS SO SMALL I DONT GIVE A SHIT
+    #! RAHHHHHH
+    forms = list(get_word_forms(actor)["v"])
+    try:
+        if lemma:
+            return nlp(forms[0])[0].lemma_
+        return forms[0]
+    except IndexError:
+        return actor
 
 def get_trailing_punctuation(text):
     # Match any punctuation at the end of the string
@@ -54,6 +85,7 @@ def to_gorgus(user_input: str):
             modified_verbs[token.head.i] = -1
 
     for i, word in enumerate(words):
+        token_word = nlp(word)[0]
         trailing_punctuation = get_trailing_punctuation(word)
 
         word = word.translate(str.maketrans('', '', string.punctuation))
@@ -65,6 +97,7 @@ def to_gorgus(user_input: str):
 
         try:
             suffix = modified_verbs.get(i)
+
 
             if suffix == None:
                 suffix = ""
@@ -91,6 +124,36 @@ def to_gorgus(user_input: str):
         except:
             translated += f"{words[i]} "
             continue
+        
+        word_suffix = ""
+        is_actor = False
+
+        if is_plural and from_actor_form(word) != word and (to_actor_form(word).find("erser") != -1):
+            #return "a"
+            is_actor = True
+        if is_actor_form(word):
+            #return "b"
+            is_actor = True
+
+        if is_actor:
+            if singular:
+                singular = from_actor_form(singular)
+            else:
+                plural = inflect_engine.plural(from_actor_form(plural))
+
+            word_suffix += translation_dictionary["<ACTOR>"]
+        
+        if is_actor and singular == plural:
+            is_plural = True
+            singular = to_actor_form(singular)
+            plural = inflect_engine.plural(singular)
+
+        if plural in ignored_plurals:
+            is_plural = False
+
+        #return f"{is_plural, from_actor_form(word), word, to_actor_form(word)}"
+        #return from_actor_form(word)
+        #return f'{"singular:", singular, "plural:", plural, "is plural:", is_plural, "is actor:", is_actor}'
 
         try:
             found = False
@@ -98,25 +161,22 @@ def to_gorgus(user_input: str):
             # key = Gorgus, value = English
             for key, value in translation_dictionary.items():
                 if type(value) == str:
-                    if value == singular or inflect_engine.plural(value) == plural:
+                    
+                    if value == singular or plural == inflect_engine.plural(value):
                         found = True
-
-                        if plural in ignored_plurals:
-                            is_plural = False
-
                         if not is_plural:
-                            translated += f"{key}{suffix} "
+                            translated += f"{key}{word_suffix}{suffix} "
                         else:
-                            translated += f"{translation_dictionary['<PLURAL>']}{key}{suffix} "
+                            translated += f"{translation_dictionary['<PLURAL>']}{key}{word_suffix}{suffix} "
                         break
                 elif type(value) == list:
                     for possible_word in value:
-                        if possible_word == singular or inflect_engine.plural(possible_word) == plural:
+                        if possible_word == singular or plural == inflect_engine.plural(possible_word):
                             found = True
                             if not is_plural:
-                                translated += f"{key}{suffix} "
+                                translated += f"{key}{word_suffix}{suffix} "
                             else:
-                                translated += f"{translation_dictionary['<PLURAL>']}{key}{suffix} "
+                                translated += f"{translation_dictionary['<PLURAL>']}{key}{word_suffix}{suffix} "
                             break
                 if found: break
 
@@ -157,9 +217,14 @@ def from_gorgus(user_input: str):
         word = word.translate(str.maketrans('', '', ".,?!$"))
 
         plural = False
+        actor = False
         if word.startswith(translation_dictionary["<PLURAL>"]):
             word = word.removeprefix(translation_dictionary["<PLURAL>"])
             plural = True
+
+        if word.endswith(translation_dictionary["<ACTOR>"]):
+            word = word.removesuffix(translation_dictionary["<ACTOR>"])
+            actor = True
 
         if word.endswith(translation_dictionary["<EXAGGERATED_VERB>"]):
             word = word.rstrip(translation_dictionary["<EXAGGERATED_VERB>"])
@@ -176,17 +241,21 @@ def from_gorgus(user_input: str):
             translation = translation_dictionary[word]
 
             if type(translation) == str:
+                if actor:
+                    translation = to_actor_form(translation)
+
                 if plural:
                     translation = inflect_engine.plural(translation)
 
                 translated += f"{translation}{suffix} "
             elif type(translation) == list:
-                
+                final = translation[0]
+
+                if actor:
+                    final = to_actor_form(final)
 
                 if plural:
-                    final = inflect_engine.plural(translation[0])
-                else:
-                    final = translation[0]
+                    final = inflect_engine.plural(final)
 
                 translated += f"{final}{suffix} "
         except KeyError:

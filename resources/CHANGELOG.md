@@ -1,6 +1,12 @@
 # Changelog
 
-## Version 1.65 (current)
+## Version 1.7
+- Small update, just some new words.
+- You can now turn words into `"a person who X"`, basically meaning `"kill"` becomes `"killer"` or `"a person who kills"`. You do this by adding the suffix "-ak" to a noun.
+- Fixed translation bug.
+- Added `gitpython` to `requirements.txt` so it would be automatically installed.
+
+## Version 1.65
 - Added a `Settings` page to the UI which will be expanded in the future
 - Automatic update checker! Turn it off in the `Settings` page.
 - Improved the dictionary search a tiny bit.
