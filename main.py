@@ -93,7 +93,7 @@ class GorgusTranslator(App):
         with open(file_path, 'w') as file:
             json.dump(data, file, indent=4)
 
-    @work(thread=True, group="updates", name="check-updates")
+    @work(thread=True, group="updates", name="check-updates", exit_on_error=False)
     def check_for_updates(self):
         """This function will return `True` when updates are available, otherwise it will return `False`.
         """
