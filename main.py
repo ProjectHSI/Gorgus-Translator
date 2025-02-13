@@ -14,21 +14,15 @@ except ModuleNotFoundError:
     GIT_AVAILABLE = False
 
 def install_module(module_name):
-    """Ensure NLTK is installed, using the correct pip command based on OS."""
-    if importlib.util.find_spec(module_name) is None:
-        print(f"{module_name} not found. Installing...")
-        
-        # Determine correct pip command
-        pip_cmd = "pip" if platform.system() == "Windows" else "pip3"
-        
-        try:
-            subprocess.check_call([sys.executable, "-m", pip_cmd, "install", module_name])
-            print(f"{module_name} installed successfully!")
-        except subprocess.CalledProcessError:
-            print(f"Error: Failed to install {module_name}. Please install it manually.")
-            sys.exit(1)
-    else:
-        print(f"{module_name} is already installed.")
+    try:
+        # Try to import the module
+        __import__(module_name)
+        print(f"Module '{module_name}' is already installed.")
+    except ImportError:
+        # If the module is not found, install it and then import it
+        print(f"Module '{module_name}' not found. Installing...")
+        subprocess.check_call([sys.executable, "-m", "pip", "install", module_name])
+        print(f"Module '{module_name}' installed.")
 
 with open("requirements.txt", "r") as f:
     for line in f.readlines():
