@@ -131,10 +131,10 @@ def to_gorgus(user_input: str):
             is_actor = True
 
         if is_actor:
-            if singular:
-                singular = from_actor_form(singular)
-            else:
-                plural = inflect_engine.plural(from_actor_form(plural))
+            #if singular:
+            singular = from_actor_form(word)
+            #else:
+            plural = inflect_engine.plural(from_actor_form(plural))
 
             word_suffix += translation_dictionary["<ACTOR>"]
         
@@ -145,6 +145,7 @@ def to_gorgus(user_input: str):
 
         if plural in ignored_plurals:
             is_plural = False
+
         try:
             found = False
 
@@ -162,6 +163,7 @@ def to_gorgus(user_input: str):
                 elif type(value) == list:
                     for possible_word in value:
                         if possible_word == (singular or word) or (plural == inflect_engine.plural(possible_word) and is_plural):
+                            #return f"{possible_word == (word or singular), (plural == inflect_engine.plural(possible_word) and is_plural)}"
                             found = True
                             if not is_plural:
                                 translated += f"{key}{word_suffix}{suffix} "
