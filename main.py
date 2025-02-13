@@ -44,6 +44,9 @@ from textual.binding import Binding
 from translations import translation_dictionary, phrase_translations, dictionary_information
 from translater import translate
 
+from nltk import download
+download("wordnet")
+
 class GorgusTranslator(App):
     TITLE = "Gorgus Translator"
     #SUB_TITLE = "Made with ❤️ by @spookydervish"
