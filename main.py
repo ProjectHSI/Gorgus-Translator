@@ -3,7 +3,7 @@ print("Hello. I am loading stuff in the background, gimme a sec plz.")
 
 import os, sys
 import json
-import importlib
+import importlib.util
 import platform
 import subprocess
 
@@ -14,7 +14,6 @@ except ModuleNotFoundError:
     GIT_AVAILABLE = False
 
 def install_module(module_name):
-    """Ensure NLTK is installed, using the correct pip command based on OS."""
     if importlib.util.find_spec(module_name) is None:
         print(f"{module_name} not found. Installing...")
         
@@ -22,7 +21,7 @@ def install_module(module_name):
         pip_cmd = "pip" if platform.system() == "Windows" else "pip3"
         
         try:
-            subprocess.check_call([sys.executable, "-m", pip_cmd, "install", module_name])
+            subprocess.check_call([pip_cmd, "install", module_name])
             print(f"{module_name} installed successfully!")
         except subprocess.CalledProcessError:
             print(f"Error: Failed to install {module_name}. Please install it manually.")
@@ -44,6 +43,12 @@ from textual.binding import Binding
 
 from translations import translation_dictionary, phrase_translations, dictionary_information
 from translater import translate
+
+from nltk import download
+ai_model_download_success = download("wordnet")
+if not ai_model_download_success:
+    print("I couldn't download the wordnet AI mdoel... :(")
+    sys.exit(1)
 
 class GorgusTranslator(App):
     TITLE = "Gorgus Translator"
