@@ -3,7 +3,7 @@
 ## Version 1.7
 - Small update, just some new words.
 - You can now turn words into `"a person who X"`, basically meaning `"kill"` becomes `"killer"` or `"a person who kills"`. You do this by adding the suffix "-ak" to a noun.
-- Fixed translation bug.
+- Fixed translation bugs.
 - Added `gitpython` to `requirements.txt` so it would be automatically installed.
 - Added `nltk` to `requirements.txt` so it would be automatically installed.
 
