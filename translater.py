@@ -125,7 +125,7 @@ def to_gorgus(user_input: str):
         word_suffix = ""
         is_actor = False
 
-        if is_plural and from_actor_form(word) != word and (to_actor_form(word).find("erser") != -1):
+        if is_plural and from_actor_form(word) != word and (to_actor_form(word).find("erser") != -1) and not word in pronouns:
             is_actor = True
         if is_actor_form(word):
             is_actor = True
@@ -145,7 +145,6 @@ def to_gorgus(user_input: str):
 
         if plural in ignored_plurals:
             is_plural = False
-
         try:
             found = False
 
@@ -153,7 +152,7 @@ def to_gorgus(user_input: str):
             for key, value in translation_dictionary.items():
                 if type(value) == str:
                     
-                    if value == singular or plural == inflect_engine.plural(value):
+                    if value == (singular or word) or (plural == inflect_engine.plural(value) and is_plural):
                         found = True
                         if not is_plural:
                             translated += f"{key}{word_suffix}{suffix} "
@@ -162,7 +161,7 @@ def to_gorgus(user_input: str):
                         break
                 elif type(value) == list:
                     for possible_word in value:
-                        if possible_word == singular or plural == inflect_engine.plural(possible_word):
+                        if possible_word == (singular or word) or (plural == inflect_engine.plural(possible_word) and is_plural):
                             found = True
                             if not is_plural:
                                 translated += f"{key}{word_suffix}{suffix} "

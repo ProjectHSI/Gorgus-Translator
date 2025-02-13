@@ -156,6 +156,7 @@ translation_dictionary = {
     "bloont": "pop",
     "minkat": "crush",
     "narco": "prepare",
+    "muke": "return",
 
     # Proper Nouns
     "googrung": ["you", "yourself"],
@@ -236,7 +237,8 @@ translation_dictionary = {
     "chogder": ["yummy", "delicious", "tasty"],
     "trongle": "hungry",
     "stirkle": "weak",
-    "ilstirkle": "strong"
+    "ilstirkle": "strong",
+    "torlom": "gassy"
 }
 
 dictionary_information = {
@@ -275,6 +277,7 @@ phrase_translations = {
     "neep wert lunk": "what time is it",
     "dup plomby ik-glorple lunk": ["how old are you"],
     "kunther bonkep": "wanna",
+    "muke": ["come back", "come back here"],
 
     # these are just the phrases that make a verb or noun more intense or more gentle
     "EXAGGERATE": ["a lot", "too much"], 
@@ -287,4 +290,15 @@ ignored_plurals = [
     "is",
     "yes",
     "a",
+    "its",
+    "his",
+    "hers"
+]
+
+pronouns = [
+    "he",
+    "she",
+    "her",
+    "its",
+    "their"
 ]
