@@ -41,14 +41,19 @@ from textual.css.query import NoMatches
 from textual.worker import WorkerState
 from textual.binding import Binding
 
+from rich.console import Console
+
+console = Console()
+
 from translations import translation_dictionary, phrase_translations, dictionary_information
 from translater import translate
 
 from nltk import download
 ai_model_download_success = download("wordnet")
 if not ai_model_download_success:
-    print("I couldn't download the wordnet AI mdoel... :(")
-    sys.exit(1)
+    console.print("[bold red]I couldn't download the wordnet AI mdoel...[/bold red] [blue]:([/blue]")
+    console.print("The app will still open, but it will close, like a lot.")
+    console.input("Press enter to continue.", password=True)
 
 class GorgusTranslator(App):
     TITLE = "Gorgus Translator"
