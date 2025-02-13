@@ -45,7 +45,10 @@ from translations import translation_dictionary, phrase_translations, dictionary
 from translater import translate
 
 from nltk import download
-download("wordnet")
+ai_model_download_success = download("wordnet")
+if not ai_model_download_success:
+    print("I couldn't download the wordnet AI mdoel... :(")
+    sys.exit(1)
 
 class GorgusTranslator(App):
     TITLE = "Gorgus Translator"
