@@ -3,7 +3,7 @@ print("Hello. I am loading stuff in the background, gimme a sec plz.")
 
 import os, sys
 import json
-import importlib
+import importlib.util
 import platform
 import subprocess
 
