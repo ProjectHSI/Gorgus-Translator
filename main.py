@@ -328,7 +328,7 @@ These are the people that make this possible! *(all of these are Discord usernam
                 elif worker.result == False: # Up to date
                     self.notify("No updates available, you're up to date!", title="No Updates Available")
             elif worker.state == WorkerState.ERROR:
-                self.notify("Failed to check for updates. :(", severity="error")
+                self.notify("Failed to check for updates. :(", severity="error", timeout=10)
 
     def on_ready(self):
         self.update_dictionary_table(self.query_one("#dict-table"), "")
