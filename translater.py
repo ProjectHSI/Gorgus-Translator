@@ -2,6 +2,7 @@ import string
 import spacy
 import inflect
 import re
+import nltk
 
 from translations import *
 from swap import swap_verbs_and_adverbs
@@ -12,6 +13,18 @@ ACTOR_SUFFIXES = ["er", "or", "ist"]
 
 inflect_engine = inflect.engine()
 nlp = spacy.load("en_core_web_sm")
+
+from rich.console import Console
+
+console = Console()
+
+wordnet_download_success = True
+if not nltk.data.find('corpora/wordnet.zip'):
+    wordnet_download_success = nltk.download("wordnet")
+    if not wordnet_download_success:
+        console.print("[bold red]I couldn't download the wordnet AI mdoel... :([/bold red]")
+        console.print("The app will still open, but you will have some missing language features.")
+        console.input("Press enter to continue.", password=True)
 
 
 def is_actor_form(word: str) -> bool:
@@ -33,6 +46,9 @@ def from_actor_form(actor, lemma: bool = True):
     """
     Convert an actor form word back to its root.
     """
+    # if wordnet is available we have to make compromises
+    if not wordnet_download_success: return actor
+
     #! I AM AWARE THIS IS COMPLETE AND UTTER DOGSHIT!!!!
     #! THIS IS TURNING AN O(1) OPERATION INTO AN O(n) OPERATION!!!!
     #! BUT THIS SET IS SO SMALL I DONT GIVE A SHIT
@@ -360,7 +376,7 @@ def replace_word(input_string: str, word: str, replacement: str, offset: int = 1
     # Join the words back into a string and return
     return " ".join(words)
 
-def translate(text: str, to: Literal["english", "gorgus"]):
+def translate(text: str, to: Literal["english", "gorgus"], wordnet_available: bool = True):
     """Translate from or to Gorgus and English!
 
     Trailing whitespace is not preserved, neither is punctuation.
