@@ -284,7 +284,7 @@ phrase_translations = {
     "GENTLE": "a bit",
 }
 
-ignored_plurals = [
+ignored_plurals = [ # words that can't be pluralised
     "you",
     "it",
     "is",
@@ -292,13 +292,15 @@ ignored_plurals = [
     "a",
     "its",
     "his",
-    "hers"
+    "hers",
+    "he"
 ]
 
-pronouns = [
+ignored_actor_nouns = [ # words that can't be turned into actor nouns
     "he",
     "she",
     "her",
     "its",
-    "their"
+    "their",
+    "water"
 ]

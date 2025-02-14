@@ -125,10 +125,11 @@ def to_gorgus(user_input: str):
         word_suffix = ""
         is_actor = False
 
-        if is_plural and from_actor_form(word) != word and (to_actor_form(word).find("erser") != -1) and not word in pronouns:
-            is_actor = True
-        if is_actor_form(word):
-            is_actor = True
+        if not word in ignored_actor_nouns:
+            if is_plural and from_actor_form(word) != word and (to_actor_form(word).find("erser") != -1):
+                is_actor = True
+            if is_actor_form(word):
+                is_actor = True
 
         if is_actor:
             #if singular:
