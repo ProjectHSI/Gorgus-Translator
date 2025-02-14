@@ -61,7 +61,7 @@ class GorgusTranslator(App):
             initial_data = {
                 "check_updates_on_start": True,
                 "theme": "nord",
-                "theme-index": 0
+                "theme_index": 0
             }
             with open("settings.json", "w") as file:
                 json.dump(initial_data, file, indent=4)
@@ -216,7 +216,7 @@ class GorgusTranslator(App):
             chosen_theme = event.select._options[event.value][0]
 
             self.modify_json("settings.json", "theme", chosen_theme)
-            self.modify_json("settings.json", "theme-index", event.value)
+            self.modify_json("settings.json", "theme_index", event.value)
             self.theme = chosen_theme
             
 
@@ -235,9 +235,9 @@ class GorgusTranslator(App):
 
     def compose(self) -> ComposeResult:
         try:
-            self.get_settings()["theme-index"]
+            self.get_settings()["theme_index"]
         except KeyError: # support older settings.json formats
-            self.modify_json("settings.json", "theme-index", 0)
+            self.modify_json("settings.json", "theme_index", 0)
             self.modify_json("settings.json", "theme", "textual-dark")
 
         yield Header(show_clock=True)
@@ -294,7 +294,7 @@ These are the people that make this possible! *(all of these are Discord usernam
 
                     Horizontal(
                         Label("Theme:"),
-                        Select([(theme,i) for i, theme in enumerate(self._registered_themes.keys())], allow_blank=False, id="theme-select", value=self.get_settings()["theme-index"]),
+                        Select([(theme,i) for i, theme in enumerate(self._registered_themes.keys())], allow_blank=False, id="theme-select", value=self.get_settings()["theme_index"]),
                         classes="setting"
                     ),
                     
