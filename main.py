@@ -185,6 +185,7 @@ class GorgusTranslator(App):
         if num_words == 0:
             table.add_row("[blue]Hmm..[/blue]", "[green]No search results found, sorry.[/green]", "[red]:([/red]")
 
+
     @on(Checkbox.Changed)
     def checkbox_changed(self, event):
         if "setting" in event.checkbox.classes:
