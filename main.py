@@ -14,6 +14,9 @@ except ModuleNotFoundError:
     GIT_AVAILABLE = False
 
 def install_module(module_name):
+    if module_name == "gitpython":
+        module_name = "git"
+
     if importlib.util.find_spec(module_name) is None:
         print(f"{module_name} not found. Installing...")
         
@@ -61,7 +64,8 @@ class GorgusTranslator(App):
             initial_data = {
                 "check_updates_on_start": True,
                 "theme": "nord",
-                "theme_index": 0
+                "theme_index": 0,
+                "clock_enabled": True
             }
             with open("settings.json", "w") as file:
                 json.dump(initial_data, file, indent=4)
@@ -87,10 +91,15 @@ class GorgusTranslator(App):
         """This function will return `True` when updates are available, otherwise it will return `False`.
         """
 
+        # disable the check for updates button
+        self.query_one("#check-update-button").disabled = True
+
         log("Checking for updates..")
 
+        self.app.notify("Checking for updates...")
+
         if not GIT_AVAILABLE:
-            log("Can't check for updates, gitpython is not installed.")
+            log("Can't check for updates, [bold]gitpython[/bold] is not installed.")
             self.notify("You can't update because [bold]gitpython[/bold] is not installed. Use pip to install it.", title="Can't Update", severity="warning", timeout=6)
             return
         
@@ -111,6 +120,9 @@ class GorgusTranslator(App):
 
         # how many commits the main branch is ahead of us
         commits_ahead = len(list(repo.iter_commits(f'{current_branch}..{remote_ref}')))
+
+        # re enable the check for updates button
+        self.query_one("#check-update-button").disabled = False
 
         return commits_ahead > 0
 
@@ -176,12 +188,17 @@ class GorgusTranslator(App):
     @on(Checkbox.Changed)
     def checkbox_changed(self, event):
         if "setting" in event.checkbox.classes:
+            if event.checkbox.id == "clock_enabled":
+                self.notify("You need to restart for this change to take effect.", title="Setting Changed")
+
             self.modify_json("settings.json", event.checkbox.id, event.checkbox.value)
 
     @on(Button.Pressed)
     def button_pressed(self, event):
         if event.button.id == "update-button":
             self.update()
+        elif event.button.id == "check-update-button":
+            self.check_for_updates()
 
     @on(TextArea.Changed)
     def text_changed(self, event):
@@ -234,13 +251,17 @@ class GorgusTranslator(App):
             output_text_area.text = translate(text, "english")
 
     def compose(self) -> ComposeResult:
+        settings = self.get_settings()
         try:
-            self.get_settings()["theme_index"]
+            settings["theme_index"]
+            settings["clock_enabled"]
         except KeyError: # support older settings.json formats
+            self.modify_json("settings.json", "clock_enabled", True)
             self.modify_json("settings.json", "theme_index", 0)
             self.modify_json("settings.json", "theme", "textual-dark")
+            settings = self.get_settings()
 
-        yield Header(show_clock=True)
+        yield Header(show_clock=settings["clock_enabled"], id="header")
 
         with TabbedContent():
             with TabPane("Translator", id="translator"): 
@@ -293,12 +314,19 @@ These are the people that make this possible! *(all of these are Discord usernam
                     ),
 
                     Horizontal(
+                        Label("Show time in the top right:"),
+                        Checkbox(button_first=False, value=settings["clock_enabled"], id="clock_enabled", classes="setting"),
+                        classes="setting"
+                    ),
+
+                    Horizontal(
                         Label("Theme:"),
                         Select([(theme,i) for i, theme in enumerate(self._registered_themes.keys())], allow_blank=False, id="theme-select", value=self.get_settings()["theme_index"]),
                         classes="setting"
                     ),
                     
-                    Button("Update", variant="success", disabled=True, id="update-button", tooltip="Apply updates"),
+                    Button("Update", variant="success", disabled=True, id="update-button", classes="side-button", tooltip="Apply updates"),
+                    Button("Check for updates", id="check-update-button", classes="side-button", tooltip="Check for updates"),
                     id="settings-panel"
                 )
                 settings_panel.border_title = "Settings"
@@ -334,7 +362,6 @@ These are the people that make this possible! *(all of these are Discord usernam
         try:
             self.query_one("#check_updates_on_start").value = settings["check_updates_on_start"]
             if settings["check_updates_on_start"]:
-                self.app.notify("Checking for updates...")
                 self.check_for_updates()
         except KeyError:
             log("Settings failed to load due to KeyError! Maybe an update broke their settings.json?")

@@ -4,8 +4,11 @@
 - Small update, just some new words. (We now have 200+ words! :D)
 - You can now turn words into `"a person who X"`, basically meaning `"kill"` becomes `"killer"` or `"a person who kills"`. You do this by adding the suffix "-ak" to a noun.
 - Fixed translation bugs.
-- Added `gitpython` to `requirements.txt` so it would be automatically installed.
-- Added `nltk` to `requirements.txt` so it would be automatically installed.
+- Added `gitpython` and `nltk` to `requirements.txt` so it would be automatically installed.
+- Modules inside of the `requirements.txt` file are automatically installed when openning the program for the first time.
+- Allowed the user to disable or enable the clock in the top right.
+- Users can check for updates in the settings menu without restarting now.
+- Moved a lot of the informal words to the bottom of the dictionary lol.
 
 ## Version 1.65
 - Added a `Settings` page to the UI which will be expanded in the future
