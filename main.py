@@ -93,6 +93,7 @@ class GorgusTranslator(App):
 
         # disable the check for updates button
         self.query_one("#check-update-button").disabled = True
+        self.query_one("#update-button").disabled = True
 
         log("Checking for updates..")
 
