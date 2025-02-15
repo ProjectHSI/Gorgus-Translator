@@ -240,7 +240,7 @@ translation_dictionary = {
     "stirkle": "weak",
     "ilstirkle": "strong",
     "torlom": "gassy",
-    "wugbuggle": "unforseen"
+    "wugbuggle": "forseen"
 }
 
 dictionary_information = {
