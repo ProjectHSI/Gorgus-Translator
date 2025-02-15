@@ -4,7 +4,7 @@ A translator for a conlang called Gorgus me and some friends are actively workin
 # Install
 
 ### Install Requirements
-- Python <1.13 (1.13 does not work with the spacy Python module, 1.12.9 is recommended)
+- Python <3.13 (3.13 does not work with the spacy Python module, 3.12.9 is recommended)
 - Git (for automatic updates)
 
 ### Actual Install
