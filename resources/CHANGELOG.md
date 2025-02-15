@@ -4,6 +4,7 @@
 - Added some language features.
 - Copy and TTS buttons added.
 - Punctuation like "," and "!" is now supported in the translator!
+- Couple more words.
 
 ## Version 1.7
 - Small update, just some new words. (We now have 200+ words! :D)
