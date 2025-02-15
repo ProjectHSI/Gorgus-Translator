@@ -67,6 +67,7 @@ translation_dictionary = {
     "derg": "balloon",
     "srinch": ["ass", "booty"],
     "spiffo": "zombie",
+    "skungo": "skeleton",
     "gump": "consequence",
 
     # seasons
@@ -107,7 +108,7 @@ translation_dictionary = {
     # Verbs
     "chongle": ["eat", "eats", "munch", "ate", "munched"],
     "chongling": ["eating", "munching"],
-    "huffer": ["reckon", "think"],
+    "huffer": ["believe", "reckon", "think"],
     "thork": ["hate", "loathe", "despsise"],
     "geepis": "doing",
     "clunk": "hit",
@@ -158,6 +159,7 @@ translation_dictionary = {
     "minkat": "crush",
     "narco": "prepare",
     "muke": "return",
+    "psdodo": ["scared", "spooked"],
 
     # Proper Nouns
     "googrung": ["you", "yourself"],
@@ -240,7 +242,8 @@ translation_dictionary = {
     "stirkle": "weak",
     "ilstirkle": "strong",
     "torlom": "gassy",
-    "wugbuggle": "forseen"
+    "wugbuggle": "forseen",
+    "pstro": ["spooky", "scary"]
 }
 
 dictionary_information = {
@@ -253,7 +256,6 @@ dictionary_information = {
         "quam",
         "bozer",
         "toop",
-        "huffer",
         "pliop",
         "nink",
         "zogo",
@@ -280,6 +282,7 @@ phrase_translations = {
     "dup plomby ik-glorple lunk": ["how old are you"],
     "kunther bonkep": "wanna",
     "muke": ["come back", "come back here"],
+    "geep tijin": "dont",
 
     # these are just the phrases that make a verb or noun more intense or more gentle
     "EXAGGERATE": ["a lot", "too much"], 
