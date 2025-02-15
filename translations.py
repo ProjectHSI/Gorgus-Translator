@@ -69,6 +69,8 @@ translation_dictionary = {
     "spiffo": "zombie",
     "skungo": "skeleton",
     "gump": "consequence",
+    "dugga": "hell",
+    "mugga": "heaven",
 
     # seasons
     "uggos": "spring",
