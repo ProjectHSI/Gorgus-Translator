@@ -6,11 +6,13 @@ TabPane {
     max-width: 50%;
     max-height: 25%;
     margin-top: 1;
+    min-height: 5;
 }
 
 #notice {
     width: 50%;
-    margin-top: 2;
+    margin-top: 1;
+    margin-bottom: 1;
     text-align: center;
 }
 

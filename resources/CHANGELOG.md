@@ -1,6 +1,11 @@
 # Changelog
 
-## Version 1.7 (current)
+## Version 1.75 (current)
+- Added some language features.
+- Copy and TTS buttons added.
+- Punctuation like "," and "!" is now supported in the translator!
+
+## Version 1.7
 - Small update, just some new words. (We now have 200+ words! :D)
 - You can now turn words into `"a person who X"`, basically meaning `"kill"` becomes `"killer"` or `"a person who kills"`. You do this by adding the suffix "-ak" to a noun.
 - Fixed translation bugs.

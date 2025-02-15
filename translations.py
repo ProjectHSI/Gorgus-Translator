@@ -160,6 +160,7 @@ translation_dictionary = {
     "narco": "prepare",
     "muke": "return",
     "psdodo": ["scared", "spooked"],
+    "virt": "appear",
 
     # Proper Nouns
     "googrung": ["you", "yourself"],
@@ -274,19 +275,20 @@ phrase_translations = {
     "zugugo": ["i will", "i shall"],
     "thunti": "often",
     "glurple": "i have",
-    "clungus": "you guys",
+    "clungus": ["you guys", "you all", "guys"],
     "koilt": "i am",
-    "prittering lunk": ["how are you going", "how is it going", "how do you do", "is it going"],
+    "dup prittering": ["how are you going", "how are you going", "how is it going", "how do you do", "how are you doing", "how are you"],
     "zup meat lunk": ["will you be my friend?", "will you be my friend", "wanna be friends?", "want to be friends", "want to be friends?"],
     "neep wert lunk": "what time is it",
     "dup plomby ik-glorple lunk": ["how old are you"],
     "kunther bonkep": "wanna",
     "muke": ["come back", "come back here"],
     "geep tijin": "dont",
+    "ge'googrung": "do you",
 
     # these are just the phrases that make a verb or noun more intense or more gentle
     "EXAGGERATE": ["a lot", "too much"], 
-    "GENTLE": "a bit",
+    "GENTLE": ["a bit", "a little"],
 }
 
 ignored_plurals = [ # words that can't be pluralised

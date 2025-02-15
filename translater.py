@@ -72,7 +72,7 @@ def to_gorgus(user_input: str):
     translated = ""
 
     # Remove punctuation
-    user_input = user_input.translate(str.maketrans('', '', ",")).strip()
+    #user_input = user_input.translate(str.maketrans('', '', ",")).strip()
 
     # Swap verbs and adverbs if needed
     user_input = swap_verbs_and_adverbs(user_input)
@@ -101,7 +101,7 @@ def to_gorgus(user_input: str):
     for i, word in enumerate(words):
         trailing_punctuation = get_trailing_punctuation(word)
 
-        word = word.translate(str.maketrans('', '', string.punctuation))
+        word = word.translate(str.maketrans('', '', ".?!-,"))
 
         suffix = ""
 
@@ -120,12 +120,17 @@ def to_gorgus(user_input: str):
             elif suffix == -1:
                 suffix = translation_dictionary["<GENTLE_VERB>"]
 
-            if trailing_punctuation.endswith("?"):
-                suffix += " lunk"
-            elif trailing_punctuation.endswith("."):
-                suffix += "$"
+            
         except KeyError:
             pass
+
+        if trailing_punctuation.endswith("?"):
+            if not word == "lunk":
+                suffix += " lunk"
+        elif trailing_punctuation.endswith("."):
+            suffix += "$"
+        else:
+            suffix += trailing_punctuation
 
         try:
             plural = inflect_engine.plural(word)
@@ -190,9 +195,9 @@ def to_gorgus(user_input: str):
                 if found: break
 
             if not found:
-                translated += f"{word} "
+                translated += f"{word}{suffix} "
         except KeyError:
-            translated += f"{word} "
+            translated += f"{word}{suffix} "
     translated = replace_word(translated, "really", translation_dictionary["<EXAGGERATED_VERB>"])
     translated = replace_word(translated, "extremely", translation_dictionary["<EXAGGERATED_VERB>"])
     translated = replace_word(translated, "kinda", translation_dictionary["<GENTLE_VERB>"])
@@ -222,6 +227,8 @@ def from_gorgus(user_input: str):
 
         if trailing.endswith("$"):
             suffix += "."
+        else:
+            suffix += trailing
 
         word = word.translate(str.maketrans('', '', ".,?!$"))
 

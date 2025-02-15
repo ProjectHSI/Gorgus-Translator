@@ -1,4 +1,4 @@
-__VERSION__ = 1.7
+__VERSION__ = 1.75
 print("Hello. I am loading stuff in the background, gimme a sec plz.")
 
 import os, sys
@@ -35,6 +35,11 @@ def install_module(module_name):
 with open("requirements.txt", "r") as f:
     for line in f.readlines():
         install_module(line.strip("\n"))
+
+from rich import print as rich_print
+
+rich_print("\n[bold]=== Gorgus Translator ===[/bold]")
+rich_print(f"[bold]Version:[/bold] [dim cyan]{__VERSION__}[/dim cyan]")
 
 from textual.app import App, ComposeResult
 from textual.widgets import TextArea, Header, Footer, TabbedContent, TabPane, Select, Label, MarkdownViewer, DataTable, Input, Rule, Checkbox, Button
@@ -268,11 +273,11 @@ class GorgusTranslator(App):
             with TabPane("Translator", id="translator"): 
                 yield Label("Input")
                 yield TextArea(text="", tooltip="Type here!", classes="text-box", id="translate-input")
+                
                 yield Select([("English -> Gorgus",1), ("Gorgus -> English",2)], id="to-select", allow_blank=False,prompt="Translate...", value=1)
                 yield Label("Translated")
                 yield TextArea(text="Hello, how are you?", read_only=True, classes="text-box", tooltip="This is where your translated text will appear.", id="output")
-
-                yield Label("[dim][bold]Notice:[/bold] Not a lot of words exist in Gorgus yet, so some sentences in English can't be said in Gorgus. Sorry.[/dim]", id="notice")
+                yield Label("[bold]Notice:[/bold] [dim]Not a lot of words exist in Gorgus yet, so some sentences in English can't be said in Gorgus. Sorry.[/dim]", id="notice")
             with TabPane("Dictionary",id="dict-pane"):
                 yield Rule(line_style="dashed")
                 with Horizontal(id="dictionary-top"):
