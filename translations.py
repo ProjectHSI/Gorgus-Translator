@@ -269,7 +269,7 @@ dictionary_information = {
 phrase_translations = {
     "gumblegoge": ["shut up", "be quiet"],
     "henger mebis": "i am going to",
-    "zugugo": "i will",
+    "zugugo": ["i will", "i shall"],
     "thunti": "often",
     "glurple": "i have",
     "clungus": "you guys",
