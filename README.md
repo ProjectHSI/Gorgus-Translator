@@ -8,6 +8,8 @@ A translator for a conlang called Gorgus me and some friends are actively workin
 - Git (for automatic updates)
 
 ### Actual Install
+**IMPORTANT:** Make sure you `git clone` the repository! This means the `.git` folder is present, otherwise auto-updates won't work!
+
 First of all, you need a version of Python less than 3.13 as 3.13 is not supported.
 
 If you're on Windows you can run the `install.bat` file and it will do everything for you,
