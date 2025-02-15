@@ -151,7 +151,7 @@ translation_dictionary = {
     "muunged": "filled",
     "rinter": ["get", "fetch"],
     "glomp": "produce",
-    "bikto": "break",
+    "bikto": ["break", "destroy"],
     "skoonk": "push",
     "bloont": "pop",
     "minkat": "crush",

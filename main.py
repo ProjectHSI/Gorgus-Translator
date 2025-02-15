@@ -305,7 +305,8 @@ These are the people that make this possible! *(all of these are Discord usernam
   
 - **@pynecoen:** Came up with the idea to make a language and made a majority of the words
 - **@spookydervish:** Made the translator, made grammar rules and made words
-- **@plenorf:** Contributed many words""", show_table_of_contents=False)
+- **@plenorf:** Contributed many words
+- **@the-trumpeter:** Made a counting system for the language (yet to be implemented)""", show_table_of_contents=False)
             with TabPane("Settings"):
                 settings_panel = Vertical(
                     Horizontal(
