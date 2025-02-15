@@ -268,9 +268,11 @@ class GorgusTranslator(App):
             with TabPane("Translator", id="translator"): 
                 yield Label("Input")
                 yield TextArea(text="", tooltip="Type here!", classes="text-box", id="translate-input")
-                yield Select([("to Gorgus",1), ("to English",2)], id="to-select", allow_blank=False,prompt="Translate...", value=1)
+                yield Select([("English -> Gorgus",1), ("Gorgus -> English",2)], id="to-select", allow_blank=False,prompt="Translate...", value=1)
                 yield Label("Translated")
                 yield TextArea(text="Hello, how are you?", read_only=True, classes="text-box", tooltip="This is where your translated text will appear.", id="output")
+
+                yield Label("[dim][bold]Notice:[/bold] Not a lot of words exist in Gorgus yet, so some sentences in English can't be said in Gorgus. Sorry.[/dim]", id="notice")
             with TabPane("Dictionary",id="dict-pane"):
                 yield Rule(line_style="dashed")
                 with Horizontal(id="dictionary-top"):

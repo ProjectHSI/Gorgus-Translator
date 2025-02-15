@@ -67,6 +67,7 @@ translation_dictionary = {
     "derg": "balloon",
     "srinch": ["ass", "booty"],
     "spiffo": "zombie",
+    "gump": "consequence",
 
     # seasons
     "uggos": "spring",
@@ -170,7 +171,7 @@ translation_dictionary = {
 
 
 
-    "mebis": "will",
+    "mebis": ["shall", "will"],
     "noguk": ["help", "assistance"],
     "hugub": ["gender", "sex"],
     "neepol": "your",
@@ -238,7 +239,8 @@ translation_dictionary = {
     "trongle": "hungry",
     "stirkle": "weak",
     "ilstirkle": "strong",
-    "torlom": "gassy"
+    "torlom": "gassy",
+    "wugbuggle": "unforseen"
 }
 
 dictionary_information = {
@@ -273,7 +275,7 @@ phrase_translations = {
     "clungus": "you guys",
     "koilt": "i am",
     "prittering lunk": ["how are you going", "how is it going", "how do you do", "is it going"],
-    "zup meat lunk": "will you be my friend",
+    "zup meat lunk": ["will you be my friend?", "will you be my friend", "wanna be friends?", "want to be friends", "want to be friends?"],
     "neep wert lunk": "what time is it",
     "dup plomby ik-glorple lunk": ["how old are you"],
     "kunther bonkep": "wanna",

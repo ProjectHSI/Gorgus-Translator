@@ -9,6 +9,7 @@
 - Allowed the user to disable or enable the clock in the top right.
 - Users can check for updates in the settings menu without restarting now.
 - Moved a lot of the informal words to the bottom of the dictionary lol.
+- Changed the translator page a lil' bit.
 
 ## Version 1.65
 - Added a `Settings` page to the UI which will be expanded in the future
