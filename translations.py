@@ -60,7 +60,7 @@ translation_dictionary = {
     "gorgan": "gorgan", # this is the race that speaks Gorgus
     "kob": "thing",
     "wonk": "soul",
-    "lebron": "god",
+    "lebron": ["god", "lord"],
     "bilko": "mercy",
     "blork": "cannon",
     "molp": ["liquid", "water"],
@@ -265,7 +265,8 @@ dictionary_information = {
     ],
     "extra_info": {
         "agger": "[bright_green]platonic[/bright_green]",
-        "forp": "[deep_pink1]romantic[/deep_pink1]"
+        "forp": "[deep_pink1]romantic[/deep_pink1]",
+        "gdorp": "[bold orange1]slur[/bold orange1]"
     }
 }
 
@@ -285,6 +286,7 @@ phrase_translations = {
     "muke": ["come back", "come back here"],
     "geep tijin": "dont",
     "ge'googrung": "do you",
+    "ap lebron": "oh my god",
 
     # these are just the phrases that make a verb or noun more intense or more gentle
     "EXAGGERATE": ["a lot", "too much"], 

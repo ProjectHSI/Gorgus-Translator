@@ -2,6 +2,12 @@
 A translator for a conlang called Gorgus me and some friends are actively working on.
 
 # Install
+
+### Install Requirements
+- Python <1.13 (1.13 does not work with the spacy Python module, 1.12.9 is recommended)
+- Git (for automatic updates)
+
+### Actual Install
 First of all, you need a version of Python less than 3.13 as 3.13 is not supported.
 
 If you're on Windows you can run the `install.bat` file and it will do everything for you,
