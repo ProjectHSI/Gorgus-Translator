@@ -163,6 +163,7 @@ translation_dictionary = {
     "muke": "return",
     "psdodo": ["scared", "spooked"],
     "virt": "appear",
+    "mengr": "see",
 
     # Proper Nouns
     "googrung": ["you", "yourself"],
