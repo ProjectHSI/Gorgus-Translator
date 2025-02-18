@@ -164,6 +164,7 @@ translation_dictionary = {
     "psdodo": ["scared", "spooked"],
     "virt": "appear",
     "mengr": "see",
+    "hemlor": "thank",
 
     # Proper Nouns
     "googrung": ["you", "yourself"],
@@ -290,6 +291,7 @@ phrase_translations = {
     "geep tijin": "dont",
     "ge'googrung": "do you",
     "ap lebron": "oh my god",
+    "hemlorgo": "thank you",
 
     # these are just the phrases that make a verb or noun more intense or more gentle
     "EXAGGERATE": ["a lot", "too much"], 
