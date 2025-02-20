@@ -72,6 +72,7 @@ translation_dictionary = {
     "dugga": "hell",
     "mugga": "heaven",
     "trek": "job",
+    "drek": "action",
 
     # seasons
     "uggos": "spring",
@@ -229,6 +230,7 @@ translation_dictionary = {
     "gidoo": "from",
     "cupoo": "inside",
     "cupee": "outside",
+    "von": "for",
 
     # adjectives
     "zorp": ["bad", "awful", "terrible", "horrible"],
