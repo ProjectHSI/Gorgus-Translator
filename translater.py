@@ -200,6 +200,7 @@ def to_gorgus(user_input: str):
             translated += f"{word}{suffix} "
     translated = replace_word(translated, "really", translation_dictionary["<EXAGGERATED_VERB>"])
     translated = replace_word(translated, "extremely", translation_dictionary["<EXAGGERATED_VERB>"])
+    translated = replace_word(translated, "very", translation_dictionary["<EXAGGERATED_VERB>"])
     translated = replace_word(translated, "kinda", translation_dictionary["<GENTLE_VERB>"])
 
     return translated
