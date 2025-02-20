@@ -168,6 +168,7 @@ translation_dictionary = {
     "hemlor": "thank",
     "hevrek": "rise",
     "hezlun": "shine",
+    "eep": "sleep",
 
 
     # Proper Nouns
@@ -252,7 +253,8 @@ translation_dictionary = {
     "ilstirkle": "strong",
     "torlom": "gassy",
     "wugbuggle": "forseen",
-    "pstro": ["spooky", "scary"]
+    "pstro": ["spooky", "scary"],
+    "eeping": "sleeping",
 }
 
 dictionary_information = {
