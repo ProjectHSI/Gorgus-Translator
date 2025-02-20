@@ -141,7 +141,6 @@ translation_dictionary = {
     "gorged": "begged",
     "ving": "of",
     "dreek": "touch",
-    "jarg": "for",
     "glimpt": "know",
     "zup": "be",
     "zopat": "insert",
@@ -230,7 +229,6 @@ translation_dictionary = {
     "gidoo": "from",
     "cupoo": "inside",
     "cupee": "outside",
-    "von": "for",
 
     # adjectives
     "zorp": ["bad", "awful", "terrible", "horrible"],
@@ -327,5 +325,7 @@ ignored_actor_nouns = [ # words that can't be turned into actor nouns
     "its",
     "their",
     "water",
-    "waters"
+    "waters",
+    "loser",
+    "for"
 ]
