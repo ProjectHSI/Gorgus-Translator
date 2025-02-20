@@ -107,6 +107,7 @@ translation_dictionary = {
     "mepiti": "slowly",
     "funji": "cautiously",
     "dinp": "too",
+    "vor": "maybe",
 
     # Verbs
     "chongle": ["eat", "eats", "munch", "ate", "munched"],
