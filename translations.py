@@ -71,7 +71,7 @@ translation_dictionary = {
     "gump": "consequence",
     "dugga": "hell",
     "mugga": "heaven",
-    "travrek": "job",
+    "trek": "job",
 
     # seasons
     "uggos": "spring",
@@ -166,8 +166,8 @@ translation_dictionary = {
     "virt": "appear",
     "mengr": "see",
     "hemlor": "thank",
-    "hevrek": "rise",
-    "hezlun": "shine",
+    "hev": "rise",
+    "hez": "shine",
     "eep": "sleep",
 
 
