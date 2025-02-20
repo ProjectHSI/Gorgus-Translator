@@ -71,6 +71,7 @@ translation_dictionary = {
     "gump": "consequence",
     "dugga": "hell",
     "mugga": "heaven",
+    "travrek": "job",
 
     # seasons
     "uggos": "spring",
@@ -165,6 +166,9 @@ translation_dictionary = {
     "virt": "appear",
     "mengr": "see",
     "hemlor": "thank",
+    "hevrek": "rise",
+    "hezlun": "shine",
+
 
     # Proper Nouns
     "googrung": ["you", "yourself"],
@@ -292,6 +296,7 @@ phrase_translations = {
     "ge'googrung": "do you",
     "ap lebron": "oh my god",
     "hemlorgo": "thank you",
+    "hedris": "wake up",
 
     # these are just the phrases that make a verb or noun more intense or more gentle
     "EXAGGERATE": ["a lot", "too much"], 
