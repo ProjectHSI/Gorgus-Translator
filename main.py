@@ -58,7 +58,7 @@ class GorgusTranslator(App):
 
     CSS_PATH = "resources/style.tcss"
 
-    ENABLE_COMMAND_PALETTE = False
+    #ENABLE_COMMAND_PALETTE = False
 
     BINDINGS = [
         Binding("ctrl+q", "quit", "Quit", show=True, priority=True)
