@@ -317,7 +317,10 @@ ignored_plurals = [ # words that can't be pluralised
     "its",
     "his",
     "hers",
-    "he"
+    "he",
+    "has",
+    "was",
+    "have"
 ]
 
 ignored_actor_nouns = [ # words that can't be turned into actor nouns
