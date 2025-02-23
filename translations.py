@@ -74,6 +74,7 @@ translation_dictionary = {
     "trek": "job",
     "drek": "action",
     "dushesh": "ash",
+    "mealt": "fire",
 
     # seasons
     "uggos": "spring",
