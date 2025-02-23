@@ -299,6 +299,7 @@ phrase_translations = {
     "muke": ["come back", "come back here"],
     "geep tijin": "dont",
     "ge'googrung": "do you",
+    "ke'googrung": "did you",
     "ap lebron": "oh my god",
     "hemlorgo": "thank you",
     "hedris": "wake up",
