@@ -256,6 +256,7 @@ translation_dictionary = {
     "wugbuggle": "forseen",
     "pstro": ["spooky", "scary"],
     "eeping": "sleeping",
+    "horv": "was"
 }
 
 dictionary_information = {
