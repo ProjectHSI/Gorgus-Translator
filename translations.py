@@ -229,6 +229,7 @@ translation_dictionary = {
     "gidoo": "from",
     "cupoo": "inside",
     "cupee": "outside",
+    "tun": "by",
 
     # adjectives
     "zorp": ["bad", "awful", "terrible", "horrible"],
