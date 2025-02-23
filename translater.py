@@ -61,12 +61,13 @@ def from_actor_form(actor, lemma: bool = True):
     except IndexError:
         return actor
 
-def get_trailing_punctuation(text):
-    # Match any punctuation at the end of the string
-    match = re.search(r'[\W_]+$', text)
-    if match:
-        return match.group(0)
-    return ''
+def get_trailing_punctuation(text, ignore_chars=""):
+    # Create a regex pattern that matches punctuation but ignores specified characters
+    ignore_chars = re.escape(ignore_chars)  # Escape to handle special characters properly
+    pattern = rf'[^\w\s{ignore_chars}]+$'  # Match trailing punctuation excluding ignored ones
+    match = re.search(pattern, text)
+    
+    return match.group(0) if match else ''
 
 def to_gorgus(user_input: str):
     translated = ""
@@ -99,7 +100,7 @@ def to_gorgus(user_input: str):
             modified_verbs[token.head.i] = -1
 
     for i, word in enumerate(words):
-        trailing_punctuation = get_trailing_punctuation(word)
+        trailing_punctuation = get_trailing_punctuation(word, translation_dictionary["<EXAGGERATED_VERB>"] + translation_dictionary["<GENTLE_VERB>"])
 
         word = word.translate(str.maketrans('', '', ".?!-,\":()=/\\"))
 
@@ -224,7 +225,7 @@ def from_gorgus(user_input: str):
             continue
 
         suffix = ""
-        trailing = get_trailing_punctuation(word)
+        trailing = get_trailing_punctuation(word, translation_dictionary["<EXAGGERATED_VERB>"] + translation_dictionary["<GENTLE_VERB>"])
 
         if trailing.endswith("$"):
             suffix += "."
