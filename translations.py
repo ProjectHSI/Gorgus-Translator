@@ -73,6 +73,7 @@ translation_dictionary = {
     "mugga": "heaven",
     "trek": "job",
     "drek": "action",
+    "dushesh": "ash",
 
     # seasons
     "uggos": "spring",
