@@ -152,7 +152,7 @@ class GorgusTranslator(App):
             self.notify(f"Updates failed to apply:\n{e}", title="Woops!", severity="error")
             self.query_one("#update-button").disabled = False
             return
-        self.notify("Done! Restart for changes to be finished.", title="Updates Complete")
+        self.notify("Done! Close and reopen the app for updates to complete.", title="Updates Complete")
 
     @work(thread=True, group="dictionary", exclusive=True)
     def update_dictionary_table(self, table, search):
@@ -353,7 +353,7 @@ These are the people that make this possible! *(all of these are Discord usernam
                 log(f"Updates available: {worker.result}")
                 self.query_one("#update-button").disabled = not worker.result
                 if worker.result == True: # There are updates available!
-                    self.notify("Updates available on Github! Go to settings to apply them.", title="Updates Available")
+                    self.notify("Updates available! Go to settings to apply them.", title="Updates Available")
                 elif worker.result == False: # Up to date
                     self.notify("No updates available, you're up to date!", title="No Updates Available")
             elif worker.state == WorkerState.ERROR:
