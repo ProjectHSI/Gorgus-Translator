@@ -76,6 +76,8 @@ translation_dictionary = {
     "dushesh": "ash",
     "mealt": "fire",
     "yarg": "do",
+    "tha": "this",
+    "ik-tha": "these",
 
     # seasons
     "uggos": "spring",
@@ -175,6 +177,7 @@ translation_dictionary = {
     "eep": "sleep",
     "yuck": "mess",
     "hekk": "cause",
+    "helt": "happen",
 
 
     # Proper Nouns
@@ -235,6 +238,7 @@ translation_dictionary = {
     "cupoo": "inside",
     "cupee": "outside",
     "tun": "by",
+    "grem": "about",
 
     # adjectives
     "zorp": ["bad", "awful", "terrible", "horrible"],
@@ -327,7 +331,8 @@ ignored_plurals = [ # words that can't be pluralised
     "has",
     "was",
     "have",
-    "mess"
+    "mess",
+    "this"
 ]
 
 ignored_actor_nouns = [ # words that can't be turned into actor nouns
