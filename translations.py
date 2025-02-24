@@ -78,6 +78,8 @@ translation_dictionary = {
     "yarg": "do",
     "tha": "this",
     "ik-tha": "these",
+    "dreff": "judge",
+    "dreffik": "jury",
 
     # seasons
     "uggos": "spring",
