@@ -2,7 +2,6 @@
 
 ## Version 1.75 (current)
 - Added some language features.
-- Copy and TTS buttons added.
 - Punctuation like "," and "!" is now supported in the translator!
 - Couple more words.
 
