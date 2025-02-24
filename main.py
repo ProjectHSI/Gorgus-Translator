@@ -7,6 +7,9 @@ import importlib.util
 import platform
 import subprocess
 
+# hopefully fix some issues
+os.chdir(os.path.dirname(os.path.abspath(__file__)))
+
 GIT_AVAILABLE = True
 try:
     import git
