@@ -206,7 +206,7 @@ translation_dictionary = {
     "kortik": ["kill", "die", "death", "killed", "died"],
     "floym": "because",
     "pum": ["should", "shall"],
-    "tucko": "hurt",
+    "tucko": ["hurt","pain"],
     "rint": "am",
     "pritter": "go",
     "prittering": "going",
