@@ -75,6 +75,7 @@ translation_dictionary = {
     "drek": "action",
     "dushesh": "ash",
     "mealt": "fire",
+    "yarg": "do",
 
     # seasons
     "uggos": "spring",
@@ -173,6 +174,7 @@ translation_dictionary = {
     "hez": "shine",
     "eep": "sleep",
     "yuck": "mess",
+    "hekk": "cause",
 
 
     # Proper Nouns
