@@ -172,6 +172,7 @@ translation_dictionary = {
     "hev": "rise",
     "hez": "shine",
     "eep": "sleep",
+    "icky": "mess",
 
 
     # Proper Nouns
