@@ -80,6 +80,7 @@ translation_dictionary = {
     "ik-tha": "these",
     "dreff": "judge",
     "dreffik": "jury",
+    "kortikva": "execution",
 
     # seasons
     "uggos": "spring",
@@ -180,6 +181,7 @@ translation_dictionary = {
     "yuck": "mess",
     "hekk": "cause",
     "helt": "happen",
+    "kortiva": "execute",
 
 
     # Proper Nouns
