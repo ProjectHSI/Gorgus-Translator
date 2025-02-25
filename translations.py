@@ -75,12 +75,13 @@ translation_dictionary = {
     "drek": "action",
     "dushesh": "ash",
     "mealt": "fire",
-    "yarg": "do",
     "tha": "this",
     "ik-tha": "these",
     "dreff": "judge",
     "dreffik": "jury",
     "kortikva": "execution",
+    "drekk": "crime",
+    "murg": ["war", "battle"],
 
     # seasons
     "uggos": "spring",
@@ -131,7 +132,7 @@ translation_dictionary = {
     "kunther": "want",
     "snik": "unleash",
     "jeek": "like",
-    "geep": "do",
+    "geep": ["do", "commit"],
     "keep": "did",
     "hobfug": ["need", "require"],
     "gumble": "shut",
