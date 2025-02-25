@@ -27,7 +27,7 @@ translation_dictionary = {
     "matapat": "theory",
     "clungus": ["guys", "they", "them"],
     "cave": ["home", "house"],
-    "norpadorp": ["translator", "translate", "translation"],
+    "norpadorp": ["translate", "translation"],
     "pliop": ["gay", "lgbtq+", "lgbtq", "homosexual", "transgender"],
     "grop": "bone",
     "slorp": "name",
