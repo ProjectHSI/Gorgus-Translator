@@ -1,6 +1,6 @@
 translation_dictionary = {
     # Determiner
-    "plomby": "many",
+    "plomby": ["many", "several"],
 
     # Grammar
     "lunk": "?",
