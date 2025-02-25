@@ -218,7 +218,7 @@ def from_gorgus(user_input: str):
 
     for word in words:
         if word == "lunk":
-            translated = translated[:-1] + "?"
+            translated = translated[:-1] + "? "
             continue
 
         suffix = ""
