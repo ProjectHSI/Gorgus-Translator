@@ -112,7 +112,6 @@ def to_gorgus(user_input: str):
         try:
             suffix = modified_verbs.get(i)
 
-
             if suffix == None:
                 suffix = ""
 
@@ -154,9 +153,7 @@ def to_gorgus(user_input: str):
                 is_actor = True
 
         if is_actor:
-            #if singular:
             singular = from_actor_form(word)
-            #else:
             plural = inflect_engine.plural(from_actor_form(plural))
 
             word_suffix += translation_dictionary["<ACTOR>"]
@@ -375,8 +372,15 @@ def replace_word(input_string: str, word: str, replacement: str, offset: int = 1
     # Check if 'very' comes before 'quickly'
     for i in range(len(words) - 1):
         if words[i] == word:
+            trailing = get_trailing_punctuation(words[i+offset])
+            len_trailing = len(trailing)
+
             # Modify 'quickly' by adding '\u0302' and remove 'very'
-            words[i + offset] = words[i + offset] + replacement
+
+            if len_trailing > 0:
+                words[i + offset] = words[i + offset][:-len(trailing)] + replacement + trailing
+            else:
+                words[i + offset] = words[i + offset][:] + replacement
             del words[i]  # Remove 'very'
 
             # Break after the first occurrence is handled
