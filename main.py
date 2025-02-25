@@ -63,10 +63,6 @@ class GorgusTranslator(App):
 
     #ENABLE_COMMAND_PALETTE = False
 
-    BINDINGS = [
-        Binding("ctrl+q", "quit", "Quit", show=True, priority=True)
-    ]
-
     def get_settings(self):
         if not os.path.isfile("settings.json"):
             initial_data = {
