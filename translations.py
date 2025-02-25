@@ -83,6 +83,11 @@ translation_dictionary = {
     "murg": ["war", "battle"],
     "pliop": ["gay", "lgbtq+", "lgbtq", "homosexual", "transgender"],
 
+    # days
+    "molok": "today",
+    "dolok": "tomorrow",
+    "frolok": "yesterday",
+
     # seasons
     "uggos": "spring",
     "uggosh": "summer",
