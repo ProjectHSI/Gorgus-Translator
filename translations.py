@@ -28,7 +28,6 @@ translation_dictionary = {
     "clungus": ["guys", "they", "them"],
     "cave": ["home", "house"],
     "norpadorp": ["translate", "translation"],
-    "pliop": ["gay", "lgbtq+", "lgbtq", "homosexual", "transgender"],
     "grop": "bone",
     "slorp": "name",
     "slorped": "named",
@@ -82,6 +81,7 @@ translation_dictionary = {
     "kortikva": "execution",
     "drekk": "crime",
     "murg": ["war", "battle"],
+    "pliop": ["gay", "lgbtq+", "lgbtq", "homosexual", "transgender"],
 
     # seasons
     "uggos": "spring",
