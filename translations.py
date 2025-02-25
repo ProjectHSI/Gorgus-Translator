@@ -317,7 +317,7 @@ phrase_translations = {
     "ap lebron": "oh my god",
     "hemlorgo": "thank you",
     "hedris": "wake up",
-    "jarg lebron": ["for the love of god", "for god", "for fucks sake"],
+    "jarg lebron": ["for the love of god", "for fucks sake", "for fuck's sake", "for gods sake", "for god's sake"],
 
     # these are just the phrases that make a verb or noun more intense or more gentle
     "EXAGGERATE": ["a lot", "too much"], 
