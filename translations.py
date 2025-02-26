@@ -254,7 +254,9 @@ translation_dictionary = {
     "cupee": "outside",
     "tun": "by",
     "grem": "about",
-
+    "plonk": "out",
+    "plink": "in",
+    
     # adjectives
     "zorp": ["bad", "awful", "terrible", "horrible"],
     "jink": "fuck",
