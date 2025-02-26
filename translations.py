@@ -230,7 +230,6 @@ translation_dictionary = {
     "prittering": "going",
     "flenk": "please",
     "wibble": 'let',
-    "varj": "in",
     "hengorp": "my",
     "jinking": "enjoying",
     "clungudubus": "our",
