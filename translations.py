@@ -82,6 +82,8 @@ translation_dictionary = {
     "drekk": "crime",
     "murg": ["war", "battle"],
     "greg": "chicken",
+    "glonktop": "eye",
+    "crump": "gouge",
     "pliop": ["gay", "lgbtq+", "lgbtq", "homosexual", "transgender"],
 
     # days
@@ -189,6 +191,8 @@ translation_dictionary = {
     "hekk": "cause",
     "helt": "happen",
     "kortiva": "execute",
+    "seeball": "find",
+    "bingbonk": "hang",
 
 
     # Proper Nouns
