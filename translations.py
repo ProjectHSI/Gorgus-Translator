@@ -81,6 +81,7 @@ translation_dictionary = {
     "kortikva": "execution",
     "drekk": "crime",
     "murg": ["war", "battle"],
+    "greg": "chicken",
     "pliop": ["gay", "lgbtq+", "lgbtq", "homosexual", "transgender"],
 
     # days
