@@ -18,7 +18,7 @@ translation_dictionary = {
     "kracken": "its",
     "knacken": "his",
     "ksnacken": "hers",
-    "shrem": "their" ,
+    "shrem": "their",
 
     # Nouns
     "neeper": ["baby", "child", "infant", "kid"],
@@ -84,8 +84,13 @@ translation_dictionary = {
     "greg": "chicken",
     "glonktop": "eye",
     "crump": "gouge",
+    "flumgus": "family",
     "pliop": ["gay", "lgbtq+", "lgbtq", "homosexual", "transgender"],
 
+    # times
+    "dublub": "day",
+    "nublub": "night",
+    
     # days
     "molok": "today",
     "dolok": "tomorrow",
@@ -110,6 +115,9 @@ translation_dictionary = {
     "tijin": "not",
     "jarg": "for",
     "ishen": "or",
+    "shoe": "if",
+    "bob": "then",
+    "lorp": "but",
 
     # Interrogatives
     "dup": "how",
@@ -193,7 +201,7 @@ translation_dictionary = {
     "kortiva": "execute",
     "seeball": "find",
     "bingbonk": "hang",
-
+    "equalt": "rot",
 
     # Proper Nouns
     "googrung": ["you", "yourself"],
@@ -283,7 +291,8 @@ translation_dictionary = {
     "pstro": ["spooky", "scary"],
     "eeping": "sleeping",
     "horv": "was",
-    "klu": "cool"
+    "klu": "cool",
+    "mugtur": ["entire", "whole", "all"]
 }
 
 dictionary_information = {
