@@ -18,7 +18,7 @@ translation_dictionary = {
     "kracken": "its",
     "knacken": "his",
     "ksnacken": "hers",
-    "shrem": "their" ,
+    "shrem": "their",
 
     # Nouns
     "neeper": ["baby", "child", "infant", "kid"],
@@ -81,8 +81,17 @@ translation_dictionary = {
     "kortikva": "execution",
     "drekk": "crime",
     "murg": ["war", "battle"],
+    "greg": "chicken",
+    "glonktop": "eye",
+    "crump": "gouge",
+    "flumgus": "family",
+    "kortaled": ["corpse", "body"],
     "pliop": ["gay", "lgbtq+", "lgbtq", "homosexual", "transgender"],
 
+    # times
+    "dublub": "day",
+    "nublub": "night",
+    
     # days
     "molok": "today",
     "dolok": "tomorrow",
@@ -107,6 +116,9 @@ translation_dictionary = {
     "tijin": "not",
     "jarg": "for",
     "ishen": "or",
+    "shoe": "if",
+    "bob": "then",
+    "lorp": "but",
 
     # Interrogatives
     "dup": "how",
@@ -188,7 +200,9 @@ translation_dictionary = {
     "hekk": "cause",
     "helt": "happen",
     "kortiva": "execute",
-
+    "seeball": "find",
+    "bingbonk": "hang",
+    "equalt": "rot",
 
     # Proper Nouns
     "googrung": ["you", "yourself"],
@@ -225,7 +239,6 @@ translation_dictionary = {
     "prittering": "going",
     "flenk": "please",
     "wibble": 'let',
-    "varj": "in",
     "hengorp": "my",
     "jinking": "enjoying",
     "clungudubus": "our",
@@ -249,7 +262,9 @@ translation_dictionary = {
     "cupee": "outside",
     "tun": "by",
     "grem": "about",
-
+    "plonk": "out",
+    "plink": "in",
+    
     # adjectives
     "zorp": ["bad", "awful", "terrible", "horrible"],
     "jink": "fuck",
@@ -278,6 +293,7 @@ translation_dictionary = {
     "eeping": "sleeping",
     "horv": "was",
     "klu": "cool",
+    "mugtur": ["entire", "whole", "all"],
     "bunpo": "silly"
 }
 
