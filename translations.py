@@ -277,7 +277,8 @@ translation_dictionary = {
     "pstro": ["spooky", "scary"],
     "eeping": "sleeping",
     "horv": "was",
-    "klu": "cool"
+    "klu": "cool",
+    "bunpo": "silly"
 }
 
 dictionary_information = {
