@@ -85,6 +85,7 @@ translation_dictionary = {
     "glonktop": "eye",
     "crump": "gouge",
     "flumgus": "family",
+    "kortaled": ["corpse", "body"],
     "pliop": ["gay", "lgbtq+", "lgbtq", "homosexual", "transgender"],
 
     # times
