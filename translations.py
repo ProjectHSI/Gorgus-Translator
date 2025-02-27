@@ -361,7 +361,8 @@ ignored_plurals = [ # words that can't be pluralised
     "was",
     "have",
     "mess",
-    "this"
+    "this",
+    "ass"
 ]
 
 ignored_actor_nouns = [ # words that can't be turned into actor nouns
