@@ -203,6 +203,7 @@ translation_dictionary = {
     "seeball": "find",
     "bingbonk": "hang",
     "equalt": "rot",
+    "shlimshlong": "lick",
 
     # Proper Nouns
     "googrung": ["you", "yourself"],
