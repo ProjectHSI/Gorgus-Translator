@@ -204,6 +204,7 @@ translation_dictionary = {
     "bingbonk": "hang",
     "equalt": "rot",
     "shlimshlong": "lick",
+    "ming": "hope",
 
     # Proper Nouns
     "googrung": ["you", "yourself"],
@@ -338,6 +339,7 @@ phrase_translations = {
     "geep tijin": "dont",
     "ge'googrung": "do you",
     "ke'googrung": "did you",
+    "minger": "i hope",
     "ap lebron": "oh my god",
     "hemlorgo": "thank you",
     "hedris": "wake up",
