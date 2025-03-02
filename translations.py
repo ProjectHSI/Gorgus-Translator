@@ -203,6 +203,8 @@ translation_dictionary = {
     "seeball": "find",
     "bingbonk": "hang",
     "equalt": "rot",
+    "shlimshlong": "lick",
+    "ming": "hope",
 
     # Proper Nouns
     "googrung": ["you", "yourself"],
@@ -338,6 +340,7 @@ phrase_translations = {
     "ge'googrung": "do you",
     "ke'googrung": "did you",
     "ho'googrung": "are you",
+    "minger": "i hope",
     "ap lebron": "oh my god",
     "hemlorgo": "thank you",
     "hedris": "wake up",
@@ -362,7 +365,8 @@ ignored_plurals = [ # words that can't be pluralised
     "was",
     "have",
     "mess",
-    "this"
+    "this",
+    "ass"
 ]
 
 ignored_actor_nouns = [ # words that can't be turned into actor nouns

@@ -3,7 +3,7 @@
 ## Version 1.75 (current)
 - Added some language features.
 - Punctuation like "," and "!" is now supported in the translator!
-- Couple more words.
+- Added quite a few more words.
 
 ## Version 1.7
 - Small update, just some new words. (We now have 200+ words! :D)
