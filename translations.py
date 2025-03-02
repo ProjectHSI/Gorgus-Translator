@@ -298,7 +298,8 @@ translation_dictionary = {
     "horv": "was",
     "klu": "cool",
     "mugtur": ["entire", "whole", "all", "every"],
-    "bunpo": "silly"
+    "bunpo": "silly",
+    "smep": "apart"
 }
 
 dictionary_information = {
