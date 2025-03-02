@@ -205,6 +205,7 @@ translation_dictionary = {
     "equalt": "rot",
     "shlimshlong": "lick",
     "ming": "hope",
+    "aurnaur": "punish",
 
     # Proper Nouns
     "googrung": ["you", "yourself"],
