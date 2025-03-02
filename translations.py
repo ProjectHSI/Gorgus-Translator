@@ -342,7 +342,7 @@ phrase_translations = {
     "geep tijin": "dont",
     "ge'googrung": "do you",
     "ke'googrung": "did you",
-    "ho'googrung": "are you",
+    #"ho'googrung": "are you",
     "minger": "i hope",
     "ap lebron": "oh my god",
     "hemlorgo": "thank you",
