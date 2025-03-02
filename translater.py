@@ -196,9 +196,12 @@ def to_gorgus(user_input: str):
                 translated += f"{word}{suffix} "
         except KeyError:
             translated += f"{word}{suffix} "
+
+    # verb modifier words
     translated = replace_word(translated, "really", translation_dictionary["<EXAGGERATED_VERB>"])
     translated = replace_word(translated, "extremely", translation_dictionary["<EXAGGERATED_VERB>"])
     translated = replace_word(translated, "very", translation_dictionary["<EXAGGERATED_VERB>"])
+    translated = replace_word(translated, "absolutely", translation_dictionary["<EXAGGERATED_VERB>"])
     translated = replace_word(translated, "kinda", translation_dictionary["<GENTLE_VERB>"])
 
     return translated
@@ -372,6 +375,9 @@ def replace_word(input_string: str, word: str, replacement: str, offset: int = 1
     # Check if 'very' comes before 'quickly'
     for i in range(len(words) - 1):
         if words[i] == word:
+            if words[i+1].lower() == "horge":
+                offset = min(offset+1, (len(words)-i)-1)
+
             trailing = get_trailing_punctuation(words[i+offset])
             len_trailing = len(trailing)
 
