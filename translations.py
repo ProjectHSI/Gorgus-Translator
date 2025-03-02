@@ -206,6 +206,7 @@ translation_dictionary = {
     "shlimshlong": "lick",
     "ming": "hope",
     "aurnaur": "punish",
+    "aurnaured": "punished",
 
     # Proper Nouns
     "googrung": ["you", "yourself"],
@@ -296,7 +297,7 @@ translation_dictionary = {
     "eeping": "sleeping",
     "horv": "was",
     "klu": "cool",
-    "mugtur": ["entire", "whole", "all"],
+    "mugtur": ["entire", "whole", "all", "every"],
     "bunpo": "silly"
 }
 
