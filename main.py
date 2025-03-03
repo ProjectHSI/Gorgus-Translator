@@ -1,5 +1,5 @@
 __VERSION__ = 1.75
-print("Loading...\n")
+print("Loading...")
 
 import os, sys
 import json
