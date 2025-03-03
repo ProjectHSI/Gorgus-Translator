@@ -182,7 +182,23 @@ def to_gorgus(user_input: str):
         if plural in ignored_plurals:
             is_plural = False
 
-        try:
+        # Ensure all dictionary values are lists for uniform processing
+        normalized_translation_dict = {k: ([v] if isinstance(v, str) else v) for k, v in translation_dictionary.items()}
+
+        found = False
+        for key, value_list in normalized_translation_dict.items():
+            value_set = set(value_list)  # Convert to set for faster lookups
+
+            if (singular and singular in value_set) or (word in value_set) or (is_plural and plural in value_set):
+                found = True
+                plural_prefix = translation_dictionary["<PLURAL>"] if is_plural else ""
+                translated += f"{plural_prefix}{key}{word_suffix}{suffix} "
+                break
+
+        if not found:
+            translated += f"{word}{suffix} "
+
+        '''try:
             found = False
 
             # key = Gorgus, value = English
@@ -211,7 +227,7 @@ def to_gorgus(user_input: str):
             if not found:
                 translated += f"{word}{suffix} "
         except KeyError:
-            translated += f"{word}{suffix} "
+            translated += f"{word}{suffix} "'''
 
     # verb modifier words
     translated = replace_word(translated, "really", translation_dictionary["<EXAGGERATED_VERB>"])
