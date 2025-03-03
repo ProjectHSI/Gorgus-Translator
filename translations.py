@@ -284,7 +284,7 @@ translation_dictionary = {
     "bikter": ["broken", "destroyed"],
     "wirsko": "wrong",
     "wakco": "right",
-    "kiff": ["smell", "stink"],
+    "kiff": ["smell", "stink", "sniff"],
     "kiffer": ["smelly", "stinky"],
     "doit": "language",
     "chogder": ["yummy", "delicious", "tasty"],

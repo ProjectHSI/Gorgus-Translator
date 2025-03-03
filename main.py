@@ -1,5 +1,5 @@
 __VERSION__ = 1.75
-print("Hello. I am loading stuff in the background, gimme a sec plz.")
+print("Loading...\n")
 
 import os, sys
 import json
@@ -33,7 +33,8 @@ def install_module(module_name):
             print(f"Error: Failed to install {module_name}. Please install it manually.")
             sys.exit(1)
     else:
-        print(f"{module_name} is already installed.")
+        pass
+        #print(f"{module_name} is already installed.")
 
 with open("requirements.txt", "r") as f:
     for line in f.readlines():
