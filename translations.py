@@ -234,7 +234,7 @@ translation_dictionary = {
     "horge": "are",
     "gont": "and",
     
-    "kortik": ["kill", "die", "death", "killed", "died"],
+    "kortik": ["kill", "die", "death", "killed", "died", "slaughter"],
     "floym": "because",
     "pum": ["should", "shall"],
     "tucko": ["hurt","pain"],
