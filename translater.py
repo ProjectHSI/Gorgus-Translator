@@ -80,13 +80,19 @@ def to_gorgus(user_input: str):
     user_input = swap_verbs_and_adverbs(user_input)
     
     # Replace phrases with gorgus words      
-    for gorgus, english in phrase_translations.items():
+    """for gorgus, english in phrase_translations.items():
 
         if type(english) == list:
             for phrase in english:
                 user_input = user_input.replace(phrase, gorgus)
         elif type(english) == str:
-                user_input = user_input.replace(english, gorgus)
+                user_input = user_input.replace(english, gorgus)"""
+    for gorgus, english_phrases in phrase_translations.items():
+        if isinstance(english_phrases, str):  
+            english_phrases = [english_phrases]  # Convert to list for uniformity
+        
+        for phrase in english_phrases:
+            user_input = user_input.replace(phrase, gorgus)
 
     words = user_input.split(" ")
 
@@ -109,7 +115,7 @@ def to_gorgus(user_input: str):
         if word == "EXAGGERATE" or word == "GENTLE":
             continue
 
-        try:
+        """try:
             suffix = modified_verbs.get(i)
 
             if suffix == None:
@@ -122,7 +128,13 @@ def to_gorgus(user_input: str):
 
             
         except KeyError:
-            pass
+            pass"""
+        
+        suffix = modified_verbs.get(i, "")
+        if suffix == 1:
+            suffix = translation_dictionary["<EXAGGERATED_VERB>"]
+        elif suffix == -1:
+            suffix = translation_dictionary["<GENTLE_VERB>"]
 
         if trailing_punctuation.endswith("?"):
             if not word == "lunk":
@@ -146,11 +158,15 @@ def to_gorgus(user_input: str):
         word_suffix = ""
         is_actor = False
 
-        if not word in ignored_actor_nouns:
+        """if not word in ignored_actor_nouns:
             if is_plural and from_actor_form(word) != word and (to_actor_form(word).find("erser") != -1):
                 is_actor = True
             if is_actor_form(word):
-                is_actor = True
+                is_actor = True"""
+        
+        is_actor = word not in ignored_actor_nouns and (
+            is_actor_form(word) or "erser" in to_actor_form(word)
+        )
 
         if is_actor:
             singular = from_actor_form(word)

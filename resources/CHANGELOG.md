@@ -1,6 +1,10 @@
 # Changelog
 
-## Version 1.75 (current)
+## Version 1.8 (current)
+- Small optimization update.
+- Couple more words.
+
+## Version 1.75
 - Added some language features.
 - Punctuation like "," and "!" is now supported in the translator!
 - Added quite a few more words.
