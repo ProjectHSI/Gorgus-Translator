@@ -381,5 +381,6 @@ ignored_actor_nouns = [ # words that can't be turned into actor nouns
     "water",
     "waters",
     "loser",
-    "for"
+    "for",
+    "slaughter"
 ]
