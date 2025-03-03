@@ -46,7 +46,7 @@ translation_dictionary = {
     "zibble": "democracy",
     "zibblit": "democratic",
     "meat": "friend",
-    "rock": "earth",
+    "rock": ["earth", "world"],
     "snork": "mum",
     "nork": "dad",
     "tivard": "building",
