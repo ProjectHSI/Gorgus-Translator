@@ -71,6 +71,7 @@ def get_trailing_punctuation(text, ignore_chars=""):
 
 def to_gorgus(user_input: str):
     translated = ""
+    before_translation = user_input
 
     # Remove punctuation
     #user_input = user_input.translate(str.maketrans('', '', ",")).strip()
@@ -88,7 +89,6 @@ def to_gorgus(user_input: str):
                 user_input = user_input.replace(english, gorgus)
 
     words = user_input.split(" ")
-    before_translation = user_input
 
     modified_verbs = {}
 

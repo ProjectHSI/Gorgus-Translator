@@ -207,6 +207,7 @@ translation_dictionary = {
     "ming": "hope",
     "aurnaur": "punish",
     "aurnaured": "punished",
+    "skorb": "peel",
 
     # Proper Nouns
     "googrung": ["you", "yourself"],
