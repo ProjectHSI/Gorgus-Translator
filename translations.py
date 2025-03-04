@@ -322,7 +322,7 @@ translation_dictionary = {
     "bunpo": "silly",
     "smep": "apart",
     "humug": "bored",
-    "smol": "cute"
+    "greebik": "cute"
 }
 
 dictionary_information = {
