@@ -410,5 +410,7 @@ ignored_actor_nouns = [ # words that can't be turned into actor nouns
     "for",
     "slaughter",
     "mother",
-    "father"
+    "father",
+    "winter",
+    "summer"
 ]
