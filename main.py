@@ -322,19 +322,25 @@ These are the people that make this possible! *(all of these are Discord usernam
                 settings_panel = Vertical(
                     Horizontal(
                         Label("Check for updates when openned:"),
-                        Checkbox(button_first=False, value=True, id="check_updates_on_start", classes="setting"),
+                        Checkbox(button_first=False, value=True, id="check_updates_on_start", classes="setting",
+                                 tooltip="When the translator is openned, if this is enabled, then it will check for available updates and notify you if they are available."
+                        ),
                         classes="setting"
                     ),
 
                     Horizontal(
                         Label("Show time in the top right:"),
-                        Checkbox(button_first=False, value=settings["clock_enabled"], id="clock_enabled", classes="setting"),
+                        Checkbox(button_first=False, value=settings["clock_enabled"], id="clock_enabled", classes="setting",
+                                 tooltip="Show a small clock in the top right corner of the translator."
+                        ),
                         classes="setting"
                     ),
 
                     Horizontal(
                         Label("Theme:"),
-                        Select([(theme,i) for i, theme in enumerate(self._registered_themes.keys())], allow_blank=False, id="theme-select", value=self.get_settings()["theme_index"]),
+                        Select([(theme,i) for i, theme in enumerate(self._registered_themes.keys())], allow_blank=False, id="theme-select", value=self.get_settings()["theme_index"],
+                               tooltip="Choose from several different colour themes for the translator."
+                        ),
                         classes="setting"
                     ),
                     
