@@ -91,6 +91,7 @@ translation_dictionary = {
     "shmack": "cat",
     "hish": "snake",
     "blubglub": "fish",
+    "caflow": "cow",
 
     # times
     "dublub": "day",
