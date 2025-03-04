@@ -306,7 +306,7 @@ translation_dictionary = {
     "wirsko": "wrong",
     "wakco": "right",
     "kiff": ["smell", "stink", "sniff"],
-    "kiffer": ["smelly", "stinky"],
+    "kiffer": ["fragrant", "smelly", "stinky"],
     "doit": "language",
     "chogder": ["yummy", "delicious", "tasty"],
     "trongle": "hungry",
