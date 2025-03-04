@@ -77,7 +77,7 @@ def to_gorgus(user_input: str):
     #user_input = user_input.translate(str.maketrans('', '', ",")).strip()
 
     # Swap verbs and adverbs if needed
-    user_input = swap_verbs_and_adverbs(user_input)
+    #user_input = swap_verbs_and_adverbs(user_input)
     
     # Replace phrases with gorgus words      
     for gorgus, english_phrases in phrase_translations.items():
