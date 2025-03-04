@@ -93,8 +93,10 @@ translation_dictionary = {
     "blubglub": "fish",
     "caflow": "cow",
     "kflark": "shark",
+    "kraynark": "locust",
     "nam": "boy",
     "snam": "girl",
+    "smorj": ["plague", "sickness"],
 
     # times
     "dublub": "day",
@@ -217,6 +219,10 @@ translation_dictionary = {
     "aurnaured": "punished",
     "skorb": "peel",
     "meep": ["can", "may", "might"],
+    "scroge": "smash",
+    "greep": "say",
+    "grote": "said",
+    "ninter": "feed",
 
     # Proper Nouns
     "googrung": ["you", "yourself"],
@@ -338,7 +344,7 @@ dictionary_information = {
 
 phrase_translations = {
     "gumblegoge": ["shut up", "be quiet"],
-    "henger mebis": "i am going to",
+    "henger mebis": ["i'm going to", "i am going to", "im going to"],
     "zugugo": ["i will", "i shall"],
     "me'heng": ["can i", "may i", "shall i"],
     "thunti": "often",
@@ -360,6 +366,8 @@ phrase_translations = {
     "hemlorgo": "thank you",
     "hedris": "wake up",
     "jarg lebron": ["for the love of god", "for fucks sake", "for fuck's sake", "for gods sake", "for god's sake"],
+    "henger rint": ["i'm", "im"],
+    "g'horg": "you are",
 
     # these are just the phrases that make a verb or noun more intense or more gentle
     "EXAGGERATE": ["a lot", "too much"], 

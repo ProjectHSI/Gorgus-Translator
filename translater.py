@@ -258,7 +258,6 @@ def fix_up(translated: str, user_input: str, user_choice: int):
     translated = translated.capitalize().strip()
     return translated
 
-
 def fix_articles(input_string: str, article_word: str):
     words = input_string.split()  # Split the string into words
     result = []
