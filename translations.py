@@ -98,6 +98,7 @@ translation_dictionary = {
     "snam": "girl",
     "smorj": ["plague", "sickness"],
     "scremi": ["chaos", "havoc"],
+    "deenhis": "menace",
 
     # times
     "dublub": "day",
@@ -322,7 +323,8 @@ translation_dictionary = {
     "bunpo": "silly",
     "smep": "apart",
     "humug": "bored",
-    "greebik": "cute"
+    "greebik": "cute",
+    "jubbij": "naughty"
 }
 
 dictionary_information = {
