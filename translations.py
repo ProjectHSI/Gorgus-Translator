@@ -300,7 +300,8 @@ translation_dictionary = {
     "klu": "cool",
     "mugtur": ["entire", "whole", "all", "every"],
     "bunpo": "silly",
-    "smep": "apart"
+    "smep": "apart",
+    "humug": "bored"
 }
 
 dictionary_information = {
