@@ -47,8 +47,8 @@ translation_dictionary = {
     "zibblit": "democratic",
     "meat": "friend",
     "rock": ["earth", "world"],
-    "snork": "mum",
-    "nork": "dad",
+    "snork": ["mum", "mom", "mother"],
+    "nork": ["dad", "father"],
     "tivard": "building",
     "fliq": "card",
     "borisz": "now",
@@ -68,7 +68,7 @@ translation_dictionary = {
     "skungo": "skeleton",
     "gump": "consequence",
     "dugga": "hell",
-    "mugga": "heaven",
+    "mugga": ["heaven", "valhalla"],
     "trek": "job",
     "drek": "action",
     "dushesh": "ash",
@@ -226,6 +226,7 @@ translation_dictionary = {
     "ninter": "feed",
     "mungo": "breathe",
     "muggit": "give",
+    "wheremecopha": "send",
 
     # Proper Nouns
     "googrung": ["you", "yourself"],
@@ -294,8 +295,9 @@ translation_dictionary = {
     "toop": "shit",
     "jinks": ["fucking", "bloody"],
     "zorper": ["bitch", "fucker", "asshole", "motherfucker"],
-    "dagunga": ["good", "incredible", "happy", "amazing", "spectacular"],
-    "squumth": ["sad"],
+    "dagunga": ["good", "incredible", "amazing", "spectacular"],
+    "squumth": "sad",
+    "wumbo": "happy",
     "gubbus": ["disappointed"],
     "zogo": ["idiot", "fool", "dumb", "moron", "clown", "stupid"],
     "nink": "dweeb",
@@ -406,5 +408,7 @@ ignored_actor_nouns = [ # words that can't be turned into actor nouns
     "waters",
     "loser",
     "for",
-    "slaughter"
+    "slaughter",
+    "mother",
+    "father"
 ]
