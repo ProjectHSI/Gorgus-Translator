@@ -299,7 +299,7 @@ translation_dictionary = {
     "squumth": "sad",
     "wumbo": "happy",
     "gubbus": ["disappointed"],
-    "zogo": ["idiot", "fool", "dumb", "moron", "clown", "stupid"],
+    "zogo": ["idiot", "fool", "dumb", "moron", "clown", "stupid", "dumbass"],
     "nink": "dweeb",
     "gdorp": "gdorp",
     "bikter": ["broken", "destroyed"],
