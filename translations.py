@@ -223,6 +223,8 @@ translation_dictionary = {
     "greep": "say",
     "grote": "said",
     "ninter": "feed",
+    "mungo": "breathe",
+    "muggit": "give",
 
     # Proper Nouns
     "googrung": ["you", "yourself"],
