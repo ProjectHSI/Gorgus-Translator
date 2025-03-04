@@ -371,6 +371,7 @@ phrase_translations = {
     "jarg lebron": ["for the love of god", "for fucks sake", "for fuck's sake", "for gods sake", "for god's sake"],
     "henger rint": ["i'm", "im"],
     "g'horg": "you are",
+    "snent": "to the",
 
     # these are just the phrases that make a verb or noun more intense or more gentle
     "EXAGGERATE": ["a lot", "too much"], 
