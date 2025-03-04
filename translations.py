@@ -97,6 +97,7 @@ translation_dictionary = {
     "nam": "boy",
     "snam": "girl",
     "smorj": ["plague", "sickness"],
+    "scremi": ["chaos", "havoc"],
 
     # times
     "dublub": "day",
