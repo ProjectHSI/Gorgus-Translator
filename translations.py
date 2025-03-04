@@ -87,6 +87,7 @@ translation_dictionary = {
     "flumgus": "family",
     "kortaled": ["corpse", "body"],
     "pliop": ["gay", "lgbtq+", "lgbtq", "homosexual", "transgender"],
+    "phrog": "frog",
 
     # times
     "dublub": "day",
