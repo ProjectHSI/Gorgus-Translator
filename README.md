@@ -1,5 +1,6 @@
 # Gorgus-Translator
 A translator for a conlang called Gorgus me and some friends are actively working on.
+
 ![An image of the translating showing the sentence "Hello! Do you like pizza?" being translated.](/resources/screenshot.png)
 
 # Install
@@ -9,7 +10,8 @@ A translator for a conlang called Gorgus me and some friends are actively workin
 - Git (for automatic updates)
 
 ### Actual Install
-**IMPORTANT:** Make sure you `git clone` the repository! This means the `.git` folder is present, otherwise auto-updates won't work!
+> [!IMPORTANT]
+> Make sure you `git clone` the repository! This means the `.git` folder is present, otherwise auto-updates won't work!
 
 First of all, you need a version of Python less than 3.13 as 3.13 is not supported.
 
