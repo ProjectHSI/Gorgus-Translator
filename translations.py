@@ -337,7 +337,7 @@ phrase_translations = {
     "gumblegoge": ["shut up", "be quiet"],
     "henger mebis": "i am going to",
     "zugugo": ["i will", "i shall"],
-    "me'heng": ["can i"],
+    "me'heng": ["can i", "may i", "shall i"],
     "thunti": "often",
     "glurple": "i have",
     "clungus": ["you guys", "you all", "guys", "everyone"],
