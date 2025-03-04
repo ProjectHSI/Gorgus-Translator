@@ -321,7 +321,8 @@ translation_dictionary = {
     "mugtur": ["entire", "whole", "all", "every"],
     "bunpo": "silly",
     "smep": "apart",
-    "humug": "bored"
+    "humug": "bored",
+    "smol": "cute"
 }
 
 dictionary_information = {
