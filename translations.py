@@ -93,6 +93,8 @@ translation_dictionary = {
     "blubglub": "fish",
     "caflow": "cow",
     "kflark": "shark",
+    "nam": "boy",
+    "snam": "girl",
 
     # times
     "dublub": "day",

@@ -80,13 +80,6 @@ def to_gorgus(user_input: str):
     user_input = swap_verbs_and_adverbs(user_input)
     
     # Replace phrases with gorgus words      
-    """for gorgus, english in phrase_translations.items():
-
-        if type(english) == list:
-            for phrase in english:
-                user_input = user_input.replace(phrase, gorgus)
-        elif type(english) == str:
-                user_input = user_input.replace(english, gorgus)"""
     for gorgus, english_phrases in phrase_translations.items():
         if isinstance(english_phrases, str):  
             english_phrases = [english_phrases]  # Convert to list for uniformity
@@ -115,21 +108,6 @@ def to_gorgus(user_input: str):
         if word == "EXAGGERATE" or word == "GENTLE":
             continue
 
-        """try:
-            suffix = modified_verbs.get(i)
-
-            if suffix == None:
-                suffix = ""
-
-            if suffix == 1:
-                suffix = translation_dictionary["<EXAGGERATED_VERB>"]
-            elif suffix == -1:
-                suffix = translation_dictionary["<GENTLE_VERB>"]
-
-            
-        except KeyError:
-            pass"""
-        
         suffix = modified_verbs.get(i, "")
         if suffix == 1:
             suffix = translation_dictionary["<EXAGGERATED_VERB>"]
@@ -139,8 +117,6 @@ def to_gorgus(user_input: str):
         if trailing_punctuation.endswith("?"):
             if not word == "lunk":
                 suffix += " lunk"
-        elif trailing_punctuation.endswith("."):
-            suffix += "$"
         else:
             suffix += trailing_punctuation
 
@@ -158,12 +134,6 @@ def to_gorgus(user_input: str):
         word_suffix = ""
         is_actor = False
 
-        """if not word in ignored_actor_nouns:
-            if is_plural and from_actor_form(word) != word and (to_actor_form(word).find("erser") != -1):
-                is_actor = True
-            if is_actor_form(word):
-                is_actor = True"""
-        
         is_actor = word not in ignored_actor_nouns and (
             is_actor_form(word) or "erser" in to_actor_form(word)
         )
@@ -198,43 +168,14 @@ def to_gorgus(user_input: str):
         if not found:
             translated += f"{word}{suffix} "
 
-        '''try:
-            found = False
-
-            # key = Gorgus, value = English
-            for key, value in translation_dictionary.items():
-                if type(value) == str:
-                    
-                    if value == (singular or word) or (plural == inflect_engine.plural(value) and is_plural):
-                        found = True
-                        if not is_plural:
-                            translated += f"{key}{word_suffix}{suffix} "
-                        else:
-                            translated += f"{translation_dictionary['<PLURAL>']}{key}{word_suffix}{suffix} "
-                        break
-                elif type(value) == list:
-                    for possible_word in value:
-                        if possible_word == (singular or word) or (plural == inflect_engine.plural(possible_word) and is_plural):
-                            #return f"{possible_word == (word or singular), (plural == inflect_engine.plural(possible_word) and is_plural)}"
-                            found = True
-                            if not is_plural:
-                                translated += f"{key}{word_suffix}{suffix} "
-                            else:
-                                translated += f"{translation_dictionary['<PLURAL>']}{key}{word_suffix}{suffix} "
-                            break
-                if found: break
-
-            if not found:
-                translated += f"{word}{suffix} "
-        except KeyError:
-            translated += f"{word}{suffix} "'''
-
     # verb modifier words
     translated = replace_word(translated, "really", translation_dictionary["<EXAGGERATED_VERB>"])
     translated = replace_word(translated, "extremely", translation_dictionary["<EXAGGERATED_VERB>"])
     translated = replace_word(translated, "very", translation_dictionary["<EXAGGERATED_VERB>"])
     translated = replace_word(translated, "absolutely", translation_dictionary["<EXAGGERATED_VERB>"])
     translated = replace_word(translated, "kinda", translation_dictionary["<GENTLE_VERB>"])
+
+    translated = translated.replace(".", "$")
 
     return translated
 
@@ -258,11 +199,7 @@ def from_gorgus(user_input: str):
 
         suffix = ""
         trailing = get_trailing_punctuation(word, translation_dictionary["<EXAGGERATED_VERB>"] + translation_dictionary["<GENTLE_VERB>"])
-
-        if trailing.endswith("$"):
-            suffix += "."
-        else:
-            suffix += trailing
+        suffix += trailing
 
         word = word.translate(str.maketrans('', '', ".,?!$:()=/\\"))
 
@@ -313,65 +250,13 @@ def from_gorgus(user_input: str):
     translated = swap_verbs_and_adverbs(translated)
     translated = fix_articles(translated, "ji")
 
+    translated = translated.replace("$", ".")
+
     return translated
 
 def fix_up(translated: str, user_input: str, user_choice: int):
     translated = translated.capitalize().strip()
     return translated
-
-    '''if translated.endswith("?") and user_choice == 2:
-        translated = translated[:-2] + "?"'''
-
-    """if not translated.endswith(".") and not translated.endswith("!") and not translated.endswith("?") and not translated.endswith("lunk"):
-        punctuation = ""
-        questions = ["who", "what", "when", "where", "how", "were", "why"]
-        words = [word.lower() for word in translated.split(" ")]
-
-        if user_choice == 1:
-            if user_input.endswith("."):
-                punctuation = translation_dictionary["<SENTENCE_END>"]
-            elif user_input.endswith("?"):
-                punctuation = " lunk"
-        elif user_choice == 2:
-            if user_input.endswith(translation_dictionary["<SENTENCE_END>"]):
-                punctuation = "."
-        translated += punctuation
-
-        if punctuation == "":
-
-            if not translated.endswith("?") and not translated.endswith(".") and not translated.endswith(translation_dictionary["<SENTENCE_END>"]):# and user_choice == 1:
-
-                for gorgus,eng in translation_dictionary.items():
-                    if type(eng) == list:
-                        if gorgus in words and eng[0] in questions:
-                            punctuation = " lunk"
-                            break
-
-                        if eng[0] in questions and eng[0] in words:
-                            punctuation = "?"
-                            break
-                    elif type(eng) == str:
-                        if gorgus in words and eng in questions:
-                            punctuation = " lunk"
-                            break
-
-                        if eng in questions and eng in words:
-                            punctuation = "?"
-                            break
-            else:
-                if user_choice == 1:
-                    if user_input.endswith("?"):
-                        punctuation = " lunk"
-
-            if user_choice == 1: # translate from english
-                translated = translated + punctuation
-            elif user_choice == 2: # translate to english
-                if punctuation == "lunk":
-                    translated = translated[:-3] + ""
-                elif punctuation == ".":
-                    translated = translated + punctuation
-                else:
-                    translated = translated + punctuation"""
 
 
 def fix_articles(input_string: str, article_word: str):

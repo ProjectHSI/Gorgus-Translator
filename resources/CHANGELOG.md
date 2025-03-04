@@ -3,6 +3,7 @@
 ## Version 1.8 (current)
 - Small optimization update.
 - Couple more words.
+- The language now has numbers!
 
 ## Version 1.75
 - Added some language features.

@@ -27,6 +27,9 @@ def install_module(module_name):
         pip_cmd = "pip" if platform.system() == "Windows" else "pip3"
         
         try:
+            if module_name == "git":
+                module_name = "gitpython"
+
             subprocess.check_call([pip_cmd, "install", module_name])
             print(f"{module_name} installed successfully!")
         except subprocess.CalledProcessError:
