@@ -92,6 +92,7 @@ translation_dictionary = {
     "hish": "snake",
     "blubglub": "fish",
     "caflow": "cow",
+    "kflark": "shark",
 
     # times
     "dublub": "day",
