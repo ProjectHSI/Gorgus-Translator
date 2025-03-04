@@ -118,7 +118,7 @@ def to_gorgus(user_input: str):
             if not word == "lunk":
                 suffix += " lunk"
         else:
-            suffix += trailing_punctuation
+            suffix += trailing_punctuation.replace(".", "$")
 
         try:
             plural = inflect_engine.plural(word)
@@ -175,8 +175,6 @@ def to_gorgus(user_input: str):
     translated = replace_word(translated, "absolutely", translation_dictionary["<EXAGGERATED_VERB>"])
     translated = replace_word(translated, "kinda", translation_dictionary["<GENTLE_VERB>"])
 
-    translated = translated.replace(".", "$")
-
     return translated
 
 def from_gorgus(user_input: str):
@@ -199,7 +197,7 @@ def from_gorgus(user_input: str):
 
         suffix = ""
         trailing = get_trailing_punctuation(word, translation_dictionary["<EXAGGERATED_VERB>"] + translation_dictionary["<GENTLE_VERB>"])
-        suffix += trailing
+        suffix += trailing.replace("$", ".")
 
         word = word.translate(str.maketrans('', '', ".,?!$:()=/\\"))
 
@@ -247,10 +245,8 @@ def from_gorgus(user_input: str):
                 translated += f"{final}{suffix} "
         except KeyError:
             translated += f"{word}{suffix} "
-    translated = swap_verbs_and_adverbs(translated)
+    #translated = swap_verbs_and_adverbs(translated)
     translated = fix_articles(translated, "ji")
-
-    translated = translated.replace("$", ".")
 
     return translated
 
