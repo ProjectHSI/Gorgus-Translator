@@ -55,7 +55,6 @@ translation_dictionary = {
     "minos": "creature",
     "waceb": "tree",
     "dint": "skin",
-    "fren": "dog",
     "gorgan": "gorgan", # this is the race that speaks Gorgus
     "kob": "thing",
     "wonk": "soul",
@@ -81,13 +80,17 @@ translation_dictionary = {
     "kortikva": "execution",
     "drekk": "crime",
     "murg": ["war", "battle"],
-    "greg": "chicken",
     "glonktop": "eye",
     "crump": "gouge",
     "flumgus": "family",
     "kortaled": ["corpse", "body"],
     "pliop": ["gay", "lgbtq+", "lgbtq", "homosexual", "transgender"],
+    "fren": "dog",
+    "greg": "chicken",
     "phrog": "frog",
+    "shmack": "cat",
+    "hish": "snake",
+    "blubglub": "fish",
 
     # times
     "dublub": "day",
