@@ -213,6 +213,7 @@ translation_dictionary = {
     "aurnaur": "punish",
     "aurnaured": "punished",
     "skorb": "peel",
+    "meep": ["can", "may", "might"],
 
     # Proper Nouns
     "googrung": ["you", "yourself"],
