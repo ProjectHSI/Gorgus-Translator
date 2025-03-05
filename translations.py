@@ -91,7 +91,7 @@ translation_dictionary = {
     "shmack": "cat",
     "hish": "snake",
     "blubglub": "fish",
-    "caflow": "cow",
+    "caflów": "cow",
     "kflark": "shark",
     "kraynark": "locust",
     "groobo": "crab",
@@ -157,9 +157,9 @@ translation_dictionary = {
     "huffer": ["believe", "reckon", "think"],
     "thork": ["hate", "loathe", "despsise"],
     "geepis": "doing",
-    "clúnk": "hit",
-    "aggér": "love",
-    "fòrp": "love",
+    "clunk": "hit",
+    "agger": "love",
+    "forp": "love",
     "cubil": "make",
     "kunther": "want",
     "snik": "unleash",
@@ -300,7 +300,7 @@ translation_dictionary = {
     "toop": "shit",
     "jinks": ["fucking", "bloody"],
     "zorper": ["bitch", "fucker", "asshole", "motherfucker"],
-    "dagungá": ["good", "incredible", "amazing", "spectacular"],
+    "dagunga": ["good", "incredible", "amazing", "spectacular"],
     "squumth": "sad",
     "wumbo": "happy",
     "gubbus": ["disappointed"],
@@ -329,8 +329,8 @@ translation_dictionary = {
     "humug": "bored",
     "greebik": "cute",
     "jubbij": "naughty",
-    "grík": ["small", "little"],
-    "grók": ["big", "large"]
+    "grik": ["small", "little"],
+    "grok": ["big", "large"]
 }
 
 dictionary_information = {
