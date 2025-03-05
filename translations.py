@@ -99,7 +99,9 @@ translation_dictionary = {
     "smorj": ["plague", "sickness"],
     "scremi": ["chaos", "havoc"],
     "deenhis": "menace",
-
+    "srukdomp": "pancake",
+    "squilsh": "waffle",
+    
     # times
     "dublub": "day",
     "nublub": "night",
