@@ -1,11 +1,10 @@
-import string
 import spacy
 import inflect
 import re
 import nltk
+import unicodedata
 
 from translations import *
-from swap import swap_verbs_and_adverbs
 from word_forms.word_forms import get_word_forms
 from typing import Literal
 
@@ -27,10 +26,31 @@ if not nltk.data.find('corpora/wordnet.zip'):
         console.input("Press enter to continue.", password=True)
 
 
+def remove_all_except(text, accents_to_keep = {'\u0302', '\u0303'}):
+    """
+    Removes all diacritical marks except those in `accents_to_keep`.
+    
+    :param text: The input string containing diacritical marks.
+    :param accents_to_keep: A set of Unicode characters representing the accents to keep.
+    :return: The cleaned text with only the specified accents retained.
+    """
+    # Normalize text to decomposed form (NFD)
+    normalized_text = unicodedata.normalize('NFD', text)
+    # Keep only base characters and the specified accents
+    cleaned_text = ''.join(c for c in normalized_text if unicodedata.category(c) != 'Mn' or c in accents_to_keep)
+    return cleaned_text
+
+# Ensure all dictionary values are lists for uniform processing
+normalized_translation_dict = {k: ([v] if isinstance(v, str) else v) for k, v in translation_dictionary.items()}
+deaccented_translation_dict = {remove_all_except(k): ([v] if isinstance(v, str) else v) for k, v in translation_dictionary.items()}
+reverse_mapping = {}
+for norm_key in normalized_translation_dict:
+    deaccented = remove_all_except(norm_key)
+    reverse_mapping[norm_key] = deaccented
+
 def is_actor_form(word: str) -> bool:
     """Check if a word is in actor form based on common English suffixes."""
     return any(word.endswith(suffix) for suffix in ACTOR_SUFFIXES)
-
 
 def to_actor_form(root: str) -> str:
     """Convert a root word to its actor form following English rules."""
@@ -78,14 +98,29 @@ def to_gorgus(user_input: str):
 
     # Swap verbs and adverbs if needed
     #user_input = swap_verbs_and_adverbs(user_input)
+
+    # First, sort phrases by length (longer phrases first)
+    sorted_phrases = sorted(
+        phrase_translations.items(),
+        key=lambda item: max(len(p) for p in (item[1] if isinstance(item[1], list) else [item[1]])),
+        reverse=True
+    )
     
     # Replace phrases with gorgus words      
-    for gorgus, english_phrases in phrase_translations.items():
+    for gorgus, english_phrases in sorted_phrases:
+        if isinstance(english_phrases, str):
+            english_phrases = [english_phrases]  # Ensure it's a list
+        for phrase in english_phrases:
+            # Use regex to match whole phrase boundaries
+            pattern = r'\b' + re.escape(phrase) + r'\b'
+            user_input = re.sub(pattern, gorgus, user_input, flags=re.IGNORECASE)
+
+    """for gorgus, english_phrases in phrase_translations.items():
         if isinstance(english_phrases, str):  
             english_phrases = [english_phrases]  # Convert to list for uniformity
         
         for phrase in english_phrases:
-            user_input = user_input.replace(phrase, gorgus)
+            user_input = user_input.replace(phrase, gorgus)"""
 
     words = user_input.split(" ")
 
@@ -151,9 +186,6 @@ def to_gorgus(user_input: str):
         if plural in ignored_plurals:
             is_plural = False
 
-        # Ensure all dictionary values are lists for uniform processing
-        normalized_translation_dict = {k: ([v] if isinstance(v, str) else v) for k, v in translation_dictionary.items()}
-
         found = False
         for key, value_list in normalized_translation_dict.items():
             value_set = set(value_list)  # Convert to set for faster lookups
@@ -178,6 +210,8 @@ def to_gorgus(user_input: str):
 
 def from_gorgus(user_input: str):
     translated = ""
+
+    #user_input = remove_all_except(user_input)
 
     # Replace phrases with english words      
     for gorgus, english in phrase_translations.items():
@@ -210,42 +244,37 @@ def from_gorgus(user_input: str):
             word = word.removesuffix(translation_dictionary["<ACTOR>"])
             actor = True
 
-        if word.endswith(translation_dictionary["<EXAGGERATED_VERB>"]):
-            word = word.rstrip(translation_dictionary["<EXAGGERATED_VERB>"])
+        if word.find(translation_dictionary["<EXAGGERATED_VERB>"]) != -1:
+            word = word.replace(translation_dictionary["<EXAGGERATED_VERB>"], "")
             translated += "really "
-        if word.endswith(translation_dictionary["<GENTLE_VERB>"]):
-            word = word.rstrip(translation_dictionary["<GENTLE_VERB>"])
+        if word.find(translation_dictionary["<GENTLE_VERB>"]) != -1:
+            word = word.replace(translation_dictionary["<GENTLE_VERB>"], "")
             translated += "kinda "
 
         if word == "ji":
             translated += "ji "
             continue
 
-        try:
-            translation = translation_dictionary[word]
+        #return f'{word, translation_dictionary, translation_dictionary.get(word, " Not found!")}'
+        translation = deaccented_translation_dict.get(remove_all_except(word))
+    
+        if translation:
+            final = translation[0]
 
-            if type(translation) == str:
-                if actor:
-                    translation = to_actor_form(translation)
+            if actor:
+                final = to_actor_form(final)
 
-                if plural:
-                    translation = inflect_engine.plural(translation)
+            if plural:
+                final = inflect_engine.plural(final)
 
-                translated += f"{translation}{suffix} "
-            elif type(translation) == list:
-                final = translation[0]
-
-                if actor:
-                    final = to_actor_form(final)
-
-                if plural:
-                    final = inflect_engine.plural(final)
-
-                translated += f"{final}{suffix} "
-        except KeyError:
+            translated += f"{final}{suffix} "
+        else:
             translated += f"{word}{suffix} "
+            
     #translated = swap_verbs_and_adverbs(translated)
     translated = fix_articles(translated, "ji")
+
+    translated = remove_all_except(translated)
 
     return translated
 

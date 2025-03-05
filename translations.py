@@ -300,7 +300,7 @@ translation_dictionary = {
     "toop": "shit",
     "jinks": ["fucking", "bloody"],
     "zorper": ["bitch", "fucker", "asshole", "motherfucker"],
-    "dagunga": ["good", "incredible", "amazing", "spectacular"],
+    "dagungá": ["good", "incredible", "amazing", "spectacular"],
     "squumth": "sad",
     "wumbo": "happy",
     "gubbus": ["disappointed"],
@@ -329,8 +329,8 @@ translation_dictionary = {
     "humug": "bored",
     "greebik": "cute",
     "jubbij": "naughty",
-    "grik": ["small", "little"],
-    "grok": ["big", "large"]
+    "grík": ["small", "little"],
+    "grók": ["big", "large"]
 }
 
 dictionary_information = {
@@ -374,7 +374,7 @@ phrase_translations = {
     "geep tijin": "dont",
     "ge'googrung": "do you",
     "ke'googrung": "did you",
-    #"ho'googrung": "are you",
+    "ho'googrung": "are you",
     "minger": "i hope",
     "ap lebron": "oh my god",
     "hemlorgo": "thank you",
