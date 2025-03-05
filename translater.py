@@ -117,7 +117,7 @@ def to_gorgus(user_input: str):
             if not word == "lunk":
                 suffix += " lunk"
         else:
-            suffix += trailing_punctuation.replace(".", "$")
+            suffix += trailing_punctuation
 
         try:
             plural = inflect_engine.plural(word)
@@ -196,7 +196,7 @@ def from_gorgus(user_input: str):
 
         suffix = ""
         trailing = get_trailing_punctuation(word, translation_dictionary["<EXAGGERATED_VERB>"] + translation_dictionary["<GENTLE_VERB>"])
-        suffix += trailing.replace("$", ".")
+        suffix += trailing
 
         word = word.translate(str.maketrans('', '', ".,?!$:()=/\\"))
 

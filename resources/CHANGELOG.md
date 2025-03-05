@@ -5,6 +5,7 @@
 - Couple more words.
 - Added some tooltips to the settings menu.
 - Fixed some bugs.
+- The full stop in the language is now set back to a regular full stop.
 
 ## Version 1.75
 - Added some language features.

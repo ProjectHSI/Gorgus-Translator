@@ -9,7 +9,7 @@ translation_dictionary = {
     "<ACTOR>": "-ak",
     "<EXAGGERATED_VERB>": "\u0302",
     "<GENTLE_VERB>": "\u0303",
-    "<SENTENCE_END>": "$",
+    "<SENTENCE_END>": ".",
 
     # Pronouns :)
 
@@ -94,6 +94,7 @@ translation_dictionary = {
     "caflow": "cow",
     "kflark": "shark",
     "kraynark": "locust",
+    "groobo": "crab",
     "nam": "boy",
     "snam": "girl",
     "smorj": ["plague", "sickness"],
@@ -324,7 +325,9 @@ translation_dictionary = {
     "smep": "apart",
     "humug": "bored",
     "greebik": "cute",
-    "jubbij": "naughty"
+    "jubbij": "naughty",
+    "grik": ["small", "little"],
+    "grok": ["big", "large"]
 }
 
 dictionary_information = {
