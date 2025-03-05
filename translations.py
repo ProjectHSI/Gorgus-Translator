@@ -231,6 +231,7 @@ translation_dictionary = {
     "mungo": "breathe",
     "muggit": "give",
     "wheremecopha": "send",
+    "morple": "attract",
 
     # Proper Nouns
     "googrung": ["you", "yourself"],
@@ -309,7 +310,7 @@ translation_dictionary = {
     "bikter": ["broken", "destroyed"],
     "wirsko": "wrong",
     "wakco": "right",
-    "kiff": ["smell", "stink", "sniff"],
+    "kiff": ["smell", "fragrance", "stink", "sniff"],
     "kiffer": ["fragrant", "smelly", "stinky"],
     "doit": "language",
     "chogder": ["yummy", "delicious", "tasty"],
