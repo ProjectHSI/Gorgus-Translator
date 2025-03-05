@@ -151,8 +151,8 @@ translation_dictionary = {
     "vor": "maybe",
 
     # Verbs
-    "chongle": ["eat", "eats", "munch", "ate", "munched"],
-    "chongling": ["eating", "munching"],
+    "chongle": ["eat", "eats", "munch", "ate", "munched", "devour"],
+    "chongling": ["eating", "munching", "devouring"],
     "huffer": ["believe", "reckon", "think"],
     "thork": ["hate", "loathe", "despsise"],
     "geepis": "doing",
