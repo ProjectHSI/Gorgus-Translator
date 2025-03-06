@@ -404,7 +404,8 @@ ignored_plurals = [ # words that can't be pluralised
     "have",
     "mess",
     "this",
-    "ass"
+    "ass",
+    "they"
 ]
 
 ignored_actor_nouns = [ # words that can't be turned into actor nouns
