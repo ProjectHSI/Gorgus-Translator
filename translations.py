@@ -384,6 +384,7 @@ phrase_translations = {
     "henger rint": ["i'm", "im"],
     "g'horg": "you are",
     "snent": "to the",
+    "nips": ["it is", "it's"],
 
     # these are just the phrases that make a verb or noun more intense or more gentle
     "EXAGGERATE": ["a lot", "too much"], 
