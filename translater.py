@@ -17,8 +17,12 @@ from rich.console import Console
 
 console = Console()
 
-wordnet_download_success = True
-if not nltk.data.find('corpora/wordnet.zip'):
+wordnet_download_success = False
+try:
+    nltk.data.find('corpora/wordnet.zip')
+    wordnet_download_success = True
+    console.print("[bold bright_green]Success![/bold bright_green] Wordnet was found. :)")
+except LookupError:
     wordnet_download_success = nltk.download("wordnet")
     if not wordnet_download_success:
         console.print("[bold red]I couldn't download the wordnet AI mdoel... :([/bold red]")
