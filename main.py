@@ -55,6 +55,7 @@ from textual import on, work, log
 from textual.css.query import NoMatches
 from textual.worker import WorkerState
 from textual.binding import Binding
+from time import sleep
 
 from translations import translation_dictionary, phrase_translations, dictionary_information
 from translater import translate
@@ -117,7 +118,7 @@ class GorgusTranslator(App):
         self.query_one("#check-update-button").disabled = True
         self.query_one("#update-button").disabled = True
 
-        version_label: Label = self.query_one("#version-label")
+        version_label = self.query_one("#version-label")
         version_label.update(
             f"Branch: {self.git_info[0]} | Version: {self.git_info[1]} | Checking for updates..."
         )
@@ -241,6 +242,25 @@ class GorgusTranslator(App):
         if num_words == 0:
             table.add_row("[blue]Hmm..[/blue]", "[green]No search results found, sorry.[/green]", "[red]:([/red]")
 
+    @work(thread=True, group="delete-settings", exclusive=True)
+    def delete_settings(self):
+        delete_settings_button = self.query_one("#delete-settings-button")
+
+        if self.deleting_settings == False:
+            self.notify("You cannot undo this action! Click the \"Clear Settings\" button again within 3 seconds to complete this action.", severity="warning", title="Watch out!")
+
+            self.deleting_settings = True
+            delete_settings_button.label = "Are you sure?"
+            sleep(3)
+            delete_settings_button.label = "Clear Settings"
+        else:
+            self.deleting_settings = False
+
+            os.remove("settings.json")
+
+            self.notify("Settings have been cleared.", title="Done!", severity="warning")
+            delete_settings_button.label = "Clear Settings"
+
     @on(Checkbox.Changed)
     def checkbox_changed(self, event):
         if "setting" in event.checkbox.classes:
@@ -258,6 +278,8 @@ class GorgusTranslator(App):
             self.update()
         elif event.button.id == "check-update-button":
             self.check_for_updates()
+        elif event.button.id == "delete-settings-button":
+            self.delete_settings()
 
     @on(TextArea.Changed)
     def text_changed(self, event):
@@ -419,6 +441,7 @@ These are the people that make this possible! *(all of these are Discord usernam
                     with Horizontal(id="settings-actions"):
                         yield Button("Update", variant="success", disabled=True, id="update-button", classes="setting-button", tooltip="Apply updates")
                         yield Button("Check for updates", id="check-update-button", classes="setting-button", tooltip="Check for updates")
+                        yield Button("Clear Settings", variant="warning", id="delete-settings-button", tooltip="Delete all settings.")
 
                     yield Label(
                         f"{git_version_string}",
