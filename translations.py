@@ -252,7 +252,7 @@ translation_dictionary = {
     "ji": ["a", "an"],
     "tebis": ["yes", "correct", "affirmative"],
     "kerp": ["no", "incorrect"],
-    "goober": "have",
+    "goober": ["have", "got"],
     "gup": "will",
     "nipe": "it",
     "gorse": "is",
