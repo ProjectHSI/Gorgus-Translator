@@ -8,6 +8,7 @@
 - The full stop in the language is now set back to a regular full stop.
 - Some words have accents on them now to help with pronounciation! (can be turned off in settings)
 - Changed how the settings tab looks.
+- You can clear your settings in the settings menu now!
 
 ## Version 1.75
 - Added some language features.
