@@ -376,7 +376,7 @@ phrase_translations = {
     "gè'googrung": "do you",
     "kè'googrung": "did you",
     "ho'googrung": "are you",
-    "minger": "i hope",
+    "minġer": "i hope",
     "ap lebron": "oh my god",
     "hemlorgo": "thank you",
     "hedris": "wake up",
