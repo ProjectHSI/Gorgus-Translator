@@ -236,7 +236,7 @@ translation_dictionary = {
     # Proper Nouns
     "googrung": "you",
     "googrungz": ["yourself", "thyself"],
-    "henger": ["me", "i", "myself"],
+    "henġer": ["me", "i", "myself"],
 
 
 
@@ -359,7 +359,7 @@ dictionary_information = {
 
 phrase_translations = {
     "gumblegoge": ["shut up", "be quiet"],
-    "henger mebis": ["i'm going to", "i am going to", "im going to"],
+    "henġer mebis": ["i'm going to", "i am going to", "im going to"],
     "zugugo": ["i will", "i shall"],
     "me'heng": ["can i", "may i", "shall i"],
     "thunti": "often",
@@ -381,7 +381,7 @@ phrase_translations = {
     "hemlorgo": "thank you",
     "hedris": "wake up",
     "jarg lebron": ["for the love of god", "for fucks sake", "for fuck's sake", "for gods sake", "for god's sake"],
-    "henger rint": ["i'm", "im"],
+    "henġer rint": ["i'm", "im"],
     "g'horg": "you are",
     "snent": "to the",
     "nips": ["it is", "it's"],
