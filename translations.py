@@ -235,7 +235,7 @@ translation_dictionary = {
 
     # Proper Nouns
     "googrung": "you",
-    "googrungz": "yourself",
+    "googrungz": ["yourself", "thyself"],
     "henger": ["me", "i", "myself"],
 
 
@@ -249,7 +249,7 @@ translation_dictionary = {
     "mebis": ["shall", "will"],
     "noguk": ["help", "assistance"],
     "hugub": ["gender", "sex"],
-    "neepol": "your",
+    "neepol": ["your", "thy"],
     "ji": ["a", "an"],
     "tebis": ["yes", "correct", "affirmative"],
     "kerp": ["no", "incorrect"],
