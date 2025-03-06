@@ -84,7 +84,7 @@ translation_dictionary = {
     "crump": "gouge",
     "flumgus": "family",
     "kortaled": ["corpse", "body"],
-    "pliop": ["gay", "lgbtq+", "lgbtq", "homosexual", "transgender"],
+    "pliop": ["gay", "lgbtq+", "lgbtq", "homosexual", "transgender", "zesty"],
     "fren": "dog",
     "greg": "chicken",
     "phrog": "frog",
@@ -423,5 +423,6 @@ ignored_actor_nouns = [ # words that can't be turned into actor nouns
     "mother",
     "father",
     "winter",
-    "summer"
+    "summer",
+    "booger"
 ]
