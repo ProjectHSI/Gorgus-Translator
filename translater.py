@@ -215,15 +215,15 @@ def to_gorgus(user_input: str):
 def from_gorgus(user_input: str):
     translated = ""
 
-    #user_input = remove_all_except(user_input)
+    user_input = remove_all_except(user_input)
 
     # Replace phrases with english words      
     for gorgus, english in phrase_translations.items():
         if type(english) == list:
             for phrase in english:
-                user_input = user_input.replace(gorgus, english[0])
+                user_input = user_input.replace(remove_all_except(gorgus), english[0])
         elif type(english) == str:
-            user_input = user_input.replace(gorgus, english)
+            user_input = user_input.replace(remove_all_except(gorgus), english)
 
     words = user_input.split(" ")
 
@@ -278,7 +278,7 @@ def from_gorgus(user_input: str):
     #translated = swap_verbs_and_adverbs(translated)
     translated = fix_articles(translated, "ji")
 
-    translated = remove_all_except(translated)
+    #translated = remove_all_except(translated)
 
     return translated
 
