@@ -234,7 +234,8 @@ translation_dictionary = {
     "morple": "attract",
 
     # Proper Nouns
-    "googrung": ["you", "yourself"],
+    "googrung": "you",
+    "googrungz": "yourself",
     "henger": ["me", "i", "myself"],
 
 
