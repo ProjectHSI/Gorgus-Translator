@@ -247,16 +247,26 @@ class GorgusTranslator(App):
         delete_settings_button = self.query_one("#delete-settings-button")
 
         if self.deleting_settings == False:
-            self.notify("You cannot undo this action! Click the \"Clear Settings\" button again within 3 seconds to complete this action.", severity="warning", title="Watch out!")
+            self.notify("You cannot undo this action! Click the \"Clear Settings\" button again within 3 seconds to complete this action. Wait 3 seconds to cancel.", severity="warning", title="Watch out!", timeout=3)
 
             self.deleting_settings = True
             delete_settings_button.label = "Are you sure?"
             sleep(3)
+
+            if self.deleting_settings == False:
+                return
+
+            self.notify("You didn't press the button again, your settings have not been cleared.", title="Action cancelled", severity="warning")
+
+            self.deleting_settings = False
             delete_settings_button.label = "Clear Settings"
         else:
             self.deleting_settings = False
 
-            os.remove("settings.json")
+            if os.path.isfile("settings.json"):
+                os.remove("settings.json")
+
+            self.get_settings()
 
             self.notify("Settings have been cleared.", title="Done!", severity="warning")
             delete_settings_button.label = "Clear Settings"
@@ -334,6 +344,7 @@ class GorgusTranslator(App):
             output_text_area.text = translate(text, "english", should_add_accents=should_add_accents)
 
     def compose(self) -> ComposeResult:
+        self.deleting_settings = False
         settings = self.get_settings()
 
         self.git_info = self.get_git_info()
