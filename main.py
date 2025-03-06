@@ -59,6 +59,7 @@ from textual.binding import Binding
 from translations import translation_dictionary, phrase_translations, dictionary_information
 from translater import translate
 
+
 class GorgusTranslator(App):
     TITLE = "Gorgus Translator"
     #SUB_TITLE = "Made with ❤️ by @spookydervish"
@@ -73,7 +74,8 @@ class GorgusTranslator(App):
                 "check_updates_on_start": True,
                 "theme": "nord",
                 "theme_index": 0,
-                "clock_enabled": True
+                "clock_enabled": True,
+                "add_pronounciation_accents": True
             }
             with open("settings.json", "w") as file:
                 json.dump(initial_data, file, indent=4)
@@ -94,6 +96,18 @@ class GorgusTranslator(App):
         with open(file_path, 'w') as file:
             json.dump(data, file, indent=4)
 
+    def get_git_info(self):
+        if not GIT_AVAILABLE:
+            return "Gitpython is not installed, cannot get branch and version number"
+
+        try:
+            repo = git.Repo(search_parent_directories=True)
+            branch = repo.active_branch.name
+            version = repo.git.describe(tags=True, always=True)
+            return branch, version
+        except Exception:
+            return "An error occured while getting the branch and version number. Did you [bold]git clone[/bold] the git repo?"  # Not a git repo or an error occurred
+
     @work(thread=True, group="updates", name="check-updates", exit_on_error=False)
     def check_for_updates(self):
         """This function will return `True` when updates are available, otherwise it will return `False`.
@@ -103,11 +117,22 @@ class GorgusTranslator(App):
         self.query_one("#check-update-button").disabled = True
         self.query_one("#update-button").disabled = True
 
+        version_label: Label = self.query_one("#version-label")
+        version_label.update(
+            f"Branch: {self.git_info[0]} | Version: {self.git_info[1]} | Checking for updates..."
+        )
+        version_label.classes = "warning"
+
         log("Checking for updates..")
 
         self.app.notify("Checking for updates...")
 
         if not GIT_AVAILABLE:
+            version_label.update(
+                f"Branch: {self.git_info[0]} | Version: {self.git_info[1]} | N/A"
+            )
+            version_label.classes = "warning"
+
             log("Can't check for updates, [bold]gitpython[/bold] is not installed.")
             self.notify("You can't update because [bold]gitpython[/bold] is not installed. Use pip to install it.", title="Can't Update", severity="warning", timeout=6)
             return
@@ -133,7 +158,20 @@ class GorgusTranslator(App):
         # re enable the check for updates button
         self.query_one("#check-update-button").disabled = False
 
-        return commits_ahead > 0
+        updates_available = commits_ahead > 0
+
+        if updates_available:
+            version_label.update(
+                f"Branch: {self.git_info[0]} | Version: {self.git_info[1]} | Out of date!"
+            )
+            version_label.classes = "error"
+        else:
+            version_label.update(
+                f"Branch: {self.git_info[0]} | Version: {self.git_info[1]} | Up to date!"
+            )
+            version_label.classes = "success"
+
+        return updates_available
 
     @work(thread=True, group="updates", name="check-updates")
     def update(self):
@@ -152,6 +190,15 @@ class GorgusTranslator(App):
             self.notify(f"Updates failed to apply:\n{e}", title="Woops!", severity="error")
             self.query_one("#update-button").disabled = False
             return
+        
+        self.git_info = self.get_git_info()
+        version_label = self.query_one("#version-label")
+
+        version_label.update(
+            f"Branch: {self.git_info[0]} | Version: {self.git_info[1]} | Up to date!"
+        )
+        version_label.classes = "success"
+
         self.notify("Done! Close and reopen the app for updates to complete.", title="Updates Complete")
 
     @work(thread=True, group="dictionary", exclusive=True)
@@ -199,6 +246,9 @@ class GorgusTranslator(App):
         if "setting" in event.checkbox.classes:
             if event.checkbox.id == "clock_enabled":
                 self.notify("You need to restart for this change to take effect.", title="Setting Changed")
+
+            if event.checkbox.id == "add_pronounciation_accents":
+                self.update_translation(self.query_one("#translate-input").text)
 
             self.modify_json("settings.json", event.checkbox.id, event.checkbox.value)
 
@@ -253,21 +303,35 @@ class GorgusTranslator(App):
 
         selection = translate_to_selection.value
         #self.app.notify(selection)
+
+        should_add_accents = self.get_settings()["add_pronounciation_accents"]
         
         if selection == 1:
-            output_text_area.text = translate(text, "gorgus")
+            output_text_area.text = translate(text, "gorgus", should_add_accents=should_add_accents)
         elif selection == 2:
-            output_text_area.text = translate(text, "english")
+            output_text_area.text = translate(text, "english", should_add_accents=should_add_accents)
 
     def compose(self) -> ComposeResult:
         settings = self.get_settings()
+
+        self.git_info = self.get_git_info()
+
+        if not isinstance(self.git_info, str):
+            git_version_string = f"Branch: {self.git_info[0]} | Version: {self.git_info[1]} | N/A"
+        else:
+            git_version_string = self.git_info
+
+        # TODO: start using settings.get() instead of this try-except nonsense
+
         try:
             settings["theme_index"]
             settings["clock_enabled"]
+            settings["add_pronounciation_accents"]
         except KeyError: # support older settings.json formats
             self.modify_json("settings.json", "clock_enabled", True)
             self.modify_json("settings.json", "theme_index", 0)
             self.modify_json("settings.json", "theme", "textual-dark")
+            self.modify_json("settings.json", "add_pronounciation_accents", True)
             settings = self.get_settings()
 
         yield Header(show_clock=settings["clock_enabled"], id="header")
@@ -319,37 +383,48 @@ These are the people that make this possible! *(all of these are Discord usernam
 - **@defohumanreal:** Contributed many words
 - **@the-trumpeter:** Made a counting system for the language (yet to be implemented)""", show_table_of_contents=False)
             with TabPane("Settings"):
-                settings_panel = Vertical(
-                    Horizontal(
-                        Label("Check for updates when openned:"),
-                        Checkbox(button_first=False, value=True, id="check_updates_on_start", classes="setting",
+                with Vertical(id="settings-panel"):
+                    yield Label("Options", variant="primary", classes="settings-title")
+
+                    yield Label("[dim]Hover on different options to see more info.[/dim]", classes="settings-note")
+
+                    with Horizontal(classes="setting"):
+                        yield Label("Check for updates when openned:")
+                        yield Checkbox(button_first=False, value=True, id="check_updates_on_start", classes="setting",
                                  tooltip="When the translator is openned, if this is enabled, then it will check for available updates and notify you if they are available."
-                        ),
-                        classes="setting"
-                    ),
+                        )
 
-                    Horizontal(
-                        Label("Show time in the top right:"),
-                        Checkbox(button_first=False, value=settings["clock_enabled"], id="clock_enabled", classes="setting",
+                    with Horizontal(classes="setting"):
+                        yield Label("Show time in the top right:")
+                        yield Checkbox(button_first=False, value=settings["clock_enabled"], id="clock_enabled", classes="setting",
                                  tooltip="Show a small clock in the top right corner of the translator."
-                        ),
-                        classes="setting"
-                    ),
+                        )
 
-                    Horizontal(
-                        Label("Theme:"),
-                        Select([(theme,i) for i, theme in enumerate(self._registered_themes.keys())], allow_blank=False, id="theme-select", value=self.get_settings()["theme_index"],
+                    with Horizontal(classes="setting"):
+                        yield Label("Theme:")
+                        yield Select([(theme,i) for i, theme in enumerate(self._registered_themes.keys())], allow_blank=False, id="theme-select", value=self.get_settings()["theme_index"],
                                tooltip="Choose from several different colour themes for the translator."
-                        ),
-                        classes="setting"
-                    ),
+                        )
+
+                    with Horizontal(classes="setting"):
+                        yield Label("Add accents for pronounciation:")
+                        yield Checkbox(button_first=False, value=settings["add_pronounciation_accents"], id="add_pronounciation_accents", classes="setting",
+                                 tooltip="Some words may have accents on some letters to help with pronounciation."
+                        )
+
+                    yield Label("Actions", variant="primary", classes="settings-title")
                     
-                    Button("Update", variant="success", disabled=True, id="update-button", classes="side-button", tooltip="Apply updates"),
-                    Button("Check for updates", id="check-update-button", classes="side-button", tooltip="Check for updates"),
-                    id="settings-panel"
-                )
-                settings_panel.border_title = "Settings"
-                yield settings_panel
+                    yield Label("[dim]You can press the \"Update\" button when updates are available.[/dim]", classes="settings-note")
+
+                    with Horizontal(id="settings-actions"):
+                        yield Button("Update", variant="success", disabled=True, id="update-button", classes="setting-button", tooltip="Apply updates")
+                        yield Button("Check for updates", id="check-update-button", classes="setting-button", tooltip="Check for updates")
+
+                    yield Label(
+                        f"{git_version_string}",
+                        variant="warning",
+                        id="version-label"
+                    )
 
         yield Footer()
 
@@ -359,6 +434,9 @@ These are the people that make this possible! *(all of these are Discord usernam
             if worker.state == WorkerState.SUCCESS:
                 log(f"Updates available: {worker.result}")
                 self.query_one("#update-button").disabled = not worker.result
+
+                self.query_one("#version-label").classes = not worker.result and "success" or "error"
+
                 if worker.result == True: # There are updates available!
                     self.notify("Updates available! Go to settings to apply them.", title="Updates Available")
                 elif worker.result == False: # Up to date

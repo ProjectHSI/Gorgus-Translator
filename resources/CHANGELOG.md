@@ -6,7 +6,8 @@
 - Added some tooltips to the settings menu.
 - Fixed some bugs.
 - The full stop in the language is now set back to a regular full stop.
-- Some words have accents on them now to help with pronounciation!
+- Some words have accents on them now to help with pronounciation! (can be turned off in settings)
+- Changed how the settings tab looks.
 
 ## Version 1.75
 - Added some language features.

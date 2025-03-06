@@ -282,8 +282,12 @@ def from_gorgus(user_input: str):
 
     return translated
 
-def fix_up(translated: str, user_input: str, user_choice: int):
+def fix_up(translated: str, should_add_accents: bool):
     translated = translated.capitalize().strip()
+
+    if not should_add_accents:
+        translated = remove_all_except(translated)
+
     return translated
 
 def fix_articles(input_string: str, article_word: str):
@@ -339,7 +343,7 @@ def replace_word(input_string: str, word: str, replacement: str, offset: int = 1
     # Join the words back into a string and return
     return " ".join(words)
 
-def translate(text: str, to: Literal["english", "gorgus"], wordnet_available: bool = True):
+def translate(text: str, to: Literal["english", "gorgus"], wordnet_available: bool = True, should_add_accents: bool = True):
     """Translate from or to Gorgus and English!
 
     Trailing whitespace is not preserved, neither is punctuation.
@@ -361,6 +365,6 @@ def translate(text: str, to: Literal["english", "gorgus"], wordnet_available: bo
         
         translated = to_gorgus(text)
 
-    translated = fix_up(translated, text, user_choice)
+    translated = fix_up(translated, should_add_accents)
 
     return translated

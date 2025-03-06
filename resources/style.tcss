@@ -39,11 +39,9 @@ TabPane {
 
 #settings-panel {
     background: $surface;
-    width: 75%;
-    max-height: 45%;
-    min-height: 34;
     border: round $primary;
     padding: 1;
+    overflow: auto;
 }
 
 #settings-panel .setting {
@@ -53,18 +51,27 @@ TabPane {
 
 #settings-panel .setting Label {
     margin-top: 1;
-    width: 35%;
+    width: 22.5%;
+    min-width: 31;
 }
 
 #settings-panel .setting Select {
-    width: 25%;
-    min-width: 20;
+    width: 15%;
+    min-width: 24;
 } 
 
-.side-button {
-    dock: right;
+.settings-actions {
+    min-height: 3;
 }
 
-#check-update-button {
-    margin-top: 4;
+.setting-button {
+    margin-right: 3;
+}
+
+.settings-title {
+    margin-bottom: 1;
+}
+
+.settings-note {
+    margin-bottom: 1;
 }
