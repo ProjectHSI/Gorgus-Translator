@@ -266,7 +266,13 @@ class GorgusTranslator(App):
             if os.path.isfile("settings.json"):
                 os.remove("settings.json")
 
-            self.get_settings()
+            settings = self.get_settings()
+            for widget in self.query(".setting"):
+                if isinstance(widget, Checkbox):
+                    widget.value = settings[widget.id]
+                elif isinstance(widget, Select):
+                    if widget.id == "theme-select":
+                        widget.value = settings["theme_index"]
 
             self.notify("Settings have been cleared.", title="Done!", severity="warning")
             delete_settings_button.label = "Clear Settings"
@@ -435,7 +441,7 @@ These are the people that make this possible! *(all of these are Discord usernam
 
                     with Horizontal(classes="setting"):
                         yield Label("Theme:")
-                        yield Select([(theme,i) for i, theme in enumerate(self._registered_themes.keys())], allow_blank=False, id="theme-select", value=self.get_settings()["theme_index"],
+                        yield Select([(theme,i) for i, theme in enumerate(self._registered_themes.keys())], allow_blank=False, id="theme-select", value=self.get_settings()["theme_index"], classes="setting",
                                tooltip="Choose from several different colour themes for the translator."
                         )
 
