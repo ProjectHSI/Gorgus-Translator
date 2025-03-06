@@ -191,7 +191,7 @@ translation_dictionary = {
     "chonglora": "fed",
     "puci": "cut",
     "zunx": "look",
-    "sadged": ["tear", "rend"],
+    "saḏged": ["tear", "rend"],
     "glink": ["start", "begin"],
     "glonk": ["stop", "end"],
     "muung": "fill",
