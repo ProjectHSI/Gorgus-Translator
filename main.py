@@ -519,6 +519,10 @@ These are the people that make this possible! *(all of these are Discord usernam
                 elif worker.result == False: # Up to date
                     self.notify("No updates available, you're up to date!", title="No Updates Available")
             elif worker.state == WorkerState.ERROR:
+                self.query_one("#update-button").disabled = True
+                self.query_one("#check-update-button").disabled = False
+                self.query_one("#version-label").classes = "error"
+                git_version_string = f"Branch: {self.git_info[0]} | Version: {self.git_info[1]} | N/A"
                 self.notify("Failed to check for updates. :(", severity="error", timeout=10)
 
     def on_ready(self):
