@@ -458,7 +458,7 @@ These are the people that make this possible! *(all of these are Discord usernam
                     with Horizontal(id="settings-actions"):
                         yield Button("Update", variant="success", disabled=True, id="update-button", classes="setting-button", tooltip="Apply updates")
                         yield Button("Check for updates", id="check-update-button", classes="setting-button", tooltip="Check for updates")
-                        yield Button("Clear Settings", variant="warning", id="delete-settings-button", tooltip="Delete all settings.")
+                        yield Button("Clear Settings", variant="error", id="delete-settings-button", tooltip="Delete all settings.")
 
                     yield Label(
                         f"{git_version_string}",
