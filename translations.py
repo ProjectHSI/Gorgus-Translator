@@ -408,7 +408,7 @@ ignored_plurals = [ # words that can't be pluralised
     "ass",
     "they",
     "them",
-    "fish"
+    "or"
 ]
 
 ignored_actor_nouns = [ # words that can't be turned into actor nouns
@@ -426,5 +426,6 @@ ignored_actor_nouns = [ # words that can't be turned into actor nouns
     "father",
     "winter",
     "summer",
-    "booger"
+    "booger",
+    "or"
 ]

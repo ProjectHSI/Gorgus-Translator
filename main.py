@@ -48,7 +48,7 @@ from rich import print as rich_print
 rich_print("\n[bold]=== Gorgus Translator ===[/bold]")
 rich_print(f"[bold]Version:[/bold] [dim cyan]{__VERSION__}[/dim cyan]")
 
-from textual.app import App, ComposeResult
+from textual.app import App, ComposeResult, SystemCommand
 from textual.widgets import TextArea, Header, Footer, TabbedContent, TabPane, Select, Label, MarkdownViewer, DataTable, Input, Rule, Checkbox, Button
 from textual.containers import Horizontal, Vertical
 from textual import on, work, log
@@ -68,6 +68,43 @@ class GorgusTranslator(App):
     CSS_PATH = "resources/style.tcss"
 
     #ENABLE_COMMAND_PALETTE = False
+
+    def get_system_commands(self, screen):
+        yield SystemCommand(
+            "Quit the application",
+            "Quit the application as soon as possible",
+            self.action_quit,
+        )
+
+        if screen.query("HelpPanel"):
+            yield SystemCommand(
+                "Hide keys and help panel",
+                "Hide the keys and widget help panel",
+                self.action_hide_help_panel,
+            )
+        else:
+            yield SystemCommand(
+                "Show keys and help panel",
+                "Show help for the focused widget and a summary of available keys",
+                self.action_show_help_panel,
+            )
+
+        if screen.maximized is not None:
+            yield SystemCommand(
+                "Minimize",
+                "Minimize the widget and restore to normal size",
+                screen.action_minimize,
+            )
+        elif screen.focused is not None and screen.focused.allow_maximize:
+            yield SystemCommand(
+                "Maximize", "Maximize the focused widget", screen.action_maximize
+            )
+
+        yield SystemCommand(
+            "Save screenshot",
+            "Save an SVG 'screenshot' of the current screen",
+            self.deliver_screenshot,
+        )
 
     def get_settings(self):
         if not os.path.isfile("settings.json"):
