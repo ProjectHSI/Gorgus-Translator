@@ -369,7 +369,7 @@ phrase_translations = {
     "dup prittering": ["how are you going", "how are you going", "how is it going", "how do you do", "how are you doing", "how are you"],
     "zup meat lunk": ["will you be my friend?", "will you be my friend", "wanna be friends?", "want to be friends", "want to be friends?"],
     "neep wert lunk": "what time is it",
-    "dup plomby ik-glorple lunk": ["how old are you"],
+    "dup jeenar lunk": ["how old are you"],
     "kunther bonkep": "wanna",
     "muke": ["come back", "come back here"],
     "geep tijin": ["don't", "dont", "do not"],
