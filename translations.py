@@ -372,7 +372,7 @@ phrase_translations = {
     "dup plomby ik-glorple lunk": ["how old are you"],
     "kunther bonkep": "wanna",
     "muke": ["come back", "come back here"],
-    "geep tijin": "dont",
+    "geep tijin": ["don't", "dont", "do not"],
     "gè'googrung": "do you",
     "kè'googrung": "did you",
     "ho'googrung": "are you",
