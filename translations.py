@@ -297,17 +297,10 @@ translation_dictionary = {
     
     # adjectives
     "zorp": ["bad", "awful", "terrible", "horrible"],
-    "jink": "fuck",
-    "toop": "shit",
-    "jinks": ["fucking", "bloody"],
-    "zorper": ["bitch", "fucker", "asshole", "motherfucker"],
     "dagunga": ["good", "incredible", "amazing", "spectacular"],
     "squumth": "sad",
     "wumbo": "happy",
     "gubbus": ["disappointed"],
-    "zogo": ["idiot", "fool", "dumb", "moron", "clown", "stupid", "dumbass"],
-    "nink": "dweeb",
-    "gdorp": "gdorp",
     "bikter": ["broken", "destroyed"],
     "wirsko": "wrong",
     "wakco": "right",
@@ -331,7 +324,17 @@ translation_dictionary = {
     "greebik": "cute",
     "jubbij": "naughty",
     "grik": ["small", "little"],
-    "grok": ["big", "large"]
+    "grok": ["big", "large"],
+
+
+    # naughty words >:(
+    "zogo": ["idiot", "fool", "dumb", "moron", "clown", "stupid", "dumbass"],
+    "nink": "dweeb",
+    "jink": "fuck",
+    "toop": "shit",
+    "jinks": ["fucking", "bloody"],
+    "zorper": ["bitch", "fucker", "asshole", "motherfucker"],
+    "gdorp": "gdorp",
 }
 
 dictionary_information = {
@@ -340,7 +343,6 @@ dictionary_information = {
         "jink",
         "jinks",
         "gdorp",
-        "chogder",
         "quam",
         "bozer",
         "toop",
