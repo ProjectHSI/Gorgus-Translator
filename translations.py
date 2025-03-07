@@ -390,6 +390,7 @@ phrase_translations = {
     "g'horg": "you are",
     "snent": "to the",
     "nips": ["it is", "it's"],
+    "th'orse": "this is",
 
     # these are just the phrases that make a verb or noun more intense or more gentle
     "EXAGGERATE": ["a lot", "too much"], 
