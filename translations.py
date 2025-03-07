@@ -134,6 +134,7 @@ translation_dictionary = {
     "shoe": "if",
     "bob": "then",
     "lorp": "but",
+    "mig": "so",
 
     # Interrogatives
     "dup": "how",
