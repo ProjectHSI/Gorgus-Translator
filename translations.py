@@ -150,6 +150,7 @@ translation_dictionary = {
     "funji": "cautiously",
     "dinp": "too",
     "vor": "maybe",
+    "shtimp": "just",
 
     # Verbs
     "chong̱le": ["eat", "eats", "munch", "ate", "munched", "devour"],
