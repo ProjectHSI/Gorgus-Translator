@@ -102,6 +102,7 @@ translation_dictionary = {
     "deenhis": "menace",
     "srukdomp": "pancake",
     "squilsh": "waffle",
+    "omnom": ["food", "snack"],
     
     # times
     "dublub": "day",
