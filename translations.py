@@ -196,7 +196,7 @@ translation_dictionary = {
     "chonglora": "fed",
     "puci": "cut",
     "zunx": "look",
-    "saḏged": ["tear", "rend"],
+    "saḏged": ["tear", "rend", "rip"],
     "glink": ["start", "begin"],
     "glonk": ["stop", "end"],
     "muung": "fill",
@@ -301,6 +301,7 @@ translation_dictionary = {
     "grem": "about",
     "plonk": "out",
     "plink": "in",
+    "brum": "until",
     
     # adjectives
     "zorp": ["bad", "awful", "terrible", "horrible"],
