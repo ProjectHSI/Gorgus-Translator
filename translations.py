@@ -237,8 +237,8 @@ translation_dictionary = {
     "muggit": "give",
     "wheremecopha": "send",
     "morple": "attract",
-    "yahp": ["speak", "say"],
-    "yahping": ["speaking", "saying"],
+    "yahp": ["speak", "say", "talk"],
+    "yahping": ["speaking", "saying", "talking"],
 
     # Proper Nouns
     "googrung": "you",
