@@ -397,6 +397,7 @@ phrase_translations = {
     "nips": ["it is", "it's"],
     "th'orse": "this is",
     "mug'ob": "everything",
+    "plomby\u0302": ["so many", "too many"],
 
     # these are just the phrases that make a verb or noun more intense or more gentle
     "EXAGGERATE": ["a lot", "too much"], 
