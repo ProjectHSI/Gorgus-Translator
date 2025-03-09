@@ -23,6 +23,7 @@ translation_dictionary = {
     # Nouns
     "neeper": ["baby", "child", "infant", "kid"],
     "jid": "that",
+    "ik-jid": "those",
     "fraik": ["explosive", "explosion", "explode"],
     "matapat": "theory",
     "clungus": ["guys", "they", "them"],
@@ -39,6 +40,7 @@ translation_dictionary = {
     "jidfo": "booger",
     "norack": "man",
     "snorack": "woman",
+    "shrerack": "person",
     "yummmered": "lobotomized",
     "yummmers": "lobotomize",
     "yummmer": "lobotomy",
@@ -155,7 +157,7 @@ translation_dictionary = {
     "shtimp": "just",
 
     # Verbs
-    "chong̱le": ["eat", "eats", "munch", "ate", "munched", "devour"],
+    "chong̱le̱": ["eat", "eats", "munch", "ate", "munched", "devour"],
     "chong̱ling": ["eating", "munching", "devouring"],
     "huffer": ["believe", "reckon", "think"],
     "thork": ["hate", "loathe", "despsise"],
@@ -235,6 +237,8 @@ translation_dictionary = {
     "muggit": "give",
     "wheremecopha": "send",
     "morple": "attract",
+    "yahp": ["speak", "say"],
+    "yahping": ["speaking", "saying"],
 
     # Proper Nouns
     "googrung": "you",
@@ -363,7 +367,7 @@ dictionary_information = {
 }
 
 phrase_translations = {
-    "gumblegoge": ["shut up", "be quiet"],
+    "gumblegoge": ["shut up", "be quiet", "stop speaking"],
     "henġer mebis": ["i'm going to", "i am going to", "im going to"],
     "zugugo": ["i will", "i shall"],
     "mè'heng": ["can i", "may i", "shall i"],
