@@ -2,7 +2,7 @@
 
 ## Version 1.8 (current)
 - Small optimization update.
-- Couple more words.
+- Couple more words. (300+ words reached!!! :D)
 - Added some tooltips to the settings menu.
 - Fixed some bugs.
 - The full stop in the language is now set back to a regular full stop.
