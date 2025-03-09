@@ -396,7 +396,7 @@ phrase_translations = {
     "snent": "to the",
     "nips": ["it is", "it's"],
     "th'orse": "this is",
-    "mugtur kob": "everything",
+    "mug'ob": "everything",
 
     # these are just the phrases that make a verb or noun more intense or more gentle
     "EXAGGERATE": ["a lot", "too much"], 
