@@ -49,16 +49,35 @@ rich_print("\n[bold]=== Gorgus Translator ===[/bold]")
 rich_print(f"[bold]Version:[/bold] [dim cyan]{__VERSION__}[/dim cyan]")
 
 from textual.app import App, ComposeResult, SystemCommand
-from textual.widgets import TextArea, Header, Footer, TabbedContent, TabPane, Select, Label, MarkdownViewer, DataTable, Input, Rule, Checkbox, Button
-from textual.containers import Horizontal, Vertical
+from textual.widgets import TextArea, Header, Footer, TabbedContent, TabPane, Select, Label, MarkdownViewer, DataTable, Input, Rule, Checkbox, Button, Markdown
+from textual.containers import Horizontal, Vertical, VerticalScroll, ItemGrid, Center
 from textual import on, work, log
 from textual.css.query import NoMatches
 from textual.worker import WorkerState
-from textual.binding import Binding
 from time import sleep
+
+from widgets.game import Game, GameInfo
 
 from translations import translation_dictionary, phrase_translations, dictionary_information
 from translater import translate
+
+
+GAMES_MD = """\
+# Games
+
+Hi! Currently there aren't very many Gorgus Games™ to play right now.
+However, we do have Gorgus Wordle™™ so we are going strong. :)
+
+Enjoy this stupid little translator.™™™™™™™™™
+"""
+
+GAMES = [
+    GameInfo(
+        "Gorgus Wordle",
+        "Each day a new random word in the translator's Gorgus dictionary is chosen, and you have to guess it within 6 tries!"
+    )
+]
+
 
 
 class GorgusTranslator(App):
@@ -503,7 +522,13 @@ These are the people that make this possible! *(all of these are Discord usernam
                         id="version-label"
                     )
             with TabPane("Games"):
-                pass
+                with VerticalScroll() as container:
+                    container.can_focus = False
+                    with Center():
+                        yield Markdown(GAMES_MD, id="games-md")
+                    with ItemGrid(min_column_width=40, id="games-grid"):
+                        for game in GAMES:
+                            yield Game(game)
 
         yield Footer()
 

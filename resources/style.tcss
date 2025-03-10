@@ -79,3 +79,21 @@ TabPane {
 .settings-note {
     margin-bottom: 1;
 }
+
+#games-md {
+    margin: 0;
+    padding: 0 2;
+    max-width: 100%;
+    background: transparent;
+}
+
+#games-grid {
+    margin: 2 4;
+    padding: 1 2;
+    background: $boost;
+    width: 1fr;
+    height: auto;
+    grid-gutter: 1 1;
+    grid-rows: auto;
+    keyline:thin $foreground 30%;
+}
