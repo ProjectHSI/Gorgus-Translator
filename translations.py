@@ -161,8 +161,8 @@ translation_dictionary = {
     "shtimp": "just",
 
     # Verbs
-    "chong̱le̱": ["eat", "eats", "munch", "ate", "munched", "devour"],
-    "chong̱ling": ["eating", "munching", "devouring"],
+    "ćhong̱le̱": ["eat", "eats", "munch", "ate", "munched", "devour"],
+    "ćhong̱ling": ["eating", "munching", "devouring"],
     "huffer": ["believe", "reckon", "think"],
     "thork": ["hate", "loathe", "despsise"],
     "geepis": "doing",
@@ -198,7 +198,7 @@ translation_dictionary = {
     "jem": ["view", "watch"],
     "plop": "become",
     "plopped": "became",
-    "chonglora": "fed",
+    "ćhonglora": "fed",
     "puci": "cut",
     "zunx": "look",
     "saḏged": ["tear", "rend", "rip"],
@@ -324,7 +324,7 @@ translation_dictionary = {
     "kiff": ["smell", "fragrance", "stink", "sniff"],
     "kiffer": ["fragrant", "smelly", "stinky"],
     "doit": "language",
-    "chogder": ["yummy", "delicious", "tasty"],
+    "ćhogder": ["yummy", "delicious", "tasty"],
     "trongle": "hungry",
     "stirkle": "weak",
     "ilstirkle": "strong",
@@ -402,7 +402,7 @@ phrase_translations = {
     "hemlorgo": "thank you",
     "hedris": "wake up",
     "jarg lebron": ["for the love of god", "for fucks sake", "for fuck's sake", "for gods sake", "for god's sake"],
-    "henġer rint": ["i'm", "im"],
+    "henġint": ["i'm", "im", "i am"],
     "g'horg": "you are",
     "snent": "to the",
     "nips": ["it is", "it's"],
@@ -411,6 +411,7 @@ phrase_translations = {
     "plomby\u0302": ["so many", "too many"],
     "go'gunx": "you look",
     "skrunbler": "fluffing a duck",
+    "h'gorg mebis": "are you going to",
 
     # these are just the phrases that make a verb or noun more intense or more gentle
     "EXAGGERATE": ["a lot", "too much"], 
