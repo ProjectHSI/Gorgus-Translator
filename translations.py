@@ -24,7 +24,7 @@ translation_dictionary = {
     "neeper": ["baby", "child", "infant", "kid"],
     "jid": "that",
     "ik-jid": "those",
-    "fraik": ["explosive", "explosion", "explode"],
+    "fraik": ["explosive", "explosion", "explode", "boom"],
     "matapat": "theory",
     "clungus": ["guys", "they", "them"],
     "cave": ["home", "house"],
