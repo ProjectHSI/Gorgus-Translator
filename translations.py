@@ -108,6 +108,7 @@ translation_dictionary = {
     "squilsh": "waffle",
     "omnom": ["food", "snack"],
     "deporious": "dementia",
+    "sysphus": "power",
     
     # times
     "dublub": "day",
@@ -190,6 +191,7 @@ translation_dictionary = {
     "gorged": "begged",
     "ving": "of",
     "dreek": "touch",
+    "draker": "feel",
     "glimpt": "know",
     "zup": "be",
     "zopat": "insert",
