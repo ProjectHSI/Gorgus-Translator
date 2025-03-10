@@ -111,6 +111,7 @@ translation_dictionary = {
     "omnom": ["food", "snack"],
     "deporious": "dementia",
     "sysphus": "power",
+    "geegrock": ["piece", "chunk", "part"],
     
     # times
     "dublub": "day",
@@ -269,7 +270,7 @@ translation_dictionary = {
     "neepol": ["your", "thy"],
     "ji": ["a", "an"],
     "tebis": ["yes", "correct", "affirmative"],
-    "kerp": ["no", "incorrect"],
+    "kerp": ["no", "incorrect", "nah"],
     "tebok": ["okay", "ok"],
     "goober": ["have", "got"],
     "gup": "will",
@@ -316,7 +317,7 @@ translation_dictionary = {
     
     # adjectives
     "zorp": ["bad", "awful", "terrible", "horrible"],
-    "dagunga": ["good", "incredible", "amazing", "spectacular"],
+    "dagunga": ["good", "incredible", "amazing", "spectacular", "great"],
     "squumth": "sad",
     "wumbo": "happy",
     "gubbus": ["disappointed"],
@@ -403,7 +404,7 @@ phrase_translations = {
     "ap lebron": "oh my god",
     "hemlorgo": "thank you",
     "hedris": "wake up",
-    "jarg lebron": ["for the love of god", "for fucks sake", "for fuck's sake", "for gods sake", "for god's sake"],
+    "jarg lebron": ["for the love of god", "for fucks sake", "for fuck's sake", "for gods sake", "for god's sake", "god damnit"],
     "henġint": ["i'm", "im", "i am"],
     "g'horg": "you are",
     "snent": "to the",
@@ -459,5 +460,6 @@ ignored_actor_nouns = [ # words that can't be turned into actor nouns
     "booger",
     "or",
     "tower",
-    "power"
+    "power",
+    "motherfucker"
 ]
