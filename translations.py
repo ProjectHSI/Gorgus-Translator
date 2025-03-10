@@ -338,7 +338,7 @@ translation_dictionary = {
     "jubbij": "naughty",
     "grik": ["small", "little"],
     "grok": ["big", "large"],
-
+    "mivac": ["particular", "specific"],
 
     # naughty words >:(
     "zogo": ["idiot", "fool", "dumb", "moron", "clown", "stupid", "dumbass"],
