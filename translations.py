@@ -451,5 +451,7 @@ ignored_actor_nouns = [ # words that can't be turned into actor nouns
     "winter",
     "summer",
     "booger",
-    "or"
+    "or",
+    "tower",
+    "power"
 ]
