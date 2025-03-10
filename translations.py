@@ -344,6 +344,7 @@ translation_dictionary = {
     "grok": ["big", "large"],
     "mivac": ["particular", "specific"],
     "apolocheese": ["apologies", "sorry"],
+    "qugger": ["same", "equal"],
 
     # naughty words >:(
     "zogo": ["idiot", "fool", "dumb", "moron", "clown", "stupid", "dumbass"],
