@@ -58,6 +58,7 @@ translation_dictionary = {
     "waceb": "tree",
     "dint": "skin",
     "gorgan": "gorgan", # this is the race that speaks Gorgus
+    "gorgus": "gorgus", # the language itself
     "kob": "thing",
     "wonk": "soul",
     "lebron": ["god", "lord"],
