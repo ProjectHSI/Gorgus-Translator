@@ -202,7 +202,7 @@ translation_dictionary = {
     "glonk": ["stop", "end"],
     "muung": "fill",
     "muunged": "filled",
-    "rinter": ["get", "fetch"],
+    "roober": ["get", "fetch"],
     "glomp": "produce",
     "bikto": ["break", "destroy"],
     "skoonk": "push",
