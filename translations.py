@@ -418,6 +418,9 @@ phrase_translations = {
     "skrunbler": "fluffing a duck",
     "h'gorg mebis": "are you going to",
 
+    "h'eekep": "i like to",
+    "h'aggap": "i love to",
+
     # these are just the phrases that make a verb or noun more intense or more gentle
     "EXAGGERATE": ["a lot", "too much"], 
     "GENTLE": ["a bit", "a little"],
