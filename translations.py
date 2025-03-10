@@ -207,6 +207,7 @@ translation_dictionary = {
     "roober": ["get", "fetch"],
     "glomp": "produce",
     "bikto": ["break", "destroy"],
+    "smuksh": ["fall", "crumble"],
     "skoonk": "push",
     "bloont": "pop",
     "minkat": "crush",
