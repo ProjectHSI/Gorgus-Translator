@@ -22,6 +22,8 @@ translation_dictionary = {
 
     # Nouns
     "neeper": ["baby", "child", "infant", "kid"],
+    "k̇neeper": "son",
+    "sneeper": "daughter",
     "jid": "that",
     "ik-jid": "those",
     "fraik": ["explosive", "explosion", "explode", "boom"],
