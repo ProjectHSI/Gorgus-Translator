@@ -106,6 +106,7 @@ translation_dictionary = {
     "srukdomp": "pancake",
     "squilsh": "waffle",
     "omnom": ["food", "snack"],
+    "deporious": "dementia",
     
     # times
     "dublub": "day",
@@ -240,6 +241,8 @@ translation_dictionary = {
     "morple": "attract",
     "yahp": ["speak", "say", "talk"],
     "yahping": ["speaking", "saying", "talking"],
+    "forgor": "forget",
+    "korgor": "forgot",
 
     # Proper Nouns
     "googrung": "you",
