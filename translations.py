@@ -193,7 +193,7 @@ translation_dictionary = {
     "glimpt": "know",
     "zup": "be",
     "zopat": "insert",
-    "jem": "view",
+    "jem": ["view", "watch"],
     "plop": "become",
     "plopped": "became",
     "chonglora": "fed",
