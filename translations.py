@@ -439,7 +439,8 @@ ignored_plurals = [ # words that can't be pluralised
     "ass",
     "they",
     "them",
-    "or"
+    "or",
+    "under"
 ]
 
 ignored_actor_nouns = [ # words that can't be turned into actor nouns
@@ -461,5 +462,6 @@ ignored_actor_nouns = [ # words that can't be turned into actor nouns
     "or",
     "tower",
     "power",
-    "motherfucker"
+    "motherfucker",
+    "under"
 ]
