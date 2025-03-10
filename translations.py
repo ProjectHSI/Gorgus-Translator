@@ -314,6 +314,8 @@ translation_dictionary = {
     "plonk": "out",
     "plink": "in",
     "brum": "until",
+    "tubuk": "top",
+    "gubuk": "bottom",
     
     # adjectives
     "zorp": ["bad", "awful", "terrible", "horrible"],
