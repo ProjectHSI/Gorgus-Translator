@@ -1,4 +1,4 @@
-__VERSION__ = 1.8
+__VERSION__ = 1.9
 print("Loading...")
 
 import os, sys
@@ -502,6 +502,8 @@ These are the people that make this possible! *(all of these are Discord usernam
                         variant="warning",
                         id="version-label"
                     )
+            with TabPane("Games"):
+                pass
 
         yield Footer()
 

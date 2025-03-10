@@ -1,8 +1,12 @@
 # Changelog
 
-## Version 1.8 (current)
+## Version 1.9
+- Added a `Games` tab to the translator! You can only play Gorgus Worlde for now though lol.
+- Added more words and phrases.
+
+## Version 1.8
 - Small optimization update.
-- Couple more words. (300+ words reached!!! :D)
+- Couple more words and phrases. (300+ words reached!!! :D)
 - Added some tooltips to the settings menu.
 - Fixed some bugs.
 - The full stop in the language is now set back to a regular full stop.
