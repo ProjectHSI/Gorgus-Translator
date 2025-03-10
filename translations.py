@@ -22,7 +22,7 @@ translation_dictionary = {
 
     # Nouns
     "neeper": ["baby", "child", "infant", "kid"],
-    "k̇neeper": "son",
+    "kneeper": "son",
     "sneeper": "daughter",
     "jid": "that",
     "ik-jid": "those",
