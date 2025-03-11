@@ -9,7 +9,7 @@ import datetime
 import random
 
 from translations import translation_dictionary
-from translater import remove_all_except
+from translater import remove_all_except, translate
 
 from util import get_settings, modify_json
 
@@ -99,10 +99,10 @@ class WordleGame(ModalScreen):
                 self.app.notify(f"{self.guesses_left} guesses left!", title="Gordle")
                 self.can_type = True
             else:
-                self.app.notify(f"You didn't guess the word... :( Better luck next time!\n\nThe word was \"{self.target_word}\".", title="Gordle", severity="error")
+                self.app.notify(f"You didn't guess the word... :( Better luck next time!\n\nThe word was \"{self.target_word}\", which means \"{translate(self.target_word, 'english')}\".", title="Gordle", severity="error",timeout=7.5)
                 modify_json("settings.json", "completed_gordle", True)
         else:
-            self.app.notify(f"You guessed the word in {6-self.guesses_left} attempt(s)! Congrats!\n\nCome back tomorrow for your next word. ;)", title="Gordle")
+            self.app.notify(f"You guessed the word in {6-self.guesses_left} attempt(s)! Congrats!\n\nTodays word meant \"{translate(self.target_word, 'english')}\"\nCome back tomorrow for your next word. ;)", title="Gordle",timeout=7.5)
             modify_json("settings.json", "completed_gordle", True)
 
     async def on_key(self, event):
