@@ -112,6 +112,8 @@ translation_dictionary = {
     "deporious": "dementia",
     "sysphus": "power",
     "geegrock": ["piece", "chunk", "part"],
+    "beav": "pant",
+    "norkus": "short",
     
     # times
     "dublub": "day",
