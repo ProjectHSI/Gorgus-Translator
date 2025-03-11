@@ -531,7 +531,7 @@ These are the people that make this possible! *(all of these are Discord usernam
                 self.query_one("#version-label").classes = not worker.result and "success" or "error"
 
                 if worker.result == True: # There are updates available!
-                    self.notify("Updates available! Go to settings to apply them.", title="Updates Available")
+                    self.notify("Updates available! Go to settings to apply them.", title="Updates Available", severity="warning")
                 elif worker.result == False: # Up to date
                     self.notify("No updates available, you're up to date!", title="No Updates Available")
             elif worker.state == WorkerState.ERROR:
