@@ -264,7 +264,7 @@ translation_dictionary = {
 
 
 
-    "mebis": ["shall", "will"],
+    "mébis": ["shall", "will"],
     "noguk": ["help", "assistance"],
     "hugub": ["gender", "sex"],
     "hèk": ["your", "thy"],
@@ -385,7 +385,7 @@ dictionary_information = {
 
 phrase_translations = {
     "gumblegoge": ["shut up", "be quiet", "stop speaking"],
-    "henġer mebis": ["i'm going to", "i am going to", "im going to"],
+    "henġer mébis": ["i'm going to", "i am going to", "im going to"],
     "zugugo": ["i will", "i shall"],
     "mè'heng": ["can i", "may i", "shall i"],
     "thunti": "often",
@@ -415,7 +415,7 @@ phrase_translations = {
     "plomby\u0302": ["so many", "too many"],
     "go'gunx": "you look",
     "skrunbler": "fluffing a duck",
-    "h'gorg mebis": "are you going to",
+    "h'gorg mébis": "are you going to",
     "pritter yuti": ["hurry up"],
 
     "h'eekep": "i like to",
