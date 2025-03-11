@@ -154,7 +154,7 @@ translation_dictionary = {
     "morp": "where",
 
     # Adverbs
-    "yuti": ["quickly", "fast", "quick"],
+    "yuti": ["quick", "fast"],
     "thunti": "a lot", # this is technically unused and is handled by the phrases dictionary
     "skungi": "aggressively",
     "mepiti": "slowly",
