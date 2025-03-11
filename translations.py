@@ -417,6 +417,7 @@ phrase_translations = {
     "go'gunx": "you look",
     "skrunbler": "fluffing a duck",
     "h'gorg mebis": "are you going to",
+    "pritter yuti": ["hurry up"],
 
     "h'eekep": "i like to",
     "h'aggap": "i love to",
