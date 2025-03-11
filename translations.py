@@ -250,6 +250,8 @@ translation_dictionary = {
     "yahping": ["speaking", "saying", "talking"],
     "forgor": "forget",
     "korgor": "forgot",
+    "trik": "work",
+    "triking": "working",
 
     # Proper Nouns
     "googrung": "you",
