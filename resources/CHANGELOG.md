@@ -3,6 +3,7 @@
 ## Version 1.9
 - Added a `Games` tab to the translator! You can only play Gorgus Worlde for now though lol.
 - Added more words and phrases.
+- Added some info to the loading screen so you don't have to stare at nothing for a while.
 
 ## Version 1.8
 - Small optimization update.
