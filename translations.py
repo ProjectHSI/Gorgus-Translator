@@ -416,7 +416,6 @@ phrase_translations = {
     "mug'ob": "everything",
     "plomby\u0302": ["so many", "too many"],
     "go'gunx": "you look",
-    "skrunbler": "fluffing a duck",
     "h'gorg mébis": "are you going to",
     "pritter yuti": ["hurry up"],
     "shriv'ma": ["there will be", "there shall be"],
