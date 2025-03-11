@@ -267,7 +267,7 @@ translation_dictionary = {
     "mebis": ["shall", "will"],
     "noguk": ["help", "assistance"],
     "hugub": ["gender", "sex"],
-    "hek": ["your", "thy"],
+    "hèk": ["your", "thy"],
     "ji": ["a", "an"],
     "tebis": ["yes", "correct", "affirmative"],
     "kerp": ["no", "incorrect", "nah"],
