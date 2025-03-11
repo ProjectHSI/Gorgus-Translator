@@ -99,7 +99,7 @@ class WordleGame(ModalScreen):
                 self.app.notify(f"{self.guesses_left} guesses left!", title="Gordle")
                 self.can_type = True
             else:
-                self.app.notify("You didn't guess the word... :( Better luck next time!", title="Gordle", severity="error")
+                self.app.notify(f"You didn't guess the word... :( Better luck next time!\n\nThe word was \"{self.target_word}\".", title="Gordle", severity="error")
                 modify_json("settings.json", "completed_gordle", True)
         else:
             self.app.notify(f"You guessed the word in {6-self.guesses_left} attempt(s)! Congrats!\n\nCome back tomorrow for your next word. ;)", title="Gordle")
