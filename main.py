@@ -89,8 +89,8 @@ Enjoy this stupid little translator.™™™™™™™™™
 
 GAMES = [
     GameInfo(
-        "Gorgus Wordle",
-        "Each day a new random word in the translator's Gorgus dictionary is chosen, and you have to guess it within 6 tries!",
+        "Gordle",
+        "Each day a new random word in the translator's Gorgus dictionary is chosen, and you have to guess it within 6 tries! (this is just Wordle)",
         WordleGame
     )
 ]
@@ -466,6 +466,14 @@ These are the people that make this possible! *(all of these are Discord usernam
 - **@plenorf:** Contributed many words
 - **@defohumanreal:** Contributed many words, came up with the idea for the `Games` tab.
 - **@the-trumpeter:** Made a counting system for the language (yet to be implemented)""", show_table_of_contents=False)
+            with TabPane("Games"):
+                with VerticalScroll() as container:
+                    container.can_focus = False
+                    with Center():
+                        yield Markdown(GAMES_MD, id="games-md")
+                    with ItemGrid(min_column_width=40, id="games-grid"):
+                        for game in GAMES:
+                            yield Game(game)
             with TabPane("Settings"):
                 with Vertical(id="settings-panel"):
                     yield Label("Options", variant="primary", classes="settings-title")
@@ -510,14 +518,6 @@ These are the people that make this possible! *(all of these are Discord usernam
                         variant="warning",
                         id="version-label"
                     )
-            with TabPane("Games"):
-                with VerticalScroll() as container:
-                    container.can_focus = False
-                    with Center():
-                        yield Markdown(GAMES_MD, id="games-md")
-                    with ItemGrid(min_column_width=40, id="games-grid"):
-                        for game in GAMES:
-                            yield Game(game)
 
         yield Footer()
 
