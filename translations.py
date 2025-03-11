@@ -417,6 +417,7 @@ phrase_translations = {
     "skrunbler": "fluffing a duck",
     "h'gorg mébis": "are you going to",
     "pritter yuti": ["hurry up"],
+    "shriv'ma": ["there will be", "there shall be"],
 
     "h'eekep": "i like to",
     "h'aggap": "i love to",
