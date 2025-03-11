@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 
 from textual.widgets import Label, Static
+from textual.screen import Screen
 from textual.containers import Vertical, Horizontal
 from textual import events, on
 from textual.binding import Binding
@@ -10,6 +11,7 @@ from textual.binding import Binding
 class GameInfo:
     title: str
     description: str
+    game: Screen
 
 
 class Game(Vertical, can_focus=True, can_focus_children=False):
@@ -60,5 +62,8 @@ class Game(Vertical, can_focus=True, can_focus_children=False):
         event.stop()
         self.set_class(self.is_mouse_over, "-hover")
 
-    def action_open_game(self):
-        self.app.notify("You openned the game!!!!!")
+    async def action_open_game(self):
+        screen: Screen = self.game_info.game()
+        screen.classes = "game-screen"
+
+        self.app.push_screen(screen)

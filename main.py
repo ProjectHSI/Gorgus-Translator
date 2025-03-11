@@ -10,6 +10,7 @@ import subprocess
 # hopefully fix some issues
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
+print("Checking for dependencies...")
 GIT_AVAILABLE = True
 try:
     import git
@@ -46,7 +47,14 @@ with open("requirements.txt", "r") as f:
 from rich import print as rich_print
 
 rich_print("\n[bold]=== Gorgus Translator ===[/bold]")
-rich_print(f"[bold]Version:[/bold] [dim cyan]{__VERSION__}[/dim cyan]")
+rich_print(f"[bold]Version:[/bold] [dim cyan]{__VERSION__}[/dim cyan]\n")
+
+if not GIT_AVAILABLE:
+    rich_print("[bold bright_yellow]WARNING[/bold bright_yellow] [bold]gitpython[/bold] was not found! You will not be able to install automatic updates.")
+else:
+    rich_print("[bold bright_green]INFO[/bold bright_green] [bold]gitpython[/bold] found! :)")
+
+rich_print("[bold bright_green]INFO[/bold bright_green] Loading [bold]textual[/bold]..")
 
 from textual.app import App, ComposeResult, SystemCommand
 from textual.widgets import TextArea, Header, Footer, TabbedContent, TabPane, Select, Label, MarkdownViewer, DataTable, Input, Rule, Checkbox, Button, Markdown
@@ -56,9 +64,17 @@ from textual.css.query import NoMatches
 from textual.worker import WorkerState
 from time import sleep
 
+from util import get_settings, modify_json
+
 from widgets.game import Game, GameInfo
+from games.wordle import WordleGame
+
+rich_print("[bold bright_green]INFO[/bold bright_green] Loading translation dictionary..")
 
 from translations import translation_dictionary, phrase_translations, dictionary_information
+
+rich_print("[bold bright_green]INFO[/bold bright_green] Starting translater..")
+
 from translater import translate
 
 
@@ -74,7 +90,8 @@ Enjoy this stupid little translator.™™™™™™™™™
 GAMES = [
     GameInfo(
         "Gorgus Wordle",
-        "Each day a new random word in the translator's Gorgus dictionary is chosen, and you have to guess it within 6 tries!"
+        "Each day a new random word in the translator's Gorgus dictionary is chosen, and you have to guess it within 6 tries!",
+        WordleGame
     )
 ]
 
@@ -124,34 +141,6 @@ class GorgusTranslator(App):
             "Save an SVG 'screenshot' of the current screen",
             self.deliver_screenshot,
         )
-
-    def get_settings(self):
-        if not os.path.isfile("settings.json"):
-            initial_data = {
-                "check_updates_on_start": True,
-                "theme": "nord",
-                "theme_index": 0,
-                "clock_enabled": True,
-                "add_pronounciation_accents": True
-            }
-            with open("settings.json", "w") as file:
-                json.dump(initial_data, file, indent=4)
-            return initial_data
-        else:
-            with open("settings.json", "r") as file:
-                return json.load(file)
-            
-    def modify_json(self, file_path, key, value):
-        # Open the file and load its current data
-        with open(file_path, 'r') as file:
-            data = json.load(file)
-        
-        # Modify or add the key-value pair
-        data[key] = value
-
-        # Write the updated data back to the JSON file
-        with open(file_path, 'w') as file:
-            json.dump(data, file, indent=4)
 
     def get_git_info(self):
         if not GIT_AVAILABLE:
@@ -322,7 +311,7 @@ class GorgusTranslator(App):
             if os.path.isfile("settings.json"):
                 os.remove("settings.json")
 
-            settings = self.get_settings()
+            settings = get_settings()
             for widget in self.query(".setting"):
                 if isinstance(widget, Checkbox):
                     widget.value = settings[widget.id]
@@ -342,7 +331,7 @@ class GorgusTranslator(App):
             if event.checkbox.id == "add_pronounciation_accents":
                 self.update_translation(self.query_one("#translate-input").text)
 
-            self.modify_json("settings.json", event.checkbox.id, event.checkbox.value)
+            modify_json("settings.json", event.checkbox.id, event.checkbox.value)
 
     @on(Button.Pressed)
     def button_pressed(self, event):
@@ -385,8 +374,8 @@ class GorgusTranslator(App):
 
             chosen_theme = event.select._options[event.value][0]
 
-            self.modify_json("settings.json", "theme", chosen_theme)
-            self.modify_json("settings.json", "theme_index", event.value)
+            modify_json("settings.json", "theme", chosen_theme)
+            modify_json("settings.json", "theme_index", event.value)
             self.theme = chosen_theme
             
 
@@ -398,7 +387,7 @@ class GorgusTranslator(App):
         selection = translate_to_selection.value
         #self.app.notify(selection)
 
-        should_add_accents = self.get_settings()["add_pronounciation_accents"]
+        should_add_accents = get_settings()["add_pronounciation_accents"]
         
         if selection == 1:
             output_text_area.text = translate(text, "gorgus", should_add_accents=should_add_accents)
@@ -407,7 +396,7 @@ class GorgusTranslator(App):
 
     def compose(self) -> ComposeResult:
         self.deleting_settings = False
-        settings = self.get_settings()
+        settings = get_settings()
 
         self.git_info = self.get_git_info()
 
@@ -423,15 +412,15 @@ class GorgusTranslator(App):
             settings["clock_enabled"]
             settings["add_pronounciation_accents"]
         except KeyError: # support older settings.json formats
-            self.modify_json("settings.json", "clock_enabled", True)
-            self.modify_json("settings.json", "theme_index", 0)
-            self.modify_json("settings.json", "theme", "textual-dark")
-            self.modify_json("settings.json", "add_pronounciation_accents", True)
-            settings = self.get_settings()
+            modify_json("settings.json", "clock_enabled", True)
+            modify_json("settings.json", "theme_index", 0)
+            modify_json("settings.json", "theme", "textual-dark")
+            modify_json("settings.json", "add_pronounciation_accents", True)
+            settings = get_settings()
 
         yield Header(show_clock=settings["clock_enabled"], id="header")
 
-        with TabbedContent():
+        with TabbedContent(id="tabs"):
             with TabPane("Translator", id="translator"): 
                 yield Label("Input")
                 yield TextArea(text="", tooltip="Type here!", classes="text-box", id="translate-input")
@@ -497,7 +486,7 @@ These are the people that make this possible! *(all of these are Discord usernam
 
                     with Horizontal(classes="setting"):
                         yield Label("Theme:")
-                        yield Select([(theme,i) for i, theme in enumerate(self._registered_themes.keys())], allow_blank=False, id="theme-select", value=self.get_settings()["theme_index"], classes="setting",
+                        yield Select([(theme,i) for i, theme in enumerate(self._registered_themes.keys())], allow_blank=False, id="theme-select", value=get_settings()["theme_index"], classes="setting",
                                tooltip="Choose from several different colour themes for the translator."
                         )
 
@@ -563,7 +552,7 @@ These are the people that make this possible! *(all of these are Discord usernam
         )
 
         # get the user's settings
-        settings = self.get_settings()
+        settings = get_settings()
 
         try:
             self.query_one("#check_updates_on_start").value = settings["check_updates_on_start"]

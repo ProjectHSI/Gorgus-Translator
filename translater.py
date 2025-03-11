@@ -8,14 +8,20 @@ from translations import *
 from word_forms.word_forms import get_word_forms
 from typing import Literal
 
-ACTOR_SUFFIXES = ["er", "or", "ist"]
-
-inflect_engine = inflect.engine()
-nlp = spacy.load("en_core_web_sm")
-
 from rich.console import Console
 
 console = Console()
+
+ACTOR_SUFFIXES = ["er", "or", "ist"]
+
+console.print("[bold bright_green]INFO[/bold bright_green] Loaded translater dependencies!")
+console.print("[bold bright_green]INFO[/bold bright_green] Starting [bold]inflect[/bold] engine..")
+
+inflect_engine = inflect.engine()
+
+console.print("[bold bright_green]INFO[/bold bright_green] Loading [bold]SpaCy[/bold] AI model..")
+
+nlp = spacy.load("en_core_web_sm")
 
 wordnet_download_success = False
 try:
@@ -28,6 +34,8 @@ except LookupError:
         console.print("[bold red]I couldn't download the wordnet AI mdoel... :([/bold red]")
         console.print("The app will still open, but you will have some missing language features.")
         console.input("Press enter to continue.", password=True)
+
+console.print("\n[bold bright_green]Done![/bold bright_green] Loading complete!")
 
 
 def remove_all_except(text, accents_to_keep = {'\u0302', '\u0303'}):
