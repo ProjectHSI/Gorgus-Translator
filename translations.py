@@ -360,6 +360,7 @@ translation_dictionary = {
     "nink": "dweeb",
     "jink": "fuck",
     "toop": "shit",
+    "sćhlonk": "penis",
     "jinks": ["fucking", "bloody"],
     "zorper": ["bitch", "fucker", "asshole", "motherfucker"],
     "gdorp": "gdorp",
@@ -378,7 +379,8 @@ dictionary_information = {
         "nink",
         "zogo",
         "srinch",
-        "gumblegoge"
+        "gumblegoge",
+        "sćhlonk"
     ],
     "extra_info": {
         "agger": "[bright_green]platonic[/bright_green]",
