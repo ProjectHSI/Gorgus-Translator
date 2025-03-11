@@ -354,6 +354,7 @@ translation_dictionary = {
     "mivac": ["particular", "specific"],
     "apolocheese": ["apologies", "sorry"],
     "qugger": ["same", "equal"],
+    "kithrak": ["angry", "enraged"],
 
     # naughty words >:(
     "zogo": ["idiot", "fool", "dumb", "moron", "clown", "stupid", "dumbass"],
