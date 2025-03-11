@@ -9,8 +9,7 @@ def get_settings():
             "theme": "nord",
             "theme_index": 0,
             "clock_enabled": True,
-            "add_pronounciation_accents": True,
-            "completed_gordle": False
+            "add_pronounciation_accents": True
         }
         with open("settings.json", "w") as file:
             json.dump(initial_data, file, indent=4)

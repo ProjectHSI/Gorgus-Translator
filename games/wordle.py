@@ -35,8 +35,8 @@ class WordleGame(ModalScreen):
 
         self.can_type = True
 
-        today = datetime.date.today()
-        seed = today.year * 10000 + today.month * 100 + today.day
+        self.today = datetime.date.today()
+        seed = self.today.year * 10000 + self.today.month * 100 + self.today.day
         random.seed(seed)
 
         filtered_keys = [remove_all_except(key) for key in translation_dictionary if '>' not in key and '<' not in key and len(remove_all_except(key)) == 5]
@@ -50,10 +50,18 @@ class WordleGame(ModalScreen):
     def compose(self):
         settings = get_settings()
 
-        if settings.get("completed_gordle", False):
-            self.notify("You've already completed the Gordle for today! Come back tomorrow. >:(", title="Gordle", severity="error")
-            self.dismiss()
-            return
+        completed_gordle = settings.get("completed_gordle", None)
+        if completed_gordle and not isinstance(completed_gordle, bool):
+
+            last_played_date = datetime.datetime.strptime(completed_gordle, "%d-%m-%Y").date()
+            if self.today == last_played_date: # You havent played the daily Gordle today!!!!!
+                self.notify("You've already completed the Gordle for today! Come back tomorrow. >:(", title="Gordle", severity="error")
+                self.dismiss()
+                return
+            elif self.today < last_played_date:
+                self.notify("Wha- what the hell? How- You know what, you don't get your daily Gordle.", title="Gordle", severity="error")
+                self.dismiss()
+                return
 
         self.notify("This is basically just Wordle, except the words are in Gorgus lol.", title="Welcome to Gordle!", timeout=7.5)
 
@@ -94,16 +102,18 @@ class WordleGame(ModalScreen):
 
 
         # notifications
+        today_string = self.today.strftime("%d-%m-%Y")
+
         if not self.guessed_correct:
             if self.guesses_left > 0:
                 self.app.notify(f"{self.guesses_left} guesses left!", title="Gordle")
                 self.can_type = True
             else:
                 self.app.notify(f"You didn't guess the word... :( Better luck next time!\n\nThe word was \"{self.target_word}\", which means \"{translate(self.target_word, 'english')}\".", title="Gordle", severity="error",timeout=7.5)
-                modify_json("settings.json", "completed_gordle", True)
+                modify_json("settings.json", "completed_gordle", today_string)
         else:
             self.app.notify(f"You guessed the word in {6-self.guesses_left} attempt(s)! Congrats!\n\nTodays word meant \"{translate(self.target_word, 'english')}\"\nCome back tomorrow for your next word. ;)", title="Gordle",timeout=7.5)
-            modify_json("settings.json", "completed_gordle", True)
+            modify_json("settings.json", "completed_gordle", today_string)
 
     async def on_key(self, event):
         if not self.can_type:
