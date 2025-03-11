@@ -22,7 +22,7 @@ translation_dictionary = {
 
     # Nouns
     "neeper": ["baby", "child", "infant", "kid"],
-    "k̇neeper": "son",
+    "kneeper": "son",
     "sneeper": "daughter",
     "jid": "that",
     "ik-jid": "those",
@@ -154,7 +154,7 @@ translation_dictionary = {
     "morp": "where",
 
     # Adverbs
-    "yuti": ["quickly", "fast"],
+    "yuti": ["quick", "fast"],
     "thunti": "a lot", # this is technically unused and is handled by the phrases dictionary
     "skungi": "aggressively",
     "mepiti": "slowly",
@@ -224,7 +224,7 @@ translation_dictionary = {
     "hemlor": "thank",
     "hev": "rise",
     "hez": "shine",
-    "eep": "sleep",
+    "eep": ["rest", "sleep"],
     "yuck": "mess",
     "hekk": "cause",
     "helt": "happen",
@@ -250,6 +250,8 @@ translation_dictionary = {
     "yahping": ["speaking", "saying", "talking"],
     "forgor": "forget",
     "korgor": "forgot",
+    "trik": "work",
+    "triking": "working",
 
     # Proper Nouns
     "googrung": "you",
@@ -264,10 +266,10 @@ translation_dictionary = {
 
 
 
-    "mebis": ["shall", "will"],
+    "mébis": ["shall", "will"],
     "noguk": ["help", "assistance"],
     "hugub": ["gender", "sex"],
-    "neepol": ["your", "thy"],
+    "hèk": ["your", "thy"],
     "ji": ["a", "an"],
     "tebis": ["yes", "correct", "affirmative"],
     "kerp": ["no", "incorrect", "nah"],
@@ -288,7 +290,7 @@ translation_dictionary = {
     "prittering": "going",
     "flenk": "please",
     "wibble": 'let',
-    "hengorp": "my",
+    "sha": "my",
     "jinking": "enjoying",
     "clungudubus": "our",
     "kleebar": "new",
@@ -314,6 +316,8 @@ translation_dictionary = {
     "plonk": "out",
     "plink": "in",
     "brum": "until",
+    "tubuk": "top",
+    "gubuk": "bottom",
     
     # adjectives
     "zorp": ["bad", "awful", "terrible", "horrible"],
@@ -334,7 +338,7 @@ translation_dictionary = {
     "torlom": "gassy",
     "wugbuggle": "forseen",
     "pstro": ["spooky", "scary"],
-    "eeping": "sleeping",
+    "eeping": ["resting", "sleeping"],
     "horv": "was",
     "klu": "cool",
     "mugtur": ["entire", "whole", "all", "every"],
@@ -383,13 +387,13 @@ dictionary_information = {
 
 phrase_translations = {
     "gumblegoge": ["shut up", "be quiet", "stop speaking"],
-    "henġer mebis": ["i'm going to", "i am going to", "im going to"],
+    "henġer mébis": ["i'm going to", "i am going to", "im going to"],
     "zugugo": ["i will", "i shall"],
     "mè'heng": ["can i", "may i", "shall i"],
     "thunti": "often",
     "glurple": "i have",
     "clungus": ["you guys", "you all", "guys", "everyone"],
-    "koilt": "i am",
+    "koilt": ["i'm", "im", "i am"],
     "dup prittering": ["how are you going", "how are you going", "how is it going", "how do you do", "how are you doing", "how are you"],
     "zup meat": ["will you be my friend", "want to be friends"],
     "neep wert": "what time is it",
@@ -405,7 +409,6 @@ phrase_translations = {
     "hemlorgo": "thank you",
     "hedris": "wake up",
     "jarg lebron": ["for the love of god", "for fucks sake", "for fuck's sake", "for gods sake", "for god's sake", "god damnit"],
-    "henġint": ["i'm", "im", "i am"],
     "g'horg": "you are",
     "snent": "to the",
     "nips": ["it is", "it's"],
@@ -414,7 +417,12 @@ phrase_translations = {
     "plomby\u0302": ["so many", "too many"],
     "go'gunx": "you look",
     "skrunbler": "fluffing a duck",
-    "h'gorg mebis": "are you going to",
+    "h'gorg mébis": "are you going to",
+    "pritter yuti": ["hurry up"],
+    "shriv'ma": ["there will be", "there shall be"],
+
+    "h'eekep": "i like to",
+    "h'aggap": "i love to",
 
     # these are just the phrases that make a verb or noun more intense or more gentle
     "EXAGGERATE": ["a lot", "too much"], 
