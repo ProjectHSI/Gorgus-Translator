@@ -88,9 +88,9 @@ class Hangman(ModalScreen):
             yield Label("this doesn't work yet, lmao", variant="error")
 
             yield Label(self.HANGMANPICS[self.guesses_left], id="hangman-picture")
-            yield Label(self.user_word, id="user-word")
             yield Input(placeholder="Enter a letter.", max_length=1, id="user-input")
-        
+            yield Label(f"Your Guess: [bold]{self.user_word}[/bold]", id="user-word")
+
         yield Footer(show_command_palette=False)
 
     CSS = """
@@ -100,5 +100,20 @@ class Hangman(ModalScreen):
         background: $boost;
         border: round $primary;
         border-title-align: center;
+    }
+
+    #user-input {
+        margin-bottom: 2;
+        dock: bottom;
+    }
+
+    #hangman-picture {
+        text-align: center;
+        min-width: 100%;
+    }
+
+    #user-word {
+        dock: bottom;
+        margin-bottom: 1;
     }
     """
