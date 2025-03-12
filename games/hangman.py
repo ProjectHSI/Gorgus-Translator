@@ -95,7 +95,7 @@ class Hangman(ModalScreen):
 
     CSS = """
     Vertical {
-        margin: 5 25;
+        margin: 15 25;
         padding: 1;
         background: $boost;
         border: round $primary;
@@ -103,7 +103,7 @@ class Hangman(ModalScreen):
     }
 
     #user-input {
-        margin-bottom: 2;
+        margin-bottom: 1;
         dock: bottom;
     }
 
@@ -114,6 +114,6 @@ class Hangman(ModalScreen):
 
     #user-word {
         dock: bottom;
-        margin-bottom: 1;
+        margin-bottom: 6;
     }
     """
