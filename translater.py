@@ -35,8 +35,6 @@ except LookupError:
         console.print("The app will still open, but you will have some missing language features.")
         console.input("Press enter to continue.", password=True)
 
-console.print("\n[bold bright_green]Done![/bold bright_green] Loading complete!")
-
 
 def remove_all_except(text, accents_to_keep = {'\u0302', '\u0303'}):
     """

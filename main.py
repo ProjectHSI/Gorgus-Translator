@@ -77,6 +77,8 @@ rich_print("[bold bright_green]INFO[/bold bright_green] Starting translater..")
 
 from translater import translate
 
+rich_print("\n[bold bright_green]Done![/bold bright_green] Loading complete!")
+
 
 GAMES_MD = """\
 # Games
