@@ -177,7 +177,7 @@ class GorgusTranslator(App):
         )
         version_label.classes = "warning"
 
-        log("Checking for updates..")
+        self.log("Checking for updates..")
 
         self.app.notify("Checking for updates...")
 
