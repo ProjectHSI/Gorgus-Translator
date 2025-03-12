@@ -68,6 +68,7 @@ from util import get_settings, modify_json
 
 from widgets.game import Game, GameInfo
 from games.wordle import WordleGame
+from games.hangman import Hangman
 
 rich_print("[bold bright_green]INFO[/bold bright_green] Loading translation dictionary..")
 
@@ -94,6 +95,11 @@ GAMES = [
         "Gordle",
         "Each day a new random word in the translator's Gorgus dictionary is chosen, and you have to guess it within 6 tries! (this is just Wordle)",
         WordleGame
+    ),
+    GameInfo(
+        "Bingbonk norack",
+        "it's just hangman bro",
+        Hangman
     )
 ]
 
