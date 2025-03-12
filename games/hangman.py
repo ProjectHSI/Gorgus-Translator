@@ -94,12 +94,17 @@ class Hangman(ModalScreen):
         yield Footer(show_command_palette=False)
 
     CSS = """
+    Hangman {
+        align: center middle;
+    }
+
     Vertical {
-        margin: 15 25;
         padding: 1;
         background: $boost;
         border: round $primary;
         border-title-align: center;
+        width: 50%;
+        height: 50%;
     }
 
     #user-input {
