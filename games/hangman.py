@@ -165,6 +165,7 @@ class Hangman(ModalScreen):
         border-title-align: center;
         width: 50%;
         height: 50%;
+        min-height: 20;
     }
 
     #user-input {

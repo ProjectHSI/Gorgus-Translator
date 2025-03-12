@@ -84,10 +84,8 @@ rich_print("\n[bold bright_green]Done![/bold bright_green] Loading complete!")
 GAMES_MD = """\
 # Games
 
-Hi! Currently there aren't very many Gorgus Games™ to play right now.
-However, we do have Gorgus Wordle™™ so we are going strong. :)
-
-Enjoy this stupid little translator.™™™™™™™™™
+Hi! Currently there aren't very many games here yet, so uhh...
+Enjoy off brand Wordle and Hangman lmao. 
 """
 
 GAMES = [
