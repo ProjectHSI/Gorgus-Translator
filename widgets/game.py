@@ -63,6 +63,7 @@ class Game(Vertical, can_focus=True, can_focus_children=False):
         self.set_class(self.is_mouse_over, "-hover")
 
     async def action_open_game(self):
+        self.app.log(f"Starting game: \"{self.game_info.title}\"")
         screen: Screen = self.game_info.game()
         screen.classes = "game-screen"
 
