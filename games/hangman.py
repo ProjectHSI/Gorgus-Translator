@@ -86,8 +86,6 @@ class Hangman(ModalScreen):
         self.guesses_left = 6
         self.user_word = "_" * len(self.target_word)
 
-        self.app.log(self.target_word)
-
         self.guessed_letters = []
 
         super().__init__()
