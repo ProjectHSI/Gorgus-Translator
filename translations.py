@@ -425,6 +425,7 @@ phrase_translations = {
     "h'gorg mébis": "are you going to",
     "pritter yuti": ["hurry up"],
     "shriv'ma": ["there will be", "there shall be", "there are going to be"],
+    "gog'um": "you should",
 
     "cubiling": "working on",
 
