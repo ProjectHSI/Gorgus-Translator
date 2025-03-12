@@ -80,7 +80,7 @@ class Hangman(ModalScreen):
     ]
 
     def __init__(self):
-        possible_words = [remove_all_except(key) for key in translation_dictionary.keys() if key.find("-") == -1]
+        possible_words = [remove_all_except(key) for key in translation_dictionary.keys() if key.find("-") == -1 and key.find("'") == -1]
         self.target_word = choice(possible_words)
 
         self.guesses_left = 6
