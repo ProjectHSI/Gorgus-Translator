@@ -174,7 +174,8 @@ translation_dictionary = {
     "clunk": "hit",
     "agger": "love",
     "forp": "love",
-    "cubil": "make",
+    "cubil": ["make", "create"],
+    "cubiling": ["making", "creating"],
     "kunther": "want",
     "snik": "unleash",
     "jeek": "like",
@@ -424,6 +425,8 @@ phrase_translations = {
     "h'gorg mébis": "are you going to",
     "pritter yuti": ["hurry up"],
     "shriv'ma": ["there will be", "there shall be"],
+
+    "cubiling": "working on",
 
     "h'eekep": "i like to",
     "h'aggap": "i love to",
