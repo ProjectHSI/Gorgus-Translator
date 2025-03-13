@@ -96,7 +96,7 @@ GAMES = [
     ),
     GameInfo(
         "Bingbonk norack",
-        "it's just hangman bro",
+        "it's just hangman but with gorgus words bro",
         Hangman
     )
 ]

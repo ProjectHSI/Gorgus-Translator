@@ -422,7 +422,7 @@ phrase_translations = {
     "hemlorgo": "thank you",
     "hedris": "wake up",
     "jarg lebron": ["for the love of god", "for fucks sake", "for fuck's sake", "for gods sake", "for god's sake", "god damnit"],
-    "g'horg": "you are",
+    "g'horg": ["you are", "youre", "you're"],
     "snent": "to the",
     "nips": ["it is", "it's"],
     "th'orse": "this is",
