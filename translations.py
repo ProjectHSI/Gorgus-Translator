@@ -114,6 +114,9 @@ translation_dictionary = {
     "geegrock": ["piece", "chunk", "part"],
     "beav": "pant",
     "norkus": "short",
+    "shwep": "weapon",
+    "stoob": "sword",
+    "poow": "gun",
     
     # times
     "dublub": "day",
@@ -212,6 +215,7 @@ translation_dictionary = {
     "glonk": ["stop", "end"],
     "muung": "fill",
     "muunged": "filled",
+    "muneg": "full",
     "roober": ["get", "fetch"],
     "glomp": "produce",
     "bikto": ["break", "destroy"],
@@ -258,7 +262,7 @@ translation_dictionary = {
 
     # Proper Nouns
     "googrung": "you",
-    "googrungz": ["yourself", "thyself"],
+    "googrung'iz": ["yourself", "thyself"],
     "henġer": ["me", "i", "myself"],
 
 
@@ -274,8 +278,8 @@ translation_dictionary = {
     "hugub": ["gender", "sex"],
     "hèk": ["your", "thy"],
     "ji": ["a", "an"],
-    "tebis": ["yes", "correct", "affirmative"],
-    "kerp": ["no", "incorrect", "nah"],
+    "tebis": ["yes", "affirmative"],
+    "kerp": ["no", "incorrect", "nah", "nope"],
     "tebok": ["okay", "ok"],
     "goober": ["have", "got"],
     "gup": "will",
@@ -330,7 +334,7 @@ translation_dictionary = {
     "gubbus": ["disappointed"],
     "bikter": ["broken", "destroyed"],
     "wirsko": "wrong",
-    "wakco": "right",
+    "wakco": "correct",
     "kiff": ["smell", "fragrance", "stink", "sniff"],
     "kiffer": ["fragrant", "smelly", "stinky"],
     "doit": "language",
@@ -356,6 +360,9 @@ translation_dictionary = {
     "apolocheese": ["apologies", "sorry"],
     "qugger": ["same", "equal"],
     "kithrak": ["angry", "enraged"],
+    "spink": ["sharp", "pointy"],
+    "mump": "first",
+    "mimp": "last",
 
     # naughty words >:(
     "zogo": ["idiot", "fool", "dumb", "moron", "clown", "stupid", "dumbass"],
