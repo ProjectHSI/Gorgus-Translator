@@ -313,7 +313,7 @@ translation_dictionary = {
     "hoog": "on",
     "gooh": "off",
     "murp": "up",
-    "kurp": "down",
+    "durp": "down",
     "moreak": "upon",
     "gidoo": "from",
     "cupoo": "inside",
