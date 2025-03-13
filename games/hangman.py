@@ -28,6 +28,35 @@ class Hangman(ModalScreen):
     ]
 
     HANGMANPICS = ['''
+    
+       
+        
+        
+        
+        
+    =========''', '''
+        +
+        |
+        |
+        |
+        |
+        |
+    =========''', '''
+    +---+
+        |
+        |
+        |
+        |
+        |
+    =========
+    ''', '''
+    +---+
+    |   |
+        |
+        |
+        |
+        |
+    =========''', '''
     +---+
     |   |
         |
@@ -83,7 +112,8 @@ class Hangman(ModalScreen):
         possible_words = [remove_all_except(key) for key in translation_dictionary.keys() if key.find("-") == -1]
         self.target_word = choice(possible_words)
 
-        self.guesses_left = 6
+        self.max_guesses = len(self.HANGMANPICS) - 1
+        self.guesses_left = self.max_guesses
         self.user_word = "_" * len(self.target_word)
 
         self.guessed_letters = []
@@ -115,7 +145,7 @@ class Hangman(ModalScreen):
             self.query_one("#letters-guessed").update(f"[dim]Letters already guessed: {' '.join(self.guessed_letters)}[/dim]")
             self.guesses_left -= 1
 
-            self.query_one("#hangman-picture").update(f"[bold]{self.HANGMANPICS[self.guesses_left]}[/bold]")
+            self.query_one("#hangman-picture").update(f"[bold]{self.HANGMANPICS[self.max_guesses - self.guesses_left]}[/bold]")
 
             if self.guesses_left <= 0:
                 self.query_one("#user-input").disabled = True
@@ -146,7 +176,7 @@ class Hangman(ModalScreen):
         with Vertical() as game:
             game.border_title = "Bingbonk Norack (Hangman)"
 
-            yield Label(f"[bold]{self.HANGMANPICS[self.guesses_left]}[/bold]", id="hangman-picture")
+            yield Label(f"[bold]{self.HANGMANPICS[self.max_guesses - self.guesses_left]}[/bold]", id="hangman-picture")
             yield Input(placeholder="Enter a letter.", max_length=1, id="user-input", valid_empty=False, tooltip="Guess a letter!", validators=[InputValidator()])
             yield Label(f"Your Guess: [bold]{self.user_word}[/bold]", id="user-word")
             yield Label("[dim]Letters already guessed:[/dim]", id="letters-guessed")
