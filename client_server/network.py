@@ -19,3 +19,7 @@ class Network:
             return self.client.recv(2048).decode()
         except:
             pass
+
+
+if __name__ == "__main__":
+    n = Network()
