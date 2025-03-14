@@ -69,6 +69,7 @@ from util import get_settings, modify_json
 from widgets.game import Game, GameInfo
 from games.wordle import WordleGame
 from games.hangman import Hangman
+from games.typing_game import TypingGame
 
 rich_print("[bold bright_green]INFO[/bold bright_green] Loading translation dictionary..")
 
@@ -98,6 +99,11 @@ GAMES = [
         "Bingbonk norack",
         "it's just hangman but with gorgus words bro",
         Hangman
+    ),
+    GameInfo(
+        "Definition Race",
+        "You and another person race to see who can define a word faster!!! :)",
+        TypingGame
     )
 ]
 
