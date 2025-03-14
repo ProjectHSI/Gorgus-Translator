@@ -242,6 +242,7 @@ class TypingGame(ModalScreen):
     #win-loss-msg {
         text-align: center;
         margin-bottom: 1;
+        width: 100%;
     }
 
     #extra-msg {
