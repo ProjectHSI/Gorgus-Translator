@@ -72,7 +72,7 @@ class Game:
 class Server:
     def __init__(self, HOST, PORT, log_level: int = 2):
         self.log_level = log_level
-        self.BLOCKED_IPS = ["172.31.128.41"]
+        self.BLOCKED_IPS = ["172.31.128.41", "172.31.128.29"]
 
         self.log("Creating socket..", 1)
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
