@@ -72,6 +72,7 @@ class Game:
 class Server:
     def __init__(self, HOST, PORT, log_level: int = 2):
         self.log_level = log_level
+        self.BLOCKED_IPS = ["172.31.128.41"]
 
         self.log("Creating socket..", 1)
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -93,6 +94,11 @@ class Server:
 
         while True:
             conn, addr = s.accept()
+
+            if addr[0] in self.BLOCKED_IPS:
+                self.log(f"Ignored connection from blocked ip: {addr}")
+                continue
+
             self.log(f"New connection! Address: {addr}")
 
             self.id_count += 1
