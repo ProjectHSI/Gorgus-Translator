@@ -175,7 +175,6 @@ class TypingGame(ModalScreen):
                 
                 else:
                     loading_label.update(f"Connected! Waiting for players..")
-                    loading_symbol.styles.display = "none"
 
                 sleep(1) # wait 1 second after every packet sent
             except Exception as e:
