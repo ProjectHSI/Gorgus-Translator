@@ -33,6 +33,8 @@ class Server:
     def threaded_client(self, conn: socket.socket):
         self.log("Started new thread for client.", level=1)
 
+        conn.send(str.encode("Connected", encoding="utf-8"))
+
         reply = ""
 
         while True:
