@@ -247,16 +247,12 @@ class TypingGame(ModalScreen):
     #win-loss-msg {
         text-align: center;
         margin-bottom: 1;
-        width: 100%;
+        width: 75%;
     }
 
     #extra-msg {
-        width: 50%;
+        width: 75%;
         text-align: center;
-    }
-
-    #end-screen {
-        content-align: center middle;
     }
     """
     
