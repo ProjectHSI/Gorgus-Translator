@@ -138,8 +138,6 @@ class TypingGame(ModalScreen):
                     self.dismiss()
                     break
 
-                self.app.log(packet.data.winner)
-
                 if packet.data.ready:
                     target_word_label.update(f"Translate this word to English: [bold]{packet.data.current_words[self.player]}[/bold]")
                     if packet.data.winner:
