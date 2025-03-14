@@ -9,6 +9,7 @@ class PacketType(Enum):
     ANSWER = 3
     SEND = 4
     CLOSE = 5
+    WIN = 6
 
 @dataclass
 class Packet:

@@ -12,6 +12,8 @@ from translations import translation_dictionary
 from translater import remove_all_except
 from random import choice
 
+from argparse import ArgumentParser
+
 
 normalized_translation_dict = {remove_all_except(k): ([v] if isinstance(v, str) else v) for k, v in translation_dictionary.items()}
 possible_words = [key for key in normalized_translation_dict.keys() if key.find("-") == -1 and key.find("'") == -1 and key.find("<") == -1]
@@ -45,8 +47,16 @@ class Game:
         self.winner = None
 
     def play(self, player, answer):
+        if self.winner:
+            return
+
         if answer.lower() in self.__answers[self.points[player]]:
             self.points[player] += 1
+
+            if self.points[player] == 10:
+                self.winner = player
+                return True
+
             self.current_words[player] = self.__target_words[self.points[player]]
             return True
         return False
@@ -125,7 +135,11 @@ class Server:
                             reply = Packet(PacketType.MESSAGE, "Invalid data!")
                         else:
                             was_correct = game.play(player, data.data)
-                            reply = Packet(PacketType.MESSAGE, was_correct and "Correct!" or "Incorrect... :(")
+
+                            if game.is_winner(player):
+                                reply = Packet(PacketType.WIN, player)
+                            else:
+                                reply = Packet(PacketType.MESSAGE, was_correct and "Correct!" or "Incorrect... :(")
 
                     self.log(f"Reply: {pickle.dumps(reply)}", 1)
                     conn.sendall(pickle.dumps(reply))
@@ -176,4 +190,15 @@ class Server:
 
 
 if __name__ == "__main__":
-    server = Server("192.168.56.1", 5555)
+    parser = ArgumentParser(
+        prog="Gorgus Server",
+        description="Used to host games for the Gorgus translator. This isn't completely secure, so I don't recommend port forwarding this..."
+    )
+
+    parser.add_argument("-H", "--host", type=str, default=socket.gethostbyname(socket.gethostname()), required=False, help="The IP to host the server on. Defaults to the private IP of your machine.")
+    parser.add_argument("-p", "--port",  type=int, required=False, default=5555, help="The port to host the server on, defaults to 5555.")
+    parser.add_argument("-l", "--log-level", type=int, required=False, default=2)
+
+    args = parser.parse_args()
+
+    server = Server(args.host, args.port, args.log_level)

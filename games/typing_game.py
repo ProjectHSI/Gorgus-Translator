@@ -54,7 +54,13 @@ class TypingGame(ModalScreen):
                 value
             ))
 
-            self.app.notify(str(response.data))
+            if response.packet_type == PacketType.MESSAGE:
+                self.app.notify(str(response.data))
+            elif response.packet_type == PacketType.WIN:
+                input_box.disabled = True
+
+                if response.data == self.player:
+                    self.app.notify("You win! Good job. :)")
 
     def action_quit_game(self):
         self.dismiss()
@@ -73,7 +79,7 @@ class TypingGame(ModalScreen):
         loading_label.update("Attempting to connect to server..")
         self.app.log("Attempting to connect to game server..")
 
-        self.n = Network("192.168.56.1")
+        self.n = Network("169.254.245.236")
         self.player = self.n.get_player()
 
         self.app.log(f"Player: {self.player}")
@@ -139,7 +145,7 @@ class TypingGame(ModalScreen):
                     loading_label.update(f"Connected! Waiting for players..")
                     loading_symbol.styles.display = "none"
 
-                sleep(1)
+                sleep(1) # wait 1 second after every packet sent
             except Exception as e:
                 self.notify("An error occured, you have been disconnected.", severity="error")
                 self.app.log.error(str(e))
