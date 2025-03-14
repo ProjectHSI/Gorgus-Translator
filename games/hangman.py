@@ -212,4 +212,8 @@ class Hangman(ModalScreen):
         dock: bottom;
         margin-bottom: 5;
     }
+
+    #letters-guessed {
+        dock: left;
+    }
     """

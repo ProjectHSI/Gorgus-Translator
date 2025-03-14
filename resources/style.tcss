@@ -95,5 +95,5 @@ TabPane {
     height: auto;
     grid-gutter: 1 1;
     grid-rows: auto;
-    keyline:thin $foreground 30%;
+    keyline: thin $foreground 30%;
 }
