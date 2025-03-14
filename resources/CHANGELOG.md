@@ -1,5 +1,8 @@
 # Changelog
 
+## Version 1.95 (current)
+- You can now host a multiplayer game between you and a friend! Check out the new game. :)
+
 ## Version 1.9
 - Added a `Games` tab to the translator! You can only play Gorgus Worlde and Hangman for now though lol.
 - Added more words and phrases.
