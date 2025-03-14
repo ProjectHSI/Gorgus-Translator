@@ -1,0 +1,15 @@
+modules = ["python-3.12", "bash"]
+run = "python3 client_server/server.py -l 1"
+
+[nix]
+channel = "stable-24_05"
+
+[deployment]
+run = ["sh", "-c", "python3 client_server/server.py -l 1"]
+
+[[ports]]
+localPort = 0
+externalPort = 80
+
+[[ports]]
+localPort = 5555
