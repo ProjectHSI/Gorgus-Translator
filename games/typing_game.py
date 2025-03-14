@@ -1,7 +1,7 @@
 from textual.screen import ModalScreen
 from textual.binding import Binding
 from textual.containers import Vertical, Container, Horizontal
-from textual.widgets import Label, LoadingIndicator, Input, ProgressBar
+from textual.widgets import Label, LoadingIndicator, Input, ProgressBar, Button
 from textual.events import ScreenResume, ScreenSuspend
 from textual import on, work
 from time import sleep
@@ -40,6 +40,16 @@ class TypingGame(ModalScreen):
             with Horizontal(id="player2-progress", classes="progress"):
                 yield Label("Player2:", id="p2-label")
                 yield ProgressBar(10, show_eta=False, id="p2")
+        with Container(id="end-screen") as end:
+            end.styles.display = "none"
+            end.border_title = "Game Over!"
+
+            yield Label("Uhh...", variant="warning", id="win-loss-msg")
+            yield Label("[dim]If you're seeing this, it means that something went wrong lol.[/dim]", id="extra-msg")
+
+            # TODO: make a rematch system 😭
+            #yield Button("Rematch?", variant="default")
+            #yield Label("0 / 2 Players")
 
     @on(Input.Submitted)
     def word_answered(self, event):
@@ -122,16 +132,38 @@ class TypingGame(ModalScreen):
                 self.app.log(f"Packet: {packet}")
 
                 if isinstance(packet, str):
-                    self.notify("You have been disconnected from the server because the other player disconnected.")
+                    self.notify("You have been disconnected from the server because the game closed.\n\nThis can be caused by another player leaving, or the server closing.")
                     self.app.log.error(packet)
                     self.run = False
                     self.dismiss()
                     break
-                
-                self.app.log(packet.data.ready)
-                target_word_label.update(f"Translate this word to English: [bold]{packet.data.current_words[self.player]}[/bold]")
+
+                self.app.log(packet.data.winner)
 
                 if packet.data.ready:
+                    target_word_label.update(f"Translate this word to English: [bold]{packet.data.current_words[self.player]}[/bold]")
+                    if packet.data.winner:
+                        self.query_one("#game-window").styles.display = "none"
+                        self.query_one("#end-screen").styles.display = "block"
+
+                        win_loss_msg = self.query_one("#win-loss-msg")
+                        extra_msg = self.query_one("#extra-msg")
+
+                        if packet.data.winner == self.player:
+                            win_loss_msg.update("Win!")
+
+                            win_loss_msg.set_class(False, "warning")
+                            win_loss_msg.set_class(True, "success")
+
+                            extra_msg.update("[dim]But can you do it faster?[/dim]")
+                        else:
+                            win_loss_msg.update("Loss... :(")
+
+                            win_loss_msg.set_class(False, "warning")
+                            win_loss_msg.set_class(True, "error")
+
+                            extra_msg.update("[dim]They aren't hacking, they just have a good gaming chair.[/dim]")
+
                     if not game_started:
                         self.app.log("Game started!")
                         game_started = True
@@ -168,7 +200,7 @@ class TypingGame(ModalScreen):
         align: center middle;
     }
 
-    #game, #game-window {
+    #game, #game-window, #end-screen {
         padding: 1;
         background: $boost;
         border: round $primary;
@@ -207,6 +239,20 @@ class TypingGame(ModalScreen):
 
     #player1-progress {
         margin-bottom: 1;
+    }
+
+    #win-loss-msg {
+        text-align: center;
+        margin-bottom: 1;
+    }
+
+    #extra-msg {
+        width: 50%;
+        text-align: center;
+    }
+
+    #end-screen {
+        content-align: center middle;
     }
     """
     
