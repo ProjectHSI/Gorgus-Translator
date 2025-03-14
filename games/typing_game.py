@@ -1,6 +1,6 @@
 from textual.screen import ModalScreen
 from textual.binding import Binding
-from textual.containers import Vertical
+from textual.containers import Vertical, Container
 from textual.widgets import Label, LoadingIndicator
 from textual.events import ScreenResume, ScreenSuspend
 from textual import on, work
@@ -23,14 +23,14 @@ class TypingGame(ModalScreen):
     ]
 
     def compose(self):
-        with Vertical(id="game") as game:
+        with Vertical(id="game") as loading:
+            loading.border_title = "Definition Race (Connecting to server..)"
+            yield Label("Loading..", id="loading-text")
+            yield LoadingIndicator()
+        with Container(id="game-window") as game:
+            game.styles.display = "none"
             game.border_title = "Definition Race"
-            with Vertical(id="loading"):
-                yield Label("Loading..", id="loading-text")
-                yield LoadingIndicator()
-            with Vertical(id="game-window") as window:
-                window.styles.visibility = "hidden"
-                yield Label("this is what the game looks like when you get in a match :)")
+            yield Label("this is what the game looks like when you get in a match :)")
 
     def action_quit_game(self):
         self.dismiss()
@@ -38,6 +38,8 @@ class TypingGame(ModalScreen):
     @work(thread=True)
     def connect_to_server(self):
         self.run = True
+
+        #self.query_one("#game-window").styles.visibility = "hidden"
 
         # get the loading text
         loading_label = self.query_one("#loading-text")
@@ -67,6 +69,8 @@ class TypingGame(ModalScreen):
         loading_label = self.query_one("#loading-text")
         loading_symbol = self.query_one(LoadingIndicator)
 
+        game_started = False
+
         while self.run:
             try:
                 packet = self.n.send(Packet(
@@ -76,11 +80,14 @@ class TypingGame(ModalScreen):
                 self.app.log(f"Packet: {packet}")
 
                 if packet.data.ready:
-                    self.query_one("#loading").styles.visibility = "hidden"
-                    self.query_one("#game-window").styles.visibility = "visible"
+                    if not game_started:
+                        self.app.log("Game started!")
+                        game_started = True
+                        self.query_one("#game").styles.display = "none"
+                        self.query_one("#game-window").styles.display = "block"
                 else:
                     loading_label.update(f"Connected! Waiting for players..")
-                    loading_symbol.styles.visibility = "hidden"
+                    loading_symbol.styles.display = "none"
 
                 sleep(1 / 10)
             except Exception as e:
@@ -104,20 +111,15 @@ class TypingGame(ModalScreen):
         align: center middle;
     }
 
-    #game {
+    #game, #game-window {
         padding: 1;
         background: $boost;
         border: round $primary;
         border-title-align: center;
-        width: 65%;
-        height: 65%;
+        width: 75%;
+        height: 75%;
         min-height: 20;
         align: center middle;
-    }
-
-    #loading {
-        align: center middle;
-        height: 100%;
     }
 
     #loading-text {
