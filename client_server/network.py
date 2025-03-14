@@ -1,7 +1,7 @@
 import socket
 import pickle
 
-from player import Player
+from client_server.player import Player
 
 
 class Network:
@@ -22,12 +22,12 @@ class Network:
         try:
             self.client.connect(self.addr)
             return pickle.loads(self.client.recv(2048))
-        except:
-            pass
+        except socket.error as e:
+            return str(e)
 
     def send(self, data: str):
         try:
             self.client.send(pickle.dumps(data))
             return pickle.loads(self.client.recv(2048))
         except socket.error as e:
-            print(str(e))
+            return str(e)
