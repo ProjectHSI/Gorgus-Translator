@@ -198,7 +198,7 @@ if __name__ == "__main__":
     )
 
     parser.add_argument("-H", "--host", type=str, default=socket.gethostbyname(socket.gethostname()), required=False, help="The IP to host the server on. Defaults to the private IP of your machine.")
-    parser.add_argument("-p", "--port",  type=int, required=False, default=5555, help="The port to host the server on, defaults to 5555.")
+    parser.add_argument("-p", "--port",  type=int, required=False, default=5000, help="The port to host the server on, defaults to 5555.")
     parser.add_argument("-l", "--log-level", type=int, required=False, default=2)
 
     args = parser.parse_args()
