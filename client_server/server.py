@@ -13,7 +13,9 @@ from translater import remove_all_except
 from random import choice
 
 
-possible_words = [remove_all_except(key) for key in translation_dictionary.keys() if key.find("-") == -1 and key.find("'") == -1 and key.find("<") == -1]
+normalized_translation_dict = {remove_all_except(k): ([v] if isinstance(v, str) else v) for k, v in translation_dictionary.items()}
+possible_words = [key for key in normalized_translation_dict.keys() if key.find("-") == -1 and key.find("'") == -1 and key.find("<") == -1]
+
 console = Console()
 
 
@@ -37,13 +39,13 @@ class Game:
             word = choice(possible_words)
 
             self.__target_words.append(word)
-            self.__answers.append(translation_dictionary.get(word))
+            self.__answers.append(normalized_translation_dict.get(word))
 
     def reset(self):
         self.winner = None
 
     def play(self, player, answer):
-        if answer.lower() == self.__answers[self.points[player]]:
+        if answer.lower() in self.__answers[self.points[player]]:
             self.points[player] += 1
             self.current_words[player] = self.__target_words[self.points[player]]
             return True
@@ -88,6 +90,7 @@ class Server:
             if self.id_count % 2 == 1: # create a new game
                 self.log(f"Creating new game for player.. [dim]{addr}[/dim]")
                 self.games[game_id] = Game(game_id)
+                self.log(f"Created game!", 1)
             else:
                 self.log(f"Player has joined a game! [dim]{addr}[/dim]")
                 self.games[game_id].ready = True

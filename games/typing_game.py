@@ -36,10 +36,10 @@ class TypingGame(ModalScreen):
 
             with Horizontal(id="player1-progress", classes="progress"):
                 yield Label("Player1:", id="p1-label")
-                yield ProgressBar(10, show_eta=False)
+                yield ProgressBar(10, show_eta=False, id="p1")
             with Horizontal(id="player2-progress", classes="progress"):
                 yield Label("Player2:", id="p2-label")
-                yield ProgressBar(10, show_eta=False)
+                yield ProgressBar(10, show_eta=False, id="p2")
 
     @on(Input.Submitted)
     def word_answered(self, event):
@@ -102,6 +102,9 @@ class TypingGame(ModalScreen):
 
         target_word_label = self.query_one("#target-word")
 
+        progress1 = self.query_one("#p1")
+        progress2 = self.query_one("#p2")
+
         game_started = False
 
         while self.run:
@@ -128,13 +131,10 @@ class TypingGame(ModalScreen):
                         game_started = True
                         self.query_one("#game").styles.display = "none"
                         self.query_one("#game-window").styles.display = "block"
-                        
-                    self.n.send(Packet(
-                        PacketType.ANSWER,
-                        "test"
-                    ))
-
                     
+                    progress1.update(progress=packet.data.points[0])
+                    progress2.update(progress=packet.data.points[1])
+                
                 else:
                     loading_label.update(f"Connected! Waiting for players..")
                     loading_symbol.styles.display = "none"
