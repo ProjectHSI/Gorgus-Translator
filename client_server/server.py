@@ -6,28 +6,27 @@ sys.path.append(os.path.join( os.path.dirname( __file__ ), '..' ))
 
 from rich.console import Console
 from client_server.player import Player
-
-from enum import Enum
-from dataclasses import dataclass
-from typing import Any
+from client_server.packet import Packet, PacketType
 
 
 console = Console()
 
 
-class PacketType(Enum):
-    GET = 1
-    MESSAGE = 2
-
-@dataclass
-class Packet:
-    packet_type: PacketType
-    data: Any
-
 class Game:
-    def __init__(self, id):
+    def __init__(self, id, answer):
         self.ready = False
         self.id = id
+
+        self.winner = None
+
+        self.correct_answer = answer.lower()
+
+    def play(self, player, answer):
+        if answer.lower() == self.correct_answer:
+            self.winner = player
+
+    def is_winner(self, player):
+        return self.winner == player
 
     def connected(self):
         return self.ready
@@ -63,7 +62,7 @@ class Server:
 
             if self.id_count % 2 == 1: # create a new game
                 self.log(f"Creating new game for player.. [dim]{addr}[/dim]")
-                self.games[game_id] = Game(game_id)
+                self.games[game_id] = Game(game_id, "test")
             else:
                 self.log(f"Player has joined a game! [dim]{addr}[/dim]")
                 self.games[game_id].ready = True
@@ -80,7 +79,7 @@ class Server:
 
         while True:
             try:
-                data = pickle.loads(conn.recv(2048))
+                data = pickle.loads(conn.recv(4096))
 
                 if game_id in self.games:
                     game = self.games[game_id]
@@ -88,9 +87,24 @@ class Server:
                     if not data:
                         self.log(f"Client did not respond, disconnecting!", 1)
                         break
-                    else:
-                        reply = game
-                        conn.sendall(pickle.dumps(reply))
+
+                    self.log(f"Received: {data}", 1)
+
+                    if data.packet_type == PacketType.GET:
+                        reply = Packet(PacketType.SEND, game)
+                    elif data.packet_type == PacketType.ANSWER:
+                        if not isinstance(reply, str):
+                            reply = Packet(PacketType.MESSAGE, "Invalid data!")
+                        else:
+                            game.play(player, reply.data)
+
+                            if game.is_winner(player):
+                                reply = Packet(PacketType.MESSAGE, "Correct!")
+                            else:
+                                reply = Packet(PacketType.MESSAGE, "Incorrect... :(")
+
+                    self.log(f"Reply: {pickle.dumps(reply)}", 1)
+                    conn.sendall(pickle.dumps(reply))
                 else:
                     break
             except (socket.error, EOFError) as e:
@@ -121,6 +135,8 @@ class Server:
         if level < self.log_level:
             return
         
+        message = str(message)
+        
         final_message = ""
 
         if level == 1:
@@ -136,4 +152,4 @@ class Server:
 
 
 if __name__ == "__main__":
-    server = Server("192.168.56.1", 5555, 1)
+    server = Server("192.168.56.1", 5555)

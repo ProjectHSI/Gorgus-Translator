@@ -6,7 +6,10 @@ from textual.events import ScreenResume, ScreenSuspend
 from textual import on, work
 from time import sleep
 
+import pickle
+
 from client_server.network import Network
+from client_server.packet import Packet, PacketType
 
 
 class TypingGame(ModalScreen):
@@ -55,19 +58,37 @@ class TypingGame(ModalScreen):
             loading_symbol.styles.visibility = "hidden"
             return
 
+        self.app.log("Attempting to connect to game server..")
+
+        self.main_loop()
+
+    @work(thread=True)
+    def main_loop(self):
+        loading_label = self.query_one("#loading-text")
+        loading_symbol = self.query_one(LoadingIndicator)
+
         while self.run:
             try:
-                game = self.n.send("abc")
+                packet = self.n.send(Packet(
+                    PacketType.GET,
+                    0
+                ))
+                self.app.log(f"Packet: {packet}")
 
-                if game.ready:
+                if packet.data.ready:
                     self.query_one("#loading").styles.visibility = "hidden"
                     self.query_one("#game-window").styles.visibility = "visible"
                 else:
                     loading_label.update(f"Connected! Waiting for players..")
                     loading_symbol.styles.visibility = "hidden"
-            except:
+
+                sleep(1 / 10)
+            except Exception as e:
+                self.notify("An error occured, you have been disconnected.", severity="error")
+                self.app.log.error(str(e))
                 self.run = False
                 break
+        self.n.send(None)
 
     @on(ScreenSuspend)
     def stop(self, _):

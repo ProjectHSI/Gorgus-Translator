@@ -20,12 +20,12 @@ class Network:
         try:
             self.client.connect(self.addr)
             return pickle.loads(self.client.recv(2048))
-        except socket.error as e:
+        except (socket.error, EOFError) as e:
             return str(e)
 
-    def send(self, data: str):
+    def send(self, data):
         try:
             self.client.send(pickle.dumps(data))
             return pickle.loads(self.client.recv(2048))
-        except socket.error as e:
+        except (socket.error, EOFError) as e:
             return str(e)
