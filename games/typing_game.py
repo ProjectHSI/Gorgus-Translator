@@ -1,9 +1,10 @@
 from textual.screen import ModalScreen
 from textual.binding import Binding
 from textual.containers import Vertical, Container, Horizontal
-from textual.widgets import Label, LoadingIndicator, Input, ProgressBar, Button
+from textual.widgets import Label, LoadingIndicator, Input, ProgressBar, Button, MaskedInput
 from textual.events import ScreenResume, ScreenSuspend
 from textual import on, work
+from textual.worker import WorkerState
 from time import sleep
 
 import socket
@@ -23,11 +24,19 @@ class TypingGame(ModalScreen):
     ]
 
     def compose(self):
-        with Vertical(id="game") as loading:
+        with Vertical(id="ip-enter", classes="game-panel") as window:
+            window.border_title = "Definition Race"
+
+            yield Label("Host a server or ask a friend to host a server. Enter the IP of the server you want to connect to here!")
+            yield Label("WARNING: Connect to servers you trust!", variant="warning")
+            yield Input(placeholder="127.0.0.1", id="ip-input")
+        with Vertical(id="game", classes="game-panel") as loading:
             loading.border_title = "Definition Race (Connecting to server..)"
+            loading.styles.display = "none"
+
             yield Label("Loading..", id="loading-text")
             yield LoadingIndicator()
-        with Container(id="game-window") as game:
+        with Container(id="game-window", classes="game-panel") as game:
             game.styles.display = "none"
             game.border_title = "Definition Race"
             
@@ -40,7 +49,7 @@ class TypingGame(ModalScreen):
             with Horizontal(id="player2-progress", classes="progress"):
                 yield Label("Player2:", id="p2-label")
                 yield ProgressBar(10, show_eta=False, id="p2")
-        with Container(id="end-screen") as end:
+        with Container(id="end-screen", classes="game-panel") as end:
             end.styles.display = "none"
             end.border_title = "Game Over!"
 
@@ -71,15 +80,30 @@ class TypingGame(ModalScreen):
 
                 if response.data == self.player:
                     self.app.notify("You win! Good job. :)")
+        elif input_box.id == "ip-input":
+            self.query_one("#ip-enter").styles.display = "none"
+            self.query_one("#game").styles.display = "block"
+
+            if value.strip() == "":
+                value = "127.0.0.1"
+
+            self.connect_to_server(value)
 
     def action_quit_game(self):
         self.dismiss()
 
-    @work(thread=True)
-    def connect_to_server(self):
-        self.run = True
+    def on_worker_state_changed(self, event):
+        worker = event.worker
 
-        #self.query_one("#game-window").styles.visibility = "hidden"
+        if worker.name == "connect":
+            if worker.state == WorkerState.SUCCESS:
+                if not worker.result:
+                    self.query_one("#ip-enter").styles.display = "block"
+                    self.query_one("#game").styles.display = "none"
+
+    @work(thread=True, name="connect")
+    def connect_to_server(self, ip: str):
+        self.run = True
 
         # get the loading text
         loading_label = self.query_one("#loading-text")
@@ -87,9 +111,11 @@ class TypingGame(ModalScreen):
 
         # use this time to start the client connection
         loading_label.update("Attempting to connect to server..")
+        loading_symbol.styles.visibility = "visible"
+
         self.app.log("Attempting to connect to game server..")
 
-        self.n = Network("169.254.245.236")
+        self.n = Network(ip)
         self.player = self.n.get_player()
 
         self.app.log(f"Player: {self.player}")
@@ -98,7 +124,8 @@ class TypingGame(ModalScreen):
             self.app.log.error(f"Failed to connect to server... :(\n{self.player}")
             loading_label.update(f"Failed to connect! The server may be down. :(")
             loading_symbol.styles.visibility = "hidden"
-            return
+            sleep(1)
+            return False
         
         if self.player == 0:
             self.query_one("#p1-label").update("Player1 (You):")
@@ -110,6 +137,7 @@ class TypingGame(ModalScreen):
         self.app.log("Attempting to connect to game server..")
 
         self.main_loop()
+        return True
 
     @work(thread=True)
     def main_loop(self):
@@ -193,9 +221,9 @@ class TypingGame(ModalScreen):
     def stop(self, _):
         self.run = False
 
-    @on(ScreenResume)
+    """@on(ScreenResume)
     def ready(self, _):
-        self.connect_to_server()
+        self.connect_to_server()"""
         
 
     CSS = """
@@ -203,7 +231,7 @@ class TypingGame(ModalScreen):
         align: center middle;
     }
 
-    #game, #game-window, #end-screen {
+    .game-panel {
         padding: 1;
         background: $boost;
         border: round $primary;
@@ -253,6 +281,15 @@ class TypingGame(ModalScreen):
     #extra-msg {
         width: 75%;
         text-align: center;
+    }
+
+    #ip-enter Label {
+        margin-bottom: 1;
+        max-width: 50%;
+    }
+
+    #ip-input {
+        max-width: 50%;
     }
     """
     
