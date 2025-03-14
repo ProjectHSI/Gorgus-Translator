@@ -140,7 +140,8 @@ class TypingGame(ModalScreen):
 
                 if packet.data.ready:
                     target_word_label.update(f"Translate this word to English: [bold]{packet.data.current_words[self.player]}[/bold]")
-                    if packet.data.winner:
+
+                    if packet.data.winner != None: # the game has ended
                         self.query_one("#game-window").styles.display = "none"
                         self.query_one("#end-screen").styles.display = "block"
 
