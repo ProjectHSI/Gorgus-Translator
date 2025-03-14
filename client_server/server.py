@@ -1,8 +1,9 @@
 import socket
 from _thread import start_new_thread
-import os
+import pickle
 
 from rich.console import Console
+from player import Player
 
 
 console = Console()
@@ -21,6 +22,10 @@ class Server:
         except socket.error as e:
             self.log(f"Failed to bind socket! {e}", level=4)
 
+        self.log("Setting up player data..", 1)
+        self.current_player = 0
+        self.players = [Player({"name": "Player1"}), Player({"name": "Player2"})]
+
         s.listen(2)
         self.log("Waiting for connections! Server is running.")
 
@@ -28,29 +33,35 @@ class Server:
             conn, addr = s.accept()
             self.log(f"New connection! Address: {addr}")
 
-            start_new_thread(self.threaded_client, (conn))
+            start_new_thread(self.threaded_client, (conn, self.current_player))
+            self.current_player += 1
 
-    def threaded_client(self, conn: socket.socket):
+    def threaded_client(self, conn: socket.socket, player):
         self.log("Started new thread for client.", level=1)
 
-        conn.send(str.encode("Connected", encoding="utf-8"))
+        conn.send(pickle.dumps(self.players[player]))
 
         reply = ""
 
         while True:
             try:
-                data = conn.recv(2048)
-                reply = data.decode("utf-8")
+                data = pickle.loads(conn.recv(2048))
+                self.players[player] = data
 
                 if not data:
-                    self.log(f"Disconnected.")
+                    self.log(f"Client did not respond, disconnecting!", 1)
                     break
                 else:
-                    self.log(f"Received: {reply}")
+                    if player == 1:
+                        reply = self.players[0]
+                    else:
+                        reply = self.players[1]
+
+                    self.log(f"Received: {data}")
                     self.log(f"Sending: {reply}")
                 
-                conn.sendall(str.encode(reply, "utf-8"))
-            except socket.error as e:
+                conn.sendall(pickle.dumps(reply))
+            except (socket.error, EOFError) as e:
                 self.log(f"An error occured with a client and that client has been disconnected.\nError: {e}", 3)
                 break
         
@@ -85,4 +96,4 @@ class Server:
 
 
 if __name__ == "__main__":
-    server = Server("192.168.56.1", 5555)
+    server = Server("192.168.56.1", 5555, 1)

@@ -1,4 +1,7 @@
 import socket
+import pickle
+
+from player import Player
 
 
 class Network:
@@ -7,8 +10,10 @@ class Network:
         self.server = "192.168.56.1"
         self.port = 5555
         self.addr = (self.server, self.port)
-        self.id = self.connect()
-        print(self.id)
+        self.player = self.connect()
+
+    def get_player(self) -> Player:
+        return self.player
 
     def connect(self):
         """When we connect to something we want to send back a piece of information to the thing that connected to us.
@@ -16,10 +21,13 @@ class Network:
 
         try:
             self.client.connect(self.addr)
-            return self.client.recv(2048).decode()
+            return pickle.loads(self.client.recv(2048))
         except:
             pass
 
-
-if __name__ == "__main__":
-    n = Network()
+    def send(self, data: str):
+        try:
+            self.client.send(pickle.dumps(data))
+            return pickle.loads(self.client.recv(2048))
+        except socket.error as e:
+            print(str(e))
