@@ -103,12 +103,6 @@ def to_gorgus(user_input: str):
     translated = ""
     before_translation = user_input
 
-    # Remove punctuation
-    #user_input = user_input.translate(str.maketrans('', '', ",")).strip()
-
-    # Swap verbs and adverbs if needed
-    #user_input = swap_verbs_and_adverbs(user_input)
-
     # First, sort phrases by length (longer phrases first)
     sorted_phrases = sorted(
         phrase_translations.items(),
@@ -281,7 +275,6 @@ def from_gorgus(user_input: str):
         else:
             translated += f"{word}{suffix} "
             
-    #translated = swap_verbs_and_adverbs(translated)
     translated = fix_articles(translated, "ji")
 
     #translated = remove_all_except(translated)
