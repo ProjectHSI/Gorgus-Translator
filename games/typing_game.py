@@ -3,7 +3,7 @@ from textual.binding import Binding
 from textual.containers import Vertical
 from textual.widgets import Label, LoadingIndicator
 from textual.events import ScreenResume, ScreenSuspend
-from textual import on
+from textual import on, work
 
 from client_server.network import Network
 
@@ -22,14 +22,14 @@ class TypingGame(ModalScreen):
         with Vertical(id="game") as game:
             game.border_subtitle = "Definition Race"
             with Vertical(id="loading"):
-                yield Label("hi the game is loading", id="loading-text")
+                yield Label("Loading..", id="loading-text")
                 yield LoadingIndicator()
 
     def action_quit_game(self):
         self.dismiss()
 
-    @on(ScreenResume)
-    def ready(self, event):
+    @work(thread=True)
+    def connect_to_server(self):
         # get the loading text
         loading_label = self.query_one("#loading-text")
         loading_symbol = self.query_one(LoadingIndicator)
@@ -44,13 +44,16 @@ class TypingGame(ModalScreen):
         self.app.log(f"Player: {player}")
 
         if isinstance(player, str):
-            self.app.log("Failed to connect to server... :(")
-            loading_label.update("Failed to connect! The server may be down. :(")
+            self.app.log.error(f"Failed to connect to server... :(\n{player}")
+            loading_label.update(f"Failed to connect! The server may be down. :(")
             loading_symbol.styles.visibility = "hidden"
-            self.app.log(player)
             return
         
         loading_label.update("We have a connection! :D")
+
+    @on(ScreenResume)
+    def ready(self, event):
+        self.connect_to_server()
         
 
     CSS = """
