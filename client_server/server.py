@@ -8,22 +8,46 @@ from rich.console import Console
 from client_server.player import Player
 from client_server.packet import Packet, PacketType
 
+from translations import translation_dictionary
+from translater import remove_all_except
+from random import choice
 
+
+possible_words = [remove_all_except(key) for key in translation_dictionary.keys() if key.find("-") == -1 and key.find("'") == -1 and key.find("<") == -1]
 console = Console()
 
 
 class Game:
-    def __init__(self, id, answer):
+    def __init__(self, id):
         self.ready = False
         self.id = id
 
         self.winner = None
+        self.get_target_words()
 
-        self.correct_answer = answer.lower()
+        self.current_words = [self.__target_words[0], self.__target_words[0]]
+
+        self.points = [0, 0] # both players start with zero points
+
+    def get_target_words(self):
+        self.__target_words = []
+        self.__answers = []
+
+        for i in range(10):
+            word = choice(possible_words)
+
+            self.__target_words.append(word)
+            self.__answers.append(translation_dictionary.get(word))
+
+    def reset(self):
+        self.winner = None
 
     def play(self, player, answer):
-        if answer.lower() == self.correct_answer:
-            self.winner = player
+        if answer.lower() == self.__answers[self.points[player]]:
+            self.points[player] += 1
+            self.current_words[player] = self.__target_words[self.points[player]]
+            return True
+        return False
 
     def is_winner(self, player):
         return self.winner == player
@@ -51,6 +75,7 @@ class Server:
 
         s.listen(2)
         self.log("Waiting for connections! Server is running.")
+        self.log(f"Give this ip to your friends to connect: [bold green]{s.getsockname()[0]}[/bold green]")
 
         while True:
             conn, addr = s.accept()
@@ -62,7 +87,7 @@ class Server:
 
             if self.id_count % 2 == 1: # create a new game
                 self.log(f"Creating new game for player.. [dim]{addr}[/dim]")
-                self.games[game_id] = Game(game_id, "test")
+                self.games[game_id] = Game(game_id)
             else:
                 self.log(f"Player has joined a game! [dim]{addr}[/dim]")
                 self.games[game_id].ready = True
@@ -82,7 +107,7 @@ class Server:
                 data = pickle.loads(conn.recv(4096))
 
                 if game_id in self.games:
-                    game = self.games[game_id]
+                    game: Game = self.games[game_id]
 
                     if not data:
                         self.log(f"Client did not respond, disconnecting!", 1)
@@ -93,15 +118,11 @@ class Server:
                     if data.packet_type == PacketType.GET:
                         reply = Packet(PacketType.SEND, game)
                     elif data.packet_type == PacketType.ANSWER:
-                        if not isinstance(reply, str):
+                        if not isinstance(data.data, str):
                             reply = Packet(PacketType.MESSAGE, "Invalid data!")
                         else:
-                            game.play(player, reply.data)
-
-                            if game.is_winner(player):
-                                reply = Packet(PacketType.MESSAGE, "Correct!")
-                            else:
-                                reply = Packet(PacketType.MESSAGE, "Incorrect... :(")
+                            was_correct = game.play(player, data.data)
+                            reply = Packet(PacketType.MESSAGE, was_correct and "Correct!" or "Incorrect... :(")
 
                     self.log(f"Reply: {pickle.dumps(reply)}", 1)
                     conn.sendall(pickle.dumps(reply))

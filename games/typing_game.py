@@ -1,12 +1,12 @@
 from textual.screen import ModalScreen
 from textual.binding import Binding
-from textual.containers import Vertical, Container
-from textual.widgets import Label, LoadingIndicator
+from textual.containers import Vertical, Container, Horizontal
+from textual.widgets import Label, LoadingIndicator, Input, ProgressBar
 from textual.events import ScreenResume, ScreenSuspend
 from textual import on, work
 from time import sleep
 
-import pickle
+import socket
 
 from client_server.network import Network
 from client_server.packet import Packet, PacketType
@@ -30,7 +30,31 @@ class TypingGame(ModalScreen):
         with Container(id="game-window") as game:
             game.styles.display = "none"
             game.border_title = "Definition Race"
-            yield Label("this is what the game looks like when you get in a match :)")
+            
+            yield Label(f"Word: [bold]Loading...[/bold]", id="target-word")
+            yield Input(placeholder="Write the English equivelant!", id="user-input", max_length=20)
+
+            with Horizontal(id="player1-progress", classes="progress"):
+                yield Label("Player1:", id="p1-label")
+                yield ProgressBar(10, show_eta=False)
+            with Horizontal(id="player2-progress", classes="progress"):
+                yield Label("Player2:", id="p2-label")
+                yield ProgressBar(10, show_eta=False)
+
+    @on(Input.Submitted)
+    def word_answered(self, event):
+        input_box = event.input
+        value = input_box.value.lower()
+
+        input_box.value = ""
+
+        if input_box.id == "user-input":
+            response = self.n.send(Packet(
+                PacketType.ANSWER,
+                value
+            ))
+
+            self.app.notify(str(response.data))
 
     def action_quit_game(self):
         self.dismiss()
@@ -49,7 +73,7 @@ class TypingGame(ModalScreen):
         loading_label.update("Attempting to connect to server..")
         self.app.log("Attempting to connect to game server..")
 
-        self.n = Network()
+        self.n = Network("192.168.56.1")
         self.player = self.n.get_player()
 
         self.app.log(f"Player: {self.player}")
@@ -59,6 +83,13 @@ class TypingGame(ModalScreen):
             loading_label.update(f"Failed to connect! The server may be down. :(")
             loading_symbol.styles.visibility = "hidden"
             return
+        
+        if self.player == 0:
+            self.query_one("#p1-label").update("Player1 (You):")
+            self.query_one("#p2-label").update("Player2      :")
+        elif self.player == 1:
+            self.query_one("#p2-label").update("Player2 (You):")
+            self.query_one("#p1-label").update("Player1      :")
 
         self.app.log("Attempting to connect to game server..")
 
@@ -68,6 +99,8 @@ class TypingGame(ModalScreen):
     def main_loop(self):
         loading_label = self.query_one("#loading-text")
         loading_symbol = self.query_one(LoadingIndicator)
+
+        target_word_label = self.query_one("#target-word")
 
         game_started = False
 
@@ -79,21 +112,39 @@ class TypingGame(ModalScreen):
                 ))
                 self.app.log(f"Packet: {packet}")
 
+                if isinstance(packet, str):
+                    self.notify("You have been disconnected from the server because the other player disconnected.")
+                    self.app.log.error(packet)
+                    self.run = False
+                    self.dismiss()
+                    break
+                
+                self.app.log(packet.data.ready)
+                target_word_label.update(f"Translate this word to English: [bold]{packet.data.current_words[self.player]}[/bold]")
+
                 if packet.data.ready:
                     if not game_started:
                         self.app.log("Game started!")
                         game_started = True
                         self.query_one("#game").styles.display = "none"
                         self.query_one("#game-window").styles.display = "block"
+                        
+                    self.n.send(Packet(
+                        PacketType.ANSWER,
+                        "test"
+                    ))
+
+                    
                 else:
                     loading_label.update(f"Connected! Waiting for players..")
                     loading_symbol.styles.display = "none"
 
-                sleep(1 / 10)
+                sleep(1)
             except Exception as e:
                 self.notify("An error occured, you have been disconnected.", severity="error")
                 self.app.log.error(str(e))
                 self.run = False
+                self.dismiss()
                 break
         self.n.send(None)
 
@@ -117,7 +168,7 @@ class TypingGame(ModalScreen):
         border: round $primary;
         border-title-align: center;
         width: 75%;
-        height: 75%;
+        height: 85%;
         min-height: 20;
         align: center middle;
     }
@@ -129,6 +180,27 @@ class TypingGame(ModalScreen):
 
     LoadingIndicator {
         max-height: 1;
+    }
+
+    #target-word {
+        margin-bottom: 1;
+    }
+
+    #user-input {
+        max-width: 50%
+    }
+
+    .progress {
+        dock: bottom;
+        max-height: 1;
+    }
+
+    .progress Label {
+        margin-right: 1;
+    }
+
+    #player1-progress {
+        margin-bottom: 1;
     }
     """
     
