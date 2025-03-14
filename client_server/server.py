@@ -49,6 +49,8 @@ class Game:
     def play(self, player, answer):
         if self.winner:
             return
+        
+        self.winner = 1
 
         if answer.lower() in self.__answers[self.points[player]]:
             self.points[player] += 1

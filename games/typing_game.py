@@ -114,7 +114,6 @@ class TypingGame(ModalScreen):
     @work(thread=True)
     def main_loop(self):
         loading_label = self.query_one("#loading-text")
-        loading_symbol = self.query_one(LoadingIndicator)
 
         target_word_label = self.query_one("#target-word")
 
@@ -122,6 +121,7 @@ class TypingGame(ModalScreen):
         progress2 = self.query_one("#p2")
 
         game_started = False
+        game_ended = False
 
         while self.run:
             try:
@@ -132,6 +132,10 @@ class TypingGame(ModalScreen):
                 self.app.log(f"Packet: {packet}")
 
                 if isinstance(packet, str):
+                    if game_ended:
+                        self.run =  False
+                        break
+
                     self.notify("You have been disconnected from the server because the game closed.\n\nThis can be caused by another player leaving, or the server closing.")
                     self.app.log.error(packet)
                     self.run = False
@@ -142,6 +146,7 @@ class TypingGame(ModalScreen):
                     target_word_label.update(f"Translate this word to English: [bold]{packet.data.current_words[self.player]}[/bold]")
 
                     if packet.data.winner != None: # the game has ended
+                        game_ended = True
                         self.query_one("#game-window").styles.display = "none"
                         self.query_one("#end-screen").styles.display = "block"
 
