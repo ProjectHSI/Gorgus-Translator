@@ -203,7 +203,7 @@ if __name__ == "__main__":
     )
 
     parser.add_argument("-H", "--host", type=str, default="", required=False, help="The IP to host the server on. Defaults to 0.0.0.0")
-    parser.add_argument("-p", "--port",  type=int, required=False, default=2222, help="The port to host the server on, defaults to 5555")
+    parser.add_argument("-p", "--port",  type=int, required=False, default=5555, help="The port to host the server on, defaults to 5555")
     parser.add_argument("-l", "--log-level", type=int, required=False, default=2, help="Change how verbose the logs of the server are, lower log level means more verbose.")
 
     args = parser.parse_args()
