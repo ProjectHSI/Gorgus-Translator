@@ -1,6 +1,6 @@
 import socket
 from _thread import start_new_thread
-import pickle, sys, os
+import pickle, sys, os, requests
 
 sys.path.append(os.path.join( os.path.dirname( __file__ ), '..' ))
 
@@ -89,7 +89,7 @@ class Server:
 
         s.listen(2)
         self.log("Waiting for connections! Server is running.")
-        self.log(f"Give this ip to your friends to connect: [bold green]{socket.gethostbyname(socket.gethostname())}[/bold green]")
+        self.log(f"Give this ip to your friends to connect: [bold green]{requests.get('https://api.ipify.org').text}[/bold green]")
 
         while True:
             conn, addr = s.accept()
