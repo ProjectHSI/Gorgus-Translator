@@ -80,6 +80,7 @@ class Server:
             s.bind((HOST, PORT))
         except socket.error as e:
             self.log(f"Failed to bind socket! {e}", level=4)
+            sys.exit(1)
 
         self.log("Setting up game data..", 1)
         self.connected = set()
@@ -88,7 +89,7 @@ class Server:
 
         s.listen(2)
         self.log("Waiting for connections! Server is running.")
-        self.log(f"Give this ip to your friends to connect: [bold green]{s.getsockname()[0]}[/bold green]")
+        self.log(f"Give this ip to your friends to connect: [bold green]{socket.gethostbyname(socket.gethostname())}[/bold green]")
 
         while True:
             conn, addr = s.accept()
