@@ -27,7 +27,7 @@ class TypingGame(ModalScreen):
         with Vertical(id="ip-enter", classes="game-panel") as window:
             window.border_title = "Yutik Spej"
 
-            yield Label("Host a server or ask a friend to host a server. Enter the IP of the server you want to connect to here!")
+            yield Label("Host a server or ask a friend to host a server. Enter the IP of the server you want to connect to here!\n\n[bold]To host:[/bold]\n\t- Open the folder called \"client_server\"\n\t- Run server.py\n\t- Use the IP it gives you, this is a LAN ip.")
             yield Label("WARNING: Connect to servers you trust!", variant="warning")
             yield Input(placeholder="127.0.0.1", id="ip-input")
         with Vertical(id="game", classes="game-panel") as loading:
