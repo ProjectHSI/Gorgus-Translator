@@ -101,7 +101,7 @@ GAMES = [
         Hangman
     ),
     GameInfo(
-        "Definition Race",
+        "Yutik spek",
         "You and another person race to see who can define a word faster!!! :)",
         TypingGame
     )

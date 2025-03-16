@@ -117,6 +117,8 @@ translation_dictionary = {
     "shwep": "weapon",
     "stoob": "sword",
     "poow": "gun",
+    "yutik": ["race", "competition"],
+    "spek": "word",
     
     # times
     "dublub": "day",

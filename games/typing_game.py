@@ -25,20 +25,20 @@ class TypingGame(ModalScreen):
 
     def compose(self):
         with Vertical(id="ip-enter", classes="game-panel") as window:
-            window.border_title = "Definition Race"
+            window.border_title = "Yutik Spej"
 
             yield Label("Host a server or ask a friend to host a server. Enter the IP of the server you want to connect to here!")
             yield Label("WARNING: Connect to servers you trust!", variant="warning")
             yield Input(placeholder="127.0.0.1", id="ip-input")
         with Vertical(id="game", classes="game-panel") as loading:
-            loading.border_title = "Definition Race (Connecting to server..)"
+            loading.border_title = "Yutik Spek (Connecting to server..)"
             loading.styles.display = "none"
 
             yield Label("Loading..", id="loading-text")
             yield LoadingIndicator()
         with Container(id="game-window", classes="game-panel") as game:
             game.styles.display = "none"
-            game.border_title = "Definition Race"
+            game.border_title = "Yutik Spek"
             
             yield Label(f"Word: [bold]Loading...[/bold]", id="target-word")
             yield Input(placeholder="Write the English equivelant!", id="user-input", max_length=20)
