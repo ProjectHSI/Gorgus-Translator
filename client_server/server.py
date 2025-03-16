@@ -89,7 +89,7 @@ class Server:
 
         s.listen(2)
         self.log("Waiting for connections! Server is running.")
-        self.log(f"Give this ip to your friends to connect: [bold green]{requests.get('https://api.ipify.org').text}[/bold green]")
+        self.log(f"Give this ip to your friends to connect: [bold green]{self.get_ip()}[/bold green]")
 
         while True:
             conn, addr = s.accept()
@@ -114,6 +114,16 @@ class Server:
                 p = 1
 
             start_new_thread(self.threaded_client, (conn, p, game_id))
+
+    def get_ip(self):
+        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        s.connect(("8.8.8.8", 80))
+        
+        thing = s.getsockname()[0]
+
+        s.close()
+
+        return thing
 
     def threaded_client(self, conn: socket.socket, player, game_id):
         self.log("Started new thread for client.", level=1)
