@@ -1,11 +1,10 @@
 import socket
 from _thread import start_new_thread
-import pickle, sys, os, requests
+import pickle, sys, os
 
 sys.path.append(os.path.join( os.path.dirname( __file__ ), '..' ))
 
 from rich.console import Console
-from client_server.player import Player
 from client_server.packet import Packet, PacketType
 
 from translations import translation_dictionary
