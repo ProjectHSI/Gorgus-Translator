@@ -5,6 +5,7 @@ import pickle, sys, os
 sys.path.append(os.path.join( os.path.dirname( __file__ ), '..' ))
 
 from rich.console import Console
+from pyfiglet import print_figlet
 from client_server.packet import Packet, PacketType
 
 from translations import translation_dictionary
@@ -70,6 +71,8 @@ class Server:
     def __init__(self, HOST, PORT, log_level: int = 2):
         self.log_level = log_level
         self.BLOCKED_IPS = []
+
+        print_figlet("Gorgus", "Doom", colors="GREEN")
 
         self.log("Creating socket..", 1)
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)

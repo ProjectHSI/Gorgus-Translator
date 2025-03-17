@@ -7,3 +7,4 @@ inflect
 gitpython
 word_forms
 rich
+pyfiglet
