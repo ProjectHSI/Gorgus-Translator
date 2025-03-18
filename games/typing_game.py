@@ -1,7 +1,7 @@
 from textual.screen import ModalScreen
 from textual.binding import Binding
 from textual.containers import Vertical, Container, Horizontal
-from textual.widgets import Label, LoadingIndicator, Input, ProgressBar, Button, MaskedInput
+from textual.widgets import Label, LoadingIndicator, Input, ProgressBar, Footer
 from textual.events import ScreenResume, ScreenSuspend
 from textual import on, work
 from textual.worker import WorkerState
@@ -59,6 +59,7 @@ class TypingGame(ModalScreen):
             # TODO: make a rematch system 😭
             #yield Button("Rematch?", variant="default")
             #yield Label("0 / 2 Players")
+        yield Footer(show_command_palette=False)
 
     @on(Input.Submitted)
     def word_answered(self, event):
