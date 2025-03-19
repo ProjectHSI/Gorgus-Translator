@@ -2,6 +2,7 @@
 
 ## Version 1.95 (current)
 - You can now host a multiplayer game between you and a friend! Check out the new game. :)
+- A server list will detect servers running on the same WiFi.
 
 ## Version 1.9
 - Added a `Games` tab to the translator! You can only play Gorgus Worlde and Hangman for now though lol.

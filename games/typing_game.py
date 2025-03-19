@@ -1,16 +1,15 @@
 from textual.screen import ModalScreen
 from textual.binding import Binding
 from textual.containers import Vertical, Container, Horizontal
-from textual.widgets import Label, LoadingIndicator, Input, ProgressBar, Footer
+from textual.widgets import Label, LoadingIndicator, Input, ProgressBar, Footer, ListView, ListItem
 from textual.events import ScreenResume, ScreenSuspend
 from textual import on, work
 from textual.worker import WorkerState
 from time import sleep
 
-import socket
-
 from client_server.network import Network
 from client_server.packet import Packet, PacketType
+from client_server.scan import get_subnet, scan_network, get_subnet_network
 
 
 class TypingGame(ModalScreen):
@@ -30,6 +29,9 @@ class TypingGame(ModalScreen):
             yield Label("Host a server or ask a friend to host a server. Enter the IP of the server you want to connect to here!\n\n[bold]To host:[/bold]\n\t- Open the folder called \"client_server\"\n\t- Open a terminal in the folder\n\t- Type [italic]python3 server.py[/italic]\n\t- Use the IP it gives you, this is a LAN ip.")
             yield Label("WARNING: Connect to servers you trust!", variant="warning")
             yield Input(placeholder="127.0.0.1", id="ip-input")
+
+            yield Label("[bold]Available Servers:[/bold]", id="server-list-title")
+            yield Label(id="server-list")
         with Vertical(id="game", classes="game-panel") as loading:
             loading.border_title = "Yutik Spek (Connecting to server..)"
             loading.styles.display = "none"
@@ -60,6 +62,11 @@ class TypingGame(ModalScreen):
             #yield Button("Rematch?", variant="default")
             #yield Label("0 / 2 Players")
         yield Footer(show_command_palette=False)
+
+    @on(ScreenResume)
+    def on_screen_openned(self):
+        self.notify("hi im gonna look for servers for you lol")
+        self.scan_for_servers()
 
     @on(Input.Submitted)
     def word_answered(self, event):
@@ -139,6 +146,20 @@ class TypingGame(ModalScreen):
 
         self.main_loop()
         return True
+    
+    @work(thread=True, name="scan_for_servers")
+    def scan_for_servers(self):
+        local_ip, netmask = get_subnet()
+
+        if not local_ip or not netmask:
+            self.notify("i couldnt identify your subnet, uhh...\n\n(you may have a wifi problem)")
+            return
+        
+        server_list: Label = self.query_one("#server-list")
+
+        for server in scan_network(get_subnet_network(local_ip, netmask)):
+            current = server_list.renderable
+            server_list.update(current + server + "\n")
 
     @work(thread=True)
     def main_loop(self):
@@ -241,6 +262,14 @@ class TypingGame(ModalScreen):
         height: 85%;
         min-height: 20;
         align: center middle;
+    }
+
+    #server-list-title {
+        padding-top: 1;
+    }
+
+    #server-list {
+        max-width: 50%;
     }
 
     #loading-text {

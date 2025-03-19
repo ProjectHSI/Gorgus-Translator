@@ -264,7 +264,7 @@ translation_dictionary = {
 
     # Proper Nouns
     "googrung": "you",
-    "googrung'iz": ["yourself", "thyself"],
+    "googrungz": ["yourself", "thyself"],
     "henġer": ["me", "i", "myself"],
 
 
