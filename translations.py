@@ -122,9 +122,9 @@ translation_dictionary = {
     "boh": "sun",
     "hoh": "moon",
     "sohong": "sky",
-    "dubom": "breakfast",
-    "dunubnom": "lunch",
-    "nubom": "dinner",
+    "dúbom": "breakfast",
+    "dúnúbnom": "lunch",
+    "núbom": "dinner",
 
     # times
     "dublub": "day",
