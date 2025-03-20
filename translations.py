@@ -444,6 +444,8 @@ phrase_translations = {
     "h'eekep": "i like to",
     "h'aggap": "i love to",
 
+    "bit'up": "going to be",
+
     # these are just the phrases that make a verb or noun more intense or more gentle
     "EXAGGERATE": ["a lot", "too much"], 
     "GENTLE": ["a bit", "a little"],
