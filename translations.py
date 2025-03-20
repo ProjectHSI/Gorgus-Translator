@@ -119,6 +119,9 @@ translation_dictionary = {
     "poow": "gun",
     "yutik": ["race", "competition"],
     "spek": "word",
+    "boh": "sun",
+    "hoh": "moon",
+    "sohong": "sky",
     
     # times
     "dublub": "day",
