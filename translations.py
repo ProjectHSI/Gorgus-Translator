@@ -369,8 +369,10 @@ translation_dictionary = {
     "qugger": ["same", "equal"],
     "kithrak": ["angry", "enraged"],
     "spink": ["sharp", "pointy"],
-    "mump": "first",
-    "mimp": "last",
+    "mump": ["first"],
+    "mimp": ["final", "last"],
+    "ock": "far",
+    "bock": "near",
 
     # naughty words >:(
     "zogo": ["idiot", "fool", "dumb", "moron", "clown", "stupid", "dumbass"],
@@ -441,6 +443,8 @@ phrase_translations = {
     "pritter yuti": ["hurry up"],
     "shriv'ma": ["there will be", "there shall be", "there are going to be"],
     "gog'um": "you should",
+
+    "slorgundug": ["end times", "apocalypse", "armageddon"],
 
     "cubiling": "working on",
 
