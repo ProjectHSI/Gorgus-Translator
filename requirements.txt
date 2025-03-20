@@ -8,3 +8,4 @@ gitpython
 word_forms
 rich
 pyfiglet
+psutil
