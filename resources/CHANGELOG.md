@@ -1,6 +1,11 @@
 # Changelog
 
-## Version 1.95 (current)
+## Version 1.10 (current, the last update!)
+- I'm going to add content to this over time, but this will be the last update cause I'm getting bored of working on this translator lol.
+- Added **A LOT** of new words!
+- Added a turn based battle game. (to be added)
+
+## Version 1.95
 - You can now host a multiplayer game between you and a friend! Check out the new game. :)
 - A server list will detect servers running on the same WiFi.
 
