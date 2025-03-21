@@ -31,6 +31,7 @@ class TypingGame(ModalScreen):
             yield Input(placeholder="127.0.0.1", id="ip-input")
 
             yield Label("[bold]Available Servers:[/bold]", id="server-list-title")
+            yield LoadingIndicator(id="server-scan")
             yield Label(id="server-list")
         with Vertical(id="game", classes="game-panel") as loading:
             loading.border_title = "Yutik Spek (Connecting to server..)"
@@ -67,6 +68,11 @@ class TypingGame(ModalScreen):
     def on_screen_openned(self):
         self.notify("hi im gonna look for servers for you lol")
         self.scan_for_servers()
+
+    @on(ScreenSuspend)
+    def stop(self, _):
+        self.workers.cancel_all()
+        self.run = False
 
     @on(Input.Submitted)
     def word_answered(self, event):
@@ -158,6 +164,8 @@ class TypingGame(ModalScreen):
         server_list: Label = self.query_one("#server-list")
 
         for server in scan_network(get_subnet_network(local_ip, netmask)):
+            self.query_one("#server-scan").styles.display = "none"
+
             current = server_list.renderable
             server_list.update(current + server + "\n")
 
@@ -238,14 +246,6 @@ class TypingGame(ModalScreen):
                 self.dismiss()
                 break
         self.n.send(None)
-
-    @on(ScreenSuspend)
-    def stop(self, _):
-        self.run = False
-
-    """@on(ScreenResume)
-    def ready(self, _):
-        self.connect_to_server()"""
         
 
     CSS = """
@@ -266,6 +266,10 @@ class TypingGame(ModalScreen):
 
     #server-list-title {
         padding-top: 1;
+    }
+
+    #server-scan {
+        max-width: 50%;
     }
 
     #server-list {
