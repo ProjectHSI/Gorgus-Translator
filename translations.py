@@ -430,6 +430,7 @@ phrase_translations = {
     "gè'googrung": "do you",
     "kè'googrung": "did you",
     "ho'googrung": "are you",
+    "nergo're": ["what's", "what is"],
     "minġer": "i hope",
     "ap lebron": "oh my god",
     "hemlorgo": "thank you",
