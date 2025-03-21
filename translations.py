@@ -482,7 +482,8 @@ ignored_plurals = [ # words that can't be pluralised
     "them",
     "or",
     "under",
-    "penis"
+    "penis",
+    "serious"
 ]
 
 ignored_actor_nouns = [ # words that can't be turned into actor nouns
