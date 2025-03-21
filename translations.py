@@ -373,6 +373,7 @@ translation_dictionary = {
     "mimp": ["final", "last"],
     "ock": "far",
     "bock": "near",
+    "megook": "serious",
 
     # naughty words >:(
     "zogo": ["idiot", "fool", "dumb", "moron", "clown", "stupid", "dumbass"],
