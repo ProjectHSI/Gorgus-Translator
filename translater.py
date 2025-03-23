@@ -6,7 +6,7 @@ import unicodedata
 
 from translations import *
 from word_forms.word_forms import get_word_forms
-from nltk import word_tokenize, pos_tag
+from TenseFinder.TenseParser import TenseParser
 from typing import Literal
 
 from rich.console import Console
