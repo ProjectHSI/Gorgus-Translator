@@ -297,6 +297,7 @@ translation_dictionary = {
     "gont": "and",
     
     "kortik": ["kill", "die", "death", "killed", "died", "slaughter"],
+    "moibin": ["revive", "live", "life", "lived"],
     "floym": "because",
     "pum": ["should", "shall"],
     "tucko": ["hurt","pain"],
@@ -420,7 +421,7 @@ phrase_translations = {
     "glurple": "i have",
     "clungus": ["you guys", "you all", "guys", "everyone"],
     "koilt": ["i'm", "im", "i am"],
-    "dup prittering": ["how are you going", "how are you going", "how is it going", "how do you do", "how are you doing", "how are you"],
+    "dup prittering": ["how are you going", "how's it going", "how is it going", "how do you do", "how are you doing", "how are you", "what is up", "what's up"],
     "zup meat": ["will you be my friend", "want to be friends"],
     "neep wert": "what time is it",
     "dup jeenar": ["how old are you"],

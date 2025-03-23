@@ -6,6 +6,7 @@ import unicodedata
 
 from translations import *
 from word_forms.word_forms import get_word_forms
+from nltk import word_tokenize, pos_tag
 from typing import Literal
 
 from rich.console import Console
@@ -34,7 +35,6 @@ except LookupError:
         console.print("[bold red]I couldn't download the wordnet AI mdoel... :([/bold red]")
         console.print("The app will still open, but you will have some missing language features.")
         console.input("Press enter to continue.", password=True)
-
 
 def remove_all_except(text, accents_to_keep = {'\u0302', '\u0303'}):
     """
@@ -71,16 +71,112 @@ def to_actor_form(root: str) -> str:
     else:
         return root + "er"  # Default case
 
+def get_past_tense_verb(verb: str) -> str:
+    """
+    Returns the past tense form of a verb.
+ 
+    Parameters:
+    - verb: str
+        The verb for which the past tense is to be determined.
+ 
+    Returns:
+    - str:
+        The past tense form of the verb.
+ 
+    Examples:
+    >>> get_past_tense_verb("run")
+    "ran"
+ 
+    >>> get_past_tense_verb("eat")
+    "ate"
+ 
+    >>> get_past_tense_verb("write")
+    "wrote"
+    """
+ 
+    # List of common irregular verbs and their past tense forms
+    irregular_verbs = {
+        "be": "was",
+        "have": "had",
+        "do": "did",
+        "go": "went",
+        "see": "saw",
+        "come": "came",
+        "give": "gave",
+        "take": "took",
+        "make": "made",
+        "find": "found",
+        "know": "knew",
+        "think": "thought",
+        "say": "said",
+        "tell": "told",
+        "get": "got",
+        "give": "gave",
+        "read": "read",
+        "wear": "wore",
+        "write": "wrote",
+        "run": "ran",
+        "teach": "taught",
+        "swim": "swam",
+        "eat": "ate",
+        "build": "built",
+        "break": "broke",
+        "speak": "spoke",
+        "sleep": "slept"
+        # Add more irregular verbs as needed
+    }
+
+    # convert the verb to lowercase
+    verb = verb.lower()
+ 
+    # Check if the verb is in the irregular verbs dictionary
+    if verb in irregular_verbs:
+        return irregular_verbs[verb]
+ 
+    # Check if the verb ends with "e"
+    elif verb.endswith("e"):
+        return verb + "d"
+ 
+    # Check if the verb ends with a consonant followed by "y"
+    elif len(verb) >= 2 and verb[-2] not in "aeiou" and verb[-1] == "y":
+        return verb[:-1] + "ied"
+ 
+    # For regular verbs, simply add "ed" to the end
+    else:
+        return verb + "ed"
+
+def determine_tense(sentence):
+    """
+    Function to determine the tense of a given sentence.
+ 
+    Parameters:
+    - sentence: str
+        The input sentence for which the tense needs to be determined.
+ 
+    Returns:
+    - str:
+        The tense of the sentence: "past", "present", or "future".
+    """
+ 
+    sent = list(nlp(sentence).sents)[0]
+    if (
+        sent.root.tag_ == "VBD" or
+        any(w.dep_ == "aux" and w.tag_ == "VBD" for w in sent.root.children)):
+        return "past"
+ 
+    # If none of the above conditions are met, the sentence is considered present tense
+    return "present"
 
 def from_actor_form(actor, lemma: bool = True):
     """
     Convert an actor form word back to its root.
     """
-    # if wordnet is available we have to make compromises
+    # if wordnet is not available we have to make compromises
     if not wordnet_download_success: return actor
 
     #! I AM AWARE THIS IS COMPLETE AND UTTER DOGSHIT!!!!
     #! THIS IS TURNING AN O(1) OPERATION INTO AN O(n) OPERATION!!!!
+    #! I'M CONVERTING A SET TO A LIST, WHICH IS VERY BAD
     #! BUT THIS SET IS SO SMALL I DONT GIVE A SHIT
     #! RAHHHHHH
     forms = list(get_word_forms(actor)["v"])
@@ -367,3 +463,45 @@ def translate(text: str, to: Literal["english", "gorgus"], wordnet_available: bo
     translated = fix_up(translated, should_add_accents)
 
     return translated
+
+
+if __name__ == '__main__':
+    print("=== translation tests ===\n")
+
+    tests_to_gorgus = [
+        "Hi! How are you?",
+        "How is the weather?",
+        "I love you.",
+        "He slept.",
+        "What's up?",
+        "Do you like to eat?",
+        "What is going on?"
+    ]
+
+    translated_tests = []
+
+    print("## To Gorgus ##")
+    for test in tests_to_gorgus:
+        translated = translate(test, 'gorgus')
+        translated_tests.append(translated)
+        print(f"\"{test}\" : {translated}")
+
+    print("\n## From Gorgus ##")
+    for test in translated_tests:
+        print(f"\"{test}\" : {translate(test, 'english')}")
+
+    print("\n## Tense Checks ##")
+    
+    tense_checks = [
+        "eat",
+        "slept",
+        "build",
+        "eating",
+        "teach",
+        "taught",
+        "swam",
+        "swimming"
+    ]
+
+    for check in tense_checks:
+        print(f"\"{check}\" : {determine_tense(check)}")
