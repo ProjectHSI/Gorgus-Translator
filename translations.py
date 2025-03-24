@@ -436,6 +436,7 @@ phrase_translations = {
     "kunther bonkep": "wanna",
     "muke": ["come back", "come back here"],
     "geep tijin": ["don't", "dont", "do not"],
+    "mébis tijin": ["won't", "wont", "will not"],
     "gè'googrung": "do you",
     "kè'googrung": "did you",
     "ho'googrung": "are you",
