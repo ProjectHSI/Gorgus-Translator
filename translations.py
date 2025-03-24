@@ -129,6 +129,7 @@ translation_dictionary = {
     "du'blaẖ": "daylight",
 
     # colours
+    "preeti": ["colour", "color"],
     "pik": "pink",
     "blik": "white",
     "wat": "blue",
