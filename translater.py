@@ -20,6 +20,10 @@ console.print("[bold bright_green]INFO[/bold bright_green] Starting [bold]inflec
 
 inflect_engine = inflect.engine()
 
+console.print("[bold bright_green]INFO[/bold bright_green] Loading [bold]tense[/bold] parser..")
+
+tense_parser = TenseParser()
+
 console.print("[bold bright_green]INFO[/bold bright_green] Loading [bold]SpaCy[/bold] AI model..")
 
 nlp = spacy.load("en_core_web_sm")
@@ -146,26 +150,7 @@ def get_past_tense_verb(verb: str) -> str:
         return verb + "ed"
 
 def determine_tense(sentence):
-    """
-    Function to determine the tense of a given sentence.
- 
-    Parameters:
-    - sentence: str
-        The input sentence for which the tense needs to be determined.
- 
-    Returns:
-    - str:
-        The tense of the sentence: "past", "present", or "future".
-    """
- 
-    sent = list(nlp(sentence).sents)[0]
-    if (
-        sent.root.tag_ == "VBD" or
-        any(w.dep_ == "aux" and w.tag_ == "VBD" for w in sent.root.children)):
-        return "past"
- 
-    # If none of the above conditions are met, the sentence is considered present tense
-    return "present"
+    return tense_parser.find_tense_simple_form_str(sentence)
 
 def from_actor_form(actor, lemma: bool = True):
     """
@@ -489,19 +474,3 @@ if __name__ == '__main__':
     print("\n## From Gorgus ##")
     for test in translated_tests:
         print(f"\"{test}\" : {translate(test, 'english')}")
-
-    print("\n## Tense Checks ##")
-    
-    tense_checks = [
-        "eat",
-        "slept",
-        "build",
-        "eating",
-        "teach",
-        "taught",
-        "swam",
-        "swimming"
-    ]
-
-    for check in tense_checks:
-        print(f"\"{check}\" : {determine_tense(check)}")
