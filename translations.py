@@ -520,5 +520,6 @@ ignored_actor_nouns = [ # words that can't be turned into actor nouns
     "power",
     "motherfucker",
     "under",
-    "dinner"
+    "dinner",
+    "boogers"
 ]

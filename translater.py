@@ -313,7 +313,6 @@ def to_gorgus(user_input):
         for key, value_list in normalized_translation_dict.items():
             value_set = set(value_list)  # Convert to set for faster lookups
 
-            return is_plural
             if (word_type != "VERB" and ((singular and singular in value_set) or (word in value_set) or (is_plural and plural in value_set))) or (word_type == "VERB" and base_word in value_set):
                 found = True
                 plural_prefix = translation_dictionary["<PLURAL>"] if is_plural else ""
