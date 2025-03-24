@@ -3,9 +3,11 @@ import inflect
 import re
 import nltk
 import unicodedata
+import time
 
 from translations import *
 from word_forms.word_forms import get_word_forms
+from nltk.stem import WordNetLemmatizer
 from typing import Literal
 
 from rich.console import Console
@@ -22,6 +24,7 @@ inflect_engine = inflect.engine()
 console.print("[bold bright_green]INFO[/bold bright_green] Loading [bold]SpaCy[/bold] AI model..")
 
 nlp = spacy.load("en_core_web_sm")
+lemmatizer = WordNetLemmatizer()
 
 wordnet_download_success = False
 try:
@@ -34,6 +37,13 @@ except LookupError:
         console.print("[bold red]I couldn't download the wordnet AI mdoel... :([/bold red]")
         console.print("The app will still open, but you will have some missing language features.")
         console.input("Press enter to continue.", password=True)
+
+def get_word_type(word):
+    # Process the word through the spaCy pipeline
+    doc = nlp(word)
+    
+    # Check if the word is a verb by examining the POS tag
+    return doc[0].pos_
 
 def remove_all_except(text, accents_to_keep = {'\u0302', '\u0303'}):
     """
@@ -57,11 +67,109 @@ for norm_key in normalized_translation_dict:
     deaccented = remove_all_except(norm_key)
     reverse_mapping[norm_key] = deaccented
 
-def is_actor_form(word: str) -> bool:
+def detect_verb_tense(verb):
+    sent = list(nlp(verb).sents)[0]
+
+    if (
+        sent.root.tag_ == "VBD" or
+        any(w.dep_ == "aux" and w.tag_ == "VBD" for w in sent.root.children)):
+        return "past"
+    
+    if (
+        sent.root.tag_ == "VBG" or
+        any(w.dep_ == "aux" and w.tag_ == "VBZ" for w in sent.root.children)):
+        return "cont"
+    
+    return "norm"
+
+def get_past_tense_verb(verb):
+    """
+    Returns the past tense form of a verb.
+ 
+    Parameters:
+    - verb: str
+        The verb for which the past tense is to be determined.
+ 
+    Returns:
+    - str:
+        The past tense form of the verb.
+ 
+    Examples:
+    >>> get_past_tense_verb("run")
+    "ran"
+ 
+    >>> get_past_tense_verb("eat")
+    "ate"
+ 
+    >>> get_past_tense_verb("write")
+    "wrote"
+    """
+ 
+    # List of common irregular verbs and their past tense forms
+    irregular_verbs = {
+        "be": "was/were",
+        "have": "had",
+        "do": "did",
+        "go": "went",
+        "see": "saw",
+        "come": "came",
+        "give": "gave",
+        "take": "took",
+        "make": "made",
+        "find": "found",
+        "know": "knew",
+        "think": "thought",
+        "say": "said",
+        "tell": "told",
+        "get": "got",
+        "give": "gave",
+        "read": "read",
+        "wear": "wore",
+        "write": "wrote",
+        "run": "ran",
+        # Add more irregular verbs as needed
+    }
+ 
+    # Check if the verb is in the irregular verbs dictionary
+    if verb in irregular_verbs:
+        return irregular_verbs[verb]
+ 
+    # Check if the verb ends with "e"
+    elif verb.endswith("e"):
+        return verb + "d"
+ 
+    # Check if the verb ends with a consonant followed by "y"
+    elif verb[-2] not in "aeiou" and verb[-1] == "y":
+        return verb[:-1] + "ied"
+ 
+    # For regular verbs, simply add "ed" to the end
+    else:
+        return verb + "ed"
+    
+def convert_to_gerund(verb):
+    if verb.endswith("e") and not verb.endswith("ie"):
+        return verb[:-1] + "ing"  # Drop 'e' and add 'ing'
+    elif verb.endswith("ie"):
+        return verb[:-2] + "ying"  # Change 'ie' to 'ying'
+    elif verb[-1] in "aeiou" and len(verb) > 1 and verb[-2] not in "aeiou" and verb[-3] not in "aeiou" and verb[-2] != 'w' and verb[-2] != 'x' and verb[-2] != 'y':
+        return verb + verb[-1] + "ing"  # Double the final consonant for CVC pattern
+    return verb + "ing"  # Default case for most verbs
+    
+def get_tense_verb(verb, tense):
+    if tense == "past":
+        return get_past_tense_verb(verb)
+    
+    elif tense == "cont":
+        return convert_to_gerund(verb)
+    
+    else:
+        return verb
+
+def is_actor_form(word):
     """Check if a word is in actor form based on common English suffixes."""
     return any(word.endswith(suffix) for suffix in ACTOR_SUFFIXES)
 
-def to_actor_form(root: str) -> str:
+def to_actor_form(root):
     """Convert a root word to its actor form following English rules."""
     if root.endswith("e"):
         return root + "r"  # e.g., "bake" → "baker"
@@ -70,7 +178,7 @@ def to_actor_form(root: str) -> str:
     else:
         return root + "er"  # Default case
 
-def from_actor_form(actor, lemma: bool = True):
+def from_actor_form(actor, lemma = True):
     """
     Convert an actor form word back to its root.
     """
@@ -98,7 +206,10 @@ def get_trailing_punctuation(text, ignore_chars=""):
     
     return match.group(0) if match else ''
 
-def to_gorgus(user_input: str):
+def convert_to_base_form(verb):
+    return lemmatizer.lemmatize(verb, pos='v')
+
+def to_gorgus(user_input):
     translated = ""
     before_translation = user_input
 
@@ -189,14 +300,21 @@ def to_gorgus(user_input: str):
         if plural in ignored_plurals:
             is_plural = False
 
+        # we need to figure out what tense the verb is in :DDDDD (this is fucking painful, we also only use this if the word is a verb)
+        tense = detect_verb_tense(word)
+        word_type = get_word_type(word)
+        base_word = convert_to_base_form(word)
+
         found = False
         for key, value_list in normalized_translation_dict.items():
             value_set = set(value_list)  # Convert to set for faster lookups
 
-            if (singular and singular in value_set) or (word in value_set) or (is_plural and plural in value_set):
+            if (word_type != "VERB" and ((singular and singular in value_set) or (word in value_set) or (is_plural and plural in value_set))) or (word_type == "VERB" and base_word in value_set):
                 found = True
                 plural_prefix = translation_dictionary["<PLURAL>"] if is_plural else ""
-                translated += f"{plural_prefix}{key}{word_suffix}{suffix} "
+                tense_suffix = translation_dictionary.get(f"<{tense.upper()}_TENSE>", "") if word_type == "VERB" else ""
+
+                translated += f"{plural_prefix}{key}{word_suffix}{suffix}{tense_suffix} "
                 break
 
         if not found:
@@ -239,6 +357,14 @@ def from_gorgus(user_input: str):
 
         plural = False
         actor = False
+
+        tense = "norm"
+        for tense_key, tense_value in {"<PAST_TENSE>": "past", "<CONT_TENSE>": "cont"}.items():
+            if tense_value in word:
+                word = word.replace(tense_key, "")
+                tense = tense_value
+                break
+
         if word.startswith(translation_dictionary["<PLURAL>"]):
             word = word.removeprefix(translation_dictionary["<PLURAL>"])
             plural = True
@@ -270,6 +396,8 @@ def from_gorgus(user_input: str):
             if plural:
                 final = inflect_engine.plural(final)
 
+            final = get_tense_verb(final, tense)
+
             translated += f"{final}{suffix} "
         else:
             translated += f"{word}{suffix} "
@@ -280,7 +408,7 @@ def from_gorgus(user_input: str):
 
     return translated
 
-def fix_up(translated: str, should_add_accents: bool):
+def fix_up(translated, should_add_accents):
     translated = translated.capitalize().strip()
 
     if not should_add_accents:
@@ -288,7 +416,7 @@ def fix_up(translated: str, should_add_accents: bool):
 
     return translated
 
-def fix_articles(input_string: str, article_word: str):
+def fix_articles(input_string, article_word):
     words = input_string.split()  # Split the string into words
     result = []
 
@@ -305,7 +433,7 @@ def fix_articles(input_string: str, article_word: str):
 
     return " ".join(result)
 
-def replace_word(input_string: str, word: str, replacement: str, offset: int = 1):
+def replace_word(input_string, word, replacement, offset = 1):
     # Split the input string into words
     words = input_string.split()
 
@@ -341,11 +469,14 @@ def replace_word(input_string: str, word: str, replacement: str, offset: int = 1
     # Join the words back into a string and return
     return " ".join(words)
 
-def translate(text: str, to: Literal["english", "gorgus"], wordnet_available: bool = True, should_add_accents: bool = True):
+def translate(text, to: Literal["english", "gorgus"], wordnet_available = True, should_add_accents = True):
     """Translate from or to Gorgus and English!
 
     Trailing whitespace is not preserved, neither is punctuation.
     """
+    if text.strip() == "":
+        return ""
+
     text = text.lower().strip()
     text = text.replace("\n", " ")
 
@@ -393,3 +524,21 @@ if __name__ == '__main__':
     print("\n## From Gorgus ##")
     for test in translated_tests:
         print(f"\"{test}\" : {translate(test, 'english')}")
+
+    print("\n## Tense Detection and Conversion ##")
+
+    tense_tests = [
+        "doing",
+        "eat",
+        "slept",
+        "build",
+        "trying",
+        "say",
+        "ate",
+        "die",
+        "tearing",
+        "smushing"
+    ]
+
+    for test in tense_tests:
+        print(f"\"{test}\" : {detect_verb_tense(test)}")
