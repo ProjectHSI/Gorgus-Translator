@@ -39,11 +39,17 @@ except LookupError:
         console.input("Press enter to continue.", password=True)
 
 def get_word_type(word):
+    if word.strip() == "":
+        return "UNKOWN"
+
     # Process the word through the spaCy pipeline
     doc = nlp(word)
     
     # Check if the word is a verb by examining the POS tag
-    return doc[0].pos_
+    try:
+        return doc[0].pos_
+    except IndexError:
+        return "UNKOWN"
 
 def remove_all_except(text, accents_to_keep = {'\u0302', '\u0303'}):
     """
