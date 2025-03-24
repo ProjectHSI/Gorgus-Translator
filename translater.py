@@ -6,7 +6,6 @@ import unicodedata
 
 from translations import *
 from word_forms.word_forms import get_word_forms
-from TenseFinder.TenseParser import TenseParser
 from typing import Literal
 
 from rich.console import Console
@@ -19,10 +18,6 @@ console.print("[bold bright_green]INFO[/bold bright_green] Loaded translater dep
 console.print("[bold bright_green]INFO[/bold bright_green] Starting [bold]inflect[/bold] engine..")
 
 inflect_engine = inflect.engine()
-
-console.print("[bold bright_green]INFO[/bold bright_green] Loading [bold]tense[/bold] parser..")
-
-tense_parser = TenseParser()
 
 console.print("[bold bright_green]INFO[/bold bright_green] Loading [bold]SpaCy[/bold] AI model..")
 
@@ -74,83 +69,6 @@ def to_actor_form(root: str) -> str:
         return root + root[-1] + "er"  # e.g., "run" → "runner"
     else:
         return root + "er"  # Default case
-
-def get_past_tense_verb(verb: str) -> str:
-    """
-    Returns the past tense form of a verb.
- 
-    Parameters:
-    - verb: str
-        The verb for which the past tense is to be determined.
- 
-    Returns:
-    - str:
-        The past tense form of the verb.
- 
-    Examples:
-    >>> get_past_tense_verb("run")
-    "ran"
- 
-    >>> get_past_tense_verb("eat")
-    "ate"
- 
-    >>> get_past_tense_verb("write")
-    "wrote"
-    """
- 
-    # List of common irregular verbs and their past tense forms
-    irregular_verbs = {
-        "be": "was",
-        "have": "had",
-        "do": "did",
-        "go": "went",
-        "see": "saw",
-        "come": "came",
-        "give": "gave",
-        "take": "took",
-        "make": "made",
-        "find": "found",
-        "know": "knew",
-        "think": "thought",
-        "say": "said",
-        "tell": "told",
-        "get": "got",
-        "give": "gave",
-        "read": "read",
-        "wear": "wore",
-        "write": "wrote",
-        "run": "ran",
-        "teach": "taught",
-        "swim": "swam",
-        "eat": "ate",
-        "build": "built",
-        "break": "broke",
-        "speak": "spoke",
-        "sleep": "slept"
-        # Add more irregular verbs as needed
-    }
-
-    # convert the verb to lowercase
-    verb = verb.lower()
- 
-    # Check if the verb is in the irregular verbs dictionary
-    if verb in irregular_verbs:
-        return irregular_verbs[verb]
- 
-    # Check if the verb ends with "e"
-    elif verb.endswith("e"):
-        return verb + "d"
- 
-    # Check if the verb ends with a consonant followed by "y"
-    elif len(verb) >= 2 and verb[-2] not in "aeiou" and verb[-1] == "y":
-        return verb[:-1] + "ied"
- 
-    # For regular verbs, simply add "ed" to the end
-    else:
-        return verb + "ed"
-
-def determine_tense(sentence):
-    return tense_parser.find_tense_simple_form_str(sentence)
 
 def from_actor_form(actor, lemma: bool = True):
     """
