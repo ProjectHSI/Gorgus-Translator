@@ -235,7 +235,7 @@ def to_gorgus(user_input: str):
 
     for i, word in enumerate(words):
         trailing_punctuation = get_trailing_punctuation(word, translation_dictionary["<EXAGGERATED_VERB>"] + translation_dictionary["<GENTLE_VERB>"])
-        word = word.translate(str.maketrans('', '', ".?!-,\":()=/\\$"))
+        word = word.translate(str.maketrans('', '', ".?!-,\":()=/\\$[]"))
 
         suffix = ""
 
@@ -332,7 +332,7 @@ def from_gorgus(user_input: str):
         trailing = get_trailing_punctuation(word, translation_dictionary["<EXAGGERATED_VERB>"] + translation_dictionary["<GENTLE_VERB>"])
         suffix += trailing
 
-        word = word.translate(str.maketrans('', '', ".,?!$:()=/\\"))
+        word = word.translate(str.maketrans('', '', ".,?!$:()=/\\[]"))
 
         plural = False
         actor = False
