@@ -502,6 +502,7 @@ translation_dictionary = {
     "shilt": ["favourite", "favorite"],
     "muneg": "full",
     "plong": "funny",
+    "splunk": "manslaughter",
 
     # naughty words >:(
     "zogo": ["idiot", "fool", "dumb", "moron", "clown", "stupid", "dumbass"],
