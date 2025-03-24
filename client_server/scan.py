@@ -55,9 +55,9 @@ def scan_ip(ip):
         # Attempt to connect to the given IP and port
         result = sock.connect_ex((str(ip), PORT))
         
+        sock.sendall(pickle.dumps(None))
         if result == 0:
             return True
-        sock.send(pickle.dumps(None))
     except socket.error:
         pass  # Ignore errors when trying to connect
     return False

@@ -138,7 +138,7 @@ def to_gorgus(user_input: str):
 
     for i, word in enumerate(words):
         trailing_punctuation = get_trailing_punctuation(word, translation_dictionary["<EXAGGERATED_VERB>"] + translation_dictionary["<GENTLE_VERB>"])
-        word = word.translate(str.maketrans('', '', ".?!-,\":()=/\\$"))
+        word = word.translate(str.maketrans('', '', ".?!-,\":()=/\\$[]"))
 
         suffix = ""
 
@@ -235,7 +235,7 @@ def from_gorgus(user_input: str):
         trailing = get_trailing_punctuation(word, translation_dictionary["<EXAGGERATED_VERB>"] + translation_dictionary["<GENTLE_VERB>"])
         suffix += trailing
 
-        word = word.translate(str.maketrans('', '', ".,?!$:()=/\\"))
+        word = word.translate(str.maketrans('', '', ".,?!$:()=/\\[]"))
 
         plural = False
         actor = False
@@ -347,6 +347,7 @@ def translate(text: str, to: Literal["english", "gorgus"], wordnet_available: bo
     Trailing whitespace is not preserved, neither is punctuation.
     """
     text = text.lower().strip()
+    text = text.replace("\n", " ")
 
     if to == "english":
         user_choice = 2

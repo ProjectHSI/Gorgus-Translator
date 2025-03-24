@@ -165,7 +165,7 @@ class Server:
                 else:
                     break
             except (socket.error, EOFError) as e:
-                self.log(f"An error occured with a client and that client has been disconnected.\nError: {e}", 3)
+                self.log(f"An error occured with a client and that client has been disconnected.\n\t- Client: {conn.getsockname()}\n\t- Error: {e}", 3)
                 break
         
         self.log(f"Lost connection! [dim][bold]game_id:[/bold] {game_id}[/dim]")
