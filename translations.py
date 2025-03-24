@@ -132,6 +132,7 @@ translation_dictionary = {
     "blaẖ": "light",
     "du'blaẖ": "daylight",
     "splunk": "manslaughter",
+    "borhing": "school",
 
     # colours
     "preeti": ["colour", "color"],
