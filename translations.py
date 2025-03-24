@@ -54,6 +54,7 @@ translation_dictionary = {
     "snork": ["mum", "mom", "mother"],
     "nork": ["dad", "father"],
     "tivard": "building",
+    "tiveda": "town",
     "talard": "tower",
     "fliq": "card",
     "borisz": "now",
