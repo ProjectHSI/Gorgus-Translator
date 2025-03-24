@@ -66,7 +66,7 @@ class TypingGame(ModalScreen):
 
     @on(ScreenResume)
     def on_screen_openned(self):
-        self.notify("hi im gonna look for servers for you lol")
+        self.notify("Searching for servers...")
         self.scan_servers_worker = self.scan_for_servers()
 
     @on(ScreenSuspend)
@@ -99,7 +99,12 @@ class TypingGame(ModalScreen):
             self.query_one("#game").styles.display = "block"
 
             if value.strip() == "":
-                value = "127.0.0.1"
+                self.notify("Enter an ip!", severity="error")
+
+                self.query_one("#ip-enter").styles.display = "block"
+                self.query_one("#game").styles.display = "none"
+
+                return
 
             self.connect_to_server(value)
 
