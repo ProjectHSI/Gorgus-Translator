@@ -68,7 +68,10 @@ for norm_key in normalized_translation_dict:
     reverse_mapping[norm_key] = deaccented
 
 def detect_verb_tense(verb):
-    sent = list(nlp(verb).sents)[0]
+    try:
+        sent = list(nlp(verb).sents)[0]
+    except IndexError:
+        return "norm"
 
     if (
         sent.root.tag_ == "VBD" or
@@ -249,7 +252,7 @@ def to_gorgus(user_input):
 
     for i, word in enumerate(words):
         trailing_punctuation = get_trailing_punctuation(word, translation_dictionary["<EXAGGERATED_VERB>"] + translation_dictionary["<GENTLE_VERB>"])
-        word = word.translate(str.maketrans('', '', ".!,\":()=/\\$[]"))
+        word = word.translate(str.maketrans('', '', "?.!,\":()=/\\$[]"))
 
         suffix = ""
         punctuation_suffix = ""
@@ -264,7 +267,7 @@ def to_gorgus(user_input):
             suffix = translation_dictionary["<GENTLE_VERB>"]
 
         if trailing_punctuation.endswith("?"):
-            if not word == "lunk":
+            if word != "lunk":
                 punctuation_suffix += " lunk"
         else:
             punctuation_suffix += trailing_punctuation
@@ -310,6 +313,7 @@ def to_gorgus(user_input):
         for key, value_list in normalized_translation_dict.items():
             value_set = set(value_list)  # Convert to set for faster lookups
 
+            return is_plural
             if (word_type != "VERB" and ((singular and singular in value_set) or (word in value_set) or (is_plural and plural in value_set))) or (word_type == "VERB" and base_word in value_set):
                 found = True
                 plural_prefix = translation_dictionary["<PLURAL>"] if is_plural else ""
@@ -319,7 +323,7 @@ def to_gorgus(user_input):
                 break
 
         if not found:
-            translated += f"{word}{suffix} "
+            translated += f"{word}{suffix}{punctuation_suffix} "
 
     # verb modifier words
     translated = replace_word(translated, "really", translation_dictionary["<EXAGGERATED_VERB>"])
