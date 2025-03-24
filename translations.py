@@ -128,6 +128,14 @@ translation_dictionary = {
     "blaẖ": "light",
     "du'blaẖ": "daylight",
 
+    # colours
+    "pik": "pink",
+    "blik": "white",
+    "wat": "blue",
+    "pis": "yellow",
+    "gras": "green",
+    "perlp": "purple",
+
     # times
     "dublub": "day",
     "nublub": "night",
