@@ -136,6 +136,8 @@ translation_dictionary = {
     "pis": "yellow",
     "gras": "green",
     "perlp": "purple",
+    "blude": "red",
+    "senk": "orange",
 
     # times
     "dublub": "day",
