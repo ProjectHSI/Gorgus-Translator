@@ -353,6 +353,7 @@ translation_dictionary = {
     # adjectives
     "zorp": ["bad", "awful", "terrible", "horrible"],
     "dagunga": ["good", "incredible", "amazing", "spectacular", "great"],
+    "dagsa": "nice",
     "squumth": "sad",
     "wumbo": "happy",
     "gubbus": ["disappointed"],
