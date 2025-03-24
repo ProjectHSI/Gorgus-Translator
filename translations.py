@@ -132,12 +132,13 @@ translation_dictionary = {
     "preeti": ["colour", "color"],
     "pik": "pink",
     "blik": "white",
+    "null": "black",
     "wat": "blue",
     "pis": "yellow",
     "gras": "green",
     "perlp": "purple",
     "blude": "red",
-    "senk": "orange",
+    "zits": "orange",
 
     # times
     "dublub": "day",
