@@ -444,6 +444,7 @@ def translate(text: str, to: Literal["english", "gorgus"], wordnet_available: bo
     Trailing whitespace is not preserved, neither is punctuation.
     """
     text = text.lower().strip()
+    text = text.replace("\n", " ")
 
     if to == "english":
         user_choice = 2
