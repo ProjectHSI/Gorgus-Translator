@@ -584,6 +584,9 @@ phrase_translations = {
 
     "bit'up": "going to be",
 
+    "sna'rse": ["she's", "shes", "she is"],
+    "na'rse": ["he's", "hes", "he is"],
+
     # these are just the phrases that make a verb or noun more intense or more gentle
     "EXAGGERATE": ["a lot", "too much"], 
     "GENTLE": ["a bit", "a little"],
