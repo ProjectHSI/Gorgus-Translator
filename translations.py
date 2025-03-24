@@ -390,6 +390,7 @@ translation_dictionary = {
     "ock": "far",
     "bock": "near",
     "megook": "serious",
+    "shilt": ["favourite", "favorite"],
 
     # naughty words >:(
     "zogo": ["idiot", "fool", "dumb", "moron", "clown", "stupid", "dumbass"],
