@@ -125,6 +125,8 @@ translation_dictionary = {
     "dúbom": "breakfast",
     "dúnúbnom": "lunch",
     "núbom": "dinner",
+    "blaẖ": "light",
+    "du'blaẖ": "daylight",
 
     # times
     "dublub": "day",
