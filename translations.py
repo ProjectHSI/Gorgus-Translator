@@ -139,6 +139,7 @@ translation_dictionary = {
     "perlp": "purple",
     "blude": "red",
     "zits": "orange",
+    "nill": ["gray", "grey"],
 
     # times
     "dublub": "day",
