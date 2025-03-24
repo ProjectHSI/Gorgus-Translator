@@ -456,7 +456,6 @@ phrase_translations = {
     "pritter yuti": ["hurry up"],
     "shriv'ma": ["there are going to be", "there will be", "there shall be"],
     "gog'um": "you should",
-    "mébis": "are going to",
 
     "slorgundug": ["end times", "apocalypse", "armageddon"],
 
