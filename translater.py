@@ -151,7 +151,7 @@ def convert_to_gerund(verb):
         return verb[:-1] + "ing"  # Drop 'e' and add 'ing'
     elif verb.endswith("ie"):
         return verb[:-2] + "ying"  # Change 'ie' to 'ying'
-    elif verb[-1] in "aeiou" and len(verb) > 1 and verb[-2] not in "aeiou" and verb[-3] not in "aeiou" and verb[-2] != 'w' and verb[-2] != 'x' and verb[-2] != 'y':
+    elif len(verb) > 2 and verb[-1] in "aeiou" and len(verb) > 1 and verb[-2] not in "aeiou" and verb[-3] not in "aeiou" and verb[-2] != 'w' and verb[-2] != 'x' and verb[-2] != 'y':
         return verb + verb[-1] + "ing"  # Double the final consonant for CVC pattern
     return verb + "ing"  # Default case for most verbs
     
@@ -249,9 +249,10 @@ def to_gorgus(user_input):
 
     for i, word in enumerate(words):
         trailing_punctuation = get_trailing_punctuation(word, translation_dictionary["<EXAGGERATED_VERB>"] + translation_dictionary["<GENTLE_VERB>"])
-        word = word.translate(str.maketrans('', '', ".?!-,\":()=/\\$[]"))
+        word = word.translate(str.maketrans('', '', ".!,\":()=/\\$[]"))
 
         suffix = ""
+        punctuation_suffix = ""
 
         if word == "EXAGGERATE" or word == "GENTLE":
             continue
@@ -264,9 +265,9 @@ def to_gorgus(user_input):
 
         if trailing_punctuation.endswith("?"):
             if not word == "lunk":
-                suffix += " lunk"
+                punctuation_suffix += " lunk"
         else:
-            suffix += trailing_punctuation
+            punctuation_suffix += trailing_punctuation
 
         try:
             plural = inflect_engine.plural(word)
@@ -314,7 +315,7 @@ def to_gorgus(user_input):
                 plural_prefix = translation_dictionary["<PLURAL>"] if is_plural else ""
                 tense_suffix = translation_dictionary.get(f"<{tense.upper()}_TENSE>", "") if word_type == "VERB" else ""
 
-                translated += f"{plural_prefix}{key}{word_suffix}{suffix}{tense_suffix} "
+                translated += f"{plural_prefix}{key}{word_suffix}{suffix}{tense_suffix}{punctuation_suffix} "
                 break
 
         if not found:
@@ -359,8 +360,8 @@ def from_gorgus(user_input: str):
         actor = False
 
         tense = "norm"
-        for tense_key, tense_value in {"<PAST_TENSE>": "past", "<CONT_TENSE>": "cont"}.items():
-            if tense_value in word:
+        for tense_key, tense_value in {translation_dictionary["<CONT_TENSE>"]: "cont", translation_dictionary["<PAST_TENSE>"]: "past"}.items():
+            if tense_key in word:
                 word = word.replace(tense_key, "")
                 tense = tense_value
                 break
