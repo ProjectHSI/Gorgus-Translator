@@ -67,11 +67,11 @@ class TypingGame(ModalScreen):
     @on(ScreenResume)
     def on_screen_openned(self):
         self.notify("hi im gonna look for servers for you lol")
-        self.scan_for_servers()
+        self.scan_servers_worker = self.scan_for_servers()
 
     @on(ScreenSuspend)
     def stop(self, _):
-        self.workers.cancel_all()
+        self.scan_servers_worker.cancel()
         self.run = False
 
     @on(Input.Submitted)
@@ -118,6 +118,9 @@ class TypingGame(ModalScreen):
     @work(thread=True, name="connect")
     def connect_to_server(self, ip: str):
         self.run = True
+
+        # cancel searching for servers
+        self.scan_servers_worker.cancel()
 
         # get the loading text
         loading_label = self.query_one("#loading-text")
@@ -197,7 +200,12 @@ class TypingGame(ModalScreen):
                     self.notify("You have been disconnected from the server because the game closed.\n\nThis can be caused by another player leaving, or the server closing.")
                     self.app.log.error(packet)
                     self.run = False
-                    self.dismiss()
+
+                    try:
+                        self.dismiss()
+                    except RuntimeError:
+                        pass
+
                     break
 
                 if packet.data.ready:
@@ -243,7 +251,12 @@ class TypingGame(ModalScreen):
                 self.notify("An error occured, you have been disconnected.", severity="error")
                 self.app.log.error(str(e))
                 self.run = False
-                self.dismiss()
+
+                try:
+                    self.dismiss()
+                except RuntimeError:
+                    pass
+
                 break
         self.n.send(None)
         

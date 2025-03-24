@@ -57,7 +57,7 @@ def scan_ip(ip):
         
         if result == 0:
             return True
-        sock.send(pickle.dumps(None))
+        sock.sendall(pickle.dumps(None))
     except socket.error:
         pass  # Ignore errors when trying to connect
     return False
