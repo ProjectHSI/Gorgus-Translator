@@ -424,6 +424,9 @@ def fix_up(translated, should_add_accents):
     if not should_add_accents:
         translated = remove_all_except(translated)
 
+    # grammar
+    translated = re.sub(r'\bi\b', 'I', translated)
+
     return translated
 
 def fix_articles(input_string, article_word):
@@ -532,7 +535,7 @@ class TranslationTester(unittest.TestCase):
 
         # go through each test
         for english, gorgus in tests_to_gorgus.items():
-            self.assertEqual(translate(english, "gorgus"), gorgus, "Translations (english -> gorgus) do not match!")
+            self.assertEqual(translate(english, "gorgus"), gorgus, "Translation from English to Gorgus does not match!")
 
     def test_from_gorgus(self):
         # key = gorgus, value = expected english translation
@@ -542,12 +545,12 @@ class TranslationTester(unittest.TestCase):
             "Glonk ćhong̱le̱-ok migtir ghron omnom!": "Stop eating all the food!",
             "Googrung kiff!": "You smell!",
             "Minġer goob'rung ji dagsâ dublub. :)": "I hope you have a really nice day. :)",
-            "Jid shrerack, henġer huffer clor'ge dagsa.": "That person, I think they're nice."
+            "Jid shrerack, henġer huffer clor'ge dagsa.": "That person, I believe they're nice."
         }
 
         # go through each test
         for gorgus, english in tests_from_gorgus.items():
-            self.assertEqual(translate(gorgus, "english"), english, "Translations (gorgus -> english) do not match!")
+            self.assertEqual(translate(gorgus, "english"), english, "Translation from Gorgus to English does not match!")
 
 
 if __name__ == '__main__':
