@@ -424,8 +424,11 @@ def fix_up(translated, should_add_accents):
     if not should_add_accents:
         translated = remove_all_except(translated)
 
-    # grammar
+    # capitalise the word "I"
     translated = re.sub(r'\bi\b', 'I', translated)
+
+    # Regex pattern to find lowercase letters that follow punctuation marks (., !, ?, etc.)
+    translated = re.sub(r'([.?!])\s*(\w)', lambda m: m.group(1) + ' ' + m.group(2).upper(), translated)
 
     return translated
 
@@ -450,15 +453,6 @@ def replace_word(input_string, word, replacement, offset = 1):
     # Split the input string into words
     words = input_string.split()
 
-    """if offset == None: # we find the closest verb or adjective to our target word and we use that as the offset
-        doc = nlp(input_string)
-        noun_verb_indicies = []
-        for idx, tok in enumerate(doc):
-            if tok.pos_ in ["NOUN", "VERB"]:
-                noun_verb_indicies.append(idx)
-
-        print(noun_verb_indicies)"""
-
     # Check if 'very' comes before 'quickly'
     thingy = 0 # i don't what to call this variable, we use this so that whenever we delete a word, we're still at the correct word or something idfk
 
@@ -479,11 +473,6 @@ def replace_word(input_string, word, replacement, offset = 1):
             del words[i - thingy]  # Remove 'very'
 
             thingy += 1
-
-            # Break after the first occurrence is handled
-            # FIXME: this kinda has some unforseen consequences, gonna see if removing this break doesn't break anything
-            # TODO: it did break stuff, gonna fix that so we can handle more than one modifier adverb lol
-            #break
 
     # Join the words back into a string and return
     return " ".join(words)
@@ -523,8 +512,8 @@ class TranslationTester(unittest.TestCase):
     def test_to_gorgus(self):
         # key = english, value = expected gorgus translation
         tests_to_gorgus = {
-            "Very cool! Very good. :)": "Klû! dagungâ. :)",
-            "Hi! How are you?": "Dink! dup pritter-ok lunk",
+            "Very cool! Very good. :)": "Klû! Dagungâ. :)",
+            "Hi! How are you?": "Dink! Dup pritter-ok lunk",
             "How is the weather?": "Dup gorse ghron weather lunk",
             "I love you.": "Henġer agger googrung.",
             "He slept.": "Nack eep-ra.",

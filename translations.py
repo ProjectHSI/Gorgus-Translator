@@ -388,6 +388,7 @@ translation_dictionary = {
     "plong": "funny",
     "bolg": "deep",
     "kern": "shallow",
+    "morg": "sure",
 
     # naughty words >:(
     "zogo": ["idiot", "fool", "dumb", "moron", "clown", "stupid", "dumbass", "cretin"],
