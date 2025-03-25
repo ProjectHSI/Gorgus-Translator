@@ -457,21 +457,25 @@ def replace_word(input_string, word, replacement, offset = 1):
         print(noun_verb_indicies)"""
 
     # Check if 'very' comes before 'quickly'
+    thingy = 0 # i don't what to call this variable, we use this so that whenever we delete a word, we're still at the correct word or something idfk
+
     for i in range(len(words) - 1):
-        if words[i] == word:
-            if len(words) > i+1 and words[i+1].lower() == "horge":
+        if words[i - thingy] == word and len(words) > i+1 - thingy:
+            if words[i+1 - thingy].lower() == "horge":
                 offset = min(offset+1, (len(words)-i)-1)
 
-            trailing = get_trailing_punctuation(words[i+offset])
+            trailing = get_trailing_punctuation(words[i+offset-thingy])
             len_trailing = len(trailing)
 
             # Modify 'quickly' by adding '\u0302' and remove 'very'
 
             if len_trailing > 0:
-                words[i + offset] = words[i + offset][:-len(trailing)] + replacement + trailing
+                words[i + offset - thingy] = words[i + offset - thingy][:-len(trailing)] + replacement + trailing
             else:
-                words[i + offset] = words[i + offset][:] + replacement
-            del words[i]  # Remove 'very'
+                words[i + offset - thingy] = words[i + offset - thingy][:] + replacement
+            del words[i - thingy]  # Remove 'very'
+
+            thingy += 1
 
             # Break after the first occurrence is handled
             # FIXME: this kinda has some unforseen consequences, gonna see if removing this break doesn't break anything
@@ -516,6 +520,7 @@ if __name__ == '__main__':
     print("=== translation tests ===\n")
 
     tests_to_gorgus = [
+        "Very cool! Very good. :)",
         "Hi! How are you?",
         "How is the weather?",
         "I love you.",
