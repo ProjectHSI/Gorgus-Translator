@@ -222,7 +222,7 @@ translation_dictionary = {
     "gurkad": "discuss",
     "murteg": "would",
     "gorg": "beg",
-    "ving": "of",
+    "ving": ["of", "about"],
     "dreek": "touch",
     "draker": "feel",
     "glimpt": "know",
@@ -280,7 +280,7 @@ translation_dictionary = {
     # Proper Nouns
     "googrung": "you",
     "googrungz": ["yourself", "thyself"],
-    "henġer": ["me", "i", "myself"],
+    "henġer": ["i", "me", "myself"],
 
 
 
