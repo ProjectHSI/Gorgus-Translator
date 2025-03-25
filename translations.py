@@ -134,6 +134,7 @@ translation_dictionary = {
     "du'blaẖ": "daylight",
     "splunk": "manslaughter",
     "borhing": "school",
+    "vromp": ["car", "vehicle"],
 
     # colours
     "preeti": ["colour", "color"],
@@ -216,7 +217,6 @@ translation_dictionary = {
     "jeek": "like",
     "hobfug": ["need", "require"],
     "gumble": "shut",
-    "gumble-ok": "shutting",
     "porgak": "approach",
     "erf": "come",
     "gurkad": "discuss",
