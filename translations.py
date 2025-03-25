@@ -389,7 +389,7 @@ translation_dictionary = {
     "kern": "shallow",
 
     # naughty words >:(
-    "zogo": ["idiot", "fool", "dumb", "moron", "clown", "stupid", "dumbass"],
+    "zogo": ["idiot", "fool", "dumb", "moron", "clown", "stupid", "dumbass", "cretin"],
     "nink": "dweeb",
     "jink": "fuck",
     "toop": "shit",
