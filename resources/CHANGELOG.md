@@ -6,6 +6,7 @@
 - Added a turn based battle game. (to be added)
 - Fixed some bugs.
 - You can now turn any verb into past tense by adding `-ra` *(eat -> ate, build -> built)* or continuous tense by adding `-ak` *(eat -> eating, kill -> killing)*.
+- Improved grammar when translating from Gorgus to English.
 
 ## Version 1.95
 - You can now host a multiplayer game between you and a friend! Check out the new game. :)
