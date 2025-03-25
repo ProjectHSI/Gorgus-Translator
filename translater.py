@@ -459,7 +459,7 @@ def replace_word(input_string, word, replacement, offset = 1):
     # Check if 'very' comes before 'quickly'
     for i in range(len(words) - 1):
         if words[i] == word:
-            if words[i+1].lower() == "horge":
+            if len(words) > i+1 and words[i+1].lower() == "horge":
                 offset = min(offset+1, (len(words)-i)-1)
 
             trailing = get_trailing_punctuation(words[i+offset])
@@ -474,7 +474,9 @@ def replace_word(input_string, word, replacement, offset = 1):
             del words[i]  # Remove 'very'
 
             # Break after the first occurrence is handled
-            break
+            # FIXME: this kinda has some unforseen consequences, gonna see if removing this break doesn't break anything
+            # TODO: it did break stuff, gonna fix that so we can handle more than one modifier adverb lol
+            #break
 
     # Join the words back into a string and return
     return " ".join(words)
