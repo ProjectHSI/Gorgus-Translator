@@ -135,6 +135,8 @@ translation_dictionary = {
     "splunk": "manslaughter",
     "borhing": "school",
     "vromp": ["car", "vehicle"],
+    "mawbahp": "dream",
+    "krinkeb": "cheese",
 
     # colours
     "preeti": ["colour", "color"],
@@ -198,6 +200,7 @@ translation_dictionary = {
     "dinp": "too",
     "vor": "maybe",
     "shtimp": "just",
+    "orgik": "sometime",
 
     # Verbs
     ### Symbols ###
