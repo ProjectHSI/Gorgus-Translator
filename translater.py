@@ -3,7 +3,7 @@ import inflect
 import re
 import nltk
 import unicodedata
-import time
+import unittest
 
 from translations import *
 from word_forms.word_forms import get_word_forms
@@ -516,46 +516,39 @@ def translate(text, to: Literal["english", "gorgus"], wordnet_available = True, 
     return translated
 
 
+class TranslationTester(unittest.TestCase):
+    def test_to_gorgus(self):
+        # key = english, value = expected gorgus translation
+        tests_to_gorgus = {
+            "Very cool! Very good. :)": "Klû! dagungâ. :)",
+            "Hi! How are you?": "Dink! dup pritter-ok lunk",
+            "How is the weather?": "Dup gorse ghron weather lunk",
+            "I love you.": "Henġer agger googrung.",
+            "He slept.": "Nack eep-ra.",
+            "What's up?": "Dup pritter-ok lunk",
+            "Do you like to eat?": "Gè'googrung jeek bonkep ćhong̱le̱ lunk",
+            "What is going on?": "Nergo're pritter-ok hoog lunk"
+        }
+
+        # go through each test
+        for english, gorgus in tests_to_gorgus.items():
+            self.assertEqual(translate(english, "gorgus"), gorgus, "Translations (english -> gorgus) do not match!")
+
+    def test_from_gorgus(self):
+        # key = gorgus, value = expected english translation
+        tests_from_gorgus = {
+            "Dink, dup pritter-ok lunk": "Hello, how are you going?",
+            "Henġer agger ik-fren!": "I love dogs!",
+            "Glonk ćhong̱le̱-ok migtir ghron omnom!": "Stop eating all the food!",
+            "Googrung kiff!": "You smell!",
+            "Minġer goob'rung ji dagsâ dublub. :)": "I hope you have a really nice day. :)",
+            "Jid shrerack, henġer huffer clor'ge dagsa.": "That person, I think they're nice."
+        }
+
+        # go through each test
+        for gorgus, english in tests_from_gorgus.items():
+            self.assertEqual(translate(gorgus, "english"), english, "Translations (gorgus -> english) do not match!")
+
+
 if __name__ == '__main__':
-    print("=== translation tests ===\n")
-
-    tests_to_gorgus = [
-        "Very cool! Very good. :)",
-        "Hi! How are you?",
-        "How is the weather?",
-        "I love you.",
-        "He slept.",
-        "What's up?",
-        "Do you like to eat?",
-        "What is going on?"
-    ]
-
-    translated_tests = []
-
-    print("## To Gorgus ##")
-    for test in tests_to_gorgus:
-        translated = translate(test, 'gorgus')
-        translated_tests.append(translated)
-        print(f"\"{test}\" : {translated}")
-
-    print("\n## From Gorgus ##")
-    for test in translated_tests:
-        print(f"\"{test}\" : {translate(test, 'english')}")
-
-    print("\n## Tense Detection and Conversion ##")
-
-    tense_tests = [
-        "doing",
-        "eat",
-        "slept",
-        "build",
-        "trying",
-        "say",
-        "ate",
-        "die",
-        "tearing",
-        "smushing"
-    ]
-
-    for test in tense_tests:
-        print(f"\"{test}\" : {detect_verb_tense(test)}")
+    unittest.main()

@@ -460,6 +460,7 @@ phrase_translations = { # if one of these phrases appears before another phrase 
     "pritter yuti": ["hurry up"],
     "shriv'ma": ["there are going to be", "there will be", "there shall be"],
     "gog'um": "you should",
+    "clor'ge": ["they're", "theyre", "they are"],
 
     "slorgundug": ["end times", "apocalypse", "armageddon"],
 
