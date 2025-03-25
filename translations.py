@@ -97,6 +97,7 @@ translation_dictionary = {
     "pliop": ["gay", "lgbtq+", "lgbtq", "homosexual", "transgender", "zesty"],
     "fren": "dog",
     "greg": "chicken",
+    "shnap": "turtle",
     "phrog": "frog",
     "shmack": "cat",
     "hish": "snake",
