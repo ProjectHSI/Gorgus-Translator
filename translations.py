@@ -423,7 +423,7 @@ dictionary_information = {
     }
 }
 
-phrase_translations = {
+phrase_translations = { # if one of these phrases appears before another phrase it has higher priority
     "gumblegoge": ["shut up", "be quiet", "stop speaking"],
     "henġer mébis": ["i'm going to", "i am going to", "im going to"],
     "zugugo": ["i will", "i shall"],
@@ -439,6 +439,7 @@ phrase_translations = {
     "muke": ["come back", "come back here"],
     "geep tijin": ["don't", "dont", "do not"],
     "mébis tijin": ["won't", "wont", "will not"],
+    "goob'rung": "you have",
     "gè'googrung": "do you",
     "kè'googrung": "did you",
     "ho'googrung": "are you",
