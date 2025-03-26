@@ -280,6 +280,7 @@ translation_dictionary = {
     "pritter": "go",
     "kortik": ["kill", "die", "death", "killed", "died", "slaughter", "murder"],
     "moibin": ["revive", "live", "life", "lived"],
+    "krongle": ["hunger", "starve"],
 
     # Proper Nouns
     "googrung": "you",
@@ -534,5 +535,6 @@ ignored_actor_nouns = [ # words that can't be turned into actor nouns
     "color",
     "floor",
     "manslaughter",
-    "murder"
+    "murder",
+    "hunger"
 ]
