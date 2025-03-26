@@ -530,5 +530,6 @@ ignored_actor_nouns = [ # words that can't be turned into actor nouns
     "under",
     "dinner",
     "boogers",
-    "color"
+    "color",
+    "floor"
 ]
