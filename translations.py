@@ -400,7 +400,6 @@ translation_dictionary = {
     "jink": "fuck",
     "toop": "shit",
     "sćhlonk": "penis",
-    "jinks": ["fucking", "bloody"],
     "zorper": ["bitch", "fucker", "asshole", "motherfucker"],
     "gdorp": "gdorp",
 }
