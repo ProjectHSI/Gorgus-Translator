@@ -137,6 +137,7 @@ translation_dictionary = {
     "vromp": ["car", "vehicle"],
     "mawbahp": "dream",
     "krinkeb": "cheese",
+    "homp": "tunnel",
 
     # colours
     "preeti": ["colour", "color"],
