@@ -64,8 +64,10 @@ from textual.css.query import NoMatches
 from textual.worker import WorkerState
 from time import sleep
 
+rich_print("[bold bright_green]INFO[/bold bright_green] Loading [bold]utility[/bold] functions..")
 from util import get_settings, modify_json
 
+rich_print("[bold bright_green]INFO[/bold bright_green] Loading [bold]games[/bold]..")
 from widgets.game import Game, GameInfo
 from games.wordle import WordleGame
 from games.hangman import Hangman
