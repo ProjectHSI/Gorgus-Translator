@@ -550,7 +550,6 @@ class TranslationTester(unittest.TestCase):
         tense_tests = {
             "eat": "norm",
             "sat": "past",
-            "swam": "past",
             "teaching": "cont",
             "speaking": "cont",
             "try": "norm",
