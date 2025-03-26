@@ -427,8 +427,8 @@ def fix_up(translated, should_add_accents):
     # capitalise the word "I"
     translated = re.sub(r'\bi\b', 'I', translated)
 
-    # Regex pattern to find lowercase letters that follow punctuation marks (., !, ?, etc.)
-    translated = re.sub(r'([.?!])\s*(\w)', lambda m: m.group(1) + ' ' + m.group(2).upper(), translated)
+    # Regex pattern to find words that come after ".", "?", "!", or "lunk"
+    translated = re.sub(r'([.?!]|\blunk\b)\s*(\w)', lambda m: m.group(1) + ' ' + m.group(2).upper(), translated, flags=re.IGNORECASE)
 
     return translated
 
