@@ -7,6 +7,7 @@
 - Fixed some bugs.
 - You can now turn any verb into past tense by adding `-ra` *(eat -> ate, build -> built)* or continuous tense by adding `-ak` *(eat -> eating, kill -> killing)*.
 - Improved grammar when translating from Gorgus to English and vice versa.
+- Added more loading screen messages.
 
 ## Version 1.95
 - You can now host a multiplayer game between you and a friend! Check out the new game. :)
