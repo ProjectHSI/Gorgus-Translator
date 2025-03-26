@@ -533,5 +533,6 @@ ignored_actor_nouns = [ # words that can't be turned into actor nouns
     "boogers",
     "color",
     "floor",
-    "manslaughter"
+    "manslaughter",
+    "murder"
 ]
