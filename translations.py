@@ -278,7 +278,7 @@ translation_dictionary = {
     "forgor": "forget",
     "trik": "work",
     "pritter": "go",
-    "kortik": ["kill", "die", "death", "killed", "died", "slaughter"],
+    "kortik": ["kill", "die", "death", "killed", "died", "slaughter", "murder"],
     "moibin": ["revive", "live", "life", "lived"],
 
     # Proper Nouns
