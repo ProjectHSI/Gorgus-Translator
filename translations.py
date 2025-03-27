@@ -192,7 +192,7 @@ translation_dictionary = {
     "fleen": "who",
     "neep": "what",
     "abith": "when",
-    "morp": "where",
+    "morp": ["here", "where"],
 
     # Adverbs
     "yuti": ["quick", "fast"],
@@ -474,6 +474,7 @@ phrase_translations = { # if one of these phrases appears before another phrase 
     "gog'um": "you should",
     "clor'ge": ["they're", "theyre", "they are"],
     "mij'in": ["cannot", "can not"],
+    "morp lunk": "where?",
 
     "slorgundug": ["end times", "apocalypse", "armageddon"],
 
