@@ -283,6 +283,8 @@ translation_dictionary = {
     "kortik": ["kill", "die", "death", "killed", "died", "slaughter", "murder"],
     "moibin": ["revive", "live", "life", "lived"],
     "krongle": ["hunger", "starve"],
+    "glunch": "glunch", # to make something / someone unrecognisable on a quantum level
+    "morbort": "discombobulate",
 
     # Proper Nouns
     "googrung": "you",
@@ -426,7 +428,10 @@ dictionary_information = {
     "extra_info": {
         "agger": "[bright_green]platonic[/bright_green]",
         "forp": "[deep_pink1]romantic[/deep_pink1]",
-        "gdorp": "[bold orange1]slur[/bold orange1]"
+        "gdorp": "[bold orange1]slur[/bold orange1], slur against Gorgans",
+        "glunch": "to make something / someone unrecognisable on a quantum level",
+        "gorgan": "the race that speaks Gorgus",
+        "gorgus": "the language spoken by Gorgans"
     }
 }
 
