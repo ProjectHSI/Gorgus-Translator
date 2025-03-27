@@ -285,6 +285,7 @@ translation_dictionary = {
     "krongle": ["hunger", "starve"],
     "glunch": "glunch", # to make something / someone unrecognisable on a quantum level
     "morbort": "discombobulate",
+    "gorjark": "crunch",
 
     # Proper Nouns
     "googrung": "you",
