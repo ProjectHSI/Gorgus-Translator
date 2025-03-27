@@ -142,6 +142,7 @@ translation_dictionary = {
     "grongus": "gibberish",
     "wheenp": "question",
     "rébsnop": ["answer", "response"],
+    "chumtop": "depression",
 
     # colours
     "preeti": ["colour", "color"],
@@ -289,6 +290,8 @@ translation_dictionary = {
     "morbort": "discombobulate",
     "gorjark": "crunch",
     "squimsh": "fit",
+    "chumblo": "depress",
+    "chumblo-ra": "depressed",
 
     # Proper Nouns
     "googrung": "you",
@@ -520,7 +523,8 @@ ignored_plurals = [ # words that can't be pluralised
     "under",
     "penis",
     "serious",
-    "manslaughter"
+    "manslaughter",
+    "depress"
 ]
 
 ignored_actor_nouns = [ # words that can't be turned into actor nouns
