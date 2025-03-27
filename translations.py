@@ -380,7 +380,7 @@ translation_dictionary = {
     "grik": ["small", "little", "tiny"],
     "grok": ["large", "big", "huge", "massive"],
     "mivac": ["particular", "specific"],
-    "apolocheese": ["apologies", "sorry"],
+    "apolocheese": "sorry",
     "qugger": ["same", "equal"],
     "kithrak": ["angry", "enraged"],
     "spink": ["sharp", "pointy"],
@@ -460,13 +460,13 @@ phrase_translations = { # if one of these phrases appears before another phrase 
     "nips": ["it's", "it is"],
     "th'orse": "this is",
     "mug'ob": "everything",
-    "plomby\u0302": ["so many", "too many"],
     "go'gunx": "you look",
     "h'gorg mébis": "are you going to",
     "pritter yuti": ["hurry up"],
     "shriv'ma": ["there is going to be", "there will be", "there shall be"],
     "gog'um": "you should",
     "clor'ge": ["they're", "theyre", "they are"],
+    "mij'in": ["cannot", "can not"],
 
     "slorgundug": ["end times", "apocalypse", "armageddon"],
 
