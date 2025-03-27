@@ -141,7 +141,7 @@ translation_dictionary = {
     "moyp": "rat",
     "grongus": "gibberish",
     "wheenp": "question",
-    "rébsnop": "answer",
+    "rébsnop": ["answer", "response"],
 
     # colours
     "preeti": ["colour", "color"],
