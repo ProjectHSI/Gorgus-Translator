@@ -379,7 +379,7 @@ translation_dictionary = {
     "grik": ["small", "little", "tiny"],
     "grok": ["large", "big", "huge", "massive"],
     "mivac": ["particular", "specific"],
-    "apolocheese": ["apologies", "sorry"],
+    "apolocheese": "sorry",
     "qugger": ["same", "equal"],
     "kithrak": ["angry", "enraged"],
     "spink": ["sharp", "pointy"],
