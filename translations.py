@@ -140,6 +140,8 @@ translation_dictionary = {
     "homp": "tunnel",
     "moyp": "rat",
     "grongus": "gibberish",
+    "wheenp": "question",
+    "rébsnop": "answer",
 
     # colours
     "preeti": ["colour", "color"],
