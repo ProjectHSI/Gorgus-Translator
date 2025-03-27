@@ -288,6 +288,7 @@ translation_dictionary = {
     "glunch": "glunch", # to make something / someone unrecognisable on a quantum level
     "morbort": "discombobulate",
     "gorjark": "crunch",
+    "squimsh": "fit",
 
     # Proper Nouns
     "googrung": "you",
@@ -307,7 +308,7 @@ translation_dictionary = {
     "hugub": ["gender", "sex"],
     "hèk": ["your", "thy"],
     "ji": ["a", "an"],
-    "tebis": ["yes", "affirmative"],
+    "tebis": ["yes", "affirmative", "yeah"],
     "kerp": ["no", "incorrect", "nah", "nope"],
     "tebok": ["okay", "ok"],
     "goober": ["have", "got"],
@@ -376,6 +377,7 @@ translation_dictionary = {
     "horv": "was",
     "klu": "cool",
     "mugtur": ["entire", "whole"],
+    "mugup": ["together", "joined"],
     "migtir": "all",
     "meger": "every",
     "bunpo": "silly",
@@ -477,6 +479,7 @@ phrase_translations = { # if one of these phrases appears before another phrase 
     "clor'ge": ["they're", "theyre", "they are"],
     "mij'in": ["cannot", "can not"],
     "morp lunk": "where?",
+    "nipe migtir ik-squimsh": ["it all fits", "it's all coming together", "its coming together", "it's coming together", "its all coming together"],
 
     "slorgundug": ["end times", "apocalypse", "armageddon"],
 
