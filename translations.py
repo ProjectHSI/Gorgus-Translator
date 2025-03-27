@@ -138,6 +138,7 @@ translation_dictionary = {
     "mawbahp": "dream",
     "krinkeb": "cheese",
     "homp": "tunnel",
+    "moyp": "rat",
 
     # colours
     "preeti": ["colour", "color"],
