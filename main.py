@@ -478,8 +478,9 @@ These are the people that make this possible! *(all of these are Discord usernam
 - **@pynecoen:** Came up with the idea to make a language and made a majority of the words
 - **@spookydervish:** Made the translator, made grammar rules and made words
 - **@plenorf:** Contributed many words
-- **@defohumanreal:** Contributed many words, came up with the idea for the `Games` tab.
-- **@the-trumpeter:** Made a counting system for the language (yet to be implemented)""", show_table_of_contents=False)
+- **@defohumanreal:** Contributed many words, came up with the idea for the `Games` tab
+- **@the-trumpeter:** Made a counting system for the language (yet to be implemented)
+- **@killerpug:** Created a lot of words for adjectives / nouns""", show_table_of_contents=False)
             with TabPane("Games"):
                 with VerticalScroll() as container:
                     container.can_focus = False
