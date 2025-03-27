@@ -139,6 +139,7 @@ translation_dictionary = {
     "krinkeb": "cheese",
     "homp": "tunnel",
     "moyp": "rat",
+    "grongus": "gibberish",
 
     # colours
     "preeti": ["colour", "color"],
