@@ -89,6 +89,9 @@ GAMES_MD = """\
 
 Hi! Currently there aren't very many Gorgus Games™ here yet, so uhh...  
 Enjoy off brand Wordle and Hangman lmao. 
+
+Oh yeah, and there's a multiplayer game too. :P
+Both people need the translator though.
 """
 
 GAMES = [
