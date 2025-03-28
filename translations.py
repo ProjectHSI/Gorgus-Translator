@@ -147,6 +147,8 @@ translation_dictionary = {
     "chumtop": "depression",
     "mokoe": ["chamber", "room"],
     "grogd": "nugget",
+    "speron": ["ball", "sphere"],
+    "phuhnty": ["game", "conundrum"],
 
     # colours
     "preeti": ["colour", "color"],
