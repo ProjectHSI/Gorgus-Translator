@@ -51,6 +51,7 @@ translation_dictionary = {
     "plater": "floor",
     "zibble": "democracy",
     "zibblit": "democratic",
+    "crunkt": "meat",
     "meat": "friend",
     "rock": ["earth", "world"],
     "snork": ["mum", "mom", "mother"],
@@ -139,6 +140,11 @@ translation_dictionary = {
     "krinkeb": "cheese",
     "homp": "tunnel",
     "cranum": ["skull", "head"],
+    "moyp": "rat",
+    "grongus": "gibberish",
+    "wheenp": "question",
+    "rébsnop": ["answer", "response"],
+    "chumtop": "depression",
 
     # colours
     "preeti": ["colour", "color"],
@@ -191,7 +197,7 @@ translation_dictionary = {
     "fleen": "who",
     "neep": "what",
     "abith": "when",
-    "morp": "where",
+    "morp": ["here", "where"],
 
     # Adverbs
     "yuti": ["quick", "fast"],
@@ -213,7 +219,7 @@ translation_dictionary = {
     "huffer": ["believe", "reckon", "think"],
     "thork": ["hate", "loathe", "despise"],
     "geep": ["do", "commit"],
-    "clunk": "hit",
+    "clunk": ["hit", "beat"],
     "agger": "love",
     "forp": "love",
     "cubil": ["make", "create"],
@@ -282,6 +288,12 @@ translation_dictionary = {
     "kortik": ["kill", "die", "death", "killed", "died", "slaughter", "murder"],
     "moibin": ["revive", "live", "life", "lived"],
     "krongle": ["hunger", "starve"],
+    "glunch": "glunch", # to make something / someone unrecognisable on a quantum level
+    "morbort": "discombobulate",
+    "gorjark": "crunch",
+    "squimsh": "fit",
+    "chumblo": "depress",
+    "chumblo-ra": "depressed",
 
     # Proper Nouns
     "googrung": "you",
@@ -301,7 +313,7 @@ translation_dictionary = {
     "hugub": ["gender", "sex"],
     "hèk": ["your", "thy"],
     "ji": ["a", "an"],
-    "tebis": ["yes", "affirmative"],
+    "tebis": ["yes", "affirmative", "yeah"],
     "kerp": ["no", "incorrect", "nah", "nope"],
     "tebok": ["okay", "ok"],
     "goober": ["have", "got"],
@@ -370,6 +382,7 @@ translation_dictionary = {
     "horv": "was",
     "klu": "cool",
     "mugtur": ["entire", "whole"],
+    "mugup": ["together", "joined"],
     "migtir": "all",
     "meger": "every",
     "bunpo": "silly",
@@ -425,7 +438,10 @@ dictionary_information = {
     "extra_info": {
         "agger": "[bright_green]platonic[/bright_green]",
         "forp": "[deep_pink1]romantic[/deep_pink1]",
-        "gdorp": "[bold orange1]slur[/bold orange1]"
+        "gdorp": "[bold orange1]slur[/bold orange1], slur against Gorgans",
+        "glunch": "to make something / someone unrecognisable on a quantum level",
+        "gorgan": "the race that speaks Gorgus",
+        "gorgus": "the language spoken by Gorgans"
     }
 }
 
@@ -467,6 +483,8 @@ phrase_translations = { # if one of these phrases appears before another phrase 
     "gog'um": "you should",
     "clor'ge": ["they're", "theyre", "they are"],
     "mij'in": ["cannot", "can not"],
+    "morp lunk": "where?",
+    "nipe migtir ik-squimsh": ["it all fits", "it's all coming together", "its coming together", "it's coming together", "its all coming together"],
 
     "slorgundug": ["end times", "apocalypse", "armageddon"],
 
@@ -507,7 +525,8 @@ ignored_plurals = [ # words that can't be pluralised
     "under",
     "penis",
     "serious",
-    "manslaughter"
+    "manslaughter",
+    "depress"
 ]
 
 ignored_actor_nouns = [ # words that can't be turned into actor nouns

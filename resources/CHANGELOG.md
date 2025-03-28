@@ -1,4 +1,5 @@
 # Changelog
+The Gorgus Translator was published to Github in version `1.6`, pretty much all prior versions are lost media lmao.
 
 ## Version 1.10 (current, the last update!)
 - I'm going to add content to this over time, but this will be the last update cause I'm getting bored of working on this translator lol.
@@ -8,6 +9,7 @@
 - You can now turn any verb into past tense by adding `-ra` *(eat -> ate, build -> built)* or continuous tense by adding `-ak` *(eat -> eating, kill -> killing)*.
 - Improved grammar when translating from Gorgus to English and vice versa.
 - Added more loading screen messages.
+- Removed Herobrine.
 
 ## Version 1.95
 - You can now host a multiplayer game between you and a friend! Check out the new game. :)
