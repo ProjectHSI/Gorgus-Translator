@@ -145,6 +145,7 @@ translation_dictionary = {
     "wheenp": "question",
     "rébsnop": ["answer", "response"],
     "chumtop": "depression",
+    "mokoe": ["chamber", "room"],
 
     # colours
     "preeti": ["colour", "color"],
