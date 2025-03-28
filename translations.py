@@ -138,6 +138,7 @@ translation_dictionary = {
     "mawbahp": "dream",
     "krinkeb": "cheese",
     "homp": "tunnel",
+    "cranum": ["skull", "head"],
 
     # colours
     "preeti": ["colour", "color"],
