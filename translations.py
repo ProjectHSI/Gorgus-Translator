@@ -149,6 +149,7 @@ translation_dictionary = {
     "grogd": "nugget",
     "speron": ["ball", "sphere"],
     "phuhnty": ["game", "activity"],
+    "noople": "spaghetti",
 
     # colours
     "preeti": ["colour", "color"],
