@@ -148,7 +148,7 @@ translation_dictionary = {
     "mokoe": ["chamber", "room"],
     "grogd": "nugget",
     "speron": ["ball", "sphere"],
-    "phuhnty": ["game", "conundrum"],
+    "phuhnty": ["game", "activity"],
 
     # colours
     "preeti": ["colour", "color"],
@@ -561,5 +561,6 @@ ignored_actor_nouns = [ # words that can't be turned into actor nouns
     "manslaughter",
     "murder",
     "hunger",
-    "chamber"
+    "chamber",
+    "answer"
 ]
