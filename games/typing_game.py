@@ -198,6 +198,10 @@ class TypingGame(ModalScreen):
                 self.app.log(f"Packet: {packet}")
 
                 if isinstance(packet, str):
+                    if packet == "Ran out of input":
+                        self.app.log("Ignored ran out of input error.")
+                        continue
+
                     if game_ended:
                         self.run =  False
                         break
