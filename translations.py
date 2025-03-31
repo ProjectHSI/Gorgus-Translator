@@ -517,6 +517,9 @@ phrase_translations = { # if one of these phrases appears before another phrase 
     "h'eekep": "i like to",
     "h'aggap": "i love to",
 
+    "geti'fer": ["don't think that", "dont think that", "doubt"],
+    "kè'rack": ["nobody", "no one"],
+
     "bit'up": "going to be",
 
     "sna'rse": ["she's", "shes", "she is"],
