@@ -275,6 +275,7 @@ translation_dictionary = {
     "virt": "appear",
     "mengr": "see",
     "hemlor": "thank",
+    "ik-hemlor": "gratitude",
     "hev": "rise",
     "hez": "shine",
     "eep": ["rest", "sleep"],
@@ -315,7 +316,7 @@ translation_dictionary = {
     "jeederod": "smear",
 
     # Proper Nouns
-    "googrung": "you",
+    "googrung": ["you", "thee"],
     "googrungz": ["yourself", "thyself"],
     "henġer": ["i", "me", "myself"],
 
@@ -564,6 +565,7 @@ ignored_plurals = [ # words that can't be pluralised
     "manslaughter",
     "depress",
     "over",
+    "gorgus"
 ]
 
 ignored_actor_nouns = [ # words that can't be turned into actor nouns
