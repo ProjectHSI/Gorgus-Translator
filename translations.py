@@ -517,7 +517,7 @@ phrase_translations = { # if one of these phrases appears before another phrase 
     "goov'ma": ["haven't", "havent", "have not"],
     "meg'morp": "everywhere",
 
-    "slorgundug": ["end times", "apocalypse", "armageddon"],
+    "slorgundug": ["reckoning", "end times", "apocalypse", "armageddon"],
 
     "pritter marip": ["leave me alone", "leave"],
 
