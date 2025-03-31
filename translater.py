@@ -519,7 +519,7 @@ class TranslationTester(unittest.TestCase):
             "Hi! How are you?": "Dink! Dup pritter-ok lunk",
             "How is the weather?": "Dup gorse weather lunk",
             "I love you.": "Henġer agger googrung.",
-            "He slept.": "Nack eep-ra.",
+            "He slept.": "Nåck eep-ra.",
             "What's up?": "Dup pritter-ok lunk",
             "Do you like to eat?": "Gè'googrung jeek bonkep ćhong̱le̱ lunk",
             "What is going on?": "Nergo're pritter-ok hoog lunk"
@@ -534,7 +534,7 @@ class TranslationTester(unittest.TestCase):
         tests_from_gorgus = {
             "Dink, dup pritter-ok lunk": "Hello, how are you going?",
             "Henġer agger ik-fren!": "I love dogs!",
-            "Glonk ćhong̱le̱-ok migtir omnom!": "Stop eating all the food!",
+            "Glonk ćhong̱le̱-ok migtir omnom!": "Stop eating all food!",
             "Googrung kiff!": "You smell!",
             "Minġer goob'rung ji dagsâ dublub. :)": "I hope you have a really nice day. :)",
             "Jid shrerack, henġer huffer clor'ge dagsa.": "That person, I believe they're nice."
