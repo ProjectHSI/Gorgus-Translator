@@ -543,7 +543,8 @@ ignored_plurals = [ # words that can't be pluralised
     "penis",
     "serious",
     "manslaughter",
-    "depress"
+    "depress",
+    "over"
 ]
 
 ignored_actor_nouns = [ # words that can't be turned into actor nouns
@@ -575,5 +576,6 @@ ignored_actor_nouns = [ # words that can't be turned into actor nouns
     "murder",
     "hunger",
     "chamber",
-    "answer"
+    "answer",
+    "over"
 ]
