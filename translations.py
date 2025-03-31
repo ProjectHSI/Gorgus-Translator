@@ -414,6 +414,8 @@ translation_dictionary = {
     "bolg": "deep",
     "kern": "shallow",
     "morg": "sure",
+    "penifo": "public",
+    "penifa": "private",
 
     # naughty words >:(
     "zogo": ["idiot", "fool", "dumb", "moron", "clown", "stupid", "dumbass", "cretin"],
