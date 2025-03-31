@@ -353,7 +353,7 @@ translation_dictionary = {
     "clungudubus": "our",
     "kleebar": "new",
     "jeenar": "old",
-    "bonkep": "to",
+    "tå": "to",
 
     # Prepositions
     "margar": "behind",
@@ -525,8 +525,8 @@ phrase_translations = { # if one of these phrases appears before another phrase 
 
     "cubiling": "working on",
 
-    "h'eekep": "i like to",
-    "h'aggap": "i love to",
+    "h'eeko": "i like",
+    "h'aggo": "i love",
 
     "geti'fer": ["don't think that", "dont think that", "doubt"],
     "kè'rack": ["nobody", "no one", "noone"],
