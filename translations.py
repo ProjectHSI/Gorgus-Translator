@@ -158,6 +158,7 @@ translation_dictionary = {
     'brainz': "knowledge",
     "krokamorko": ["blood", "gore"],
     "bwamp": "wall",
+    "bliltof": "science",
 
     # colours
     "preeti": ["colour", "color"],
