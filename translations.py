@@ -47,7 +47,7 @@ translation_dictionary = {
     "jidfo": "booger",
     "norack": "man",
     "snorack": "woman",
-    "shrerack": "person",
+    "shrèrack": "person",
     "yummmered": "lobotomized",
     "yummmers": "lobotomize",
     "yummmer": "lobotomy",
