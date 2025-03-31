@@ -156,6 +156,8 @@ translation_dictionary = {
     "noople": "spaghetti",
     "foosh": ["breeze", "wind"],
     'brainz': "knowledge",
+    "krokamorko": ["blood", "gore"],
+    "bwamp": "wall",
 
     # colours
     "preeti": ["colour", "color"],
@@ -310,6 +312,7 @@ translation_dictionary = {
     "groof": "jump",
     "wumpto": "enjoy",
     "brenzi": "understand",
+    "jeederod": "smear",
 
     # Proper Nouns
     "googrung": "you",
