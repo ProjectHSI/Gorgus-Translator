@@ -503,7 +503,7 @@ phrase_translations = { # if one of these phrases appears before another phrase 
     "shriv'ma": ["there is going to be", "there will be", "there shall be"],
     "gog'um": "you should",
     "clor'ge": ["they're", "theyre", "they are"],
-    "mij'in": ["cannot", "can not"],
+    "mij'in": ["can't", "cant", "cannot", "can not"],
     "morp lunk": "where?",
     "nipe migtir ik-squimsh": ["it all fits", "it's all coming together", "its coming together", "it's coming together", "its all coming together"],
     "ti'forj": ["remember", "don't forget", "dont forget", "do not forget"],
