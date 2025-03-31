@@ -48,6 +48,7 @@ translation_dictionary = {
     "norack": "man",
     "snorack": "woman",
     "shrèrack": "person",
+    "megèrack": "everyone",
     "yummmered": "lobotomized",
     "yummmers": "lobotomize",
     "yummmer": "lobotomy",
@@ -508,6 +509,7 @@ phrase_translations = { # if one of these phrases appears before another phrase 
     "nipe migtir ik-squimsh": ["it all fits", "it's all coming together", "its coming together", "it's coming together", "its all coming together"],
     "ti'forj": ["remember", "don't forget", "dont forget", "do not forget"],
     "goov'ma": ["haven't", "havent", "have not"],
+    "meg'morp": "everywhere",
 
     "slorgundug": ["end times", "apocalypse", "armageddon"],
 
