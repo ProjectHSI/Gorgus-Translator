@@ -519,6 +519,7 @@ phrase_translations = { # if one of these phrases appears before another phrase 
 
     "geti'fer": ["don't think that", "dont think that", "doubt"],
     "kè'rack": ["nobody", "no one"],
+    "morĝ": "pretty sure",
 
     "bit'up": "going to be",
 
