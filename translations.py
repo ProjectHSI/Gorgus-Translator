@@ -154,7 +154,7 @@ translation_dictionary = {
     "speron": ["ball", "sphere"],
     "phuhnty": ["game", "activity"],
     "noople": "spaghetti",
-    "foosh": "wind",
+    "foosh": ["wind", "breeze"],
 
     # colours
     "preeti": ["colour", "color"],
