@@ -155,6 +155,7 @@ translation_dictionary = {
     "phuhnty": ["game", "activity"],
     "noople": "spaghetti",
     "foosh": ["breeze", "wind"],
+    'brainz': "knowledge",
 
     # colours
     "preeti": ["colour", "color"],
@@ -308,6 +309,7 @@ translation_dictionary = {
     "chumblo-ra": "depressed",
     "groof": "jump",
     "wumpto": "enjoy",
+    "brenzi": "understand",
 
     # Proper Nouns
     "googrung": "you",
@@ -518,7 +520,7 @@ phrase_translations = { # if one of these phrases appears before another phrase 
     "h'aggap": "i love to",
 
     "geti'fer": ["don't think that", "dont think that", "doubt"],
-    "kè'rack": ["nobody", "no one"],
+    "kè'rack": ["nobody", "no one", "noone"],
     "morĝ": "pretty sure",
 
     "bit'up": "going to be",
