@@ -491,6 +491,7 @@ phrase_translations = { # if one of these phrases appears before another phrase 
     "mij'in": ["cannot", "can not"],
     "morp lunk": "where?",
     "nipe migtir ik-squimsh": ["it all fits", "it's all coming together", "its coming together", "it's coming together", "its all coming together"],
+    "ti'forj": ["remember", "don't forget", "dont forget", "do not forget"],
 
     "slorgundug": ["end times", "apocalypse", "armageddon"],
 
