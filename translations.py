@@ -350,7 +350,7 @@ translation_dictionary = {
     # Prepositions
     "margar": "behind",
     "tinro": "under",
-    "nhipt": "above",
+    "nhipt": ["above", "over"],
     "kalgo": "below",
     "nepo": "at",
     "hoog": "on",
@@ -421,6 +421,8 @@ translation_dictionary = {
     "morg": "sure",
     "penifo": "public",
     "penifa": "private",
+    "boisg": "fat",
+    "pegois": "lazy",
 
     # naughty words >:(
     "zogo": ["idiot", "fool", "dumb", "moron", "clown", "stupid", "dumbass", "cretin"],
