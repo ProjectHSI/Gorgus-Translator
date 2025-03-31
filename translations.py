@@ -306,6 +306,7 @@ translation_dictionary = {
     "chumblo": "depress",
     "chumblo-ra": "depressed",
     "groof": "jump",
+    "wumpto": "enjoy",
 
     # Proper Nouns
     "googrung": "you",
@@ -341,8 +342,7 @@ translation_dictionary = {
     "rint": "am",
     "flenk": "please",
     "wibble": 'let',
-    "sha": "my",
-    "jinking": "enjoying",
+    "shå": "my",
     "clungudubus": "our",
     "kleebar": "new",
     "jeenar": "old",
