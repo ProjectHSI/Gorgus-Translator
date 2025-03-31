@@ -23,6 +23,9 @@ translation_dictionary = {
     "shrem": "their",
 
     # Nouns
+    ### Symbols ###
+    # ik- makes something plural (dog -> dogs)
+    # -ak turns a verb into a noun (teach -> teacher)
     "neeper": ["baby", "child", "infant", "kid"],
     "kneeper": "son",
     "sneeper": "daughter",
@@ -101,6 +104,7 @@ translation_dictionary = {
     "shnap": "turtle",
     "phrog": "frog",
     "shmack": "cat",
+    "yiteka": "fox",
     "hish": "snake",
     "blubglub": "fish",
     "caflów": "cow",
@@ -300,6 +304,7 @@ translation_dictionary = {
     "squimsh": "fit",
     "chumblo": "depress",
     "chumblo-ra": "depressed",
+    "groof": "jump",
 
     # Proper Nouns
     "googrung": "you",
