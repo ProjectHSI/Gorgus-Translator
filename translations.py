@@ -48,7 +48,7 @@ translation_dictionary = {
     "norack": "man",
     "snorack": "woman",
     "shrèrack": "person",
-    "megèrack": "everyone",
+    "megèrack": ["everyone", "every one"],
     "yummmered": "lobotomized",
     "yummmers": "lobotomize",
     "yummmer": "lobotomy",
