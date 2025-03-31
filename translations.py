@@ -520,6 +520,7 @@ phrase_translations = { # if one of these phrases appears before another phrase 
     "bingus": "rotisserie chicken",
 
     "zorp ik-spek": "profanity",
+    "jid gorse": ["that's", "thats", "that is"],
 
     "slorgundug": ["reckoning", "end times", "apocalypse", "armageddon"],
 
