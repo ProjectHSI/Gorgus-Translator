@@ -353,7 +353,7 @@ translation_dictionary = {
     "clungudubus": "our",
     "kleebar": "new",
     "jeenar": "old",
-    "tå": "to",
+    "tå": "to", # used to be "bonkep"
 
     # Prepositions
     "margar": "behind",
