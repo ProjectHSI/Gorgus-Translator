@@ -517,6 +517,7 @@ phrase_translations = { # if one of these phrases appears before another phrase 
     "ti'forj": ["remember", "don't forget", "dont forget", "do not forget"],
     "goov'ma": ["haven't", "havent", "have not"],
     "meg'morp": "everywhere",
+    "bingus": "rotisserie chicken",
 
     "zorp ik-spek": "profanity",
 
