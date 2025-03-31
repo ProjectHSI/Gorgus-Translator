@@ -221,6 +221,7 @@ translation_dictionary = {
     # -ok makes a verb present-continuous
     ### End of Symbols ###
     "ćhong̱le̱": ["eat", "devour"],
+    "sćhlore̱": ["drink", "slurp"],
     "huffer": ["believe", "reckon", "think"],
     "thork": ["hate", "loathe", "despise"],
     "geep": ["do", "commit"],
