@@ -294,7 +294,7 @@ translation_dictionary = {
     "muggit": "give",
     "wheremecopha": "send",
     "morple": "attract",
-    "yahp": ["speak", "say", "talk"],
+    "yahp": ["say", "speak", "talk"],
     "forgor": "forget",
     "trik": "work",
     "pritter": "go",
