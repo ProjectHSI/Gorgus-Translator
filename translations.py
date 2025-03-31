@@ -428,7 +428,7 @@ translation_dictionary = {
 
     # temperatures
     "sisf": "hot",
-    "bŕ̈er": "cold",
+    "bŕ̈er": ["cold", "chilly"],
 
     # naughty words >:(
     "zogo": ["idiot", "fool", "dumb", "moron", "clown", "stupid", "dumbass", "cretin"],
