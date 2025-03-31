@@ -427,6 +427,7 @@ translation_dictionary = {
     "penifa": "private",
     "boisg": "fat",
     "pègois": "lazy",
+    "marip": "away",
 
     # temperatures
     "sisf": "hot",
@@ -513,6 +514,8 @@ phrase_translations = { # if one of these phrases appears before another phrase 
     "meg'morp": "everywhere",
 
     "slorgundug": ["end times", "apocalypse", "armageddon"],
+
+    "pritter marip": ["leave me alone", "leave"],
 
     "cubiling": "working on",
 
