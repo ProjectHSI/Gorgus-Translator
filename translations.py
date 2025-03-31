@@ -154,6 +154,7 @@ translation_dictionary = {
     "speron": ["ball", "sphere"],
     "phuhnty": ["game", "activity"],
     "noople": "spaghetti",
+    "foosh": "wind",
 
     # colours
     "preeti": ["colour", "color"],
@@ -424,6 +425,10 @@ translation_dictionary = {
     "penifa": "private",
     "boisg": "fat",
     "pègois": "lazy",
+
+    # temperatures
+    "sisf": "hot",
+    "bŕ̈er": "cold",
 
     # naughty words >:(
     "zogo": ["idiot", "fool", "dumb", "moron", "clown", "stupid", "dumbass", "cretin"],
