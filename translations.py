@@ -4,7 +4,6 @@ translation_dictionary = {
 
     # Grammar
     "lunk": "?",
-    "ghron": "the",
     "<PLURAL>": "ik-",
     "<ACTOR>": "-ak",
     "<PAST_TENSE>": "-ra",
