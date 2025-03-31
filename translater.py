@@ -256,7 +256,10 @@ def to_gorgus(user_input):
         elif token.text == "GENTLE":
             modified_verbs[token.head.i] = -1
 
-    for i, word in enumerate(words):
+    for i, word in enumerate(words): 
+        if word == "the": # skip "the", there is no equivelant in gorgus
+            continue
+
         trailing_punctuation = get_trailing_punctuation(word, translation_dictionary["<EXAGGERATED_VERB>"] + translation_dictionary["<GENTLE_VERB>"])
         word = word.translate(str.maketrans('', '', "?.!,\":()=/\\$[]"))
 
