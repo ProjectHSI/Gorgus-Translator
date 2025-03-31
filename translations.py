@@ -167,6 +167,7 @@ translation_dictionary = {
     "blude": "red",
     "zits": "orange",
     "nill": ["gray", "grey"],
+    "fard": "brown",
 
     # times
     "dublub": "day",
