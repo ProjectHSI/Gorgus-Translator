@@ -423,7 +423,7 @@ translation_dictionary = {
     "penifo": "public",
     "penifa": "private",
     "boisg": "fat",
-    "pegois": "lazy",
+    "pègois": "lazy",
 
     # naughty words >:(
     "zogo": ["idiot", "fool", "dumb", "moron", "clown", "stupid", "dumbass", "cretin"],
@@ -545,7 +545,7 @@ ignored_plurals = [ # words that can't be pluralised
     "serious",
     "manslaughter",
     "depress",
-    "over"
+    "over",
 ]
 
 ignored_actor_nouns = [ # words that can't be turned into actor nouns
@@ -576,6 +576,7 @@ ignored_actor_nouns = [ # words that can't be turned into actor nouns
     "manslaughter",
     "murder",
     "hunger",
+    "hungers",
     "chamber",
     "answer",
     "over"
