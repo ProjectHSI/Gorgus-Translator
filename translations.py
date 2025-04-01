@@ -231,7 +231,7 @@ translation_dictionary = {
     # -ra makes a verb past tense
     # -ok makes a verb present-continuous
     ### End of Symbols ###
-    "ćhong̱le̱": ["eat", "devour"],
+    "chongle̱": ["eat", "devour"],
     "sćhlore̱": ["drink", "slurp"],
     "huffer": ["believe", "reckon", "think"],
     "thork": ["hate", "loathe", "despise"],
