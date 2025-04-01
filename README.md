@@ -68,18 +68,6 @@ Here is the phonology of the Gorgus conlang:
       <td class="grey"></td>
     </tr>
     <tr>
-      <td><strong>Tap/Flap</strong></td>
-      <td></td>
-      <td></td>
-      <td colspan="3"></td>
-      <td></td>
-      <td></td>
-      <td class="grey"></td>
-      <td></td>
-      <td></td>
-      <td class="grey"></td>
-    </tr>
-    <tr>
       <td><strong>Fricative</strong></td>
       <td></td>
       <td>/f/</td>
@@ -92,20 +80,6 @@ Here is the phonology of the Gorgus conlang:
       <td></td>
       <td></td>
       <td>/h/</td>
-    </tr>
-    <tr>
-      <td><strong>Lateral fricative</strong></td>
-      <td class="grey"></td>
-      <td class="grey"></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td class="grey"></td>
-      <td class="grey"></td>
     </tr>
     <tr>
       <td><strong>Approximant</strong></td>
