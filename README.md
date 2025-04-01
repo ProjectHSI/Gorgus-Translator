@@ -3,10 +3,29 @@ A translator for a conlang called Gorgus me and some friends are actively workin
 
 ![An image of the translating showing the sentence "Hello! Do you like pizza?" being translated.](/resources/screenshot.png)
 
+# Phonology
+Here is the phonology of the Gorgus conlang:
+
+## Consonants
+| **Place \ Manner** | **Stop** | **Fricative** | **Nasal** | **Approximant** | **Lateral** |
+|--------------------|----------|---------------|-----------|-----------------|-------------|
+| Bilabial           | b, p     |               | m         |                 |             |
+| Alveolar           | t, d     | s, z          | n         | r               | l           |
+| Postalveolar       | dʒ       | ʃ             |           |                 |             |
+| Velar              | k, g     |               | ŋ         |                 |             |
+| Glottal            |          | h             |           |                 |             |
+
+# Vowels
+|         | **High** | **Mid** | **Low** |
+|---------|----------|---------|---------|
+| Front   | i        | ɛ, e    |         |
+| Central |          |         |         |
+| Back    | ʊ        | ɔ       | ɒ / ɑ   |
+
 # Install
 
 ### Install Requirements
-- Python <3.13 (3.13 does not work with the spacy Python module, 3.12.9 is recommended)
+- Python < 3.13 (3.13 does not work with the spacy Python module, 3.12.9 is recommended)
 - Git (for automatic updates)
 
 ### Actual Install
