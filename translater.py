@@ -238,13 +238,6 @@ def to_gorgus(user_input):
             pattern = r'\b' + re.escape(phrase) + r'\b'
             user_input = re.sub(pattern, gorgus, user_input, flags=re.IGNORECASE)
 
-    """for gorgus, english_phrases in phrase_translations.items():
-        if isinstance(english_phrases, str):  
-            english_phrases = [english_phrases]  # Convert to list for uniformity
-        
-        for phrase in english_phrases:
-            user_input = user_input.replace(phrase, gorgus)"""
-
     words = user_input.split(" ")
 
     modified_verbs = {}
