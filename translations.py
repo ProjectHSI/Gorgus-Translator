@@ -381,6 +381,7 @@ translation_dictionary = {
     "brum": "until",
     "tubuk": "top",
     "gubuk": "bottom",
+    "plink-tå": "into",
     
     # adjectives
     "zorp": ["bad", "awful", "terrible", "horrible"],
