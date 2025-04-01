@@ -160,6 +160,8 @@ translation_dictionary = {
     "bwamp": "wall",
     "bliltof": "science",
     "florg": "nut",
+    "boxob": "cart",
+    "krakra": "crocodile",
 
     # colours
     "preeti": ["colour", "color"],
@@ -316,6 +318,7 @@ translation_dictionary = {
     "wumpto": "enjoy",
     "brenzi": "understand",
     "jeederod": "smear",
+    "goog": "ride",
 
     # Proper Nouns
     "googrung": ["you", "thee"],
@@ -434,6 +437,7 @@ translation_dictionary = {
     "boisg": "fat",
     "pègois": "lazy",
     "marip": "away",
+    "dimbuplo": "pregnant",
 
     # temperatures
     "sisf": "hot",
