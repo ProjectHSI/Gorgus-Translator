@@ -36,7 +36,7 @@ Here is the phonology of the Gorgus conlang:
       <td>/p/ /b/</td>
       <td></td>
       <td colspan="3">/t/ /d/</td>
-      <td>/ʈ/</td>
+      <td></td>
       <td></td>
       <td>/k/ /g/</td>
       <td></td>
