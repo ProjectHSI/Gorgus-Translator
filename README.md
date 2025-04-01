@@ -134,6 +134,9 @@ Here is the phonology of the Gorgus conlang:
   </tbody>
 </table>
 
+## Vowels
+![The vowel inventory for Gorgus.](resources/vowels.png)
+
 # Install
 
 ### Install Requirements
