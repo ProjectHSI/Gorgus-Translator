@@ -518,10 +518,10 @@ class TranslationTester(unittest.TestCase):
             "Very cool! Very good. :)": "Klû! Dagungâ. :)",
             "Hi! How are you?": "Dink! Dup pritter-ok lunk",
             "How is the weather?": "Dup gorse weather lunk",
-            "I love you.": "Henġer agger googrung.",
+            "I love you.": "H'aggo googrung.",
             "He slept.": "Nåck eep-ra.",
             "What's up?": "Dup pritter-ok lunk",
-            "Do you like to eat?": "Gè'googrung jeek bonkep ćhong̱le̱ lunk",
+            "Do you like to eat?": "Gè'googrung jeek tå ćhong̱le̱ lunk",
             "What is going on?": "Nergo're pritter-ok hoog lunk"
         }
 
