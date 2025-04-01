@@ -27,7 +27,7 @@ Here is the phonology of the Gorgus conlang:
       <th><strong>Velar</strong></th>
       <th><strong>Uvular</strong></th>
       <th><strong>Pharyngeal</strong></th>
-      <th><strong>Glotal</strong></th>
+      <th><strong>Glottal</strong></th>
     </tr>
   </thead>
   <tbody>
