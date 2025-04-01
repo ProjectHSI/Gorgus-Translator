@@ -109,7 +109,7 @@ Here is the phonology of the Gorgus conlang:
 </table>
 
 ## Vowels
-![The vowel inventory for Gorgus.](image.png)
+![The vowel inventory for Gorgus.](resources/vowels.png)
 
 # Install
 
