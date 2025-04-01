@@ -87,7 +87,7 @@ Here is the phonology of the Gorgus conlang:
       <td></td>
       <td colspan="3">/ɹ/</td>
       <td></td>
-      <td></td>
+      <td>/j/</td>
       <td></td>
       <td></td>
       <td></td>
