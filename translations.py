@@ -159,6 +159,7 @@ translation_dictionary = {
     "krokamorko": ["blood", "gore"],
     "bwamp": "wall",
     "bliltof": "science",
+    "florg": "nut",
 
     # colours
     "preeti": ["colour", "color"],
