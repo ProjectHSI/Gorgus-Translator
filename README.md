@@ -35,7 +35,7 @@ Here is the phonology of the Gorgus conlang:
       <td><strong>Plosive</strong></td>
       <td>/p/ /b/</td>
       <td></td>
-      <td colspan="3">/d/</td>
+      <td colspan="3">/t/ /d/</td>
       <td>/ʈ/</td>
       <td></td>
       <td>/k/ /g/</td>
