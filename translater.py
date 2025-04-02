@@ -254,7 +254,7 @@ def get_ipa_pronounciation(gorgus: str):
         "g": ["g", "gg"],
         "ɛ": ["è"],
         "R": ["ŕ̈"], # r trill
-        "e͡ɪ": ["ae", "ä", "â"],
+        "e͡ɪ": ["ae", "ä", "â", "ai", "ay"],
         "ɪ": ["i"],
         "ɪŋk": ["ink"],
         "eŋk": ["enk"],
