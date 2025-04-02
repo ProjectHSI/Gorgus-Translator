@@ -229,6 +229,7 @@ def get_ipa_pronounciation(gorgus):
     consonants = {
         "lʊː": ["lu"],
         "ʃ": ["sh", "ćh"],
+        "o": ["oe", "ó"],
         "l": ["l", "ll"],
         "iː": ["ee", "é", "ea"],
         "h": ["h"],
@@ -251,7 +252,8 @@ def get_ipa_pronounciation(gorgus):
         "k": ["k", "c", "ck"],
         "g": ["g", "gg"],
         "ɛ": ["è"],
-        "r": ["ŕ̈"], # r trill
+        "R": ["ŕ̈"], # r trill
+        "": ["ae", "ä"],
         "": ['a̱', 'ḇ', 'c̱', 'ḏ', 'e̱', 'f̱', 'g̱', 'ẖ', 'i̱', 'j̱', 'ḵ', 'ḻ', 'm̱', 'ṉ', 'o̱', 'p̱', 'q̱', 'ṟ', 's̱', 'ṯ', 'u̱', 'v̱', 'w̱', 'x̱', 'y̱', 'ẕ'] # silent letters
     }
     from string import ascii_letters
@@ -271,7 +273,7 @@ def get_ipa_pronounciation(gorgus):
             ipa_word = ipa_word.replace(roman, ipa)
         ipa_output.append(ipa_word)
 
-    return "/" + ' '.join(ipa_output) + "/"
+    return "/" + ' '.join(ipa_output).replace("R", "r") + "/"
 
 def to_gorgus(user_input):
     translated = ""
@@ -613,5 +615,5 @@ class TranslationTester(unittest.TestCase):
 
 
 if __name__ == '__main__':
-    print(get_ipa_pronounciation("bŕ̈er"))
+    print(get_ipa_pronounciation("zogo"))
     unittest.main()

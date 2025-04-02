@@ -445,7 +445,7 @@ translation_dictionary = {
     "bŕ̈er": ["cold", "chilly"],
 
     # naughty words >:(
-    "zogo": ["idiot", "fool", "dumb", "moron", "clown", "stupid", "dumbass", "cretin"],
+    "zógó": ["idiot", "fool", "dumb", "moron", "clown", "stupid", "dumbass", "cretin"],
     "nink": "dweeb",
     "jink": "fuck",
     "toop": "shit",
