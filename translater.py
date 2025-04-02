@@ -225,7 +225,7 @@ def create_ipa_dict(consonants):
             ipa_dict[roman] = ipa
     return ipa_dict
 
-def get_ipa_pronounciation(gorgus):
+def get_ipa_pronounciation(gorgus: str):
     consonants = {
         "lʊː": ["lu"],
         "ʃ": ["sh", "ćh"],
@@ -248,7 +248,7 @@ def get_ipa_pronounciation(gorgus):
         "iŋg": ["ing"],
         "ŋ": ["ng"],
         "t": ["t", "tt"],
-        "ɑːr": ["ar", "å"],
+        "ɑːɹ": ["ar", "å"],
         "k": ["k", "c", "ck"],
         "g": ["g", "gg"],
         "ɛ": ["è"],
@@ -258,7 +258,6 @@ def get_ipa_pronounciation(gorgus):
         "ɪŋk": ["ink"],
         "": ['a̱', 'ḇ', 'c̱', 'ḏ', 'e̱', 'f̱', 'g̱', 'ẖ', 'i̱', 'j̱', 'ḵ', 'ḻ', 'm̱', 'ṉ', 'o̱', 'p̱', 'q̱', 'ṟ', 's̱', 'ṯ', 'u̱', 'v̱', 'w̱', 'x̱', 'y̱', 'ẕ'] # silent letters
     }
-    from string import ascii_letters
 
     # Invert dictionary
     ipa_dict = create_ipa_dict(consonants)
@@ -271,8 +270,10 @@ def get_ipa_pronounciation(gorgus):
     
     for word in words:
         ipa_word = word
+
         for roman, ipa in sorted(ipa_dict.items(), key=lambda x: -len(x[0])):  # Sort by length (longest first)
             ipa_word = ipa_word.replace(roman, ipa)
+
         ipa_output.append(ipa_word)
 
     return "/" + ' '.join(ipa_output).replace("R", "r") + "/"
@@ -617,5 +618,5 @@ class TranslationTester(unittest.TestCase):
 
 
 if __name__ == '__main__':
-    print(get_ipa_pronounciation(to_gorgus("We want to eat your skin.")))
+    print(get_ipa_pronounciation(to_gorgus("for")))
     unittest.main()
