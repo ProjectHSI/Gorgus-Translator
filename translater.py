@@ -233,7 +233,7 @@ def get_ipa_pronounciation(gorgus):
         "l": ["l", "ll"],
         "iː": ["ee", "é", "ea"],
         "h": ["h"],
-        "ɜ": ["er"],
+        "ɜː": ["er"],
         "ɔɹ": ["or"],
         "tʃ": ["ch"],
         "ʌ": ["u"],
@@ -253,7 +253,9 @@ def get_ipa_pronounciation(gorgus):
         "g": ["g", "gg"],
         "ɛ": ["è"],
         "R": ["ŕ̈"], # r trill
-        "e͡ɪ": ["ae", "ä"],
+        "e͡ɪ": ["ae", "ä", "â"],
+        "ɪ": ["i"],
+        "ɪŋk": ["ink"],
         "": ['a̱', 'ḇ', 'c̱', 'ḏ', 'e̱', 'f̱', 'g̱', 'ẖ', 'i̱', 'j̱', 'ḵ', 'ḻ', 'm̱', 'ṉ', 'o̱', 'p̱', 'q̱', 'ṟ', 's̱', 'ṯ', 'u̱', 'v̱', 'w̱', 'x̱', 'y̱', 'ẕ'] # silent letters
     }
     from string import ascii_letters
@@ -615,5 +617,5 @@ class TranslationTester(unittest.TestCase):
 
 
 if __name__ == '__main__':
-    print(get_ipa_pronounciation("plink-tå"))
+    print(get_ipa_pronounciation(to_gorgus("We want to eat your skin.")))
     unittest.main()

@@ -324,15 +324,6 @@ translation_dictionary = {
     "googrung": ["you", "thee"],
     "googrungz": ["yourself", "thyself"],
     "henġer": ["i", "me", "myself"],
-
-
-
-
-
-
-
-
-
     "mébis": ["shall", "will"],
     "noguk": ["help", "assistance"],
     "hugub": ["gender", "sex"],
