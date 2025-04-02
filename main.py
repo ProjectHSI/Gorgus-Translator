@@ -403,8 +403,8 @@ class GorgusTranslator(App):
 
     @work(group="translate")
     async def update_translation(self):
-        output_text_area: Markdown = self.app.query_one("#output")
-        translate_to_selection: Select = self.query_one("#to-select")
+        output_text_area = self.app.query_one("#output")
+        translate_to_selection = self.query_one("#to-select")
 
         selection = translate_to_selection.value
         #self.app.notify(selection)
