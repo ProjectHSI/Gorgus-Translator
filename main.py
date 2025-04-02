@@ -411,17 +411,17 @@ class GorgusTranslator(App):
 
         should_add_accents = get_settings()["add_pronounciation_accents"]
         
-        text = "### "
+        text = "[bold]"
 
         if selection == 1:
             self.translation = translate(self.translation_input, "gorgus", should_add_accents=should_add_accents)
-            text += self.translation + "\n"
-            text += f"`{get_ipa_pronounciation(self.translation)}`"
+            text += self.translation + "[/bold]\n"
+            text += f"[dim]{get_ipa_pronounciation(self.translation)}[/dim]"
 
             #output_text_area.text = translate(text, "gorgus", should_add_accents=should_add_accents)
         elif selection == 2:
             self.translation = translate(self.translation_input, "english", should_add_accents=should_add_accents)
-            text += self.translation
+            text += self.translation + "[/bold]"
 
             #output_text_area.text = translate(text, "english", should_add_accents=should_add_accents)
 
@@ -460,7 +460,7 @@ class GorgusTranslator(App):
                 
                 yield Select([("English -> Gorgus",1), ("Gorgus -> English",2)], id="to-select", allow_blank=False,prompt="Translate...", value=1)
                 yield Label("Translated")
-                yield Markdown(classes="text-box", id="output")
+                yield Label(classes="text-box", id="output")
                 #yield TextArea(text="Hello, how are you?", read_only=True, classes="text-box", tooltip="This is where your translated text will appear.", id="output")
                 yield Label("[bold]Notice:[/bold] [dim]Not a lot of words exist in Gorgus yet, so some sentences in English can't be said in Gorgus. Sorry.[/dim]", id="notice")
             with TabPane("Dictionary",id="dict-pane"):
