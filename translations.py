@@ -246,7 +246,7 @@ translation_dictionary = {
     "snik": "unleash",
     "jeek": "like",
     "hobfug": ["need", "require"],
-    "gumble": "shut",
+    "gumble̱": "shut",
     "porgak": "approach",
     "erf": "come",
     "gurkad": "discuss",
@@ -301,7 +301,7 @@ translation_dictionary = {
     "muggit": "give",
     "wheremecopha": "send",
     "morple": "attract",
-    "yåẖp": ["say", "speak", "talk"],
+    "yaẖp": ["say", "speak", "talk"],
     "forgor": "forget",
     "trik": "work",
     "pritter": "go",
@@ -323,7 +323,7 @@ translation_dictionary = {
     # Proper Nouns
     "googrung": ["you", "thee"],
     "googrungz": ["yourself", "thyself"],
-    "miġer": "we",
+    "ik-henġer": "we",
     "henġer": ["i", "me", "myself"],
     "mébis": ["shall", "will"],
     "noguk": ["help", "assistance"],
@@ -475,7 +475,7 @@ dictionary_information = {
 phrase_translations = { # if one of these phrases appears before another phrase it has higher priority
     "gumblegoge": ["shut up", "be quiet", "stop speaking"],
     "henġer mébis": ["i'm going to", "i am going to", "im going to"],
-    "zugugo": ["i will", "i shall"],
+    "zúgúgo": ["i will", "i shall"],
     "mè'heng": ["can i", "may i", "shall i"],
     "thunti": "often",
     "glurple": "i have",
@@ -568,7 +568,8 @@ ignored_plurals = [ # words that can't be pluralised
     "manslaughter",
     "depress",
     "over",
-    "gorgus"
+    "gorgus",
+    "we"
 ]
 
 ignored_actor_nouns = [ # words that can't be turned into actor nouns

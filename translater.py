@@ -233,13 +233,14 @@ def get_ipa_pronounciation(gorgus: str):
         "l": ["l", "ll"],
         "iː": ["ee", "é", "ea"],
         "h": ["h"],
-        "ɜː": ["er"],
+        "ɜː": ["er", "ur"],
         "ɔɹ": ["or"],
         "tʃ": ["ch"],
         "ʌ": ["u"],
-        "ʊː": ["oo"],
+        "ʊː": ["oo", "ú"],
         "ɔ": ["o"],
-        "ʤ": ["j", "ge"],
+        "ʤ": ["j"],
+        "ɔɹʤ": ["orge"],
         "ɹ": ["r"],
         "f": ["f", "ff"],
         "kw": ["q", "qu"],
@@ -256,7 +257,10 @@ def get_ipa_pronounciation(gorgus: str):
         "e͡ɪ": ["ae", "ä", "â"],
         "ɪ": ["i"],
         "ɪŋk": ["ink"],
+        "eŋk": ["enk"],
         "θ": ["th"],
+        "e͡ɪv": ["ave"],
+        "j": ["y"],
         "": ['a̱', 'ḇ', 'c̱', 'ḏ', 'e̱', 'f̱', 'g̱', 'ẖ', 'i̱', 'j̱', 'ḵ', 'ḻ', 'm̱', 'ṉ', 'o̱', 'p̱', 'q̱', 'ṟ', 's̱', 'ṯ', 'u̱', 'v̱', 'w̱', 'x̱', 'y̱', 'ẕ'] # silent letters
     }
 
@@ -264,7 +268,7 @@ def get_ipa_pronounciation(gorgus: str):
     ipa_dict = create_ipa_dict(consonants)
 
     gorgus = gorgus.translate(str.maketrans('', '', "?.!,\":()=/\\$[]"))
-    gorgus = gorgus.lower().replace("-", ".")
+    gorgus = gorgus.lower().replace("-", "").replace("'", ".")
 
     words = gorgus.split()  # Split into words
     ipa_output = []
@@ -619,5 +623,9 @@ class TranslationTester(unittest.TestCase):
 
 
 if __name__ == '__main__':
-    print(get_ipa_pronounciation(translate("This language is very cool!", "gorgus")))
+    test_sentence = "can i say hello?"
+    gorgus = translate(test_sentence, "gorgus")
+
+    print(gorgus)
+    print(get_ipa_pronounciation(gorgus))
     unittest.main()
