@@ -253,7 +253,7 @@ def get_ipa_pronounciation(gorgus):
         "g": ["g", "gg"],
         "ɛ": ["è"],
         "R": ["ŕ̈"], # r trill
-        "": ["ae", "ä"],
+        "e͡ɪ": ["ae", "ä"],
         "": ['a̱', 'ḇ', 'c̱', 'ḏ', 'e̱', 'f̱', 'g̱', 'ẖ', 'i̱', 'j̱', 'ḵ', 'ḻ', 'm̱', 'ṉ', 'o̱', 'p̱', 'q̱', 'ṟ', 's̱', 'ṯ', 'u̱', 'v̱', 'w̱', 'x̱', 'y̱', 'ẕ'] # silent letters
     }
     from string import ascii_letters
@@ -615,5 +615,5 @@ class TranslationTester(unittest.TestCase):
 
 
 if __name__ == '__main__':
-    print(get_ipa_pronounciation("zogo"))
+    print(get_ipa_pronounciation("plink-tå"))
     unittest.main()
