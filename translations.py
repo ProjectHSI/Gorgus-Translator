@@ -195,7 +195,7 @@ translation_dictionary = {
     # Interjections
     "dink": ["hello", "hi", "hey", "sup"],
     "pont": ["bye", "goodbye"],
-    "ap": ["oh", "ah"],
+    "ap": ["oh", "ah", "o"],
     "pif": "why",
     "ort": "well",
     "shriv": "there",
