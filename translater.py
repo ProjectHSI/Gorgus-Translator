@@ -268,7 +268,8 @@ def get_ipa_pronounciation(gorgus: str):
     # Invert dictionary
     ipa_dict = create_ipa_dict(consonants)
 
-    gorgus = gorgus.translate(str.maketrans('', '', "?.!,\":()=/\\$[]"))
+    gorgus = gorgus.replace(",", " |").replace(".", " ‖")
+    gorgus = gorgus.translate(str.maketrans('', '', "?!\":()=/\\$[]"))
     gorgus = gorgus.lower().replace("-", "").replace("'", ".")
 
     words = gorgus.split()  # Split into words
