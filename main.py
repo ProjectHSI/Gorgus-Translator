@@ -79,7 +79,7 @@ from translations import translation_dictionary, phrase_translations, dictionary
 
 rich_print("[bold bright_green]INFO[/bold bright_green] Starting translater..")
 
-from translater import translate
+from translater import translate, get_ipa_pronounciation
 
 rich_print("\n[bold bright_green]Done![/bold bright_green] Loading complete!")
 
@@ -121,6 +121,9 @@ class GorgusTranslator(App):
     CSS_PATH = "resources/style.tcss"
 
     #ENABLE_COMMAND_PALETTE = False
+
+    translation = ""
+    translation_input = "Hey! How are you?"
 
     def get_system_commands(self, screen):
         yield SystemCommand(
@@ -346,7 +349,7 @@ class GorgusTranslator(App):
                 self.notify("You need to restart for this change to take effect.", title="Setting Changed")
 
             if event.checkbox.id == "add_pronounciation_accents":
-                self.update_translation(self.query_one("#translate-input").text)
+                self.update_translation()
 
             modify_json("settings.json", event.checkbox.id, event.checkbox.value)
 
@@ -362,7 +365,9 @@ class GorgusTranslator(App):
     @on(TextArea.Changed)
     def text_changed(self, event):
         if event.text_area.id != "translate-input": return
-        self.update_translation(event.text_area.text)
+
+        self.translation_input = event.text_area.text
+        self.update_translation()
     
     @on(Input.Changed)
     def search_dictionary(self, event):
@@ -380,13 +385,13 @@ class GorgusTranslator(App):
         if event.select.id == "to-select": # change translation mode
             try:
                 input_area = self.query_one("#translate-input")
-                output_area = self.query_one("#output")
             except NoMatches:
                 return
 
-            input_area.text = output_area.text
+            self.translation_input = self.translation
+            input_area.text = self.translation_input
 
-            self.update_translation(input_area.text)
+            self.update_translation()
         elif event.select.id == "theme-select": # changing translator theme in settings
 
             chosen_theme = event.select._options[event.value][0]
@@ -397,8 +402,8 @@ class GorgusTranslator(App):
             
 
     @work(group="translate")
-    async def update_translation(self, text):
-        output_text_area: TextArea = self.app.query_one("#output")
+    async def update_translation(self):
+        output_text_area: Markdown = self.app.query_one("#output")
         translate_to_selection: Select = self.query_one("#to-select")
 
         selection = translate_to_selection.value
@@ -406,10 +411,21 @@ class GorgusTranslator(App):
 
         should_add_accents = get_settings()["add_pronounciation_accents"]
         
+        text = "### "
+
         if selection == 1:
-            output_text_area.text = translate(text, "gorgus", should_add_accents=should_add_accents)
+            self.translation = translate(self.translation_input, "gorgus", should_add_accents=should_add_accents)
+            text += self.translation + "\n"
+            text += f"`{get_ipa_pronounciation(self.translation)}`"
+
+            #output_text_area.text = translate(text, "gorgus", should_add_accents=should_add_accents)
         elif selection == 2:
-            output_text_area.text = translate(text, "english", should_add_accents=should_add_accents)
+            self.translation = translate(self.translation_input, "english", should_add_accents=should_add_accents)
+            text += self.translation
+
+            #output_text_area.text = translate(text, "english", should_add_accents=should_add_accents)
+
+        output_text_area.update(text)
 
     def compose(self) -> ComposeResult:
         self.deleting_settings = False
@@ -440,11 +456,12 @@ class GorgusTranslator(App):
         with TabbedContent(id="tabs"):
             with TabPane("Translator", id="translator"): 
                 yield Label("Input")
-                yield TextArea(text="", tooltip="Type here!", classes="text-box", id="translate-input")
+                yield TextArea(text="Hey! How are you?", tooltip="Type here!", classes="text-box", id="translate-input")
                 
                 yield Select([("English -> Gorgus",1), ("Gorgus -> English",2)], id="to-select", allow_blank=False,prompt="Translate...", value=1)
                 yield Label("Translated")
-                yield TextArea(text="Hello, how are you?", read_only=True, classes="text-box", tooltip="This is where your translated text will appear.", id="output")
+                yield Markdown(classes="text-box", id="output")
+                #yield TextArea(text="Hello, how are you?", read_only=True, classes="text-box", tooltip="This is where your translated text will appear.", id="output")
                 yield Label("[bold]Notice:[/bold] [dim]Not a lot of words exist in Gorgus yet, so some sentences in English can't be said in Gorgus. Sorry.[/dim]", id="notice")
             with TabPane("Dictionary",id="dict-pane"):
                 yield Rule(line_style="dashed")
