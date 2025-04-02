@@ -241,16 +241,21 @@ def get_ipa_pronounciation(gorgus):
         "f": ["f", "ff"],
         "kw": ["q", "qu"],
         "ɔɹs": ["ors", "orse"],
-        "n.g": ["nġ"],
+        "ŋg": ["nġ"],
         "iŋg": ["ing"],
         "ŋ": ["ng"],
         "t": ["t", "tt"],
-        "ɑːr": ["ar"]
+        "ɑːr": ["ar", "å"],
+        "k": ["k", "c", "ck"],
+        "g": ["g", "gg"],
+        "": ['a̱', 'ḇ', 'c̱', 'ḏ', 'e̱', 'f̱', 'g̱', 'ẖ', 'i̱', 'j̱', 'ḵ', 'ḻ', 'm̱', 'ṉ', 'o̱', 'p̱', 'q̱', 'ṟ', 's̱', 'ṯ', 'u̱', 'v̱', 'w̱', 'x̱', 'y̱', 'ẕ'] # silent letters
     }
+    from string import ascii_letters
 
     # Invert dictionary
     ipa_dict = create_ipa_dict(consonants)
 
+    gorgus = gorgus.translate(str.maketrans('', '', "?.!,\":()=/\\$[]"))
     gorgus = gorgus.lower().replace("-", ".")
 
     words = gorgus.split()  # Split into words
@@ -604,5 +609,5 @@ class TranslationTester(unittest.TestCase):
 
 
 if __name__ == '__main__':
-    print(get_ipa_pronounciation("zup meat"))
+    print(get_ipa_pronounciation("Glonk chonġle̱-ok migtir omnom!"))
     unittest.main()
