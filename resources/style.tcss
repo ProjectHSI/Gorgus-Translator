@@ -9,6 +9,14 @@ TabPane {
     min-height: 5;
 }
 
+.output {
+    max-width: 50%;
+}
+
+#output {
+    margin-top: 1;
+}
+
 #notice {
     width: 50%;
     margin-top: 1;

@@ -1,8 +1,7 @@
 __VERSION__ = "1.10"
 print("Loading...")
 
-import os, sys
-import json
+import os, sys, re
 import importlib.util
 import platform
 import subprocess
@@ -59,9 +58,10 @@ rich_print("[bold bright_green]INFO[/bold bright_green] Loading [bold]textual[/b
 from textual.app import App, ComposeResult, SystemCommand
 from textual.widgets import TextArea, Header, Footer, TabbedContent, TabPane, Select, Label, MarkdownViewer, DataTable, Input, Rule, Checkbox, Button, Markdown
 from textual.containers import Horizontal, Vertical, VerticalScroll, ItemGrid, Center
-from textual import on, work, log
+from textual import on, work, log, events
 from textual.css.query import NoMatches
 from textual.worker import WorkerState
+from pyperclip import copy
 from time import sleep
 
 rich_print("[bold bright_green]INFO[/bold bright_green] Loading [bold]utility[/bold] functions..")
@@ -113,6 +113,22 @@ GAMES = [
 ]
 
 
+
+class CopyableLabel(Label):
+    def __init__(self, text = "", copy_msg = "Text copied to clipboard!", **kwargs):
+        super().__init__(text, **kwargs)
+        self.text = re.sub(r'\[.*?\]', '', text)
+        self.copy_msg = copy_msg
+
+    def update(self, content = ""):
+        self.text = re.sub(r'\[.*?\]', '', content)
+        return super().update(content)
+
+    @on(events.Click)
+    def copy_stuff(self, _) -> None:
+        """Copies the text to clipboard when clicked."""
+        copy(self.text)
+        self.notify(self.copy_msg, severity="info")
 
 class GorgusTranslator(App):
     TITLE = "Gorgus Translator"
@@ -404,28 +420,26 @@ class GorgusTranslator(App):
     @work(group="translate")
     async def update_translation(self):
         output_text_area = self.app.query_one("#output")
+        pronounciation = self.app.query_one("#pronounciation")
         translate_to_selection = self.query_one("#to-select")
 
         selection = translate_to_selection.value
         #self.app.notify(selection)
 
         should_add_accents = get_settings()["add_pronounciation_accents"]
-        
-        text = "[bold]"
 
         if selection == 1:
             self.translation = translate(self.translation_input, "gorgus", should_add_accents=should_add_accents)
-            text += self.translation + "[/bold]\n"
-            text += f"[dim]{get_ipa_pronounciation(self.translation)}[/dim]"
+            pronounciation.update("[dim]" + get_ipa_pronounciation(self.translation) + "[/dim]")
 
             #output_text_area.text = translate(text, "gorgus", should_add_accents=should_add_accents)
         elif selection == 2:
             self.translation = translate(self.translation_input, "english", should_add_accents=should_add_accents)
-            text += self.translation + "[/bold]"
+            pronounciation.update("")
 
             #output_text_area.text = translate(text, "english", should_add_accents=should_add_accents)
 
-        output_text_area.update(text)
+        output_text_area.update("[bold]" + self.translation + "[/bold]")
 
     def compose(self) -> ComposeResult:
         self.deleting_settings = False
@@ -460,7 +474,8 @@ class GorgusTranslator(App):
                 
                 yield Select([("English -> Gorgus",1), ("Gorgus -> English",2)], id="to-select", allow_blank=False,prompt="Translate...", value=1)
                 yield Label("Translated")
-                yield Label(classes="text-box", id="output")
+                yield CopyableLabel(id="output", copy_msg="Copied translation to keyboard!", classes="output")
+                yield CopyableLabel(id="pronounciation", copy_msg="Copied pronounciation to keyboard!", classes="output")
                 #yield TextArea(text="Hello, how are you?", read_only=True, classes="text-box", tooltip="This is where your translated text will appear.", id="output")
                 yield Label("[bold]Notice:[/bold] [dim]Not a lot of words exist in Gorgus yet, so some sentences in English can't be said in Gorgus. Sorry.[/dim]", id="notice")
             with TabPane("Dictionary",id="dict-pane"):
