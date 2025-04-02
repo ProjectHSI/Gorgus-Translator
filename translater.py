@@ -261,6 +261,7 @@ def get_ipa_pronounciation(gorgus: str):
         "θ": ["th"],
         "e͡ɪv": ["ave"],
         "j": ["y"],
+        "ks": ["x"],
         "": ['a̱', 'ḇ', 'c̱', 'ḏ', 'e̱', 'f̱', 'g̱', 'ẖ', 'i̱', 'j̱', 'ḵ', 'ḻ', 'm̱', 'ṉ', 'o̱', 'p̱', 'q̱', 'ṟ', 's̱', 'ṯ', 'u̱', 'v̱', 'w̱', 'x̱', 'y̱', 'ẕ'] # silent letters
     }
 
@@ -623,9 +624,4 @@ class TranslationTester(unittest.TestCase):
 
 
 if __name__ == '__main__':
-    test_sentence = "can i say hello?"
-    gorgus = translate(test_sentence, "gorgus")
-
-    print(gorgus)
-    print(get_ipa_pronounciation(gorgus))
     unittest.main()
