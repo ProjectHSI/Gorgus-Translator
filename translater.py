@@ -248,6 +248,7 @@ def get_ipa_pronounciation(gorgus: str):
         "ŋg": ["nġ"],
         "iŋg": ["ing"],
         "ŋ": ["ng"],
+        "oŋk": ["onk"],
         "t": ["t", "tt"],
         "ɑːɹ": ["ar", "å"],
         "k": ["k", "c", "ck"],
