@@ -238,7 +238,7 @@ def get_ipa_pronounciation(gorgus):
         "ʌ": ["u"],
         "ʊː": ["oo"],
         "ɔ": ["o"],
-        "ʤ": ["j"],
+        "ʤ": ["j", "orge"],
         "ɹ": ["r"],
         "f": ["f", "ff"],
         "kw": ["q", "qu"],
@@ -612,5 +612,5 @@ class TranslationTester(unittest.TestCase):
 
 
 if __name__ == '__main__':
-    print(get_ipa_pronounciation("im going to fucking kill you"))
+    print(get_ipa_pronounciation("Shriv horge pritter-ok tå ik-gump"))
     unittest.main()
