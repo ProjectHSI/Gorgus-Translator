@@ -319,6 +319,7 @@ translation_dictionary = {
     "brenzi": "understand",
     "jeederod": "smear",
     "goog": "ride",
+    "shiav": "stab",
 
     # Proper Nouns
     "googrung": ["you", "thee"],
