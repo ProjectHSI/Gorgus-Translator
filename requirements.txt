@@ -9,3 +9,4 @@ word_forms
 rich
 pyfiglet
 psutil
+pyperclip
