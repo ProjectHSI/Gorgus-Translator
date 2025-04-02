@@ -218,6 +218,52 @@ def get_trailing_punctuation(text, ignore_chars=""):
 def convert_to_base_form(verb):
     return lemmatizer.lemmatize(verb, pos='v')
 
+def create_ipa_dict(consonants):
+    ipa_dict = {}
+    for ipa, romanizations in consonants.items():
+        for roman in romanizations:
+            ipa_dict[roman] = ipa
+    return ipa_dict
+
+def get_ipa_pronounciation(gorgus):
+    consonants = {
+        "ʃ": ["sh", "ćh"],
+        "iː": ["ee", "é", "ea"],
+        "h": ["h"],
+        "ɜ": ["er"],
+        "ɔɹ": ["or"],
+        "tʃ": ["ch"],
+        "ʌ": ["u"],
+        "ʊː": ["oo"],
+        "ɔ": ["o"],
+        "ʤ": ["j"],
+        "ɹ": ["r"],
+        "f": ["f", "ff"],
+        "kw": ["q", "qu"],
+        "ɔɹs": ["ors", "orse"],
+        "n.g": ["nġ"],
+        "iŋg": ["ing"],
+        "ŋ": ["ng"],
+        "t": ["t", "tt"],
+        "ɑːr": ["ar"]
+    }
+
+    # Invert dictionary
+    ipa_dict = create_ipa_dict(consonants)
+
+    gorgus = gorgus.lower().replace("-", ".")
+
+    words = gorgus.split()  # Split into words
+    ipa_output = []
+    
+    for word in words:
+        ipa_word = word
+        for roman, ipa in sorted(ipa_dict.items(), key=lambda x: -len(x[0])):  # Sort by length (longest first)
+            ipa_word = ipa_word.replace(roman, ipa)
+        ipa_output.append(ipa_word)
+
+    return "/" + ' '.join(ipa_output) + "/"
+
 def to_gorgus(user_input):
     translated = ""
     before_translation = user_input
@@ -514,7 +560,7 @@ class TranslationTester(unittest.TestCase):
             "I love you.": "H'aggo googrung.",
             "He slept.": "Nåck eep-ra.",
             "What's up?": "Dup pritter-ok lunk",
-            "Do you like to eat?": "Gè'googrung jeek tå ćhong̱le̱ lunk",
+            "Do you like to eat?": "Gè'googrung jeek tå chonġle̱ lunk",
             "What is going on?": "Nergo're pritter-ok hoog lunk"
         }
 
@@ -527,7 +573,7 @@ class TranslationTester(unittest.TestCase):
         tests_from_gorgus = {
             "Dink, dup pritter-ok lunk": "Hello, how are you going?",
             "Henġer agger ik-fren!": "I love dogs!",
-            "Glonk ćhong̱le̱-ok migtir omnom!": "Stop eating all food!",
+            "Glonk chonġle̱-ok migtir omnom!": "Stop eating all food!",
             "Googrung kiff!": "You smell!",
             "Minġer goob'rung ji dagsâ dublub. :)": "I hope you have a really nice day. :)",
             "Jid shrerack, henġer huffer clor'ge dagsa.": "That person, I believe they're nice."
@@ -558,4 +604,5 @@ class TranslationTester(unittest.TestCase):
 
 
 if __name__ == '__main__':
+    print(get_ipa_pronounciation("zup meat"))
     unittest.main()
