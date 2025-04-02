@@ -71,7 +71,7 @@ Here is the phonology of the Gorgus conlang:
       <td><strong>Fricative</strong></td>
       <td></td>
       <td>/f/</td>
-      <td></td>
+      <td>/θ/</td>
       <td>/s/ /z/</td>
       <td>/ʃ/</td>
       <td></td>
