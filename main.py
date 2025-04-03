@@ -573,7 +573,7 @@ These are the people that make this possible! *(all of these are Discord usernam
                         )
 
                     with Horizontal(classes="setting"):
-                        yield Label("Shop IPA pronounciation:")
+                        yield Label("Show IPA pronounciation:")
                         yield Checkbox(button_first=False, value=settings["show_ipa"], id="show_ipa", classes="setting",
                                  tooltip="The translator will show an IPA transcription when translating to Gorgus."
                         )
