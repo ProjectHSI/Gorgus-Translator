@@ -165,7 +165,7 @@ translation_dictionary = {
     "ergenyager": "freedom",
 
     # metals
-    "finty": "steel",
+    "steel": "steel",
     "zazgorp": "copper",
     "flegorp": "iron",
     "bobs": "brass",
