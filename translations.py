@@ -475,7 +475,7 @@ dictionary_information = {
 }
 
 phrase_translations = { # if one of these phrases appears before another phrase it has higher priority
-    "gumblegoge": ["shut up", "be quiet", "stop speaking"],
+    "gumble̱goge": ["shut up", "be quiet", "stop speaking"],
     "henġer mébis": ["i'm going to", "i am going to", "im going to"],
     "zúgúgo": ["i will", "i shall"],
     "mè'heng": ["can i", "may i", "shall i"],

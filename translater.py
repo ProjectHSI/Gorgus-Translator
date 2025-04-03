@@ -267,6 +267,7 @@ def get_ipa_pronounciation(gorgus: str):
         "lʌŋ˦k": ["lunk"], # questions have a rising tone
         "iːnO": ["ino"],
         "vɪŋ": ["ving"],
+        "Oʊʤ": ["oge"],
         "": ['a̱', 'ḇ', 'c̱', 'ḏ', 'e̱', 'f̱', 'g̱', 'ẖ', 'i̱', 'j̱', 'ḵ', 'ḻ', 'm̱', 'ṉ', 'o̱', 'p̱', 'q̱', 'ṟ', 's̱', 'ṯ', 'u̱', 'v̱', 'w̱', 'x̱', 'y̱', 'ẕ'] # silent letters
     }
 
