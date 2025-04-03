@@ -239,6 +239,7 @@ def get_ipa_pronounciation(gorgus: str):
         "ʌ": ["u"],
         "ʊː": ["oo", "ú"],
         "ɔ": ["o"],
+        "iːkO": ["eeko"],
         "ʤ": ["j"],
         "ɔɹʤ": ["orge"],
         "ɹ": ["r"],
@@ -264,6 +265,8 @@ def get_ipa_pronounciation(gorgus: str):
         "j": ["y"],
         "ks": ["x"],
         "lʌŋ˦k": ["lunk"], # questions have a rising tone
+        "iːnO": ["ino"],
+        "vɪŋ": ["ving"],
         "": ['a̱', 'ḇ', 'c̱', 'ḏ', 'e̱', 'f̱', 'g̱', 'ẖ', 'i̱', 'j̱', 'ḵ', 'ḻ', 'm̱', 'ṉ', 'o̱', 'p̱', 'q̱', 'ṟ', 's̱', 'ṯ', 'u̱', 'v̱', 'w̱', 'x̱', 'y̱', 'ẕ'] # silent letters
     }
 
@@ -285,7 +288,7 @@ def get_ipa_pronounciation(gorgus: str):
 
         ipa_output.append(ipa_word)
 
-    return "/" + ' '.join(ipa_output).replace("R", "r") + "/"
+    return "/" + ' '.join(ipa_output).replace("R", "r").replace("O", "o") + "/"
 
 def to_gorgus(user_input):
     translated = ""
@@ -627,4 +630,5 @@ class TranslationTester(unittest.TestCase):
 
 
 if __name__ == '__main__':
+    print(get_ipa_pronounciation("Hello! How are you?"))
     unittest.main()
