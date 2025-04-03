@@ -216,7 +216,10 @@ def get_trailing_punctuation(text, ignore_chars=""):
     return match.group(0) if match else ''
 
 def convert_to_base_form(verb):
-    return lemmatizer.lemmatize(verb, pos='v')
+    if wordnet_download_success:
+        return lemmatizer.lemmatize(verb, pos='v')
+    else:
+        return verb
 
 def create_ipa_dict(consonants):
     ipa_dict = {}
