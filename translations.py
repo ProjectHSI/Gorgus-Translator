@@ -517,6 +517,7 @@ phrase_translations = { # if one of these phrases appears before another phrase 
     "goov'ma": ["haven't", "havent", "have not"],
     "meg'morp": "everywhere",
     "bingus": "rotisserie chicken",
+    "zup morg": ["be sure", "say for sure"],
 
     "zorp ik-spek": "profanity",
     "jid gorse": ["that's", "thats", "that is"],
