@@ -554,6 +554,12 @@ These are the people that make this possible! *(all of these are Discord usernam
                                  tooltip="Some words may have accents on some letters to help with pronounciation."
                         )
 
+                    with Horizontal(classes="setting"):
+                        yield Label("Shop IPA pronounciation:")
+                        yield Checkbox(button_first=False, value=settings["show_ipa"], id="show_ipa", classes="setting",
+                                 tooltip="The translator will show an IPA transcription when translating to Gorgus."
+                        )
+
                     yield Label("Actions", variant="primary", classes="settings-title")
                     
                     yield Label("[dim]You can press the \"Update\" button when updates are available.[/dim]", classes="settings-note")
