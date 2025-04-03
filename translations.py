@@ -234,6 +234,7 @@ translation_dictionary = {
     "vor": "maybe",
     "shtimp": "just",
     "orgik": "sometime",
+    "widilp": "never",
 
     # Verbs
     ### Symbols ###
