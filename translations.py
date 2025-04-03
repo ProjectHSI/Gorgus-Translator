@@ -163,6 +163,14 @@ translation_dictionary = {
     "boxob": "cart",
     "krakra": "crocodile",
     "ergenyager": "freedom",
+    "blumk": "hill",
+    "spinkblumat": "mountain",
+    "tijiblumk": "valley",
+    "beench": "sand",
+    "blinch": "snow",
+    "graplat": "grass",
+    "yumklat": "dirt",
+    "sploing": "rock",
 
     # metals
     "steel": "steel",
@@ -443,6 +451,8 @@ translation_dictionary = {
     "pègois": "lazy",
     "marip": "away",
     "dimbuplo": "pregnant",
+    "sockmo": "soft",
+    "rockmo": "hard",
 
     # temperatures
     "sisf": "hot",

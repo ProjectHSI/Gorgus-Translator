@@ -491,11 +491,12 @@ class GorgusTranslator(App):
                 if settings["show_ipa"]:
                     yield CopyableLabel(id="output", copy_msg="Copied translation to keyboard!", classes="output")
                     yield CopyableLabel(id="pronounciation", copy_msg="Copied pronounciation to keyboard!", classes="output")
+                    yield Label("[dim]Click on the translation or pronounciation to copy it for later![/dim]\n\n[bold]Notice:[/bold] [dim]Not a lot of words exist in Gorgus yet, so some sentences in English can't be said in Gorgus. Sorry.[/dim]", id="notice")
                 else:
                     yield TextArea(classes="text-box", id="output")
+                    yield Label("[bold]Notice:[/bold] [dim]Not a lot of words exist in Gorgus yet, so some sentences in English can't be said in Gorgus. Sorry.[/dim]", id="notice")
 
                 #yield TextArea(text="Hello, how are you?", read_only=True, classes="text-box", tooltip="This is where your translated text will appear.", id="output")
-                yield Label("[bold]Notice:[/bold] [dim]Not a lot of words exist in Gorgus yet, so some sentences in English can't be said in Gorgus. Sorry.[/dim]", id="notice")
             with TabPane("Dictionary",id="dict-pane"):
                 yield Rule(line_style="dashed")
                 with Horizontal(id="dictionary-top"):
