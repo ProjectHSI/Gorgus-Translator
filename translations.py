@@ -162,6 +162,7 @@ translation_dictionary = {
     "florg": "nut",
     "boxob": "cart",
     "krakra": "crocodile",
+    "ergenyager": "freedom",
 
     # metals
     "finty": "steel",
@@ -327,6 +328,8 @@ translation_dictionary = {
     "goog": "ride",
     "shiav": "stab",
     "yeat": ["throw", "launch"],
+    "refg": ["free"],
+    "lingenp": ["trap"],
 
     # Proper Nouns
     "googrung": ["you", "thee"],
