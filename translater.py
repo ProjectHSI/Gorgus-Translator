@@ -9,6 +9,7 @@ from translations import *
 from word_forms.word_forms import get_word_forms
 from nltk.stem import WordNetLemmatizer
 from typing import Literal
+from time import time
 
 from rich.console import Console
 
@@ -17,6 +18,15 @@ console = Console()
 ACTOR_SUFFIXES = ["er", "or", "ist"]
 
 console.print("[bold bright_green]INFO[/bold bright_green] Loaded translater dependencies!")
+console.print("[bold bright_green]INFO[/bold bright_green] Preparing thrases dictionary..")
+
+# First, sort phrases by length (longer phrases first)
+sorted_phrases = sorted(
+    phrase_translations.items(),
+    key=lambda item: max(len(p) for p in (item[1] if isinstance(item[1], list) else [item[1]])),
+    reverse=True
+)
+
 console.print("[bold bright_green]INFO[/bold bright_green] Starting [bold]inflect[/bold] engine..")
 
 inflect_engine = inflect.engine()
@@ -297,13 +307,6 @@ def get_ipa_pronounciation(gorgus: str):
 def to_gorgus(user_input):
     translated = ""
     before_translation = user_input
-
-    # First, sort phrases by length (longer phrases first)
-    sorted_phrases = sorted(
-        phrase_translations.items(),
-        key=lambda item: max(len(p) for p in (item[1] if isinstance(item[1], list) else [item[1]])),
-        reverse=True
-    )
     
     # Replace phrases with gorgus words      
     for gorgus, english_phrases in sorted_phrases:
@@ -326,6 +329,7 @@ def to_gorgus(user_input):
             modified_verbs[token.head.i] = -1
 
     for i, word in enumerate(words): 
+        start = time()
         if word == "the": # skip "the", there is no equivelant in gorgus
             continue
 
@@ -389,8 +393,9 @@ def to_gorgus(user_input):
 
         found = False
         for key, value_list in normalized_translation_dict.items():
+            
             value_set = set(value_list)  # Convert to set for faster lookups
-
+            
             if (word_type != "VERB" and ((singular and singular in value_set) or (word in value_set) or (is_plural and plural in value_set))) or (word_type == "VERB" and base_word in value_set):
                 found = True
                 plural_prefix = translation_dictionary["<PLURAL>"] if is_plural else ""
@@ -402,11 +407,10 @@ def to_gorgus(user_input):
         if not found:
             translated += f"{word}{suffix}{punctuation_suffix} "
 
-    # verb modifier words
-    translated = replace_word(translated, "really", translation_dictionary["<EXAGGERATED_VERB>"])
-    translated = replace_word(translated, "extremely", translation_dictionary["<EXAGGERATED_VERB>"])
-    translated = replace_word(translated, "very", translation_dictionary["<EXAGGERATED_VERB>"])
-    translated = replace_word(translated, "absolutely", translation_dictionary["<EXAGGERATED_VERB>"])
+    # Replace verb modifier words
+    for word in ["really", "extremely", "very", "absolutely"]:
+        translated = replace_word(translated, word, translation_dictionary["<EXAGGERATED_VERB>"])
+    
     translated = replace_word(translated, "kinda", translation_dictionary["<GENTLE_VERB>"])
 
     return translated

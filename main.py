@@ -361,7 +361,7 @@ class GorgusTranslator(App):
     @on(Checkbox.Changed)
     def checkbox_changed(self, event):
         if "setting" in event.checkbox.classes:
-            if event.checkbox.id == "clock_enabled":
+            if event.checkbox.id in ["clock_enabled", "show_ipa"]: # certain settings require a restart to take effect
                 self.notify("You need to restart for this change to take effect.", title="Setting Changed")
 
             if event.checkbox.id == "add_pronounciation_accents":
@@ -420,26 +420,37 @@ class GorgusTranslator(App):
     @work(group="translate")
     async def update_translation(self):
         output_text_area = self.app.query_one("#output")
-        pronounciation = self.app.query_one("#pronounciation")
+
+        settings = get_settings()
+        show_ipa = settings["show_ipa"]
+
+        if show_ipa:
+            pronounciation = self.app.query_one("#pronounciation")
         translate_to_selection = self.query_one("#to-select")
 
         selection = translate_to_selection.value
         #self.app.notify(selection)
 
-        should_add_accents = get_settings()["add_pronounciation_accents"]
+        should_add_accents = settings["add_pronounciation_accents"]
+        pronounciation_text = ""
 
         if selection == 1:
             self.translation = translate(self.translation_input, "gorgus", should_add_accents=should_add_accents)
-            pronounciation.update("[dim]" + get_ipa_pronounciation(self.translation) + "[/dim]")
+
+            if show_ipa:
+                pronounciation_text = "[dim]" + get_ipa_pronounciation(self.translation) + "[/dim]"
 
             #output_text_area.text = translate(text, "gorgus", should_add_accents=should_add_accents)
         elif selection == 2:
             self.translation = translate(self.translation_input, "english", should_add_accents=should_add_accents)
-            pronounciation.update("")
 
             #output_text_area.text = translate(text, "english", should_add_accents=should_add_accents)
 
-        output_text_area.update("[bold]" + self.translation + "[/bold]")
+        if show_ipa:
+            pronounciation.update(pronounciation_text)
+            output_text_area.update("[bold]" + self.translation + "[/bold]")
+        else:
+            output_text_area.text = self.translation
 
     def compose(self) -> ComposeResult:
         self.deleting_settings = False
@@ -458,11 +469,13 @@ class GorgusTranslator(App):
             settings["theme_index"]
             settings["clock_enabled"]
             settings["add_pronounciation_accents"]
+            settings["show_ipa"]
         except KeyError: # support older settings.json formats
             modify_json("settings.json", "clock_enabled", True)
             modify_json("settings.json", "theme_index", 0)
             modify_json("settings.json", "theme", "textual-dark")
             modify_json("settings.json", "add_pronounciation_accents", True)
+            modify_json("settings.json", "show_ipa", True)
             settings = get_settings()
 
         yield Header(show_clock=settings["clock_enabled"], id="header")
@@ -474,10 +487,16 @@ class GorgusTranslator(App):
                 
                 yield Select([("English -> Gorgus",1), ("Gorgus -> English",2)], id="to-select", allow_blank=False,prompt="Translate...", value=1)
                 yield Label("Translated")
-                yield CopyableLabel(id="output", copy_msg="Copied translation to keyboard!", classes="output")
-                yield CopyableLabel(id="pronounciation", copy_msg="Copied pronounciation to keyboard!", classes="output")
+
+                if settings["show_ipa"]:
+                    yield CopyableLabel(id="output", copy_msg="Copied translation to keyboard!", classes="output")
+                    yield CopyableLabel(id="pronounciation", copy_msg="Copied pronounciation to keyboard!", classes="output")
+                    yield Label("[dim]Click on the translation or pronounciation to copy it for later![/dim]\n\n[bold]Notice:[/bold] [dim]Not a lot of words exist in Gorgus yet, so some sentences in English can't be said in Gorgus. Sorry.[/dim]", id="notice")
+                else:
+                    yield TextArea(classes="text-box", id="output")
+                    yield Label("[bold]Notice:[/bold] [dim]Not a lot of words exist in Gorgus yet, so some sentences in English can't be said in Gorgus. Sorry.[/dim]", id="notice")
+
                 #yield TextArea(text="Hello, how are you?", read_only=True, classes="text-box", tooltip="This is where your translated text will appear.", id="output")
-                yield Label("[bold]Notice:[/bold] [dim]Not a lot of words exist in Gorgus yet, so some sentences in English can't be said in Gorgus. Sorry.[/dim]", id="notice")
             with TabPane("Dictionary",id="dict-pane"):
                 yield Rule(line_style="dashed")
                 with Horizontal(id="dictionary-top"):
@@ -552,6 +571,12 @@ These are the people that make this possible! *(all of these are Discord usernam
                         yield Label("Add accents for pronounciation:")
                         yield Checkbox(button_first=False, value=settings["add_pronounciation_accents"], id="add_pronounciation_accents", classes="setting",
                                  tooltip="Some words may have accents on some letters to help with pronounciation."
+                        )
+
+                    with Horizontal(classes="setting"):
+                        yield Label("Show IPA pronounciation:")
+                        yield Checkbox(button_first=False, value=settings["show_ipa"], id="show_ipa", classes="setting",
+                                 tooltip="The translator will show an IPA transcription when translating to Gorgus."
                         )
 
                     yield Label("Actions", variant="primary", classes="settings-title")

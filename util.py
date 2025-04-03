@@ -6,10 +6,11 @@ def get_settings():
     if not os.path.isfile("settings.json"):
         initial_data = {
             "check_updates_on_start": True,
-            "theme": "nord",
+            "theme": "textual-dark",
             "theme_index": 0,
             "clock_enabled": True,
-            "add_pronounciation_accents": True
+            "add_pronounciation_accents": True,
+            "show_ipa": True
         }
         with open("settings.json", "w") as file:
             json.dump(initial_data, file, indent=4)

@@ -68,6 +68,7 @@ translation_dictionary = {
     "minos": "creature",
     "waceb": "tree",
     "dint": "skin",
+    "gorgocia": "gorgocia", # the country where gorgus is spoken
     "gorgan": "gorgan", # this is the race that speaks Gorgus
     "gorgus": "gorgus", # the language itself
     "kob": "thing",
@@ -163,6 +164,14 @@ translation_dictionary = {
     "boxob": "cart",
     "krakra": "crocodile",
     "ergenyager": "freedom",
+    "blumk": "hill",
+    "spinkblumat": "mountain",
+    "tijiblumk": "valley",
+    "beench": "sand",
+    "blinch": "snow",
+    "graplat": "grass",
+    "yumklat": "dirt",
+    "sploing": "rock",
 
     # metals
     "steel": "steel",
@@ -222,7 +231,7 @@ translation_dictionary = {
     "fleen": "who",
     "neep": "what",
     "abith": "when",
-    "morp": ["here", "where"],
+    "morp": ["here", "where", "place"],
 
     # Adverbs
     "yuti": ["quick", "fast"],
@@ -234,6 +243,7 @@ translation_dictionary = {
     "vor": "maybe",
     "shtimp": "just",
     "orgik": "sometime",
+    "widilp": "never",
 
     # Verbs
     ### Symbols ###
@@ -442,6 +452,8 @@ translation_dictionary = {
     "pègois": "lazy",
     "marip": "away",
     "dimbuplo": "pregnant",
+    "sockmo": "soft",
+    "rockmo": "hard",
 
     # temperatures
     "sisf": "hot",
@@ -584,7 +596,8 @@ ignored_plurals = [ # words that can't be pluralised
     "we",
     "gender",
     "dumbass",
-    "brass"
+    "brass",
+    "never"
 ]
 
 ignored_actor_nouns = [ # words that can't be turned into actor nouns
@@ -620,5 +633,6 @@ ignored_actor_nouns = [ # words that can't be turned into actor nouns
     "answer",
     "over",
     "gender",
-    "copper"
+    "copper",
+    "never"
 ]
