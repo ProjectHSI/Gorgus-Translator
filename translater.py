@@ -229,7 +229,7 @@ def get_ipa_pronounciation(gorgus: str):
     consonants = {
         "lʊː": ["lu"],
         "ʃ": ["sh", "ćh"],
-        "o": ["oe", "ó"],
+        "O": ["oe", "ó"],
         "l": ["l", "ll"],
         "iː": ["ee", "é", "ea"],
         "h": ["h"],

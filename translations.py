@@ -573,7 +573,8 @@ ignored_plurals = [ # words that can't be pluralised
     "over",
     "gorgus",
     "we",
-    "gender"
+    "gender",
+    "dumbass"
 ]
 
 ignored_actor_nouns = [ # words that can't be turned into actor nouns
