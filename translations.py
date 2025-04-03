@@ -230,7 +230,7 @@ translation_dictionary = {
     "fleen": "who",
     "neep": "what",
     "abith": "when",
-    "morp": ["here", "where"],
+    "morp": ["here", "where", "place"],
 
     # Adverbs
     "yuti": ["quick", "fast"],
