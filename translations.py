@@ -270,7 +270,7 @@ translation_dictionary = {
     "puci": "cut",
     "zunx": "look",
     "saḏged": ["tear", "rend", "rip"],
-    "glink": ["start", "begin"],
+    "glink": ["start", "begin", "dawn"],
     "glonk": ["stop", "end"],
     "muung": "fill",
     "roober": ["get", "fetch"],
