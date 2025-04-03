@@ -320,6 +320,7 @@ translation_dictionary = {
     "jeederod": "smear",
     "goog": "ride",
     "shiav": "stab",
+    "yeat": ["throw", "launch"],
 
     # Proper Nouns
     "googrung": ["you", "thee"],
