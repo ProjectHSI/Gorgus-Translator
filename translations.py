@@ -163,6 +163,12 @@ translation_dictionary = {
     "boxob": "cart",
     "krakra": "crocodile",
 
+    # metals
+    "finty": "steel",
+    "zazgorp": "copper",
+    "flegorp": "iron",
+    "bobs": "brass",
+
     # colours
     "preeti": ["colour", "color"],
     "pik": "pink",
