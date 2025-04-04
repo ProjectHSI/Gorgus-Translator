@@ -491,7 +491,8 @@ dictionary_information = {
         "gdorp": "[bold orange1]slur[/bold orange1], slur against Gorgans",
         "glunch": "to make something / someone unrecognisable on a quantum level",
         "gorgan": "the race that speaks Gorgus",
-        "gorgus": "the language spoken by Gorgans"
+        "gorgus": "the language spoken by Gorgans",
+        "gorgocia": "the country where Gorgans come from"
     }
 }
 
