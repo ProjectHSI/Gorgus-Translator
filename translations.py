@@ -561,8 +561,8 @@ phrase_translations = { # if one of these phrases appears before another phrase 
 
     "bit'up": "going to be",
 
-    "sna'rse̱": ["she's", "shes", "she is"],
-    "na'rse̱": ["he's", "hes", "he is"],
+    "sna'rse": ["she's", "shes", "she is"],
+    "na'rse": ["he's", "hes", "he is"],
 
     # these are just the phrases that make a verb or noun more intense or more gentle
     "EXAGGERATE": ["a lot", "too much"], 
