@@ -172,6 +172,7 @@ translation_dictionary = {
     "graplat": "grass",
     "yumklat": "dirt",
     "sploing": "rock",
+    "smortos": "math",
 
     # metals
     "steel": "steel",
