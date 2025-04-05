@@ -528,6 +528,7 @@ phrase_translations = { # if one of these phrases appears before another phrase 
     "nips": ["it's", "it is"],
     "th'orse": "this is",
     "mug'ob": "everything",
+    "ker'ob": ["nothing", "no thing"],
     "go'gunx": "you look",
     "h'gorg mébis": "are you going to",
     "pritter yuti": ["hurry up"],
