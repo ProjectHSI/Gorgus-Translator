@@ -554,6 +554,7 @@ phrase_translations = { # if one of these phrases appears before another phrase 
 
     "pritter marip": ["leave", "go away", "leave me alone"],
     "jètå": ["like a", "similar to a"],
+    "ètå": ["similar to"],
 
     "cubiling": "working on",
 
