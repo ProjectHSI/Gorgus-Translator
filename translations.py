@@ -447,6 +447,7 @@ translation_dictionary = {
     "shilt": ["favourite", "favorite"],
     "muneg": "full",
     "plong": "funny",
+    "plor": "fun",
     "bolg": "deep",
     "kern": "shallow",
     "morg": "sure",
