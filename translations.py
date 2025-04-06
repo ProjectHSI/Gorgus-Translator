@@ -373,6 +373,8 @@ translation_dictionary = {
     "kleebar": "new",
     "jeenar": "old",
     "tå": "to", # used to be "bonkep"
+    "wè": ["cry", "sob"],
+    "deedoo": ["dance"],
 
     # Prepositions
     "margar": "behind",
