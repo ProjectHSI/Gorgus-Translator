@@ -375,6 +375,7 @@ translation_dictionary = {
     "tå": "to", # used to be "bonkep"
     "wè": ["cry", "sob"],
     "deedoo": ["dance"],
+    "hehehar": ["laugh"],
 
     # Prepositions
     "margar": "behind",
