@@ -68,7 +68,7 @@ translation_dictionary = {
     "minos": "creature",
     "waceb": "tree",
     "dint": "skin",
-    "gorgocia": "gorgocia", # the country where gorgus is spoken
+    "gorgóćhia": ["country", "gorgocia"], # the country where gorgus is spoken
     "gorgan": "gorgan", # this is the race that speaks Gorgus
     "gorgus": "gorgus", # the language itself
     "kob": "thing",
@@ -144,7 +144,7 @@ translation_dictionary = {
     "mawbahp": "dream",
     "krinkeb": "cheese",
     "homp": "tunnel",
-    "cränum": ["skull", "head"],
+    "crän": ["skull", "head"],
     "moyp": "rat",
     "grongus": "gibberish",
     "wheenp": "question",
@@ -173,6 +173,11 @@ translation_dictionary = {
     "yumklat": "dirt",
     "sploing": "rock",
     "smortos": "math",
+    "ride": "jockey",
+    "spinkab": "sky",
+    "gohersom": "arrival",
+    "wiggló": "worm",
+    "otsid": "window",
 
     # metals
     "steel": "steel",
@@ -245,6 +250,7 @@ translation_dictionary = {
     "shtimp": "just",
     "orgik": "sometime",
     "widilp": "never",
+    "smikarit": "could",
 
     # Verbs
     ### Symbols ###
@@ -339,8 +345,13 @@ translation_dictionary = {
     "goog": "ride",
     "shiav": "stab",
     "yeat": ["throw", "launch"],
-    "refg": ["free"],
+    "refg": ["free", "release"],
     "lingenp": ["trap"],
+    "goos": "lie",
+    "papop": "add",
+    "plipop": ["remove", "subtract", "take"],
+    "goherp": "arrive",
+    "sactro": ["try", "attempt"],
 
     # Proper Nouns
     "googrung": ["you", "thee"],
@@ -373,6 +384,9 @@ translation_dictionary = {
     "kleebar": "new",
     "jeenar": "old",
     "tå": "to", # used to be "bonkep"
+    "wè": ["cry", "sob"],
+    "deedoo": ["dance"],
+    "hehehar": ["laugh"],
 
     # Prepositions
     "margar": "behind",
@@ -444,6 +458,7 @@ translation_dictionary = {
     "shilt": ["favourite", "favorite"],
     "muneg": "full",
     "plong": "funny",
+    "plor": "fun",
     "bolg": "deep",
     "kern": "shallow",
     "morg": "sure",
@@ -455,6 +470,7 @@ translation_dictionary = {
     "dimbuplo": "pregnant",
     "sockmo": "soft",
     "rockmo": "hard",
+    "eepy": "tired",
 
     # temperatures
     "sisf": "hot",
@@ -465,7 +481,7 @@ translation_dictionary = {
     "nink": "dweeb",
     "jink": "fuck",
     "toop": "shit",
-    "sćhlonk": "penis",
+    "ćhlonk": "penis",
     "zorper": ["bitch", "fucker", "asshole", "motherfucker"],
     "gdorp": "gdorp",
 }
@@ -493,7 +509,7 @@ dictionary_information = {
         "glunch": "to make something / someone unrecognisable on a quantum level",
         "gorgan": "the race that speaks Gorgus",
         "gorgus": "the language spoken by Gorgans",
-        "gorgocia": "the country where Gorgans come from"
+        "gorgoćhia": "the country where Gorgans come from"
     }
 }
 
@@ -549,7 +565,9 @@ phrase_translations = { # if one of these phrases appears before another phrase 
 
     "slorgundug": ["reckoning", "end times", "apocalypse", "armageddon"],
 
-    "pritter marip": ["leave", "go away", "leave me alone"],
+    "pritter marip": ["leave", "go away", "leave me alone", "move along"],
+    "jètå": ["like a", "similar to a"],
+    "ètå": ["similar to"],
 
     "cubiling": "working on",
 
