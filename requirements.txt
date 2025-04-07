@@ -1,7 +1,6 @@
 setuptools
 wheel
 textual
-spacy
 nltk
 inflect
 gitpython
