@@ -68,8 +68,8 @@ translation_dictionary = {
     "minos": "creature",
     "waceb": "tree",
     "dint": "skin",
-    "gorgóćhia": ["country", "gorgocia"], # the country where gorgus is spoken
-    "gorgóćhian": "gorgóćhian", # this is the race that speaks Gorgus
+    "gorgóćhia": ["country", "gorgóćhia", "gorgocia"], # the country where gorgus is spoken
+    "gorgóćhian": ["gorgóćhian", "gorgochian"], # this is the race that speaks Gorgus
     "gorgus": "gorgus", # the language itself
     "kob": "thing",
     "wonk": "soul",
