@@ -342,6 +342,7 @@ translation_dictionary = {
     "yeat": ["throw", "launch"],
     "refg": ["free"],
     "lingenp": ["trap"],
+    "goos": "lie",
 
     # Proper Nouns
     "googrung": ["you", "thee"],
