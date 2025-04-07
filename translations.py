@@ -4,10 +4,10 @@ translation_dictionary = {
 
     # Grammar
     "lunk": "?",
-    "<PLURAL>": "ik-", # add before a word to make it plural
-    "<ACTOR>": "-ak", # add before a word to turn it into an actor noun (e.g: teach -> teacher, speak -> speaker)
-    "<PAST_TENSE>": "-ra", # add after a word to make it past tense
-    "<CONT_TENSE>": "-ok", # add after a word to make it present-continuous (e.g: eat -> eating, run -> running)
+    "<PLURAL>": "ik", # add before a word to make it plural
+    "<ACTOR>": "ak", # add before a word to turn it into an actor noun (e.g: teach -> teacher, speak -> speaker)
+    "<PAST_TENSE>": "ra", # add after a word to make it past tense
+    "<CONT_TENSE>": "ok", # add after a word to make it present-continuous (e.g: eat -> eating, run -> running)
     "<EXAGGERATED_VERB>": "\u0302", # add after a word to make it more intense (e.g: kiffer -> kiffer\u0302)
     "<GENTLE_VERB>": "\u0303", # same thing as the above but more gentle (e.g: kiffer -> kiffer\u0303)
     "<SENTENCE_END>": ".", # a full stop
@@ -178,6 +178,7 @@ translation_dictionary = {
     "gohersom": "arrival",
     "wiggló": "worm",
     "otsid": "window",
+    "crébsk": "door",
 
     # metals
     "steel": "steel",
@@ -618,7 +619,8 @@ ignored_plurals = [ # words that can't be pluralised
     "gender",
     "dumbass",
     "brass",
-    "never"
+    "never",
+    "door"
 ]
 
 ignored_actor_nouns = [ # words that can't be turned into actor nouns
@@ -655,5 +657,6 @@ ignored_actor_nouns = [ # words that can't be turned into actor nouns
     "over",
     "gender",
     "copper",
-    "never"
+    "never",
+    "door"
 ]
