@@ -177,6 +177,7 @@ translation_dictionary = {
     "spinkab": "sky",
     "gohersom": "arrival",
     "wiggló": "worm",
+    "otsid": "window",
 
     # metals
     "steel": "steel",
