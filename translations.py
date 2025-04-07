@@ -343,6 +343,8 @@ translation_dictionary = {
     "refg": ["free"],
     "lingenp": ["trap"],
     "goos": "lie",
+    "papop": "add",
+    "plipop": ["remove", "subtract"],
 
     # Proper Nouns
     "googrung": ["you", "thee"],
