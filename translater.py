@@ -407,7 +407,7 @@ def to_gorgus(user_input):
                 tense_suffix = translation_dictionary.get(f"<{tense.upper()}_TENSE>", "") if word_type == "VERB" else ""
                 word_type_suffix = translation_dictionary.get(f"<{word_type.upper()}>", "")
 
-                translated += f"{plural_prefix}{key}{word_type_suffix}{word_suffix}{suffix}{tense_suffix}{punctuation_suffix} ({word_type}) "
+                translated += f"{plural_prefix}{key}{word_type_suffix}{word_suffix}{suffix}{tense_suffix}{punctuation_suffix} "
                 break
 
         if not found:
