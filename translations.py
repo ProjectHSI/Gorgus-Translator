@@ -344,7 +344,7 @@ translation_dictionary = {
     "lingenp": ["trap"],
     "goos": "lie",
     "papop": "add",
-    "plipop": ["remove", "subtract"],
+    "plipop": ["remove", "subtract", "take"],
 
     # Proper Nouns
     "googrung": ["you", "thee"],
