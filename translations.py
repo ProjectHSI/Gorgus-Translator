@@ -341,7 +341,7 @@ translation_dictionary = {
     "goog": "ride",
     "shiav": "stab",
     "yeat": ["throw", "launch"],
-    "refg": ["free"],
+    "refg": ["free", "release"],
     "lingenp": ["trap"],
     "goos": "lie",
     "papop": "add",
