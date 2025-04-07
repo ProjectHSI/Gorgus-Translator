@@ -174,6 +174,7 @@ translation_dictionary = {
     "sploing": "rock",
     "smortos": "math",
     "ride": "jockey",
+    "spinkab": "sky",
 
     # metals
     "steel": "steel",
