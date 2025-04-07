@@ -68,7 +68,7 @@ translation_dictionary = {
     "minos": "creature",
     "waceb": "tree",
     "dint": "skin",
-    "gorgocia": ["country", "gorgocia"], # the country where gorgus is spoken
+    "gorgoćhia": ["country", "gorgocia"], # the country where gorgus is spoken
     "gorgan": "gorgan", # this is the race that speaks Gorgus
     "gorgus": "gorgus", # the language itself
     "kob": "thing",
@@ -473,7 +473,7 @@ translation_dictionary = {
     "nink": "dweeb",
     "jink": "fuck",
     "toop": "shit",
-    "sćhlonk": "penis",
+    "ćhlonk": "penis",
     "zorper": ["bitch", "fucker", "asshole", "motherfucker"],
     "gdorp": "gdorp",
 }
@@ -501,7 +501,7 @@ dictionary_information = {
         "glunch": "to make something / someone unrecognisable on a quantum level",
         "gorgan": "the race that speaks Gorgus",
         "gorgus": "the language spoken by Gorgans",
-        "gorgocia": "the country where Gorgans come from"
+        "gorgoćhia": "the country where Gorgans come from"
     }
 }
 
