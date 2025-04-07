@@ -175,6 +175,7 @@ translation_dictionary = {
     "smortos": "math",
     "ride": "jockey",
     "spinkab": "sky",
+    "gohersom": "arrival",
 
     # metals
     "steel": "steel",
@@ -346,6 +347,7 @@ translation_dictionary = {
     "goos": "lie",
     "papop": "add",
     "plipop": ["remove", "subtract", "take"],
+    "goherp": "arrive",
 
     # Proper Nouns
     "googrung": ["you", "thee"],
