@@ -4,13 +4,13 @@ translation_dictionary = {
 
     # Grammar
     "lunk": "?",
-    "<PLURAL>": "ik-",
-    "<ACTOR>": "-ak",
-    "<PAST_TENSE>": "-ra",
-    "<CONT_TENSE>": "-ok",
-    "<EXAGGERATED_VERB>": "\u0302",
-    "<GENTLE_VERB>": "\u0303",
-    "<SENTENCE_END>": ".",
+    "<PLURAL>": "ik-", # add before a word to make it plural
+    "<ACTOR>": "-ak", # add before a word to turn it into an actor noun (e.g: teach -> teacher, speak -> speaker)
+    "<PAST_TENSE>": "-ra", # add after a word to make it past tense
+    "<CONT_TENSE>": "-ok", # add after a word to make it present-continuous (e.g: eat -> eating, run -> running)
+    "<EXAGGERATED_VERB>": "\u0302", # add after a word to make it more intense (e.g: kiffer -> kiffer\u0302)
+    "<GENTLE_VERB>": "\u0303", # same thing as the above but more gentle (e.g: kiffer -> kiffer\u0303)
+    "<SENTENCE_END>": ".", # a full stop
 
     # Pronouns :)
 
@@ -248,8 +248,8 @@ translation_dictionary = {
 
     # Verbs
     ### Symbols ###
-    # -ra makes a verb past tense
-    # -ok makes a verb present-continuous
+    # -ra at the end of a verb makes it past tense
+    # -ok at the end of a verb makes it present-continuous tense
     ### End of Symbols ###
     "chonġle̱": ["eat", "devour"],
     "ćhlore̱": ["drink", "slurp"],
