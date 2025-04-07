@@ -557,7 +557,7 @@ phrase_translations = { # if one of these phrases appears before another phrase 
 
     "slorgundug": ["reckoning", "end times", "apocalypse", "armageddon"],
 
-    "pritter marip": ["leave", "go away", "leave me alone"],
+    "pritter marip": ["leave", "go away", "leave me alone", "move along"],
     "jètå": ["like a", "similar to a"],
     "ètå": ["similar to"],
 
