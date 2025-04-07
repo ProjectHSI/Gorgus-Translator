@@ -353,6 +353,8 @@ translation_dictionary = {
     "plipop": ["remove", "subtract", "take"],
     "goherp": "arrive",
     "sactro": ["try", "attempt"],
+    "cniplop": "close",
+    "sliplop": "open",
 
     # Proper Nouns
     "googrung": ["you", "thee"],
