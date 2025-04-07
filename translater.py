@@ -284,7 +284,7 @@ def get_ipa_pronounciation(gorgus: str):
         "ɹs": ["rse"],
         "aɪk": ["ike"],
         "aɪd": ["ide", "ied"],
-        "oʃia": ["oćhia"],
+        "gɔɹgoʃia": ["gorgoćhia"],
         "": ['a̱', 'ḇ', 'c̱', 'ḏ', 'e̱', 'f̱', 'g̱', 'ẖ', 'i̱', 'j̱', 'ḵ', 'ḻ', 'm̱', 'ṉ', 'o̱', 'p̱', 'q̱', 'ṟ', 's̱', 'ṯ', 'u̱', 'v̱', 'w̱', 'x̱', 'y̱', 'ẕ'] # silent letters
     }
 
