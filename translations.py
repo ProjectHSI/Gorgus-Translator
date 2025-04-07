@@ -355,6 +355,8 @@ translation_dictionary = {
     "sactro": ["try", "attempt"],
     "cniplop": "close",
     "sliplop": "open",
+    "lonk": "use",
+    "scrèmgle̱": "scream",
 
     # Proper Nouns
     "googrung": ["you", "thee"],
