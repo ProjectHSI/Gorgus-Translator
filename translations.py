@@ -176,6 +176,7 @@ translation_dictionary = {
     "ride": "jockey",
     "spinkab": "sky",
     "gohersom": "arrival",
+    "wiggló": "worm",
 
     # metals
     "steel": "steel",
