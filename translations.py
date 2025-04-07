@@ -69,7 +69,7 @@ translation_dictionary = {
     "waceb": "tree",
     "dint": "skin",
     "gorgóćhia": ["country", "gorgocia"], # the country where gorgus is spoken
-    "gorgan": "gorgan", # this is the race that speaks Gorgus
+    "gorgóćhian": "gorgóćhian", # this is the race that speaks Gorgus
     "gorgus": "gorgus", # the language itself
     "kob": "thing",
     "wonk": "soul",
@@ -508,11 +508,11 @@ dictionary_information = {
     "extra_info": {
         "agger": "[bright_green]platonic[/bright_green]",
         "forp": "[deep_pink1]romantic[/deep_pink1]",
-        "gdorp": "[bold orange1]slur[/bold orange1], slur against Gorgans",
+        "gdorp": "[bold orange1]slur[/bold orange1], slur against gorgóćhians",
         "glunch": "to make something / someone unrecognisable on a quantum level",
-        "gorgan": "the race that speaks Gorgus",
-        "gorgus": "the language spoken by Gorgans",
-        "gorgoćhia": "the country where Gorgans come from"
+        "gorgóćhian": "the race that speaks Gorgus",
+        "gorgus": "the language spoken by gorgóćhians",
+        "gorgoćhia": "the country where gorgóćhians come from"
     }
 }
 
