@@ -11,6 +11,11 @@ translation_dictionary = {
     "<EXAGGERATED_VERB>": "\u0302", # add after a word to make it more intense (e.g: kiffer -> kiffer\u0302)
     "<GENTLE_VERB>": "\u0303", # same thing as the above but more gentle (e.g: kiffer -> kiffer\u0303)
     "<SENTENCE_END>": ".", # a full stop
+    "<VERB>": "as",
+    "<NOUN>": "at",
+    "<ADJ>": "to",
+    "<PROPN>": "to",
+    "<ADVERB>": "lit",
 
     # Pronouns :)
 
@@ -357,6 +362,7 @@ translation_dictionary = {
     "sliplop": "open",
     "lonk": "use",
     "scrèmgle̱": "scream",
+    "blisap": "forever",
 
     # Proper Nouns
     "googrung": ["you", "thee"],
