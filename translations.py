@@ -576,8 +576,8 @@ phrase_translations = { # if one of these phrases appears before another phrase 
 
     "cubiling": "working on",
 
-    "h'eeko": "i like",
-    "h'aggo": "i love",
+    "h'eekó": "i like",
+    "h'aggó": "i love",
 
     "geti'fer": ["don't think that", "dont think that", "doubt"],
     "kè'rack": ["nobody", "no one", "noone"],
