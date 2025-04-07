@@ -469,6 +469,7 @@ translation_dictionary = {
     "dimbuplo": "pregnant",
     "sockmo": "soft",
     "rockmo": "hard",
+    "eepy": "tired",
 
     # temperatures
     "sisf": "hot",
