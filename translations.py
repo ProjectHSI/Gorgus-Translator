@@ -350,6 +350,7 @@ translation_dictionary = {
     "papop": "add",
     "plipop": ["remove", "subtract", "take"],
     "goherp": "arrive",
+    "sactro": ["try", "attempt"],
 
     # Proper Nouns
     "googrung": ["you", "thee"],
