@@ -144,7 +144,7 @@ translation_dictionary = {
     "mawbahp": "dream",
     "krinkeb": "cheese",
     "homp": "tunnel",
-    "cränum": ["skull", "head"],
+    "crän": ["skull", "head"],
     "moyp": "rat",
     "grongus": "gibberish",
     "wheenp": "question",
