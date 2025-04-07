@@ -173,6 +173,7 @@ translation_dictionary = {
     "yumklat": "dirt",
     "sploing": "rock",
     "smortos": "math",
+    "ride": "jockey",
 
     # metals
     "steel": "steel",
