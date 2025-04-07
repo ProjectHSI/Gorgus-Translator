@@ -449,8 +449,10 @@ def from_gorgus(user_input: str):
 
         tense = "norm"
         for tense_key, tense_value in {translation_dictionary["<CONT_TENSE>"]: "cont", translation_dictionary["<PAST_TENSE>"]: "past"}.items():
-            if tense_key in word:
-                word = word.replace(tense_key, "")
+            #if tense_key in word:
+            if word.endswith(tense_key):
+                #word = word.replace(tense_key, "")
+                word = word.removesuffix(tense_key)
                 tense = tense_value
                 break
 
