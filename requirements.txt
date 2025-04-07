@@ -4,3 +4,9 @@ textual
 spacy
 nltk
 inflect
+gitpython
+word_forms
+rich
+pyfiglet
+psutil
+pyperclip

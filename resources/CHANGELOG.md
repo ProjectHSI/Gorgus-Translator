@@ -1,6 +1,52 @@
 # Changelog
+The Gorgus Translator was published to Github in version `1.6`, pretty much all prior versions are lost media lmao.
 
-## Version 1.65 (current)
+## Version 1.10 (current, the last update!)
+- I'm going to add content to this over time, but this will be the last update cause I'm getting bored of working on this translator lol.
+- Added **A LOT** of new words!
+- Added a turn based battle game. (to be added)
+- Fixed some bugs.
+- You can now turn any verb into past tense by adding `-ra` *(eat -> ate, build -> built)* or continuous tense by adding `-ak` *(eat -> eating, kill -> killing)*.
+- Improved grammar when translating from Gorgus to English and vice versa.
+- Added more loading screen messages.
+- Removed Herobrine.
+
+## Version 1.95
+- You can now host a multiplayer game between you and a friend! Check out the new game. :)
+- A server list will detect servers running on the same WiFi.
+
+## Version 1.9
+- Added a `Games` tab to the translator! You can only play Gorgus Worlde and Hangman for now though lol.
+- Added more words and phrases.
+- Added some info to the loading screen so you don't have to stare at nothing for a while.
+
+## Version 1.8
+- Small optimization update.
+- Couple more words and phrases. (300+ words reached!!! :D)
+- Added some tooltips to the settings menu.
+- Fixed some bugs.
+- The full stop in the language is now set back to a regular full stop.
+- Some words have accents on them now to help with pronounciation! (can be turned off in settings)
+- Changed how the settings tab looks.
+- You can clear your settings in the settings menu now!
+
+## Version 1.75
+- Added some language features.
+- Punctuation like "," and "!" is now supported in the translator!
+- Added quite a few more words.
+
+## Version 1.7
+- Small update, just some new words. (We now have 200+ words! :D)
+- You can now turn words into `"a person who X"`, basically meaning `"kill"` becomes `"killer"` or `"a person who kills"`. You do this by adding the suffix "-ak" to a noun.
+- Fixed translation bugs.
+- Added `gitpython` and `nltk` to `requirements.txt` so it would be automatically installed.
+- Modules inside of the `requirements.txt` file are automatically installed when openning the program for the first time.
+- Allowed the user to disable or enable the clock in the top right.
+- Users can check for updates in the settings menu without restarting now.
+- Moved a lot of the informal words to the bottom of the dictionary lol.
+- Changed the translator page a lil' bit.
+
+## Version 1.65
 - Added a `Settings` page to the UI which will be expanded in the future
 - Automatic update checker! Turn it off in the `Settings` page.
 - Improved the dictionary search a tiny bit.

@@ -4,8 +4,24 @@ TabPane {
 
 .text-box {
     max-width: 50%;
-    max-height: 30%;
+    max-height: 25%;
     margin-top: 1;
+    min-height: 5;
+}
+
+.output {
+    max-width: 50%;
+}
+
+#output {
+    margin-top: 1;
+}
+
+#notice {
+    width: 50%;
+    margin-top: 1;
+    margin-bottom: 1;
+    text-align: center;
 }
 
 #to-select {
@@ -31,11 +47,12 @@ TabPane {
 
 #settings-panel {
     background: $surface;
-    width: 75%;
-    max-height: 45%;
-    min-height: 25;
     border: round $primary;
     padding: 1;
+    overflow: auto;
+
+    width: 60%;
+    min-width: 70;
 }
 
 #settings-panel .setting {
@@ -45,14 +62,46 @@ TabPane {
 
 #settings-panel .setting Label {
     margin-top: 1;
-    width: 35%;
+    width: 22.5%;
+    min-width: 31;
 }
 
 #settings-panel .setting Select {
-    width: 25%;
-    min-width: 15;
+    width: 15%;
+    min-width: 24;
 } 
 
-#update-button {
-    dock: right;
+#settings-actions {
+    min-height: 3;
+    margin-bottom: 1;
+}
+
+.setting-button {
+    margin-right: 3;
+}
+
+.settings-title {
+    margin-bottom: 1;
+}
+
+.settings-note {
+    margin-bottom: 1;
+}
+
+#games-md {
+    margin: 0;
+    padding: 0 2;
+    max-width: 100%;
+    background: transparent;
+}
+
+#games-grid {
+    margin: 2 4;
+    padding: 1 2;
+    background: $boost;
+    width: 1fr;
+    height: auto;
+    grid-gutter: 1 1;
+    grid-rows: auto;
+    keyline: thin $foreground 30%;
 }
