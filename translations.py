@@ -12,7 +12,7 @@ translation_dictionary = {
     "<GENTLE_VERB>": "\u0303", # same thing as the above but more gentle (e.g: kiffer -> kiffer\u0303)
     "<SENTENCE_END>": ".", # a full stop
     "<VERB>": "as",
-    "<NOUN>": "at",
+    "<NOUN>": "yat",
     "<ADJ>": "to",
     "<PRON>": "mot",
     "<ADV>": "lit",
