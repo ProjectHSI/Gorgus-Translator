@@ -309,7 +309,7 @@ def get_ipa_pronounciation(gorgus: str):
 
     return "/" + ' '.join(ipa_output).replace("R", "r").replace("O", "o") + "/"
 
-def to_gorgus(user_input):
+def to_gorgus(user_input, formal = True):
     translated = ""
     before_translation = user_input
     
@@ -334,7 +334,6 @@ def to_gorgus(user_input):
             modified_verbs[token.head.i] = -1
 
     for i, word in enumerate(words): 
-        start = time()
         if word == "the": # skip "the", there is no equivelant in gorgus
             continue
 
@@ -405,7 +404,7 @@ def to_gorgus(user_input):
                 found = True
                 plural_prefix = translation_dictionary["<PLURAL>"] if is_plural else ""
                 tense_suffix = translation_dictionary.get(f"<{tense.upper()}_TENSE>", "") if word_type == "VERB" else ""
-                word_type_suffix = translation_dictionary.get(f"<{word_type.upper()}>", "")
+                word_type_suffix = translation_dictionary. get(f"<{word_type.upper()}>", "") if formal else ""
 
                 translated += f"{plural_prefix}{key}{word_type_suffix}{word_suffix}{suffix}{tense_suffix}{punctuation_suffix} "
                 break
@@ -572,7 +571,7 @@ def replace_word(input_string, word, replacement, offset = 1):
     # Join the words back into a string and return
     return " ".join(words)
 
-def translate(text, to: Literal["english", "gorgus"], wordnet_available = True, should_add_accents = True):
+def translate(text, to: Literal["english", "gorgus"], formal = True, should_add_accents = True):
     """Translate from or to Gorgus and English!
 
     Trailing whitespace is not preserved, neither is punctuation.
@@ -596,7 +595,7 @@ def translate(text, to: Literal["english", "gorgus"], wordnet_available = True, 
 
     elif user_choice == 1: # translate english to language      
         
-        translated = to_gorgus(text)
+        translated = to_gorgus(text, formal)
 
     translated = fix_up(translated, should_add_accents)
 

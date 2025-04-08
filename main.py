@@ -364,7 +364,7 @@ class GorgusTranslator(App):
             if event.checkbox.id in ["clock_enabled", "show_ipa"]: # certain settings require a restart to take effect
                 self.notify("You need to restart for this change to take effect.", title="Setting Changed")
 
-            if event.checkbox.id == "add_pronounciation_accents":
+            if event.checkbox.id in ["add_pronounciation_accents", "formal_gorgus"]:
                 self.update_translation()
 
             modify_json("settings.json", event.checkbox.id, event.checkbox.value)
@@ -435,7 +435,7 @@ class GorgusTranslator(App):
         pronounciation_text = ""
 
         if selection == 1:
-            self.translation = translate(self.translation_input, "gorgus", should_add_accents=should_add_accents)
+            self.translation = translate(self.translation_input, "gorgus", formal=settings["formal_gorgus"], should_add_accents=should_add_accents)
 
             if show_ipa:
                 pronounciation_text = "[dim]" + get_ipa_pronounciation(self.translation) + "[/dim]"
@@ -470,12 +470,14 @@ class GorgusTranslator(App):
             settings["clock_enabled"]
             settings["add_pronounciation_accents"]
             settings["show_ipa"]
+            settings["formal_gorgus"]
         except KeyError: # support older settings.json formats
             modify_json("settings.json", "clock_enabled", True)
             modify_json("settings.json", "theme_index", 0)
             modify_json("settings.json", "theme", "textual-dark")
             modify_json("settings.json", "add_pronounciation_accents", True)
             modify_json("settings.json", "show_ipa", True)
+            modify_json("settings.json", "formal_gorgus", True)
             settings = get_settings()
 
         yield Header(show_clock=settings["clock_enabled"], id="header")
@@ -577,6 +579,12 @@ These are the people that make this possible! *(all of these are Discord usernam
                         yield Label("Show IPA pronounciation:")
                         yield Checkbox(button_first=False, value=settings["show_ipa"], id="show_ipa", classes="setting",
                                  tooltip="The translator will show an IPA transcription when translating to Gorgus."
+                        )
+
+                    with Horizontal(classes="setting"):
+                        yield Label("Formal Gorgus:")
+                        yield Checkbox(button_first=False, value=settings["formal_gorgus"], id="formal_gorgus", classes="setting",
+                                 tooltip="Gorgus is more verbose, and looks a bit more like Latin."
                         )
 
                     yield Label("Actions", variant="primary", classes="settings-title")

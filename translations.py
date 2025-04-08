@@ -11,10 +11,10 @@ translation_dictionary = {
     "<EXAGGERATED_VERB>": "\u0302", # add after a word to make it more intense (e.g: kiffer -> kiffer\u0302)
     "<GENTLE_VERB>": "\u0303", # same thing as the above but more gentle (e.g: kiffer -> kiffer\u0303)
     "<SENTENCE_END>": ".", # a full stop
-    "<VERB>": "",#"pas",
-    "<NOUN>": "",#"yat",
-    "<ADJ>": "",#"ató",
-    "<ADV>": "",#"lit",
+    "<VERB>": "pas",
+    "<NOUN>": "yat",
+    "<ADJ>": "ató",
+    "<ADV>": "lit",
 
     # Pronouns :)
 
