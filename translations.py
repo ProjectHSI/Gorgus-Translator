@@ -572,6 +572,7 @@ phrase_translations = { # if one of these phrases appears before another phrase 
     "bingus": "rotisserie chicken",
     "zup morg": ["be sure", "say for sure"],
     "pritterå": ["go to"],
+    "go'rung": ["and you", "what about you", "how about you"],
 
     "zorp ikspek": "profanity",
     "jid gorse": ["that's", "thats", "that is"],
