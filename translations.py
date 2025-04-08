@@ -13,7 +13,7 @@ translation_dictionary = {
     "<SENTENCE_END>": ".", # a full stop
     "<VERB>": "pas",
     "<NOUN>": "yat",
-    "<ADJ>": "ato",
+    "<ADJ>": "ató",
     "<PRON>": "mot",
     "<ADV>": "lit",
 
