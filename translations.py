@@ -184,6 +184,7 @@ translation_dictionary = {
     "wiggló": "worm",
     "otsid": "window",
     "crébsk": "door",
+    "thlenġo": "something",
 
     # metals
     "steel": "steel",
