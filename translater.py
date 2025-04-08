@@ -482,7 +482,6 @@ def from_gorgus(user_input: str):
             translation_dictionary["<VERB>"],
             translation_dictionary["<NOUN>"],
             translation_dictionary["<ADJ>"],
-            translation_dictionary["<PRON>"],
             translation_dictionary["<ADV>"]
         ]
         for word_type_suffix in word_type_suffixes:
