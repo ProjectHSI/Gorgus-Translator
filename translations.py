@@ -300,7 +300,7 @@ translation_dictionary = {
     "muung": "fill",
     "roober": ["get", "fetch"],
     "glomp": "produce",
-    "bikto": ["break", "destroy"],
+    "biktó": ["break", "destroy"],
     "smuksh": ["fall", "crumble"],
     "skoonk": "push",
     "bloont": "pop",
