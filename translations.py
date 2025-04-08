@@ -184,6 +184,8 @@ translation_dictionary = {
     "otsid": "window",
     "crébsk": "door",
     "thlenġo": "something",
+    "pepalop": "tool",
+    "kendflop": "flower",
 
     # metals
     "steel": "steel",
