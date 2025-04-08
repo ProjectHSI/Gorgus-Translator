@@ -171,7 +171,7 @@ translation_dictionary = {
     "blinch": "snow",
     "graplat": "grass",
     "yumklat": "dirt",
-    "sploing": "rock",
+    "sploing": ["stone", "rock"],
     "smortos": "math",
     "ride": "jockey",
     "spinkab": "sky",
