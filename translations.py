@@ -14,7 +14,6 @@ translation_dictionary = {
     "<VERB>": "pas",
     "<NOUN>": "yat",
     "<ADJ>": "ató",
-    "<PRON>": "mot",
     "<ADV>": "lit",
 
     # Pronouns :)
@@ -572,6 +571,7 @@ phrase_translations = { # if one of these phrases appears before another phrase 
     "meg'morp": "everywhere",
     "bingus": "rotisserie chicken",
     "zup morg": ["be sure", "say for sure"],
+    "pritterå": ["go to"],
 
     "zorp ikspek": "profanity",
     "jid gorse": ["that's", "thats", "that is"],
