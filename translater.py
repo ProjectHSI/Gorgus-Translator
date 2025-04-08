@@ -478,6 +478,18 @@ def from_gorgus(user_input: str):
             translated += "ji "
             continue
 
+        word_type_suffixes = [
+            translation_dictionary["<VERB>"],
+            translation_dictionary["<NOUN>"],
+            translation_dictionary["<ADJ>"],
+            translation_dictionary["<PRON>"],
+            translation_dictionary["<ADV>"]
+        ]
+        for word_type_suffix in word_type_suffixes:
+            if word.endswith(word_type_suffix) or word.endswith(remove_all_except(word_type_suffix)):
+                word = word.removesuffix(word_type_suffix).removesuffix(remove_all_except(word_type_suffix))
+                break
+
         #return f'{word, translation_dictionary, translation_dictionary.get(word, " Not found!")}'
         translation = deaccented_translation_dict.get(remove_all_except(word))
     
