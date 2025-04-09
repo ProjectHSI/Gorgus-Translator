@@ -176,6 +176,7 @@ translation_dictionary = {
     "graplat": "grass",
     "yumklat": "dirt",
     "sploing": ["stone", "rock"],
+    "jabla": "flint",
     "smortos": "math",
     "ride": "jockey",
     "spinkab": "sky",
@@ -186,6 +187,8 @@ translation_dictionary = {
     "thlenġo": "something",
     "pepalop": "tool",
     "kendflop": "flower",
+    "geegogo": "song",
+    "jupomubo": "music",
 
     # metals
     "steel": "steel",
