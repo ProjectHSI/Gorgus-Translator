@@ -8,6 +8,7 @@ translation_dictionary = {
     "<ACTOR>": "ak", # add before a word to turn it into an actor noun (e.g: teach -> teacher, speak -> speaker)
     "<PAST_TENSE>": "ra", # add after a word to make it past tense
     "<CONT_TENSE>": "ok", # add after a word to make it present-continuous (e.g: eat -> eating, run -> running)
+    "<FUTR_TENSE>": "et", # add after a word to make it future tense (e.g: eat -> will eat, run -> will run)
     "<EXAGGERATED_VERB>": "\u0302", # add after a word to make it more intense (e.g: kiffer -> kiffer\u0302)
     "<GENTLE_VERB>": "\u0303", # same thing as the above but more gentle (e.g: kiffer -> kiffer\u0303)
     "<SENTENCE_END>": ".", # a full stop

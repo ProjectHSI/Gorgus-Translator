@@ -83,7 +83,7 @@ for norm_key in normalized_translation_dict:
     deaccented = remove_all_except(norm_key)
     reverse_mapping[norm_key] = deaccented
 
-def detect_verb_tense(verb):
+def detect_verb_tense(verb, previous_word = None):
     try:
         sent = list(nlp(verb).sents)[0]
     except IndexError:
@@ -98,6 +98,9 @@ def detect_verb_tense(verb):
         sent.root.tag_ == "VBG" or
         any(w.dep_ == "aux" and w.tag_ == "VBZ" for w in sent.root.children)):
         return "cont"
+    
+    if previous_word and previous_word in ["will"]:
+        return "futr"
     
     return "norm"
 
@@ -146,6 +149,7 @@ def get_past_tense_verb(verb):
         "wear": "wore",
         "write": "wrote",
         "run": "ran",
+        "eat": "ate"
         # Add more irregular verbs as needed
     }
  
@@ -181,6 +185,9 @@ def get_tense_verb(verb, tense):
     elif tense == "cont":
         return convert_to_gerund(verb)
     
+    elif tense == "futr":
+        return "will " + verb
+
     else:
         return verb
 
@@ -309,6 +316,12 @@ def get_ipa_pronounciation(gorgus: str):
 
     return "/" + ' '.join(ipa_output).replace("R", "r").replace("O", "o") + "/"
 
+def remove_between_last_two_spaces(s):
+    parts = s.rsplit(" ", 2)  # Split into up to 3 parts from the right
+    if len(parts) < 3:
+        return s  # Not enough spaces to remove anything
+    return parts[0] + " " + parts[2]  # Keep first and last parts, remove the middle
+
 def to_gorgus(user_input, formal = True):
     translated = ""
     before_translation = user_input
@@ -333,6 +346,7 @@ def to_gorgus(user_input, formal = True):
         elif token.text == "GENTLE":
             modified_verbs[token.head.i] = -1
 
+    previous_english_word = None
     for i, word in enumerate(words): 
         if word == "the": # skip "the", there is no equivelant in gorgus
             continue
@@ -391,9 +405,12 @@ def to_gorgus(user_input, formal = True):
             is_plural = False
 
         # we need to figure out what tense the verb is in :DDDDD (this is fucking painful, we also only use this if the word is a verb)
-        tense = detect_verb_tense(word)
+        tense = detect_verb_tense(word, previous_english_word)
         word_type = get_word_type(word)
         base_word = convert_to_base_form(word)
+
+        if tense == "futr": # remove the last word
+            translated = ' '.join(translated.strip().split(' ')[:-1]) + " "
 
         found = False
         for key, value_list in normalized_translation_dict.items():
@@ -403,7 +420,7 @@ def to_gorgus(user_input, formal = True):
             if (word_type != "VERB" and ((singular and singular in value_set) or (word in value_set) or (is_plural and plural in value_set))) or (word_type == "VERB" and base_word in value_set):
                 found = True
                 plural_prefix = translation_dictionary["<PLURAL>"] if is_plural else ""
-                tense_suffix = translation_dictionary.get(f"<{tense.upper()}_TENSE>", "") if word_type == "VERB" else ""
+                tense_suffix = translation_dictionary.get(f"<{tense.upper()}_TENSE>", "") #if word_type == "VERB" else ""
                 word_type_suffix = translation_dictionary. get(f"<{word_type.upper()}>", "") if formal else ""
 
                 translated += f"{plural_prefix}{key}{word_type_suffix}{word_suffix}{suffix}{tense_suffix}{punctuation_suffix} "
@@ -411,6 +428,8 @@ def to_gorgus(user_input, formal = True):
 
         if not found:
             translated += f"{word}{suffix}{punctuation_suffix} "
+
+        previous_english_word = word
 
     # Replace verb modifier words
     for word in ["really", "extremely", "very", "absolutely"]:
@@ -450,7 +469,7 @@ def from_gorgus(user_input: str):
         actor = False
 
         tense = "norm"
-        for tense_key, tense_value in {translation_dictionary["<CONT_TENSE>"]: "cont", translation_dictionary["<PAST_TENSE>"]: "past"}.items():
+        for tense_key, tense_value in {translation_dictionary["<CONT_TENSE>"]: "cont", translation_dictionary["<PAST_TENSE>"]: "past", translation_dictionary["<FUTR_TENSE>"]: "futr"}.items():
             #if tense_key in word:
             if word.endswith(tense_key):
                 #word = word.replace(tense_key, "")
