@@ -190,6 +190,7 @@ translation_dictionary = {
     "geegogo": "song",
     "jupomubo": "music",
     "griper": "foot",
+    "gringop": "shoe",
 
     # metals
     "steel": "steel",
