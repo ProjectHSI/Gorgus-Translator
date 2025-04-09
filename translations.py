@@ -191,6 +191,7 @@ translation_dictionary = {
     "jupomubo": "music",
     "griper": "foot",
     "gringop": "shoe",
+    "labran": "admin",
 
     # metals
     "steel": "steel",
@@ -370,6 +371,7 @@ translation_dictionary = {
     "lonk": "use",
     "scrèmgle̱": "scream",
     "blisap": "forever",
+    "kikrok": "abuse",
 
     # Proper Nouns
     "googrung": ["you", "thee"],
