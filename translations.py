@@ -594,6 +594,7 @@ phrase_translations = { # if one of these phrases appears before another phrase 
 
     "h'eekó": "i like",
     "h'aggó": "i love",
+    "h'orpó googrung": "i love you",
 
     "geti'fer": ["don't think that", "dont think that", "doubt"],
     "kè'rack": ["nobody", "no one", "noone"],
