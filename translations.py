@@ -189,6 +189,7 @@ translation_dictionary = {
     "kendflop": "flower",
     "geegogo": "song",
     "jupomubo": "music",
+    "griper": "foot",
 
     # metals
     "steel": "steel",
