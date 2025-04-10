@@ -16,6 +16,7 @@ translation_dictionary = {
     "<NOUN>": "yat",
     "<ADJ>": "ató",
     "<ADV>": "lit",
+    "<ADP>": "mot",
 
     # Pronouns :)
 

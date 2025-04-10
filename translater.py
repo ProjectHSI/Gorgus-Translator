@@ -500,7 +500,8 @@ def from_gorgus(user_input: str):
             translation_dictionary["<VERB>"],
             translation_dictionary["<NOUN>"],
             translation_dictionary["<ADJ>"],
-            translation_dictionary["<ADV>"]
+            translation_dictionary["<ADV>"],
+            translation_dictionary["<ADP>"]
         ]
         for word_type_suffix in word_type_suffixes:
             if word.endswith(word_type_suffix) or word.endswith(remove_all_except(word_type_suffix)):
@@ -626,18 +627,18 @@ class TranslationTester(unittest.TestCase):
         # key = english, value = expected gorgus translation
         tests_to_gorgus = {
             "Very cool! Very good. :)": "Klû! Dagungâ. :)",
-            "Hi! How are you?": "Dink! Dup pritter-ok lunk",
+            "Hi! How are you?": "Dink! Dup pritterok lunk",
             "How is the weather?": "Dup gorse weather lunk",
-            "I love you.": "H'aggo googrung.",
-            "He slept.": "Nåck eep-ra.",
-            "What's up?": "Dup pritter-ok lunk",
+            "I love you.": "H'orpó googrung.",
+            "He slept.": "Nåck eepra.",
+            "What's up?": "Dup pritterok lunk",
             "Do you like to eat?": "Gè'googrung jeek tå chonġle̱ lunk",
-            "What is going on?": "Nergo're pritter-ok hoog lunk"
+            "What is going on?": "Nergo're pritterok hoog lunk"
         }
 
         # go through each test
         for english, gorgus in tests_to_gorgus.items():
-            self.assertEqual(translate(english, "gorgus"), gorgus, "Translation from English to Gorgus does not match!")
+            self.assertEqual(translate(english, "gorgus", formal=False), gorgus, "Translation from English to Gorgus does not match!")
 
     def test_from_gorgus(self):
         # key = gorgus, value = expected english translation
@@ -652,7 +653,7 @@ class TranslationTester(unittest.TestCase):
 
         # go through each test
         for gorgus, english in tests_from_gorgus.items():
-            self.assertEqual(translate(gorgus, "english"), english, "Translation from Gorgus to English does not match!")
+            self.assertEqual(translate(gorgus, "english", formal=False), english, "Translation from Gorgus to English does not match!")
 
     def test_tense_detection(self):
         # key = verb, value = expected tense
@@ -668,12 +669,13 @@ class TranslationTester(unittest.TestCase):
             "try": "norm",
             "rented": "past",
             "make": "norm",
-            "wanting": "cont"
+            "wanting": "cont",
+            "will eat": "futr",
+            "will die": "futr"
         }
         for verb, expected_tense in tense_tests.items():
             self.assertEqual(detect_verb_tense(verb), expected_tense, f"Detected verb tense and expected verb tense do not match! ({verb})")
 
 
 if __name__ == '__main__':
-    print(get_ipa_pronounciation("Hello! How are you?"))
     unittest.main()
