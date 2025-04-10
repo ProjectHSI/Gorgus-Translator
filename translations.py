@@ -279,7 +279,7 @@ translation_dictionary = {
     "clunk": ["hit", "beat"],
     "agger": "love",
     "forp": "love",
-    "cubil": ["make", "create", "invent"],
+    "cúbil": ["make", "create", "invent"],
     "kunther": "want",
     "snik": "unleash",
     "jeek": "like",
