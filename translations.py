@@ -192,6 +192,7 @@ translation_dictionary = {
     "griper": "foot",
     "gringop": "shoe",
     "labran": "admin",
+    "splat": "raw",
 
     # metals
     "steel": "steel",
