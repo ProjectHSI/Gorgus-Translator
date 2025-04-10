@@ -10,7 +10,8 @@ def get_settings():
             "theme_index": 0,
             "clock_enabled": True,
             "add_pronounciation_accents": True,
-            "show_ipa": True
+            "show_ipa": True,
+            "formal_gorgus": False
         }
         with open("settings.json", "w") as file:
             json.dump(initial_data, file, indent=4)

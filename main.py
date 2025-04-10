@@ -477,7 +477,7 @@ class GorgusTranslator(App):
             modify_json("settings.json", "theme", "textual-dark")
             modify_json("settings.json", "add_pronounciation_accents", True)
             modify_json("settings.json", "show_ipa", True)
-            modify_json("settings.json", "formal_gorgus", True)
+            modify_json("settings.json", "formal_gorgus", False)
             settings = get_settings()
 
         yield Header(show_clock=settings["clock_enabled"], id="header")
