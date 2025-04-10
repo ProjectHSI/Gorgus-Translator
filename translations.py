@@ -374,6 +374,7 @@ translation_dictionary = {
     "scrèmgle̱": "scream",
     "blisap": "forever",
     "kikrok": "abuse",
+    "megèdink": "meet",
 
     # Proper Nouns
     "googrung": ["you", "thee"],
