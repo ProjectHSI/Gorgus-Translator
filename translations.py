@@ -501,7 +501,7 @@ translation_dictionary = {
     # naughty words >:(
     "zógó": ["idiot", "fool", "dumb", "moron", "clown", "stupid", "dumbass", "cretin"],
     "nink": "dweeb",
-    "jink": "fuck",
+    "jinkok": "fucking",
     "toop": "shit",
     "ćhlonk": "penis",
     "zorper": ["bitch", "fucker", "asshole", "motherfucker"],
@@ -512,7 +512,7 @@ dictionary_information = {
     "informal_words": [
         "zorper",
         "jink",
-        "jinks",
+        "jinkok",
         "gdorp",
         "quam",
         "bozer",
@@ -583,6 +583,7 @@ phrase_translations = { # if one of these phrases appears before another phrase 
     "zup morg": ["be sure", "say for sure"],
     "pritterå": ["go to"],
     "go'rung": ["and you", "what about you", "how about you"],
+    "jink": ["fuck", "damn", "god damn", "damn it", "damnit", "god damn it", "god damnit"],
 
     "zorp ikspek": "profanity",
     "jid gorse": ["that's", "thats", "that is"],
