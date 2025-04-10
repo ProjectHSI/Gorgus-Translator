@@ -508,7 +508,7 @@ translation_dictionary = {
     "jinkok": "fucking",
     "toop": "shit",
     "ćhlonk": "penis",
-    "zorper": ["bitch", "fucker", "asshole", "motherfucker"],
+    "zorper": ["bitch", "asshole", "motherfucker"],
     "gdorp": "gdorp",
 }
 
