@@ -193,6 +193,7 @@ translation_dictionary = {
     "gringop": "shoe",
     "labran": "admin",
     "splat": "raw",
+    "mun": ["money", "currency"],
 
     # metals
     "steel": "steel",
@@ -493,6 +494,9 @@ translation_dictionary = {
     "sockmo": "soft",
     "rockmo": "hard",
     "eepy": "tired",
+    "slevó": ["half", "semi"],
+    "zorpmon": "poor",
+    "dagunmun": "rich",
 
     # temperatures
     "sisf": "hot",
