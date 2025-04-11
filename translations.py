@@ -220,9 +220,9 @@ translation_dictionary = {
     "nublub": "night",
     
     # days
-    "molok": "today",
-    "dolok": "tomorrow",
-    "frolok": "yesterday",
+    "molod": "today",
+    "dolod": "tomorrow",
+    "frolod": "yesterday",
 
     # seasons
     "uggos": "spring",
