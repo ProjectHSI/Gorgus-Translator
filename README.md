@@ -2,6 +2,7 @@
 A translator for a conlang called Gorgus me and some friends are actively working on.
 
 ![An image of the translating showing the sentence "Hello! Do you like pizza?" being translated.](/resources/screenshot.png)
+Gorgus also has a wiki where you can learn to speak it fluently! Take a look [here](https://gorgolingo.miraheze.org/wiki/Main_Page).
 
 # Phonology
 Here is the phonology of the Gorgus conlang:
