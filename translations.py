@@ -198,6 +198,8 @@ translation_dictionary = {
     "smorkoth": "wizard",
     "mornark": "shadow",
     "hoedleem": ["gang", "group"],
+    "smorg": "spell",
+    "morkol": "magic",
 
     # metals
     "steel": "steel",
