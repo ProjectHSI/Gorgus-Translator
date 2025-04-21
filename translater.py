@@ -257,7 +257,7 @@ def get_ipa_pronounciation(gorgus: str):
         "ɔɹ": ["or"],
         "tʃ": ["ch"],
         "ʌ": ["u"],
-        "juː": ["ú"],
+        "uː": ["ú"],
         "ʊː": ["oo"],
         "ɔ": ["o"],
         "iːkO": ["eeko"],
