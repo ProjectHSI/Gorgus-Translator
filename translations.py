@@ -200,6 +200,7 @@ translation_dictionary = {
     "hoedleem": ["gang", "group"],
     "smorg": "spell",
     "morkol": "magic",
+    "smeegork": "joke",
 
     # metals
     "steel": "steel",
