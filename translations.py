@@ -195,6 +195,9 @@ translation_dictionary = {
     "labran": "admin",
     "splat": "raw",
     "mun": ["money", "currency"],
+    "smorkoth": "wizard",
+    "mornark": "shadow",
+    "hoedleem": ["gang", "group"],
 
     # metals
     "steel": "steel",
