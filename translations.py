@@ -201,6 +201,7 @@ translation_dictionary = {
     "smorg": "spell",
     "morkol": "magic",
     "smeegork": "joke",
+    "moorborl": "duality",
 
     # metals
     "steel": "steel",
