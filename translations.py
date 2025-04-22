@@ -514,7 +514,7 @@ translation_dictionary = {
     "nink": "dweeb",
     "jinkok": "fucking",
     "toop": "shit",
-    "ćhlonk": "penis",
+    "sćhlonk": "penis",
     "zorper": ["bitch", "asshole", "motherfucker"],
     "gdorp": "gdorp",
 }
