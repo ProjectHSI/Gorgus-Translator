@@ -385,6 +385,7 @@ translation_dictionary = {
     "kikrok": "abuse",
     "megèdink": "meet",
     "horktora": "leak",
+    "wushab": "spread",
 
     # Proper Nouns
     "googrung": ["you", "thee"],
