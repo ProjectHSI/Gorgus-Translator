@@ -384,6 +384,7 @@ translation_dictionary = {
     "blisap": "forever",
     "kikrok": "abuse",
     "megèdink": "meet",
+    "horktora": "leak",
 
     # Proper Nouns
     "googrung": ["you", "thee"],
