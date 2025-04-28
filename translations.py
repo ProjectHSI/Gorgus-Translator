@@ -457,7 +457,7 @@ translation_dictionary = {
     
     # adjectives
     "zorp": ["bad", "awful", "terrible", "horrible"],
-    "dagunga": ["good", "incredible", "amazing", "spectacular", "great"],
+    "dagunġa": ["good", "incredible", "amazing", "spectacular", "great"],
     "dagsa": ["nice", "kind"],
     "squumth": "sad",
     "wumbo": "happy",
