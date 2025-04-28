@@ -57,6 +57,7 @@ translation_dictionary = {
     "shrèrack": "person",
     "plèrack": "somebody",
     "megèrack": ["everyone", "every one"],
+    "papla": "more",
     "yummmers": "lobotomize",
     "yummmer": "lobotomy",
     "pläter": "floor",
