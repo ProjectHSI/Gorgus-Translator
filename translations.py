@@ -207,6 +207,7 @@ translation_dictionary = {
     "morkol": "magic",
     "smeegork": "joke",
     "moorborl": "duality",
+    "lewor": "trip",
 
     # metals
     "steel": "steel",
@@ -466,6 +467,7 @@ translation_dictionary = {
     "ćhogder": ["yummy", "delicious", "tasty"],
     "trongle̱": "hungry",
     "blorshk": "thirsty",
+    "slish": "safe",
     "stirkle̱": "weak",
     "ilstirkle̱": "strong",
     "torlom": "gassy",
