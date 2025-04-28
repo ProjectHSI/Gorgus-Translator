@@ -397,6 +397,7 @@ translation_dictionary = {
     "wushab": "spread",
     'yaẖç': "chase",
     "binç": "born",
+    "çaç": "strangle",
 
     # Proper Nouns
     "googrung": ["you", "thee"],
