@@ -571,6 +571,7 @@ phrase_translations = { # if one of these phrases appears before another phrase 
     "glurple": "i have",
     "praridó": ["leaving behind"],
     "koilt": ["i'm", "im", "i am"],
+    "pritterra": "left",
     "dup pritterok": ["how are you going", "how's it going", "how is it going", "how do you do", "how are you doing", "how are you", "what is up", "what's up", "whats up"],
     "zup meat": ["will you be my friend", "want to be friends"],
     "neep wert": "what time is it",
