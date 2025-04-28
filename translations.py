@@ -309,6 +309,7 @@ translation_dictionary = {
     "dräker": "feel",
     "glimpt": "know",
     "zup": "be",
+    "zupok": "being",
     "zopat": "insert",
     "jem": ["view", "watch"],
     "plop": "become",
@@ -389,6 +390,7 @@ translation_dictionary = {
     "megèdink": "meet",
     "horktora": "leak",
     "wushab": "spread",
+    'yaẖç': "chase",
 
     # Proper Nouns
     "googrung": ["you", "thee"],
