@@ -428,7 +428,7 @@ translation_dictionary = {
     "kleebar": "new",
     "jeenar": "old",
     "tå": "to", # used to be "bonkep"
-    "wè": ["cry", "sob"],
+    "wè": ["cry", "sob", "weep"],
     "deedoo": ["dance"],
     "hehehar": ["laugh"],
 
@@ -502,7 +502,7 @@ translation_dictionary = {
     "shilt": ["favourite", "favorite"],
     "muneg": "full",
     "plong": "funny",
-    "plor": "fun",
+    "plor": ["fun", "entertainment"],
     "bolg": "deep",
     "kern": "shallow",
     "morg": "sure",
