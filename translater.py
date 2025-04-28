@@ -9,7 +9,6 @@ from translations import *
 from word_forms.word_forms import get_word_forms
 from nltk.stem import WordNetLemmatizer
 from typing import Literal
-from time import time
 
 from rich.console import Console
 
@@ -326,6 +325,8 @@ def remove_between_last_two_spaces(s):
 def to_gorgus(user_input, formal = True):
     translated = ""
     before_translation = user_input
+
+    #user_input = swap_verbs_nouns(user_input)
     
     # Replace phrases with gorgus words      
     for gorgus, english_phrases in sorted_phrases:
@@ -336,6 +337,7 @@ def to_gorgus(user_input, formal = True):
             pattern = r'\b' + re.escape(phrase) + r'\b'
             user_input = re.sub(pattern, gorgus, user_input, flags=re.IGNORECASE)
 
+   
     words = user_input.split(" ")
 
     modified_verbs = {}
@@ -529,6 +531,7 @@ def from_gorgus(user_input: str):
             
     translated = fix_articles(translated, "ji")
 
+    #translated = swap_verbs_nouns(translated)
     #translated = remove_all_except(translated)
 
     return translated

@@ -454,6 +454,7 @@ translation_dictionary = {
     "tubuk": "top",
     "gubuk": "bottom",
     "plink-tå": "into",
+    "kẖrúm": "around",
     
     # adjectives
     "zorp": ["bad", "awful", "terrible", "horrible"],
