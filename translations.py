@@ -145,6 +145,8 @@ translation_dictionary = {
     "dúnúbnom": "lunch",
     "núbom": "dinner",
     "blaẖ": "light",
+    "nalaẖ": "dark",
+    "nalaẖta": "darkness",
     "du'blaẖ": "daylight",
     "splunk": "manslaughter",
     "borhing": "school",
@@ -309,7 +311,6 @@ translation_dictionary = {
     "dräker": "feel",
     "glimpt": "know",
     "zup": "be",
-    "zupok": "being",
     "zopat": "insert",
     "jem": ["view", "watch"],
     "plop": "become",
@@ -391,6 +392,7 @@ translation_dictionary = {
     "horktora": "leak",
     "wushab": "spread",
     'yaẖç': "chase",
+    "binç": "born",
 
     # Proper Nouns
     "googrung": ["you", "thee"],
@@ -557,11 +559,13 @@ dictionary_information = {
 phrase_translations = { # if one of these phrases appears before another phrase it has higher priority
     "gumble̱goge": ["shut up", "be quiet", "stop speaking"],
     "hènġer mébis": ["i'm going to", "i am going to", "im going to"],
+    "yaẖçra": "chased",
     "zúgúgo": ["i will", "i shall"],
     "mè'heng": ["can i", "may i", "shall i"],
     "plomby\u0303": ["some", "a few"],
     "våt": ["about to", "bouta"],
     "thunti": "often",
+    "zupok": "being",
     "glurple": "i have",
     "koilt": ["i'm", "im", "i am"],
     "dup pritterok": ["how are you going", "how's it going", "how is it going", "how do you do", "how are you doing", "how are you", "what is up", "what's up", "whats up"],
