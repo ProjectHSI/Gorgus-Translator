@@ -358,6 +358,7 @@ translation_dictionary = {
     "wheremecopha": "send",
     "morple": "attract",
     "yaẖp": ["say", "speak", "talk"],
+    "yaẖpå": "tell",
     "forgor": "forget",
     "trik": "work",
     "pritter": "go",
