@@ -517,7 +517,7 @@ translation_dictionary = {
     "slevó": ["half", "semi"],
     "zorpmon": "poor",
     "dagunmun": "rich",
-    "sliplob": ["improved", "better"],
+    "indefop": "truly",
 
     # temperatures
     "sisf": "hot",
@@ -568,6 +568,7 @@ phrase_translations = { # if one of these phrases appears before another phrase 
     "mè'heng": ["can i", "may i", "shall i"],
     "plomby\u0303": ["some", "a few"],
     "våt": ["about to", "bouta"],
+    "sliplob": ["improved", "better"],
     "thunti": "often",
     "zupok": "being",
     "glurple": "i have",
