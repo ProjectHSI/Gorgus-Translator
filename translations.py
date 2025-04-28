@@ -208,6 +208,7 @@ translation_dictionary = {
     "smeegork": "joke",
     "moorborl": "duality",
     "lewor": "trip",
+    "beeboop": "machine",
 
     # metals
     "steel": "steel",
@@ -516,6 +517,7 @@ translation_dictionary = {
     "slevó": ["half", "semi"],
     "zorpmon": "poor",
     "dagunmun": "rich",
+    "sliplob": ["improved", "better"],
 
     # temperatures
     "sisf": "hot",
