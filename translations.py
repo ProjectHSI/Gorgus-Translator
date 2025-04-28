@@ -5,7 +5,7 @@ translation_dictionary = {
     # Grammar
     "lunk": "?",
     "<PLURAL>": "ik", # add before a word to make it plural
-    "<ACTOR>": "ak", # add before a word to turn it into an actor noun (e.g: teach -> teacher, speak -> speaker)
+    "<ACTOR>": "alk", # add before a word to turn it into an actor noun (e.g: teach -> teacher, speak -> speaker)
     "<PAST_TENSE>": "ra", # add after a word to make it past tense
     "<CONT_TENSE>": "ok", # add after a word to make it present-continuous (e.g: eat -> eating, run -> running)
     "<FUTR_TENSE>": "et", # add after a word to make it future tense (e.g: eat -> will eat, run -> will run)
