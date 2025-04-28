@@ -556,6 +556,7 @@ phrase_translations = { # if one of these phrases appears before another phrase 
     "hènġer mébis": ["i'm going to", "i am going to", "im going to"],
     "zúgúgo": ["i will", "i shall"],
     "mè'heng": ["can i", "may i", "shall i"],
+    "våt": ["about to", "bouta"],
     "thunti": "often",
     "glurple": "i have",
     "koilt": ["i'm", "im", "i am"],
