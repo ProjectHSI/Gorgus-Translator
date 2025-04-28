@@ -620,7 +620,7 @@ phrase_translations = { # if one of these phrases appears before another phrase 
     "go'rung": ["and you", "what about you", "how about you"],
     "jink": ["fuck", "damn", "god damn", "damn it", "damnit", "god damn it", "god damnit"],
     "greak": ["extremely unhappy"],
-    "bog": ["oh no"],
+    "bog": ["oh no", "alas"],
 
     "zorp ikspek": "profanity",
     "jid gorse": ["that's", "thats", "that is"],
