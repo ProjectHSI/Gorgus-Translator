@@ -482,6 +482,7 @@ translation_dictionary = {
     "mugtur": ["entire", "whole"],
     "mugup": ["together", "joined"],
     "migtir": "all",
+    "ugtiri": "enough",
     "meger": "every",
     "bunpo": "silly",
     "smep": "apart",
