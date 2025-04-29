@@ -613,6 +613,7 @@ phrase_translations = { # if one of these phrases appears before another phrase 
     "go'gunx": "you look",
     "h'gorg mébis": "are you going to",
     "pritter yuti": ["hurry up"],
+    "binġle̱bob": ["the incident"],
     "shriv'ma": ["there is going to be", "there will be", "there shall be"],
     "gog'um": "you should",
     "clor'ge": ["they're", "theyre", "they are"],
