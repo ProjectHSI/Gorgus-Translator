@@ -350,6 +350,7 @@ translation_dictionary = {
     "shlimshlong": "lick",
     "ming": "hope",
     "aurnaur": "punish",
+    "greel": ["choose", "decide"],
     "skorb": "peel",
     "meep": ["can", "may", "might"],
     "scroge": "smash",
