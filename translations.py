@@ -338,6 +338,7 @@ translation_dictionary = {
     "mengr": "see",
     "hemlor": "thank",
     "ikhemlor": "gratitude",
+    "shlog": "dig",
     "hev": "rise",
     "hez": "shine",
     "eep": ["rest", "sleep"],
