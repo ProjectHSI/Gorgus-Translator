@@ -526,6 +526,8 @@ translation_dictionary = {
     "zorpmon": "poor",
     "dagunmun": "rich",
     "indefop": "truly",
+    "koivit": "dead",
+    "moibnit": "alive",
 
     # temperatures
     "sisf": "hot",
