@@ -36,6 +36,7 @@ translation_dictionary = {
     "sneeper": "daughter",
     "latnåm": ["brother", "bro"],
     "lesnåm": ["sister", "sis"],
+    "eegimoibin": "birth",
     "doit": "language",
     "jid": "that",
     "ikjid": "those",
