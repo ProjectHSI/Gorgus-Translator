@@ -86,7 +86,7 @@ translation_dictionary = {
     "lebron": ["god", "lord"],
     "bilko": "mercy",
     "blork": "cannon",
-    "molp": ["liquid", "water"],
+    "molp": ["liquid", "water", "lava", "milk", "oil"],
     "derg": "balloon",
     "srinch": ["butt", "ass", "booty"],
     "spiffo": "zombie",
@@ -401,6 +401,10 @@ translation_dictionary = {
     'yaẖç': "chase",
     "binç": "born",
     "çaç": ["choke", "strangle"],
+    "bwask": ["change", "turn"],
+    "frez": "ice",
+    "wät": "load",
+    "majikle̱": "computer",
 
     # Proper Nouns
     "googrung": ["you", "thee"],
