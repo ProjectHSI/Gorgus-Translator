@@ -274,7 +274,6 @@ translation_dictionary = {
 
     # Adverbs
     "yuti": ["quick", "fast"],
-    "thunti": "a lot", # this is technically unused and is handled by the phrases dictionary
     "skungi": "aggressively",
     "mepiti": "slowly",
     "funji": "cautiously",
@@ -664,10 +663,6 @@ phrase_translations = { # if one of these phrases appears before another phrase 
 
     "sna'rse": ["she's", "shes", "she is"],
     "na'rse": ["he's", "hes", "he is"],
-
-    # these are just the phrases that make a verb or noun more intense or more gentle
-    "EXAGGERATE": ["a lot", "too much"], 
-    "GENTLE": ["a bit", "a little"],
 }
 
 ignored_plurals = [ # words that can't be pluralised
