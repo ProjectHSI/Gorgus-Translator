@@ -419,7 +419,6 @@ translation_dictionary = {
     "kerp": ["no", "incorrect", "nah", "nope"],
     "tebik": ["okay", "ok"],
     "goober": ["have", "got"],
-    "gup": "will",
     "nipe": "it",
     "gorse": "is",
     "horge": "are",

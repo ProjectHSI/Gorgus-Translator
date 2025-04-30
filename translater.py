@@ -98,7 +98,7 @@ def detect_verb_tense(verb, previous_word = None):
         any(w.dep_ == "aux" and w.tag_ == "VBZ" for w in sent.root.children)):
         return "cont"
     
-    if previous_word and previous_word in ["will"]:
+    if previous_word and previous_word in ["will", "shall"]:
         return "futr"
     
     return "norm"
