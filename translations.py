@@ -403,7 +403,7 @@ translation_dictionary = {
     "çaç": ["choke", "strangle"],
     "bwask": ["change", "turn"],
     "frez": "ice",
-    "wät": "load",
+    "wäta": "load",
     "majikle̱": "computer",
 
     # Proper Nouns
