@@ -740,5 +740,6 @@ ignored_actor_nouns = [ # words that can't be turned into actor nouns
     "door",
     "forever",
     "sister",
-    "brother"
+    "brother",
+    "flower"
 ]
