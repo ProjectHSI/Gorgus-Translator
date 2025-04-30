@@ -663,6 +663,8 @@ phrase_translations = { # if one of these phrases appears before another phrase 
 
     "sna'rse": ["she's", "shes", "she is"],
     "na'rse": ["he's", "hes", "he is"],
+
+    "plomby": ["many", "a lot"]
 }
 
 ignored_plurals = [ # words that can't be pluralised
