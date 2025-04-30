@@ -531,6 +531,8 @@ translation_dictionary = {
     "indefop": "truly",
     "koivit": "dead",
     "moibnit": "alive",
+    "snåta": "pretty",
+    "nåta": "handsome",
 
     # temperatures
     "sisf": "hot",
