@@ -364,6 +364,7 @@ translation_dictionary = {
     "yaẖpå": "tell",
     "forgor": "forget",
     "trik": "work",
+    "woop": "spill",
     "pritter": "go",
     "kortik": ["kill", "die", "death", "killed", "died", "slaughter", "murder"],
     "moibin": ["revive", "live", "life", "lived"],
