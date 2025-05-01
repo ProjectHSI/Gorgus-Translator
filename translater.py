@@ -41,6 +41,16 @@ try:
     wordnet_download_success = True
     console.print("[bold bright_green]Success![/bold bright_green] Wordnet was found. :)")
 except LookupError:
+    console.print("[bold orange1]Warning![/bold orange] Wordnet was not found! Attempting to automatically install..")
+    console.print("[dim]Disabling SSL check to prevent issues on certain operating systems (MacOS, I'm looking at you)...[/dim]")
+    import ssl
+    try:
+        _create_unverified_https_context = ssl._create_unverified_context
+    except AttributeError:
+        pass
+    else:
+        ssl._create_default_https_context = _create_unverified_https_context
+
     wordnet_download_success = nltk.download("wordnet")
     if not wordnet_download_success:
         console.print("[bold red]I couldn't download the wordnet AI mdoel... :([/bold red]")
