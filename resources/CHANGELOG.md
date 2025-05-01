@@ -3,7 +3,7 @@ The Gorgus Translator was published to Github in version `1.6`, pretty much all 
 
 ## Version 1.10 (current, the last update!)
 - I'm going to add content to this over time, but this will be the last update cause I'm getting bored of working on this translator lol.
-- Added **A LOT** of new words!
+- Added **A LOT** of new words! `(500+! :D)`
 - Added a turn based battle game. (to be added)
 - Fixed some bugs.
 - You can now turn any verb into past tense by adding `-ra` *(eat -> ate, build -> built)* or continuous tense by adding `-ak` *(eat -> eating, kill -> killing)*.
