@@ -24,7 +24,7 @@ def install_module(module_name):
         print(f"{module_name} not found. Installing...")
         
         # Determine correct pip command
-        pip_cmd = sys.executable + " -m pip" #"pip" if platform.system() == "Windows" else "pip3"
+        pip_cmd = "pip" if platform.system() == "Windows" else "pip3"
         
         try:
             if module_name == "git":
