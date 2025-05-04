@@ -1,7 +1,7 @@
 #
 #  translater.py
 #
-import spacy
+#import spacy
 import inflect
 import re
 import nltk
@@ -33,18 +33,19 @@ console.print("[bold bright_green]INFO[/bold bright_green] Starting [bold]inflec
 
 inflect_engine = inflect.engine()
 
-console.print("[bold bright_green]INFO[/bold bright_green] Loading [bold]SpaCy[/bold] AI model..")
+#console.print("[bold bright_green]INFO[/bold bright_green] Loading [bold]SpaCy[/bold] AI model..")
 
-nlp = spacy.load("en_core_web_sm")
+#nlp = spacy.load("en_core_web_sm")
 lemmatizer = WordNetLemmatizer()
 
 wordnet_download_success = False
 try:
     nltk.data.find('corpora/wordnet.zip')
+    nltk.data.find('corpora/brown.zip')
     wordnet_download_success = True
-    console.print("[bold bright_green]Success![/bold bright_green] Wordnet was found. :)")
+    console.print("[bold bright_green]Success![/bold bright_green] NLTK corpora modules were found. :)")
 except LookupError:
-    console.print("[bold orange1]Warning![/bold orange] Wordnet was not found! Attempting to automatically install..")
+    console.print("[bold orange1]Warning![/bold orange] NLTK corpora modules were not found! Attempting to automatically install..")
     console.print("[dim]Disabling SSL check to prevent issues on certain operating systems (MacOS, I'm looking at you)...[/dim]")
     import ssl
     try:
@@ -65,11 +66,14 @@ def get_word_type(word):
         return "UNKOWN"
 
     # Process the word through the spaCy pipeline
-    doc = nlp(word)
+    #doc = nlp(word)
+    doc = nltk.tokenize.word_tokenize(word)
+    doc = nltk.pos_tag(doc)
     
     # Check if the word is a verb by examining the POS tag
     try:
-        return doc[0].pos_
+        #return doc[0].pos_
+        return doc[0][1]
     except IndexError:
         return "UNKOWN"
 
@@ -362,12 +366,12 @@ def to_gorgus(user_input, formal = True):
 
     modified_verbs = {}
 
-    doc = nlp(before_translation)
+    """doc = nlp(before_translation)
     for i, token in enumerate(doc):
         if token.text == "EXAGGERATE":
             modified_verbs[token.head.i] = 1
         elif token.text == "GENTLE":
-            modified_verbs[token.head.i] = -1
+            modified_verbs[token.head.i] = -1"""
 
     previous_english_word = None
     for i, word in enumerate(words): 
