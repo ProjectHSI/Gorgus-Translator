@@ -511,6 +511,7 @@ class GorgusTranslator(App):
                         yield Label(f"    - [bold]Words:[/bold] [blue]{len(translation_dictionary)}[/blue]")
                         yield Label(f"    - [bold]Phrases:[/bold] [blue]{len(phrase_translations)}[/blue]")
                     yield Input(placeholder="Search words...", id="search-input", value="")
+                    yield Checkbox(label="Include informal words?", value=True, button_first=False)
                 yield Rule(line_style="dashed")
 
                 table = DataTable(id="dict-table")
