@@ -1,6 +1,5 @@
 #
 #   translations.py
-#   Created by Nathaniel Chandler
 #
 
 translation_dictionary = {
