@@ -35,6 +35,8 @@ inflect_engine = inflect.engine()
 
 #console.print("[bold bright_green]INFO[/bold bright_green] Loading [bold]SpaCy[/bold] AI model..")
 #nlp = spacy.load("en_core_web_sm")
+
+console.print("[bold bright_green]INFO[/bold bright_green] Loading [bold]NLTK[/bold] modules..")
 lemmatizer = WordNetLemmatizer()
 stemmer = LancasterStemmer()
 def nltk_download(packagePath, package) -> bool:
