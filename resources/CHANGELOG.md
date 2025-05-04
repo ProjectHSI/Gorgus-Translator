@@ -1,10 +1,15 @@
 # Changelog
 The Gorgus Translator was published to Github in version `1.6`, pretty much all prior versions are lost media lmao.
 
-## Version 1.10 (current, the last update!)
+## Version 1.11
+- IT WASN'T THE LAST UPDATE! I have found motivation to KEEP working on this!
+- With the help of @projecthsi on Discord, we're turning the Gorgus Translator into a website!
+- We're migrating from using spaCy to NLTK, which will help with dependency issues, will help with the migration to a web translator, etc...
+- Added a little warning on start that translations are a little broken while we migrate.
+
+## Version 1.10 
 - I'm going to add content to this over time, but this will be the last update cause I'm getting bored of working on this translator lol.
 - Added **A LOT** of new words! `(500+! :D)`
-- Added a turn based battle game. (to be added)
 - Fixed some bugs.
 - You can now turn any verb into past tense by adding `-ra` *(eat -> ate, build -> built)* or continuous tense by adding `-ak` *(eat -> eating, kill -> killing)*.
 - Improved grammar when translating from Gorgus to English and vice versa.
