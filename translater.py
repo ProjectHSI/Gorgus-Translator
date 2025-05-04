@@ -12,6 +12,7 @@ from translations import *
 from word_forms.word_forms import get_word_forms
 from nltk.stem import WordNetLemmatizer, LancasterStemmer
 from typing import Literal
+from time import time
 
 from rich.console import Console
 
@@ -689,6 +690,15 @@ def translate(text, to: Literal["english", "gorgus"], formal = True, should_add_
 
 
 class TranslationTester(unittest.TestCase):
+    def test_translation_speed(self):
+        sentence = "The quick brown fox jumped over the lazy fat cat."
+
+        start = time()
+        to_gorgus(sentence, formal=True)
+        translation_time = time() - start
+
+        self.assertLess(translation_time, 0.2, f"Translation is too slow! ({round(translation_time,2)}s) Optimize your damn code!")
+
     def test_tense_detection(self):
         # key = verb, value = expected tense
         # norm = normal tense (eat, drink)
