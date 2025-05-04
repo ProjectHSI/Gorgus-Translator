@@ -7,6 +7,7 @@ The Gorgus Translator was published to Github in version `1.6`, pretty much all 
 - We're migrating from using spaCy to NLTK, which will help with dependency issues, will help with the migration to a web translator, etc...
 - Added a little warning on start that translations are a little broken while we migrate.
 - Added more words.
+- You can now hide informal words in the dictionary if you want
 
 ## Version 1.10 
 - I'm going to add content to this over time, but this will be the last update cause I'm getting bored of working on this translator lol.
