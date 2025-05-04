@@ -687,6 +687,33 @@ def translate(text, to: Literal["english", "gorgus"], formal = True, should_add_
 
 
 class TranslationTester(unittest.TestCase):
+    def test_tense_detection(self):
+        # key = verb, value = expected tense
+        # norm = normal tense (eat, drink)
+        # past = past tense (ate, drank)
+        # cont = continuing tense (eating, drinking)
+
+        tense_tests = {
+            "eat": "norm",
+            "sat": "past",
+            "teaching": "cont",
+            "speaking": "cont",
+            "try": "norm",
+            "rented": "past",
+            "make": "norm",
+            "wanting": "cont",
+            "will eat": "futr",
+            "will die": "futr",
+            "ate": "past",
+            "slept": "past",
+            "die": "norm",
+            "open": "norm",
+            "will explode": "futr",
+            "will": "futr"
+        }
+        for verb, expected_tense in tense_tests.items():
+            self.assertEqual(detect_verb_tense(verb), expected_tense, f"Detected verb tense and expected verb tense do not match! ({verb})")
+
     def test_to_gorgus(self):
         # key = english, value = expected gorgus translation
         tests_to_gorgus = {
@@ -718,27 +745,6 @@ class TranslationTester(unittest.TestCase):
         # go through each test
         for gorgus, english in tests_from_gorgus.items():
             self.assertEqual(translate(gorgus, "english", formal=False), english, "Translation from Gorgus to English does not match!")
-
-    def test_tense_detection(self):
-        # key = verb, value = expected tense
-        # norm = normal tense (eat, drink)
-        # past = past tense (ate, drank)
-        # cont = continuing tense (eating, drinking)
-
-        tense_tests = {
-            "eat": "norm",
-            "sat": "past",
-            "teaching": "cont",
-            "speaking": "cont",
-            "try": "norm",
-            "rented": "past",
-            "make": "norm",
-            "wanting": "cont",
-            "will eat": "futr",
-            "will die": "futr"
-        }
-        for verb, expected_tense in tense_tests.items():
-            self.assertEqual(detect_verb_tense(verb), expected_tense, f"Detected verb tense and expected verb tense do not match! ({verb})")
 
 
 if __name__ == '__main__':
