@@ -711,7 +711,7 @@ class TranslationTester(unittest.TestCase):
             "die": "norm",
             "open": "norm",
             "will explode": "futr",
-            "will": "futr"
+            "will make": "futr"
         }
         for verb, expected_tense in tense_tests.items():
             self.assertEqual(detect_verb_tense(verb), expected_tense, f"Detected verb tense and expected verb tense do not match! ({verb})")
@@ -726,7 +726,8 @@ class TranslationTester(unittest.TestCase):
             "He slept.": "Nåck eepra.",
             "What's up?": "Dup pritterok lunk",
             "Do you like to eat?": "Gè'googrung jeek tå chonġle̱ lunk",
-            "What is going on?": "Nergo're pritterok hoog lunk"
+            "What is going on?": "Nergo're pritterok hoog lunk",
+            "Why is the sky blue?": "Pif gorse sohong wat lunk"
         }
 
         # go through each test
@@ -741,7 +742,8 @@ class TranslationTester(unittest.TestCase):
             "Glonk chonġle̱ok migtir omnom!": "Stop eating all food!",
             "Googrung kiff!": "You smell!",
             "Minġer goob'rung ji dagsâ dublub. :)": "I hope you have a really nice day. :)",
-            "Jid shrerack, henġer huffer clor'ge dagsa.": "That person, I believe they're nice."
+            "Jid shrerack, henġer huffer clor'ge dagsa.": "That person, I believe they're nice.",
+            "Ikshmack horge kithrak̂.": "Cats are really angry."
         }
 
         # go through each test
