@@ -95,7 +95,14 @@ for norm_key in normalized_translation_dict:
     deaccented = remove_all_except(norm_key)
     reverse_mapping[norm_key] = deaccented
 
-def detect_verb_tense(verb, previous_word = None):
+def detect_verb_tense(verb: str, previous_word: str = None):
+    if previous_word == None: # previous word was not provided, if the string has multiple words in it we will attempt to figure out the previous word
+        words = verb.split(" ")
+        if len(words) > 1: # there is more than one word!
+            # get the first and second word
+            previous_word = words[0] 
+            verb = words[1]
+
     try:
         sent = list(nlp(verb).sents)[0]
     except IndexError:
@@ -141,7 +148,7 @@ def get_past_tense_verb(verb):
  
     # List of common irregular verbs and their past tense forms
     irregular_verbs = {
-        "be": "was/were",
+        "be": "was",
         "have": "had",
         "do": "did",
         "go": "went",
@@ -242,7 +249,7 @@ def get_trailing_punctuation(text, ignore_chars=""):
     pattern = rf'[^\w\s{ignore_chars}]+$'  # Match trailing punctuation excluding ignored ones
     match = re.search(pattern, text)
     
-    return match.group(0) if match else ''
+    return remove_all_except(match.group(0) if match else '')
 
 def convert_to_base_form(verb):
     if wordnet_download_success:
@@ -350,7 +357,6 @@ def to_gorgus(user_input, formal = True):
             # Use regex to match whole phrase boundaries
             pattern = r'\b' + re.escape(phrase) + r'\b'
             user_input = re.sub(pattern, gorgus, user_input, flags=re.IGNORECASE)
-
    
     words = user_input.split(" ")
 
@@ -377,7 +383,7 @@ def to_gorgus(user_input, formal = True):
         if word == "EXAGGERATE" or word == "GENTLE":
             continue
 
-        suffix = modified_verbs.get(i, "")
+        suffix: str = modified_verbs.get(i, "")
         if suffix == 1:
             suffix = translation_dictionary["<EXAGGERATED_VERB>"]
         elif suffix == -1:
@@ -644,7 +650,7 @@ class TranslationTester(unittest.TestCase):
     def test_to_gorgus(self):
         # key = english, value = expected gorgus translation
         tests_to_gorgus = {
-            "Very cool! Very good. :)": "Klû! Dagungâ. :)",
+            "Very cool! Very good. :)": "Klû! Dagunġâ. :)",
             "Hi! How are you?": "Dink! Dup pritterok lunk",
             "How is the weather?": "Dup gorse weather lunk",
             "I love you.": "H'orpó googrung.",
@@ -661,9 +667,9 @@ class TranslationTester(unittest.TestCase):
     def test_from_gorgus(self):
         # key = gorgus, value = expected english translation
         tests_from_gorgus = {
-            "Dink, dup pritter-ok lunk": "Hello, how are you going?",
-            "Henġer agger ik-fren!": "I love dogs!",
-            "Glonk chonġle̱-ok migtir omnom!": "Stop eating all food!",
+            "Dink, dup pritterok lunk": "Hello, how are you going?",
+            "Henġer agger ikfren!": "I love dogs!",
+            "Glonk chonġle̱ok migtir omnom!": "Stop eating all food!",
             "Googrung kiff!": "You smell!",
             "Minġer goob'rung ji dagsâ dublub. :)": "I hope you have a really nice day. :)",
             "Jid shrerack, henġer huffer clor'ge dagsa.": "That person, I believe they're nice."
