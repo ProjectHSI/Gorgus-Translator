@@ -1,4 +1,4 @@
-import spacy
+#import spacy
 import inflect
 import re
 import nltk
@@ -7,7 +7,7 @@ import unittest
 
 from translations import *
 from word_forms.word_forms import get_word_forms
-from nltk.stem import WordNetLemmatizer
+from nltk.stem import WordNetLemmatizer, LancasterStemmer
 from typing import Literal
 
 from rich.console import Console
@@ -34,8 +34,40 @@ console.print("[bold bright_green]INFO[/bold bright_green] Loading [bold]SpaCy[/
 
 nlp = spacy.load("en_core_web_sm")
 lemmatizer = WordNetLemmatizer()
+stemmer = LancasterStemmer()
 
-wordnet_download_success = False
+def nltk_download(packagePath, package) -> bool:
+    try:
+        nltk.data.find(packagePath)
+        return True
+    except LookupError:
+        console.print(
+            "[bold orange1]Warning![/bold orange] Wordnet was not found! Attempting to automatically install..")
+        console.print(
+            "[dim]Disabling SSL check to prevent issues on certain operating systems (MacOS, I'm looking at you)...[/dim]")
+        import ssl
+        try:
+            _create_unverified_https_context = ssl._create_unverified_context
+        except AttributeError:
+            pass
+        else:
+            ssl._create_default_https_context = _create_unverified_https_context
+
+        download_success = nltk.download("wordnet")
+        return download_success
+
+wordnet_download_success = nltk_download("corpora/wordnet.zip", "wordnet")
+brown_download_success = nltk_download("corpora/brown.zip", "brown")
+
+if not (wordnet_download_success and brown_download_success):
+    raise Exception("WordNet Download Failed!")
+
+import nltk.corpus
+
+# the default tagger is not good, for some reason.
+unigram_tagger = nltk.UnigramTagger(nltk.corpus.brown.tagged_sents())
+
+"""
 try:
     nltk.data.find('corpora/wordnet.zip')
     wordnet_download_success = True
@@ -94,24 +126,49 @@ for norm_key in normalized_translation_dict:
 
 def detect_verb_tense(verb, previous_word = None):
     try:
-        sent = list(nlp(verb).sents)[0]
+        #print(nltk.pos_tag(nltk.word_tokenize("The quick brown fox " + verb + " over the lazy dog.")))
+        tokenized_verb = nltk.word_tokenize(((previous_word + " ") if previous_word else "") + verb)
+        tagged_verb = unigram_tagger.tag(tokenized_verb)
+        _verb = tagged_verb[len(tagged_verb) - 1][1]
+        #print(verb)
+        #print(tagged_verb)
+        #print(_verb)
+        #raise Exception("stop!")
     except IndexError:
         return "norm"
 
-    if (
-        sent.root.tag_ == "VBD" or
-        any(w.dep_ == "aux" and w.tag_ == "VBD" for w in sent.root.children)):
+    if (_verb == "VBD"):
         return "past"
-    
-    if (
-        sent.root.tag_ == "VBG" or
-        any(w.dep_ == "aux" and w.tag_ == "VBZ" for w in sent.root.children)):
+
+    if _verb == "VB":
+        if previous_word or len(tokenized_verb) != 1:
+            print("vb branch taken")
+            if tagged_verb[0][1] == "MD" and tokenized_verb[0] == "will":
+                return "futr"
+        return "norm"
+
+    if (_verb == "VBG"):
         return "cont"
-    
-    if previous_word and previous_word in ["will", "shall"]:
-        return "futr"
-    
+
+    if (_verb == "VBN"):
+        return "past"
+
     return "norm"
+
+    # if (
+    #     sent.root.tag_ == "VBD" or
+    #     any(w.dep_ == "aux" and w.tag_ == "VBD" for w in sent.root.children)):
+    #     return "past"
+    #
+    # if (
+    #     sent.root.tag_ == "VBG" or
+    #     any(w.dep_ == "aux" and w.tag_ == "VBZ" for w in sent.root.children)):
+    #     return "cont"
+    #
+    # if previous_word and previous_word in ["will", "shall"]:
+    #     return "futr"
+    #
+    # return "norm"
 
 def get_past_tense_verb(verb):
     """
@@ -228,7 +285,8 @@ def from_actor_form(actor, lemma = True):
     forms = list(get_word_forms(actor)["v"])
     try:
         if lemma:
-            return nlp(forms[0])[0].lemma_
+            return LancasterStemmer.stem(forms[0])
+            #return nlp(forms[0])[0].lemma_
         return forms[0]
     except IndexError:
         return actor
@@ -372,6 +430,7 @@ def to_gorgus(user_input, formal = True):
         punctuation_suffix = ""
 
         if word == "EXAGGERATE" or word == "GENTLE":
+            modified_verbs[i + 1] = 1 if word == "EXAGGERATE" else -1
             continue
 
         suffix = modified_verbs.get(i, "")
