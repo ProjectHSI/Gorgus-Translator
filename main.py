@@ -75,6 +75,7 @@ from widgets.game import Game, GameInfo
 from games.wordle import WordleGame
 from games.hangman import Hangman
 from games.typing_game import TypingGame
+from widgets.message_box import MessageBox
 
 rich_print("[bold bright_green]INFO[/bold bright_green] Loading translation dictionary..")
 
@@ -630,6 +631,8 @@ These are the people that make this possible! *(all of these are Discord usernam
                 self.notify("Failed to check for updates. :(", severity="error", timeout=10)
 
     def on_ready(self):
+        self.push_screen(MessageBox())
+
         self.update_dictionary_table(self.query_one("#dict-table"), "")
         self.app.notify(
             message="Please be mindful, not a lot of English words exist in Gorgus, and the translator is not perfect yet.",
