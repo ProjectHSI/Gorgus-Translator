@@ -277,7 +277,7 @@ def from_actor_form(actor, lemma = True):
     forms = list(get_word_forms(actor)["v"])
     try:
         if lemma:
-            return LancasterStemmer.stem(forms[0])
+            return LancasterStemmer().stem(forms[0])
             #return nlp(forms[0])[0].lemma_
         return forms[0]
     except IndexError:
