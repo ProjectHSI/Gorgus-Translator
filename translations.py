@@ -215,6 +215,7 @@ translation_dictionary = {
     "moorborl": "duality",
     "lewor": "trip",
     "beeboop": "machine",
+    "soians": "test",
 
     # metals
     "steel": "steel",
