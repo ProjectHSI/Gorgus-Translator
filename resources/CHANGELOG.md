@@ -1,7 +1,7 @@
 # Changelog
 The Gorgus Translator was published to Github in version `1.6`, pretty much all prior versions are lost media lmao.
 
-## Version 1.11
+## Version 1.11 (current)
 - IT WASN'T THE LAST UPDATE! I have found motivation to KEEP working on this!
 - With the help of @projecthsi on Discord, we're turning the Gorgus Translator into a website!
 - We're migrating from using spaCy to NLTK, which will help with dependency issues, will help with the migration to a web translator, etc...
