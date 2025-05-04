@@ -10,7 +10,7 @@ import unittest
 
 from translations import *
 from word_forms.word_forms import get_word_forms
-from nltk.stem import WordNetLemmatizer
+from nltk.stem import WordNetLemmatizer, LancasterStemmer
 from typing import Literal
 
 from rich.console import Console
@@ -34,18 +34,42 @@ console.print("[bold bright_green]INFO[/bold bright_green] Starting [bold]inflec
 inflect_engine = inflect.engine()
 
 #console.print("[bold bright_green]INFO[/bold bright_green] Loading [bold]SpaCy[/bold] AI model..")
-
 #nlp = spacy.load("en_core_web_sm")
 lemmatizer = WordNetLemmatizer()
-
-wordnet_download_success = False
+stemmer = LancasterStemmer()
+def nltk_download(packagePath, package) -> bool:
+    try:
+        nltk.data.find(packagePath)
+        return True
+    except LookupError:
+        console.print(
+            "[bold orange1]Warning![/bold orange] Wordnet was not found! Attempting to automatically install..")
+        console.print(
+            "[dim]Disabling SSL check to prevent issues on certain operating systems (MacOS, I'm looking at you)...[/dim]")
+        import ssl
+        try:
+            _create_unverified_https_context = ssl._create_unverified_context
+        except AttributeError:
+            pass
+        else:
+            ssl._create_default_https_context = _create_unverified_https_context
+        download_success = nltk.download("wordnet")
+        return download_success
+wordnet_download_success = nltk_download("corpora/wordnet.zip", "wordnet")
+brown_download_success = nltk_download("corpora/brown.zip", "brown")
+if not (wordnet_download_success and brown_download_success):
+    raise Exception("WordNet Download Failed!")
+import nltk.corpus
+# the default tagger is not good, for some reason.
+unigram_tagger = nltk.UnigramTagger(nltk.corpus.brown.tagged_sents())
+"""
 try:
     nltk.data.find('corpora/wordnet.zip')
     nltk.data.find('corpora/brown.zip')
     wordnet_download_success = True
-    console.print("[bold bright_green]Success![/bold bright_green] NLTK corpora modules were found. :)")
+    console.print("[bold bright_green]Success![/bold bright_green] Wordnet was found. :)")
 except LookupError:
-    console.print("[bold orange1]Warning![/bold orange] NLTK corpora modules were not found! Attempting to automatically install..")
+    console.print("[bold orange1]Warning![/bold orange] Wordnet was not found! Attempting to automatically install..")
     console.print("[dim]Disabling SSL check to prevent issues on certain operating systems (MacOS, I'm looking at you)...[/dim]")
     import ssl
     try:
@@ -54,12 +78,12 @@ except LookupError:
         pass
     else:
         ssl._create_default_https_context = _create_unverified_https_context
-
     wordnet_download_success = nltk.download("wordnet")
     if not wordnet_download_success:
         console.print("[bold red]I couldn't download the wordnet AI mdoel... :([/bold red]")
         console.print("The app will still open, but you will have some missing language features.")
         console.input("Press enter to continue.", password=True)
+        """
 
 def get_word_type(word):
     if word.strip() == "":
@@ -99,33 +123,45 @@ for norm_key in normalized_translation_dict:
     deaccented = remove_all_except(norm_key)
     reverse_mapping[norm_key] = deaccented
 
-def detect_verb_tense(verb: str, previous_word: str = None):
-    if previous_word == None: # previous word was not provided, if the string has multiple words in it we will attempt to figure out the previous word
-        words = verb.split(" ")
-        if len(words) > 1: # there is more than one word!
-            # get the first and second word
-            previous_word = words[0] 
-            verb = words[1]
-
+def detect_verb_tense(verb, previous_word = None):
     try:
-        sent = list(nlp(verb).sents)[0]
+        #print(nltk.pos_tag(nltk.word_tokenize("The quick brown fox " + verb + " over the lazy dog.")))
+        tokenized_verb = nltk.word_tokenize(((previous_word + " ") if previous_word else "") + verb)
+        tagged_verb = unigram_tagger.tag(tokenized_verb)
+        _verb = tagged_verb[len(tagged_verb) - 1][1]
+        #print(verb)
+        #print(tagged_verb)
+        #print(_verb)
+        #raise Exception("stop!")
     except IndexError:
         return "norm"
-
-    if (
-        sent.root.tag_ == "VBD" or
-        any(w.dep_ == "aux" and w.tag_ == "VBD" for w in sent.root.children)):
+    if (_verb == "VBD"):
         return "past"
-    
-    if (
-        sent.root.tag_ == "VBG" or
-        any(w.dep_ == "aux" and w.tag_ == "VBZ" for w in sent.root.children)):
+    if _verb == "VB":
+        if previous_word or len(tokenized_verb) != 1:
+            print("vb branch taken")
+            if tagged_verb[0][1] == "MD" and tokenized_verb[0] == "will":
+                return "futr"
+        return "norm"
+    if (_verb == "VBG"):
         return "cont"
-    
-    if previous_word and previous_word in ["will", "shall"]:
-        return "futr"
-    
+    if (_verb == "VBN"):
+        return "past"
     return "norm"
+    # if (
+    #     sent.root.tag_ == "VBD" or
+    #     any(w.dep_ == "aux" and w.tag_ == "VBD" for w in sent.root.children)):
+    #     return "past"
+    #
+    # if (
+    #     sent.root.tag_ == "VBG" or
+    #     any(w.dep_ == "aux" and w.tag_ == "VBZ" for w in sent.root.children)):
+    #     return "cont"
+    #
+    # if previous_word and previous_word in ["will", "shall"]:
+    #     return "futr"
+    #
+    # return "norm"
 
 def get_past_tense_verb(verb):
     """
@@ -233,7 +269,6 @@ def from_actor_form(actor, lemma = True):
     """
     # if wordnet is not available we have to make compromises
     if not wordnet_download_success: return actor
-
     #! I AM AWARE THIS IS COMPLETE AND UTTER DOGSHIT!!!!
     #! THIS IS TURNING AN O(1) OPERATION INTO AN O(n) OPERATION!!!!
     #! I'M CONVERTING A SET TO A LIST, WHICH IS VERY BAD
@@ -242,7 +277,8 @@ def from_actor_form(actor, lemma = True):
     forms = list(get_word_forms(actor)["v"])
     try:
         if lemma:
-            return nlp(forms[0])[0].lemma_
+            return LancasterStemmer.stem(forms[0])
+            #return nlp(forms[0])[0].lemma_
         return forms[0]
     except IndexError:
         return actor
