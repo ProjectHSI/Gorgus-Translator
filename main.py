@@ -288,12 +288,12 @@ class GorgusTranslator(App):
         self.notify("Done! Close and reopen the app for updates to complete.", title="Updates Complete")
 
     @work(thread=True, group="dictionary", exclusive=True)
-    def update_dictionary_table(self, table, search):
+    def update_dictionary_table(self, table, search, include_informal_words: bool = True):
         search = search.strip().lower()
         
         num_words = 0
         for gorgus, english in translation_dictionary.items():
-            if gorgus.startswith("<") and gorgus.endswith(">"):
+            if gorgus.startswith("<") and gorgus.endswith(">"): # ensure we don't include internal words
                 continue
             
             def search_in_string_or_list(search_query, data):
@@ -312,6 +312,9 @@ class GorgusTranslator(App):
 
             info = []
             if gorgus in dictionary_information.get("informal_words"):
+                if not include_informal_words:
+                    continue
+
                 info.append("[red]informal[/red]")
             extra_info = dictionary_information.get("extra_info").get(gorgus)
             if extra_info:
@@ -372,6 +375,10 @@ class GorgusTranslator(App):
                 self.update_translation()
 
             modify_json("settings.json", event.checkbox.id, event.checkbox.value)
+        elif event.checkbox.id == "informal_words_checkbox":
+            table = self.query_one("#dict-table")
+            table.clear()
+            self.update_dictionary_table(table, self.query_one("#search-input").value, event.checkbox.value) # update dictionary if the user disables informal words
 
     @on(Button.Pressed)
     def button_pressed(self, event):
@@ -397,8 +404,10 @@ class GorgusTranslator(App):
             except NoMatches:
                 return
             
+            informal_checkbox = self.query_one("#informal_words_checkbox")
+
             table.clear()
-            self.update_dictionary_table(table, event.input.value)
+            self.update_dictionary_table(table, event.input.value, informal_checkbox.value)
 
     @on(Select.Changed)
     def select_changed(self, event):
@@ -511,7 +520,7 @@ class GorgusTranslator(App):
                         yield Label(f"    - [bold]Words:[/bold] [blue]{len(translation_dictionary)}[/blue]")
                         yield Label(f"    - [bold]Phrases:[/bold] [blue]{len(phrase_translations)}[/blue]")
                     yield Input(placeholder="Search words...", id="search-input", value="")
-                    yield Checkbox(label="Include informal words?", value=True, button_first=False)
+                    yield Checkbox(label="Include informal words?", value=True, button_first=False, id="informal_words_checkbox")
                 yield Rule(line_style="dashed")
 
                 table = DataTable(id="dict-table")
