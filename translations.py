@@ -543,8 +543,9 @@ translation_dictionary = {
     "indefop": "truly",
     "koivit": "dead",
     "moibnit": "alive",
-    "snåta": "pretty",
-    "nåta": "handsome",
+    "snåta": ["pretty"],
+    "nåta": ["handsome"],
+    "tånåtå"
     "li": "bright",
     "jaka": "sacred",
     "latwa": ["dearer", "precious", "valuable"],
