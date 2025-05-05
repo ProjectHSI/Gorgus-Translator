@@ -551,7 +551,7 @@ translation_dictionary = {
     "tånåtå": "beautiful",
     "li": "bright",
     "jaka": "sacred",
-    "latwa": ["dearer", "precious", "valuable"],
+    "latwa": ["precious", "dearer", "valuable"],
 
     # temperatures
     "sisf": "hot",
@@ -657,6 +657,8 @@ phrase_translations = { # if one of these phrases appears before another phrase 
     "jink": ["fuck", "damn", "god damn", "damn it", "damnit", "god damn it", "god damnit"],
     "greak": ["extremely unhappy"],
     "bog": ["oh no", "alas"],
+
+    "nåno": ["compared to"],
 
     "gorse̱ latwa̐": ["is more valuable", "means more"],
 
