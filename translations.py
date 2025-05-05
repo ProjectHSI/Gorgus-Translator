@@ -545,7 +545,7 @@ translation_dictionary = {
     "moibnit": "alive",
     "snåta": ["pretty"],
     "nåta": ["handsome"],
-    "tånåtå"
+    "tånåtå": "beautiful",
     "li": "bright",
     "jaka": "sacred",
     "latwa": ["dearer", "precious", "valuable"],
