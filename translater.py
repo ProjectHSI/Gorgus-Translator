@@ -46,7 +46,7 @@ def nltk_download(packagePath, package) -> bool:
         return True
     except LookupError:
         console.print(
-            "[bold orange1]Warning![/bold orange1] Wordnet was not found! Attempting to automatically install..")
+            f"[bold orange1]Warning![/bold orange1] {package} was not found! Attempting to automatically install..")
         console.print(
             "[dim]Disabling SSL check to prevent issues on certain operating systems (MacOS, I'm looking at you)...[/dim]")
         import ssl
