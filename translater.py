@@ -56,7 +56,7 @@ def nltk_download(packagePath, package) -> bool:
             pass
         else:
             ssl._create_default_https_context = _create_unverified_https_context
-        download_success = nltk.download("wordnet")
+        download_success = nltk.download(package)
         return download_success
 wordnet_download_success = nltk_download("corpora/wordnet.zip", "wordnet")
 brown_download_success = nltk_download("corpora/brown.zip", "brown")
