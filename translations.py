@@ -429,8 +429,8 @@ translation_dictionary = {
     "tebik": ["okay", "ok"],
     "goober": ["have", "got"],
     "nipe": "it",
-    "gorse": "is",
-    "horge": "are",
+    "gorse̱": "is",
+    "horge̱": "are",
     "gont": "and",
     
     "floym": "because",
