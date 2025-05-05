@@ -24,6 +24,9 @@ translation_dictionary = {
     "<ADV>": "lit", # adverbs
     "<ADP>": "mot", # adpositions
 
+    # other
+    "ó": "the",
+
     # Pronouns :)
 
     "nåck": "he",
