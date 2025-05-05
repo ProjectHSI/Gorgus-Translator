@@ -69,8 +69,9 @@ apte_download_success = nltk_download("taggers/universal_tagset/en-ptb.map", "ta
 if not (wordnet_download_success and brown_download_success and punkt_download_success and apte_download_success):
     raise Exception("WordNet Download Failed!")
 
-console.print("[bold bright_green]INFO[/bold bright_green] Getting [bold]NLTK Unigram Tagger[/bold]..")
+console.print("[bold bright_green]INFO[/bold bright_green] Importing [bold]nltk.corpus[/bold]..")
 import nltk.corpus
+console.print("[bold bright_green]INFO[/bold bright_green] Getting [bold]NLTK Unigram Tagger[/bold]..")
 # the default tagger is not good, for some reason.
 unigram_tagger = nltk.UnigramTagger(nltk.corpus.brown.tagged_sents())
 """
