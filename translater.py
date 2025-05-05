@@ -424,13 +424,13 @@ def to_gorgus(user_input, formal = True):
         if word == "the": # skip "the", there is no equivelant in gorgus
             continue
 
-        trailing_punctuation = get_trailing_punctuation(word, translation_dictionary["<EXAGGERATED_VERB>"] + translation_dictionary["<GENTLE_VERB>"])
+        trailing_punctuation = get_trailing_punctuation(word, translation_dictionary["<EXAGGERATED_VERB>"] + translation_dictionary["<GENTLE_VERB>"] + translation_dictionary["<MORE_VERB>"] + translation_dictionary["<LESS_VERB>"])
         word = word.translate(str.maketrans('', '', "?.!,\":()=/\\$[]"))
 
         suffix = ""
         punctuation_suffix = ""
 
-        if word == "EXAGGERATE" or word == "GENTLE":
+        if word == "EXAGGERATE" or word == "GENTLE" or word == "MORE" or word == "LESS":
             continue
 
         suffix: str = modified_verbs.get(i, "")
@@ -438,6 +438,10 @@ def to_gorgus(user_input, formal = True):
             suffix = translation_dictionary["<EXAGGERATED_VERB>"]
         elif suffix == -1:
             suffix = translation_dictionary["<GENTLE_VERB>"]
+        elif suffix == 2:
+            suffix = translation_dictionary["<MORE_VERB>"]
+        elif suffix == -2:
+            suffix = translation_dictionary["<LESS_VERB>"]
 
         if trailing_punctuation.endswith("?"):
             if word != "lunk":
@@ -507,8 +511,12 @@ def to_gorgus(user_input, formal = True):
     # Replace verb modifier words
     for word in ["really", "extremely", "very", "absolutely"]:
         translated = replace_word(translated, word, translation_dictionary["<EXAGGERATED_VERB>"])
-    
-    translated = replace_word(translated, "kinda", translation_dictionary["<GENTLE_VERB>"])
+    for word in ["kinda", "slightly", "somewhat"]:
+        translated = replace_word(translated, word, translation_dictionary["<GENTLE_VERB>"])
+    for word in ["more"]:
+        translated = replace_word(translated, word, translation_dictionary["<MORE_VERB>"])
+    for word in ["less"]:
+        translated = replace_word(translated, word, translation_dictionary["<LESS_VERB>"])
 
     return translated
 
@@ -533,7 +541,7 @@ def from_gorgus(user_input: str):
             continue
 
         suffix = ""
-        trailing = get_trailing_punctuation(word, translation_dictionary["<EXAGGERATED_VERB>"] + translation_dictionary["<GENTLE_VERB>"])
+        trailing = get_trailing_punctuation(word, translation_dictionary["<EXAGGERATED_VERB>"] + translation_dictionary["<GENTLE_VERB>"] + translation_dictionary["<MORE_VERB>"] + translation_dictionary["<LESS_VERB>"])
         suffix += trailing
 
         word = word.translate(str.maketrans('', '', ".,?!$:()=/\\[]"))
@@ -563,7 +571,13 @@ def from_gorgus(user_input: str):
             translated += "really "
         if word.find(translation_dictionary["<GENTLE_VERB>"]) != -1:
             word = word.replace(translation_dictionary["<GENTLE_VERB>"], "")
-            translated += "kinda "
+            translated += "slightly "
+        if word.find(translation_dictionary["<MORE_VERB>"]) != -1:
+            word = word.replace(translation_dictionary["<MORE_VERB>"], "")
+            translated += "more "
+        if word.find(translation_dictionary["<LESS_VERB>"]) != -1:
+            word = word.replace(translation_dictionary["<LESS_VERB>"], "")
+            translated += "less "
 
         if word == "ji":
             translated += "ji "
@@ -810,7 +824,7 @@ def cli_translate(args):
     output_lang = args.output
     formal = args.formal
 
-    print(translate(user_input, output_lang, formal))
+    print(translate(text=user_input, to=output_lang, formal=formal))
 
 def cli_run_tests(args):
     console.print(Rule(title="[dim white]Running tests..."), style="dim")

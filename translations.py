@@ -15,6 +15,8 @@ translation_dictionary = {
     "<FUTR_TENSE>": "et", # add after a word to make it future tense (e.g: eat -> will eat, run -> will run)
     "<EXAGGERATED_VERB>": "\u0302", # add after a word to make it more intense (e.g: kiffer -> kiffer\u0302)
     "<GENTLE_VERB>": "\u0303", # same thing as the above but more gentle (e.g: kiffer -> kiffer\u0303)
+    "<MORE_VERB>": "\u0310", # makes a verb more intense than something else
+    "<LESS_VERB>": "\u0306", # makes a verb less intense than something else
     "<SENTENCE_END>": ".", # a full stop
     "<VERB>": "pas",
     "<NOUN>": "yat",
@@ -62,7 +64,6 @@ translation_dictionary = {
     "shrèrack": "person",
     "plèrack": "somebody",
     "megèrack": ["everyone", "every one"],
-    "papla": "more",
     "yummmers": "lobotomize",
     "yummmer": "lobotomy",
     "pläter": "floor",
