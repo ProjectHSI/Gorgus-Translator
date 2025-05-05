@@ -771,7 +771,7 @@ class TranslationTester(unittest.TestCase):
         tests_to_gorgus = {
             "Very cool! Very good. :)": "Klû! Dagunġâ. :)",
             "Hi! How are you?": "Dink! Dup pritterok lunk",
-            "How is the weather?": "Dup gorse̱ weather lunk",
+            "How is the weather?": "Dup gorse̱ clidó lunk",
             "I love you.": "H'orpó googrung.",
             "He slept.": "Nåck eepra.",
             "What's up?": "Dup pritterok lunk",
