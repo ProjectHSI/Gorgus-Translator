@@ -643,20 +643,10 @@ These are the people that make this possible! *(all of these are Discord usernam
     def on_mount(self):
         self.update_dictionary_table(self.query_one("#dict-pane").query_one("#dict-table"), "")
 
-    def on_ready(self):
-        self.push_screen(MessageBox())
-
-        
-        self.app.notify(
-            message="Please be mindful, not a lot of English words exist in Gorgus, and the translator is not perfect yet.",
-            title="Welcome!",
-            severity="information",
-            timeout=10
-        )
-
         # get the user's settings
         settings = get_settings()
 
+        # check for updates if the user has the "check for updates on start" setting enabled
         try:
             self.query_one("#check_updates_on_start").value = settings["check_updates_on_start"]
             if settings["check_updates_on_start"]:
@@ -669,6 +659,17 @@ These are the people that make this possible! *(all of these are Discord usernam
                 severity="error",
                 timeout=10
             )
+
+    def on_ready(self):
+        self.push_screen(MessageBox())
+
+        
+        self.app.notify(
+            message="Please be mindful, not a lot of English words exist in Gorgus, and the translator is not perfect yet.",
+            title="Welcome!",
+            severity="information",
+            timeout=10
+        )
 
 
 if __name__ == "__main__":
