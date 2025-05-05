@@ -654,6 +654,8 @@ phrase_translations = { # if one of these phrases appears before another phrase 
     "greak": ["extremely unhappy"],
     "bog": ["oh no", "alas"],
 
+    "gorse̱ latwa̐": ["is more valuable", "means more"],
+
     "zorp ikspek": "profanity",
     "jid gorse": ["that's", "thats", "that is"],
 
