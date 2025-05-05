@@ -8,6 +8,7 @@ The Gorgus Translator was published to Github in version `1.6`, pretty much all 
 - Added a little warning on start that translations are a little broken while we migrate.
 - Added more words.
 - You can now hide informal words in the dictionary if you want
+- Added ending accents for if an adjective is more / less bad than something else
 
 ## Version 1.10 
 - I'm going to add content to this over time, but this will be the last update cause I'm getting bored of working on this translator lol.
