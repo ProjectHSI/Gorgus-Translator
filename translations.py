@@ -412,7 +412,7 @@ translation_dictionary = {
     "frez": "ice",
     "wäta": "load",
     "majikle̱": "computer",
-    "skool": "study",
+    "estäól": "study",
 
     # Proper Nouns
     "googrung": ["you", "thee"],
