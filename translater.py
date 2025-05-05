@@ -65,8 +65,7 @@ def nltk_download(packagePath, package) -> bool:
 wordnet_download_success = nltk_download("corpora/wordnet.zip", "wordnet")
 brown_download_success = nltk_download("corpora/brown.zip", "brown")
 punkt_download_success = nltk_download("tokenizers/punkt_tab.zip", "punkt_tab")
-apte_download_success = nltk_download("taggers/universal_tagset/en-ptb.map", "taggers/universal_tagset/en-ptb.map")
-if not (wordnet_download_success and brown_download_success and punkt_download_success and apte_download_success):
+if not (wordnet_download_success and brown_download_success and punkt_download_success):
     raise Exception("WordNet Download Failed!")
 
 console.print("[bold bright_green]INFO[/bold bright_green] Importing [bold]nltk.corpus[/bold]..")
