@@ -318,7 +318,7 @@ def get_trailing_punctuation(text, ignore_chars=""):
     return remove_all_except(match.group(0) if match else '')
 
 def convert_to_base_form(verb):
-    if verb in ["is"]: # some words will cause issues if converted to base form
+    if verb in ["is", "are"]: # some words will cause issues if converted to base form
         return verb
 
     if wordnet_download_success:
