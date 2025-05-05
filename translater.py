@@ -60,6 +60,7 @@ def nltk_download(packagePath, package) -> bool:
         return download_success
 wordnet_download_success = nltk_download("corpora/wordnet.zip", "wordnet")
 brown_download_success = nltk_download("corpora/brown.zip", "brown")
+brown_download_success = nltk_download("tokenizers/punkt_tab.zip", "punkt_tab")
 if not (wordnet_download_success and brown_download_success):
     raise Exception("WordNet Download Failed!")
 import nltk.corpus
