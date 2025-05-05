@@ -722,7 +722,8 @@ ignored_plurals = [ # words that can't be pluralised
     "brass",
     "never",
     "door",
-    "forever"
+    "forever",
+    "dearer"
 ]
 
 ignored_actor_nouns = [ # words that can't be turned into actor nouns
@@ -765,5 +766,6 @@ ignored_actor_nouns = [ # words that can't be turned into actor nouns
     "sister",
     "brother",
     "flower",
-    "weather"
+    "weather",
+    "dearer"
 ]

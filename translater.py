@@ -127,7 +127,7 @@ def get_word_type(word):
     except IndexError:
         return "UNKOWN"
 
-def remove_all_except(text, accents_to_keep = {'\u0302', '\u0303'}):
+def remove_all_except(text, accents_to_keep = {'\u0302', '\u0303', '\u0310', "\u0306"}):
     """
     Removes all diacritical marks except those in `accents_to_keep`.
     
