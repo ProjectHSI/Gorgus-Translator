@@ -416,7 +416,6 @@ translation_dictionary = {
     "majikle̱": "computer",
     "estäól": "study", 
     "hag": "hunt",
-    "latwa": ["dearer", "precious", "valuable"],
 
     # Proper Nouns
     "googrung": ["you", "thee"],
@@ -547,6 +546,7 @@ translation_dictionary = {
     "nåta": "handsome",
     "li": "bright",
     "jaka": "sacred",
+    "latwa": ["dearer", "precious", "valuable"],
 
     # temperatures
     "sisf": "hot",
