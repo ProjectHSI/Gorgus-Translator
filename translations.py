@@ -415,6 +415,7 @@ translation_dictionary = {
     "wäta": "load",
     "majikle̱": "computer",
     "estäól": "study", 
+    "hag": "hunt",
 
     # Proper Nouns
     "googrung": ["you", "thee"],
