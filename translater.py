@@ -104,12 +104,26 @@ def get_word_type(word):
     # Process the word through the spaCy pipeline
     #doc = nlp(word)
     doc = nltk.tokenize.word_tokenize(word)
-    doc = nltk.pos_tag(doc, tagset="universal")
-    
+    doc = nltk.pos_tag(doc)
+
+    # we need to map the tag to only a few tags, cause rn it's too specific
+    tag = doc[0][1]
+    KNOWN_TAGS = {
+        "NOUN": ["NN", "NNS"],
+        "ADJ": ["JJ"],
+        "VERB": ["VB", "VBD", "VBG", "VBN", "VBP", "VBZ"],
+        "ADV": ["RBS"],
+        "ADP": [""]
+    }
+    for known_tag, list_of_tags in KNOWN_TAGS.items():
+        if tag in list_of_tags:
+            tag = known_tag
+            break
+
     # Check if the word is a verb by examining the POS tag
     try:
         #return doc[0].pos_
-        return doc[0][1]
+        return tag
     except IndexError:
         return "UNKOWN"
 
@@ -500,6 +514,8 @@ def to_gorgus(user_input, formal = True):
                 plural_prefix = translation_dictionary["<PLURAL>"] if is_plural else ""
                 tense_suffix = translation_dictionary.get(f"<{tense.upper()}_TENSE>", "") #if word_type == "VERB" else ""
                 word_type_suffix = translation_dictionary. get(f"<{word_type.upper()}>", "") if formal else ""
+
+                print(word, ":", word_type)
                 
                 translated += f"{plural_prefix}{key}{word_type_suffix}{word_suffix}{suffix}{tense_suffix}{punctuation_suffix} "
                 break
