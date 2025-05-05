@@ -20,9 +20,9 @@ translation_dictionary = {
     "<SENTENCE_END>": ".", # a full stop
     "<VERB>": "pas", # verbs
     "<NOUN>": "yat", # nouns
-    "<ADJ>": "ató", # adjectives
-    "<ADV>": "lit", # adverbs
-    "<ADP>": "mot", # adpositions
+    "<ADJECTIVE>": "ató", # adjectives
+    "<ADVERB>": "lit", # adverbs
+    "<ADPOSITION>": "mot", # adpositions
 
     # Pronouns :)
 
@@ -693,6 +693,23 @@ phrase_translations = { # if one of these phrases appears before another phrase 
     "na'rse": ["he's", "hes", "he is"],
 
     "plomby": ["many", "a lot", "a lot of"]
+}
+
+word_features = {
+    # Interrogatives
+    "who": {"role": "Interrogative"},
+    "what": {"role": "Interrogative"},
+    "when": {"role": "Interrogative"},
+    "where": {"role": "Interrogative"},
+    "how": {"role": "Interrogative"},
+    "why": {"role": "Interrogative"},
+
+    # Pronouns
+    "he": {"person": 3, "gender": "masc"},
+    "she": {"person": 3, "gender": "fem"},
+
+    # Possessives
+    "my": {"possessive": "my"}
 }
 
 ignored_plurals = [ # words that can't be pluralised

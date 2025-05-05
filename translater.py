@@ -110,10 +110,12 @@ def get_word_type(word):
     tag = doc[0][1]
     KNOWN_TAGS = {
         "NOUN": ["NN", "NNS"],
-        "ADJ": ["JJ"],
+        "ADJECTIVE": ["JJ"],
         "VERB": ["VB", "VBD", "VBG", "VBN", "VBP", "VBZ"],
-        "ADV": ["RBS"],
-        "ADP": [""]
+        "ADVERB": ["RBS"],
+        "ADPOSITION": ["IN"],
+        "PRONOUN": ["PRP"],
+        "PARTICLE": ["WRB"]
     }
     for known_tag, list_of_tags in KNOWN_TAGS.items():
         if tag in list_of_tags:
@@ -142,6 +144,7 @@ def remove_all_except(text, accents_to_keep = {'\u0302', '\u0303', '\u0310', "\u
     return cleaned_text
 
 # Ensure all dictionary values are lists for uniform processing
+console.print("[bold bright_green]INFO[/bold bright_green] Normalising [bold]translations[/bold]..")
 normalized_translation_dict = {k: ([v] if isinstance(v, str) else v) for k, v in translation_dictionary.items()}
 deaccented_translation_dict = {remove_all_except(k): ([v] if isinstance(v, str) else v) for k, v in translation_dictionary.items()}
 reverse_mapping = {}
@@ -541,6 +544,12 @@ def to_gorgus(user_input, formal = True):
 
 def from_gorgus(user_input: str):
     translated = ""
+    inspection = {
+        "input": user_input,
+        "words": [],
+        "notes": ["Sentence structure: SVO"],
+        "morphology": []
+    }
 
     user_input = remove_all_except(user_input)
 
@@ -557,13 +566,32 @@ def from_gorgus(user_input: str):
     for word in words:
         if word == "lunk":
             translated = translated[:-1] + "? "
+            inspection["words"].append({
+                "word": "lunk",
+                "pos": "particle",
+                "lemma": "lunk",
+                "features": {
+                    "role": "QuestionMarker"
+                }
+            })
+            inspection["notes"].append("\"lunk\" at the end confirms this is a direct question.")
             continue
+
+        # start creating the word's inspection
+        current_words_inspection = {
+            "word": word,
+            "pos": "unkown",
+            "features": {
+            },
+        }
 
         suffix = ""
         trailing = get_trailing_punctuation(word, translation_dictionary["<EXAGGERATED_VERB>"] + translation_dictionary["<GENTLE_VERB>"] + translation_dictionary["<MORE_VERB>"] + translation_dictionary["<LESS_VERB>"])
         suffix += trailing
 
         word = word.translate(str.maketrans('', '', ".,?!$:()=/\\[]"))
+
+        word_before_translation = word
 
         plural = False
         actor = False
@@ -575,6 +603,15 @@ def from_gorgus(user_input: str):
                 #word = word.replace(tense_key, "")
                 word = word.removesuffix(tense_key)
                 tense = tense_value
+
+                if tense != "cont":
+                    current_words_inspection["features"]["tense"] = tense
+                    inspection["notes"].append(
+                        f"The verb uses the {tense_value}-tense suffix \"{tense_key}\""
+                    )
+                else:
+                    current_words_inspection["features"]["aspect"] = "continuous"
+
                 break
 
         if word.startswith(translation_dictionary["<PLURAL>"]):
@@ -585,18 +622,40 @@ def from_gorgus(user_input: str):
             word = word.removesuffix(translation_dictionary["<ACTOR>"])
             actor = True
 
+        uses_diacritic = False
         if word.find(translation_dictionary["<EXAGGERATED_VERB>"]) != -1:
             word = word.replace(translation_dictionary["<EXAGGERATED_VERB>"], "")
             translated += "really "
+            current_words_inspection["features"]["intensity"] = "high"
+            inspection["morphology"].append(f"{word_before_translation} = {word} + {translation_dictionary['<EXAGGERATED_VERB>']}  (diacritic for intensified form)")
+            uses_diacritic = True
         if word.find(translation_dictionary["<GENTLE_VERB>"]) != -1:
             word = word.replace(translation_dictionary["<GENTLE_VERB>"], "")
             translated += "slightly "
+            current_words_inspection["features"]["intensity"] = "low"
+            inspection["morphology"].append(f"{word_before_translation} = {word} + {translation_dictionary['<GENTLE_VERB>']}  (diacritic for reduced intensity form)")
+            uses_diacritic = True
         if word.find(translation_dictionary["<MORE_VERB>"]) != -1:
             word = word.replace(translation_dictionary["<MORE_VERB>"], "")
             translated += "more "
+            current_words_inspection["features"]["intensity"] = "more"
+            current_words_inspection["features"]["comparative"] = True
+            inspection["morphology"].append(f"{word_before_translation} = {word} + {translation_dictionary['<MORE_VERB>']}  (diacritic for intensified comparative form)")
+            uses_diacritic = True
         if word.find(translation_dictionary["<LESS_VERB>"]) != -1:
             word = word.replace(translation_dictionary["<LESS_VERB>"], "")
             translated += "less "
+            current_words_inspection["features"]["intensity"] = "less"
+            current_words_inspection["features"]["comparative"] = True
+            inspection["morphology"].append(f"{word_before_translation} = {word} + {translation_dictionary['<LESS_VERB>']}  (diacritic for reduced intensity comparative form)")
+            uses_diacritic = True
+        
+        if uses_diacritic:
+            inspection["notes"].append(
+                f"\"{word_before_translation}\" shows {'intensification' if current_words_inspection['features']['intensity'] in ['high', 'more'] else 'reduced intensification'} via diacritic"
+            )
+
+        current_words_inspection["lemma"] = word
 
         if word == "ji":
             translated += "ji "
@@ -605,9 +664,9 @@ def from_gorgus(user_input: str):
         word_type_suffixes = [
             translation_dictionary["<VERB>"],
             translation_dictionary["<NOUN>"],
-            translation_dictionary["<ADJ>"],
-            translation_dictionary["<ADV>"],
-            translation_dictionary["<ADP>"]
+            translation_dictionary["<ADJECTIVE>"],
+            translation_dictionary["<ADVERB>"],
+            translation_dictionary["<ADPOSITION>"]
         ]
         for word_type_suffix in word_type_suffixes:
             if word.endswith(word_type_suffix) or word.endswith(remove_all_except(word_type_suffix)):
@@ -615,8 +674,9 @@ def from_gorgus(user_input: str):
                 break
 
         #return f'{word, translation_dictionary, translation_dictionary.get(word, " Not found!")}'
-        translation = deaccented_translation_dict.get(remove_all_except(word))
+        translation = deaccented_translation_dict.get(remove_all_except(word.lower()))
     
+        output_english = ""
         if translation:
             final = translation[0]
 
@@ -627,17 +687,30 @@ def from_gorgus(user_input: str):
                 final = inflect_engine.plural(final)
 
             final = get_tense_verb(final, tense)
+            for word, features in word_features.items():
+                if final.lower() == word.lower():
+                    current_words_inspection["features"].update(features)
 
-            translated += f"{final}{suffix} "
+            output_english = f"{final}{suffix} "
         else:
-            translated += f"{word}{suffix} "
+            output_english = f"{word}{suffix} "
+        translated += output_english
+
+        word_type = get_word_type(output_english)
+
+        current_words_inspection["pos"] = word_type.lower()
+
+        if translation:
+            inspection["words"].append(current_words_inspection)
             
     translated = fix_articles(translated, "ji")
 
     #translated = swap_verbs_nouns(translated)
     #translated = remove_all_except(translated)
 
-    return translated
+    inspection["translation"] = translated
+
+    return translated, inspection
 
 def fix_up(translated, should_add_accents):
     translated = translated.capitalize().strip()
@@ -718,7 +791,7 @@ def translate(text, to: Literal["english", "gorgus"], formal = True, should_add_
 
     if user_choice == 2: # translate language to english:
             
-        translated = from_gorgus(text)
+        translated, _ = from_gorgus(text)
 
     elif user_choice == 1: # translate english to language      
         
@@ -845,13 +918,17 @@ def cli_translate(args):
 
     translated = translate(text=user_input, to=output_lang, formal=formal)
 
-    print("\n" + translated)
+    print("\nTranslation: " + translated)
     if args.ipa:
         console.print(f"[dim]{get_ipa_pronounciation(translated)}[/dim]", highlight=False)
 
 def cli_run_tests(args):
     console.print(Rule(title="[dim white]Running tests..."), style="dim")
     run_selected_tests(args.tests)
+
+def cli_inspect(args):
+    _, inspection = from_gorgus(args.sentence)
+    console.print(inspection)
 
 if __name__ == '__main__':
     arg_parser = argparse.ArgumentParser(
@@ -872,6 +949,15 @@ if __name__ == '__main__':
     tests_parser.add_argument("tests", nargs="*", default=["test_to_gorgus", "test_from_gorgus", "test_tense_detection", "test_translation_speed"])
     tests_parser.set_defaults(func=cli_run_tests)
 
+    inspect_parser = subparsers.add_parser("inspect", help="Inspect a Gorgus sentence to see how it is interpreted")
+    inspect_parser.add_argument("sentence", help="The Gorgus sentence to inspect", type=str)
+    inspect_parser.set_defaults(func=cli_inspect)
+
     args = arg_parser.parse_args()
-    args.func(args)
+    
+    try: # the user executed a subcommand
+        args.func(args)
+    except AttributeError: # user didn't type anything ;-;
+        arg_parser.print_help()
+        exit(0)
 # END OF CLI LOGIC #
