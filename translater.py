@@ -144,7 +144,6 @@ def detect_verb_tense(verb, previous_word = None):
         return "past"
     if _verb == "VB":
         if previous_word or len(tokenized_verb) != 1:
-            print("vb branch taken")
             if tagged_verb[0][1] == "MD" and tokenized_verb[0] == "will":
                 return "futr"
         return "norm"
