@@ -156,7 +156,7 @@ translation_dictionary = {
     "blaẖ": "light",
     "nalaẖ": "dark",
     "nalaẖta": "darkness",
-    "du'blaẖ": "daylight",
+    "dú'blaẖ": "daylight",
     "splunk": "manslaughter",
     "borhing": "school",
     "vromp": ["car", "vehicle"],
@@ -223,6 +223,7 @@ translation_dictionary = {
     "ralsnop": "problem",
     "håni": ["gift", "present"],
     "clidó": "weather",
+    "súshól": ["entirety", "totality"],
 
     # metals
     "steel": "steel",
@@ -411,7 +412,7 @@ translation_dictionary = {
     "kikrok": "abuse",
     "megèdink": "meet",
     "horktora": "leak",
-    "wushab": "spread",
+    "wakla": "spread",
     'yaẖç': "chase",
     "binç": "born",
     "çaç": ["choke", "strangle"],
