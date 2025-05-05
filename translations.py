@@ -427,7 +427,7 @@ translation_dictionary = {
     "googrung": ["you", "thee"],
     "googrungz": ["yourself", "thyself"],
     "ikhènġer": "we",
-    "hènġer": ["i", "me", "myself"],
+    "hènġer": ["me", "i", "myself"],
     "mébis": ["shall", "will"],
     "noguk": ["help", "assistance"],
     "hugub": ["gender", "sex"],
