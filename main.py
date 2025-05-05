@@ -640,10 +640,13 @@ These are the people that make this possible! *(all of these are Discord usernam
                 self.query_one("#version-label").update(git_version_string)
                 self.notify("Failed to check for updates. :(", severity="error", timeout=10)
 
+    def on_mount(self):
+        self.update_dictionary_table(self.query_one("#dict-pane").query_one("#dict-table"), "")
+
     def on_ready(self):
         self.push_screen(MessageBox())
 
-        self.update_dictionary_table(self.query_one("#dict-pane").query_one("#dict-table"), "")
+        
         self.app.notify(
             message="Please be mindful, not a lot of English words exist in Gorgus, and the translator is not perfect yet.",
             title="Welcome!",
