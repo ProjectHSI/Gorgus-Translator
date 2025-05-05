@@ -101,7 +101,7 @@ translation_dictionary = {
     "trek": "job",
     "drek": "action",
     "dushesh": "ash",
-    "mealt": "fire",
+    "mealt": ["fire", "flame"],
     "tha": "this",
     "iktha": "these",
     "dreff": "judge",
