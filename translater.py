@@ -161,6 +161,7 @@ def detect_verb_tense(verb, previous_word = None):
         #raise Exception("stop!")
     except IndexError:
         return "norm"
+    
     if (_verb == "VBD"):
         return "past"
     if _verb == "VB":
@@ -317,6 +318,9 @@ def get_trailing_punctuation(text, ignore_chars=""):
     return remove_all_except(match.group(0) if match else '')
 
 def convert_to_base_form(verb):
+    if verb in ["is"]: # some words will cause issues if converted to base form
+        return verb
+
     if wordnet_download_success:
         return lemmatizer.lemmatize(verb, pos='v')
     else:

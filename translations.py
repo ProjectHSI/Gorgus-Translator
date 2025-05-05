@@ -221,6 +221,7 @@ translation_dictionary = {
     "rélsep": "solution",
     "ralsnop": "problem",
     "håni": ["gift", "present"],
+    "clidó": "weather",
 
     # metals
     "steel": "steel",
@@ -324,6 +325,7 @@ translation_dictionary = {
     "dreek": "touch",
     "dräker": "feel",
     "glimpt": "know",
+    "gorse̱": "is",
     "zup": "be",
     "zopat": "insert",
     "jem": ["view", "watch"],
@@ -434,7 +436,6 @@ translation_dictionary = {
     "tebik": ["okay", "ok"],
     "goober": ["have", "got"],
     "nipe": "it",
-    "gorse̱": "is",
     "horge̱": "are",
     "gont": "and",
     
