@@ -7,6 +7,7 @@ import re
 import nltk
 import unicodedata
 import unittest
+import argparse
 
 from translations import *
 from word_forms.word_forms import get_word_forms
@@ -15,6 +16,8 @@ from typing import Literal
 from time import time
 
 from rich.console import Console
+from rich.table import Table
+from rich.rule import Rule
 
 console = Console()
 
@@ -735,13 +738,13 @@ class TranslationTester(unittest.TestCase):
         tests_to_gorgus = {
             "Very cool! Very good. :)": "Klû! Dagunġâ. :)",
             "Hi! How are you?": "Dink! Dup pritterok lunk",
-            "How is the weather?": "Dup gorse weather lunk",
+            "How is the weather?": "Dup gorse̱ weather lunk",
             "I love you.": "H'orpó googrung.",
             "He slept.": "Nåck eepra.",
             "What's up?": "Dup pritterok lunk",
             "Do you like to eat?": "Gè'googrung jeek tå chonġle̱ lunk",
             "What is going on?": "Nergo're pritterok hoog lunk",
-            "Why is the sky blue?": "Pif gorse sohong wat lunk"
+            "Why is the sky blue?": "Pif gorse̱ sohong wat lunk"
         }
 
         # go through each test
@@ -757,7 +760,8 @@ class TranslationTester(unittest.TestCase):
             "Googrung kiff!": "You smell!",
             "Minġer goob'rung ji dagsâ dublub. :)": "I hope you have a really nice day. :)",
             "Jid shrerack, henġer huffer clor'ge dagsa.": "That person, I believe they're nice.",
-            "Ikshmack horge kithrak̂.": "Cats are really angry."
+            "Ikshmack horge kithrak̂.": "Cats are really angry.",
+            "Toopyat": "Shit"
         }
 
         # go through each test
@@ -765,5 +769,71 @@ class TranslationTester(unittest.TestCase):
             self.assertEqual(translate(gorgus, "english", formal=False), english, "Translation from Gorgus to English does not match!")
 
 
+# CLI LOGIC #
+def patched_addSuccess(self, test):
+    if not hasattr(self, 'successes'):
+        self.successes = []
+    self.successes.append(test)
+
+unittest.TestResult.addSuccess = patched_addSuccess
+
+def run_selected_tests(test_names):
+    suite = unittest.TestSuite()
+    for name in test_names:
+        suite.addTest(TranslationTester(name))
+
+    result = unittest.TestResult()
+    suite.run(result)
+
+    table = Table(title="Translation Test Results", show_lines=True)
+    table.add_column("Test Name", style="bold")
+    table.add_column("Result", style="bold")
+
+    for test in result.successes if hasattr(result, 'successes') else []:
+        table.add_row(str(test), "[green]PASS")
+
+    for test, failure_message in result.failures:
+        table.add_row(str(test), "[red]FAIL")
+        table.add_row("", f"[red]Failure: {failure_message}")
+
+    for test, error_message in result.errors:
+        table.add_row(str(test), "[red]ERROR")
+        table.add_row("", f"[red]Error: {error_message}")
+
+    for test, _ in result.skipped:
+        table.add_row(str(test), "[yellow]SKIPPED")
+
+    console.print(table)
+
+def cli_translate(args):
+    user_input = args.input
+    output_lang = args.output
+    formal = args.formal
+
+    print(translate(user_input, output_lang, formal))
+
+def cli_run_tests(args):
+    console.print(Rule(title="[dim white]Running tests..."), style="dim")
+    run_selected_tests(args.tests)
+
 if __name__ == '__main__':
-    unittest.main()
+    arg_parser = argparse.ArgumentParser(
+        prog="Gorgus Translater",
+        description="The CLI interface for the Gorgus Translator, you can translate text to and from Gorgus, run tests, etc..."
+    )
+
+    subparsers = arg_parser.add_subparsers()
+
+    translate_parser = subparsers.add_parser("translate", help="Translate text to and from Gorgus", description="Translate text to and from Gorgus")
+    translate_parser.add_argument("input", help="The text input", type=str)
+    translate_parser.add_argument("-o", "--output", type=str, help="The output language", default="gorgus", choices=["gorgus", "english"])
+    translate_parser.add_argument("-f", "--formal", action="store_true", help="Enable formal speach")
+    translate_parser.set_defaults(func=cli_translate)
+
+    tests_parser = subparsers.add_parser("run_tests", help="Run tests", description="Run tests")
+    tests_parser.add_argument("tests", nargs="*", default=["test_to_gorgus", "test_from_gorgus", "test_tense_detection", "test_translation_speed"])
+    tests_parser.set_defaults(func=cli_run_tests)
+
+    args = arg_parser.parse_args()
+    args.func(args)
+# END OF CLI LOGIC #

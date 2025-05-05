@@ -109,6 +109,7 @@ translation_dictionary = {
     "kortikva": "execution",
     "dréskk": "crime",
     "murg": ["war", "battle"],
+    "murgat": ["ritual", "ceremony"],
     "glonktop": "eye",
     "crump": "gouge",
     "flumgus": "family",
@@ -199,7 +200,7 @@ translation_dictionary = {
     "thlenġo": "something",
     "pepalop": "tool",
     "kendflop": "flower",
-    "geegogo": "song",
+    "són": "song",
     "jupomubo": "music",
     "griper": "foot",
     "gringop": "shoe",
@@ -218,6 +219,7 @@ translation_dictionary = {
     "soians": "test",
     "rélsep": "solution",
     "ralsnop": "problem",
+    "håni": ["gift", "present"],
 
     # metals
     "steel": "steel",
@@ -412,7 +414,7 @@ translation_dictionary = {
     "frez": "ice",
     "wäta": "load",
     "majikle̱": "computer",
-    "estäól": "study",
+    "estäól": "study", 
 
     # Proper Nouns
     "googrung": ["you", "thee"],
@@ -541,6 +543,8 @@ translation_dictionary = {
     "moibnit": "alive",
     "snåta": "pretty",
     "nåta": "handsome",
+    "li": "bright",
+    "jaka": "sacred",
 
     # temperatures
     "sisf": "hot",
