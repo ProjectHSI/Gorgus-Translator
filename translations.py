@@ -18,11 +18,11 @@ translation_dictionary = {
     "<MORE_VERB>": "\u0310", # makes a verb more intense than something else
     "<LESS_VERB>": "\u0306", # makes a verb less intense than something else
     "<SENTENCE_END>": ".", # a full stop
-    "<VERB>": "pas",
+    "<VERB>": "pas", # verbs
     "<NOUN>": "yat", # nouns
-    "<JJ>": "ató", # adjectives
-    "<ADV>": "lit",
-    "<RB>": "mot",
+    "<ADJ>": "ató", # adjectives
+    "<ADV>": "lit", # adverbs
+    "<ADP>": "mot", # adpositions
 
     # Pronouns :)
 
