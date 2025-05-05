@@ -661,6 +661,7 @@ phrase_translations = { # if one of these phrases appears before another phrase 
     "bog": ["oh no", "alas"],
 
     "nåno": ["compared to"],
+    "dagunġa̐": ["better", "more good"],
 
     "gorse̱ latwa̐": ["is more valuable", "means more"],
 
