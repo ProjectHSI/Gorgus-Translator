@@ -643,7 +643,7 @@ These are the people that make this possible! *(all of these are Discord usernam
     def on_ready(self):
         self.push_screen(MessageBox())
 
-        self.update_dictionary_table(self.query_one("#dict-table"), "")
+        self.update_dictionary_table(self.query_one("#dict-pane").query_one("#dict-table"), "")
         self.app.notify(
             message="Please be mindful, not a lot of English words exist in Gorgus, and the translator is not perfect yet.",
             title="Welcome!",
