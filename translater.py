@@ -698,7 +698,7 @@ class TranslationTester(unittest.TestCase):
         to_gorgus(sentence, formal=True)
         translation_time = time() - start
 
-        self.assertLess(translation_time, 0.2, f"Translation is too slow! ({round(translation_time,2)}s) Optimize your damn code!")
+        self.assertLess(translation_time, 0.1, f"Translation is too slow! ({round(translation_time,2)}s) Optimize your damn code!")
 
     def test_tense_detection(self):
         # key = verb, value = expected tense
