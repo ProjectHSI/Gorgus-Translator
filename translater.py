@@ -500,9 +500,7 @@ def to_gorgus(user_input, formal = True):
                 plural_prefix = translation_dictionary["<PLURAL>"] if is_plural else ""
                 tense_suffix = translation_dictionary.get(f"<{tense.upper()}_TENSE>", "") #if word_type == "VERB" else ""
                 word_type_suffix = translation_dictionary. get(f"<{word_type.upper()}>", "") if formal else ""
-
-                print(formal, word_type_suffix, word_type, word)
-
+                
                 translated += f"{plural_prefix}{key}{word_type_suffix}{word_suffix}{suffix}{tense_suffix}{punctuation_suffix} "
                 break
 
