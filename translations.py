@@ -552,6 +552,7 @@ translation_dictionary = {
     "li": "bright",
     "jaka": "sacred",
     "latwa": ["precious", "dearer", "valuable"],
+    "wedidigó": "lost",
 
     # temperatures
     "sisf": "hot",
