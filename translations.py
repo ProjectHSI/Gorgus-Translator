@@ -216,6 +216,8 @@ translation_dictionary = {
     "lewor": "trip",
     "beeboop": "machine",
     "soians": "test",
+    "rélsep": "solution",
+    "ralsnop": "problem",
 
     # metals
     "steel": "steel",
