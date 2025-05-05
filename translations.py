@@ -632,7 +632,7 @@ phrase_translations = { # if one of these phrases appears before another phrase 
     "snent": "to the",
     "nips": ["it's", "it is"],
     "th'orse": "this is",
-    "mug'ob": "everything",
+    "mug'ob": ["everything", "anything"],
     "ker'ob": ["nothing", "no thing"],
     "go'gunx": "you look",
     "h'gorg mébis": "are you going to",
