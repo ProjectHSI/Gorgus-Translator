@@ -824,7 +824,11 @@ def cli_translate(args):
     output_lang = args.output
     formal = args.formal
 
-    print(translate(text=user_input, to=output_lang, formal=formal))
+    translated = translate(text=user_input, to=output_lang, formal=formal)
+
+    print(translated)
+    if args.ipa:
+        console.print(f"[dim]{get_ipa_pronounciation(translated)}[/dim]", highlight=False)
 
 def cli_run_tests(args):
     console.print(Rule(title="[dim white]Running tests..."), style="dim")
@@ -842,6 +846,7 @@ if __name__ == '__main__':
     translate_parser.add_argument("input", help="The text input", type=str)
     translate_parser.add_argument("-o", "--output", type=str, help="The output language", default="gorgus", choices=["gorgus", "english"])
     translate_parser.add_argument("-f", "--formal", action="store_true", help="Enable formal speach")
+    translate_parser.add_argument("--ipa", action="store_true", help="Include an IPA transcription if translating from English to Gorgus")
     translate_parser.set_defaults(func=cli_translate)
 
     tests_parser = subparsers.add_parser("run_tests", help="Run tests", description="Run tests")
