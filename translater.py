@@ -42,13 +42,14 @@ lemmatizer = WordNetLemmatizer()
 stemmer = LancasterStemmer()
 def nltk_download(packagePath, package) -> bool:
     try:
+        console.print(f"[dim]Checking for {package}...[/dim]", highlight=False)
         nltk.data.find(packagePath)
         return True
     except LookupError:
         console.print(
-            f"[bold orange1]Warning![/bold orange1] {package} was not found! Attempting to automatically install..")
+            f"[bold orange1]Warning![/bold orange1] {package} was not found! Attempting to automatically install..", highlight=False)
         console.print(
-            "[dim]Disabling SSL check to prevent issues on certain operating systems (MacOS, I'm looking at you)...[/dim]")
+            "[dim]Disabling SSL check to prevent issues on certain operating systems (MacOS, I'm looking at you)...[/dim]", highlight=False)
         import ssl
         try:
             _create_unverified_https_context = ssl._create_unverified_context
@@ -60,10 +61,12 @@ def nltk_download(packagePath, package) -> bool:
         return download_success
 wordnet_download_success = nltk_download("corpora/wordnet.zip", "wordnet")
 brown_download_success = nltk_download("corpora/brown.zip", "brown")
-brown_download_success = nltk_download("tokenizers/punkt_tab.zip", "punkt_tab")
-brown_download_success = nltk_download("taggers/averaged_perceptron_tagger_eng.zip", "averaged_perceptron_tagger_eng")
-if not (wordnet_download_success and brown_download_success):
+punkt_download_success = nltk_download("tokenizers/punkt_tab.zip", "punkt_tab")
+apte_download_success = nltk_download("taggers/averaged_perceptron_tagger_eng.zip", "averaged_perceptron_tagger_eng")
+if not (wordnet_download_success and brown_download_success and punkt_download_success and apte_download_success):
     raise Exception("WordNet Download Failed!")
+
+console.print("[bold bright_green]INFO[/bold bright_green] Getting [bold]NLTK Unigram Tagger[/bold]..")
 import nltk.corpus
 # the default tagger is not good, for some reason.
 unigram_tagger = nltk.UnigramTagger(nltk.corpus.brown.tagged_sents())
