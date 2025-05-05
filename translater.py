@@ -65,7 +65,7 @@ def nltk_download(packagePath, package) -> bool:
 wordnet_download_success = nltk_download("corpora/wordnet.zip", "wordnet")
 brown_download_success = nltk_download("corpora/brown.zip", "brown")
 punkt_download_success = nltk_download("tokenizers/punkt_tab.zip", "punkt_tab")
-apte_download_success = nltk_download("taggers/averaged_perceptron_tagger_eng.zip", "averaged_perceptron_tagger_eng")
+apte_download_success = nltk_download("taggers/universal_tagset/en-ptb.map", "taggers/universal_tagset/en-ptb.map")
 if not (wordnet_download_success and brown_download_success and punkt_download_success and apte_download_success):
     raise Exception("WordNet Download Failed!")
 
@@ -103,7 +103,7 @@ def get_word_type(word):
     # Process the word through the spaCy pipeline
     #doc = nlp(word)
     doc = nltk.tokenize.word_tokenize(word)
-    doc = nltk.pos_tag(doc)
+    doc = nltk.pos_tag(doc, tagset="universal")
     
     # Check if the word is a verb by examining the POS tag
     try:
@@ -500,6 +500,8 @@ def to_gorgus(user_input, formal = True):
                 tense_suffix = translation_dictionary.get(f"<{tense.upper()}_TENSE>", "") #if word_type == "VERB" else ""
                 word_type_suffix = translation_dictionary. get(f"<{word_type.upper()}>", "") if formal else ""
 
+                print(formal, word_type_suffix, word_type, word)
+
                 translated += f"{plural_prefix}{key}{word_type_suffix}{word_suffix}{suffix}{tense_suffix}{punctuation_suffix} "
                 break
 
@@ -826,7 +828,7 @@ def cli_translate(args):
 
     translated = translate(text=user_input, to=output_lang, formal=formal)
 
-    print(translated)
+    print("\n" + translated)
     if args.ipa:
         console.print(f"[dim]{get_ipa_pronounciation(translated)}[/dim]", highlight=False)
 
