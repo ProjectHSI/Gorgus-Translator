@@ -633,15 +633,12 @@ These are the people that make this possible! *(all of these are Discord usernam
                 elif worker.result == False: # Up to date
                     self.notify("No updates available, you're up to date!", title="No Updates Available")
             elif worker.state == WorkerState.ERROR:
-                try:
-                    self.query_one("#update-button").disabled = True
-                    self.query_one("#check-update-button").disabled = False
-                    self.query_one("#version-label").classes = "error"
-                    git_version_string = f"Branch: {self.git_info[0]} | Version: {self.git_info[1]} | Failed to check for updates!"
-                    self.query_one("#version-label").update(git_version_string)
-                    self.notify("Failed to check for updates. :(", severity="error", timeout=10)
-                except NoMatches: # try again! (probably a not great solution)
-                    return self.on_worker_state_changed(event)
+                self.app.query_one("#update-button").disabled = True
+                self.app.query_one("#check-update-button").disabled = False
+                self.app.query_one("#version-label").classes = "error"
+                git_version_string = f"Branch: {self.git_info[0]} | Version: {self.git_info[1]} | Failed to check for updates!"
+                self.app.query_one("#version-label").update(git_version_string)
+                self.app.notify("Failed to check for updates. :(", severity="error", timeout=10)
 
     def on_mount(self):
         self.update_dictionary_table(self.query_one("#dict-pane").query_one("#dict-table"), "")
