@@ -274,6 +274,7 @@ translation_dictionary = {
     "bob": "then",
     "lorp": "but",
     "mig": "so",
+    "nun": "than",
 
     # Interrogatives
     "dup": "how",
