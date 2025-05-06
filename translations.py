@@ -807,5 +807,9 @@ grammar_note_rules = [
     {
         "condition": lambda word: word["pos"] == "particle" and word["features"].get("role","") == "Interrogative",
         "note": "Sentence begins with an interrogative particle — question structure detected."
+    },
+    {
+        "condition": lambda word: word["word"].lower() == "dink",
+        "note": "\"dink\" → Greeting at the start of a conversation."
     }
 ]

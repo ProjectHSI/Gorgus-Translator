@@ -8,6 +8,7 @@ import nltk
 import unicodedata
 import unittest
 import argparse
+import json
 
 from translations import *
 from word_forms.word_forms import get_word_forms
@@ -855,7 +856,8 @@ def from_gorgus(user_input: str):
     #translated = swap_verbs_nouns(translated)
     #translated = remove_all_except(translated)
 
-    inspection["translation"] = translated
+    inspection["translation"] = translated # add translation to inspection
+    inspection["notes"] = list(set(inspection["notes"])) # remove duplicate notes
 
     return translated, inspection
 
@@ -1075,50 +1077,58 @@ def cli_run_tests(args):
     run_selected_tests(args.tests)
 
 def cli_inspect(args):
-    console.print(Rule())
-
-
     translation, inspection = from_gorgus(args.sentence)
 
-    # Display input
-    console.print("[bold]Input:[/bold]", inspection["input"], end="\n\n", highlight=False)
+    if not args.json: # text format
+        console.print(Rule())
 
-    # Display word analisys
-    word_table = Table("Word", "Lemma", "POS", "Features", title="Word Analisys", box=box.SQUARE)
-    for word in inspection["words"]:
-        features_list = []
-        for k,v in word["features"].items():
-            features_list.append(f"{k.capitalize()}={str(v).capitalize()}")
+        # Display input
+        console.print("[bold]Input:[/bold]", inspection["input"], end="\n\n", highlight=False)
 
-        word_table.add_row(word["word"], word["lemma"], word["pos"], ', '.join(features_list))
-    console.print(word_table, end='\n\n')
-
-    # Display morphology breakdown
-    if args.verbose or args.morph:
-        console.print("\n[bold][Morphology Breakdown][/bold]")
-        for x in inspection["morphology"]:
-            console.print(f"- {x}")
-
-    # Display translation
-    if args.verbose or args.translate:
-        console.print("\n[bold][Translation][/bold]")
-        console.print(f"\"{translation}\"")
-
-    # Display grammar notes
-    if args.verbose or args.notes:
-        console.print("\n[bold][Grammar Notes][/bold]")
-        for x in inspection["notes"]:
-            console.print(f"- {x}")
-
-    # Display pronounciation
-    if args.verbose or args.phonetics:
-        console.print("\n[bold][Pronounciation Guide][/bold]")
+        # Display word analisys
+        word_table = Table("Word", "Lemma", "POS", "Features", title="Word Analisys", box=box.ROUNDED)
         for word in inspection["words"]:
-            final_pronounciation_string = f"- {word['word']} → [green]{get_ipa_pronounciation(word['word'])}[/green]"
-            console.print(final_pronounciation_string, highlight=False)
+            features_list = []
+            for k,v in word["features"].items():
+                features_list.append(f"{k.capitalize()}={str(v).capitalize()}")
+
+            word_table.add_row(word["word"], word["lemma"], word["pos"], ', '.join(features_list))
+        console.print(word_table, end='\n\n')
+
+        # Display morphology breakdown
+        if args.verbose or args.morph:
+            console.print("\n[bold][Morphology Breakdown][/bold]")
+            for x in inspection["morphology"]:
+                console.print(f"- {x}")
+
+        # Display translation
+        if args.verbose or args.translate:
+            console.print("\n[bold][Translation][/bold]")
+            console.print(f"\"{translation}\"")
+
+        # Display grammar notes
+        if args.verbose or args.notes:
+            console.print("\n[bold][Grammar Notes][/bold]")
+            for x in inspection["notes"]:
+                console.print(f"- {x}")
+
+        # Display pronounciation
+        if args.verbose or args.phonetics:
+            console.print("\n[bold][Pronounciation Guide][/bold]")
+            for word in inspection["words"]:
+                final_pronounciation_string = f"- {word['word']} → [green]{get_ipa_pronounciation(word['word'])}[/green]"
+                console.print(final_pronounciation_string, highlight=False)
 
 
-    console.print(Rule())
+        console.print(Rule())
+    else: # json format
+        console.print(inspection)
+
+    if args.output:
+        console.print('[dim]Exporting to JSON file...[/dim]', highlight=False)
+        f = open(args.output, "w")
+        json.dump(inspection, f, indent=4)
+        f.close()
 
 if __name__ == '__main__':
     arg_parser = argparse.ArgumentParser(
