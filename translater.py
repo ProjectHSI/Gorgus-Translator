@@ -18,6 +18,7 @@ from time import time
 from rich.console import Console
 from rich.table import Table
 from rich.rule import Rule
+from rich import box
 
 console = Console()
 
@@ -837,9 +838,17 @@ def from_gorgus(user_input: str):
         translated += output_english
 
         current_words_inspection["pos"] = word_type.lower()
+        
+        # note generator
+        for rule in grammar_note_rules:
+            if rule["condition"](current_words_inspection): # does the word meet the rules?
+                if callable(rule["note"]):
+                    inspection["notes"].append(rule["note"](current_words_inspection))
+                else:
+                    inspection["notes"].append(rule["note"])
+        # end of note generator
 
-        if translation:
-            inspection["words"].append(current_words_inspection)
+        inspection["words"].append(current_words_inspection)
             
     translated = fix_articles(translated, "ji")
 
@@ -1066,13 +1075,16 @@ def cli_run_tests(args):
     run_selected_tests(args.tests)
 
 def cli_inspect(args):
+    console.print(Rule())
+
+
     translation, inspection = from_gorgus(args.sentence)
 
     # Display input
     console.print("[bold]Input:[/bold]", inspection["input"], end="\n\n", highlight=False)
 
     # Display word analisys
-    word_table = Table("Word", "Lemma", "POS", "Features", title="Word Analisys")
+    word_table = Table("Word", "Lemma", "POS", "Features", title="Word Analisys", box=box.SQUARE)
     for word in inspection["words"]:
         features_list = []
         for k,v in word["features"].items():
@@ -1082,24 +1094,31 @@ def cli_inspect(args):
     console.print(word_table, end='\n\n')
 
     # Display morphology breakdown
-    console.print("\n[bold][Morphology Breakdown][/bold]")
-    for x in inspection["morphology"]:
-        console.print(f"- {x}")
+    if args.verbose or args.morph:
+        console.print("\n[bold][Morphology Breakdown][/bold]")
+        for x in inspection["morphology"]:
+            console.print(f"- {x}")
 
     # Display translation
-    console.print("\n[bold][Translation][/bold]")
-    console.print(f"\"{translation}\"")
+    if args.verbose or args.translate:
+        console.print("\n[bold][Translation][/bold]")
+        console.print(f"\"{translation}\"")
 
     # Display grammar notes
-    console.print("\n[bold][Grammar Notes][/bold]")
-    for x in inspection["notes"]:
-        console.print(f"- {x}")
+    if args.verbose or args.notes:
+        console.print("\n[bold][Grammar Notes][/bold]")
+        for x in inspection["notes"]:
+            console.print(f"- {x}")
 
     # Display pronounciation
-    console.print("\n[bold][Pronounciation Guide][/bold]")
-    for word in inspection["words"]:
-        final_pronounciation_string = f"- {word['word']} → [green]{get_ipa_pronounciation(word['word'])}[/green]"
-        console.print(final_pronounciation_string, highlight=False)
+    if args.verbose or args.phonetics:
+        console.print("\n[bold][Pronounciation Guide][/bold]")
+        for word in inspection["words"]:
+            final_pronounciation_string = f"- {word['word']} → [green]{get_ipa_pronounciation(word['word'])}[/green]"
+            console.print(final_pronounciation_string, highlight=False)
+
+
+    console.print(Rule())
 
 if __name__ == '__main__':
     arg_parser = argparse.ArgumentParser(
@@ -1122,6 +1141,13 @@ if __name__ == '__main__':
 
     inspect_parser = subparsers.add_parser("inspect", help="Inspect a Gorgus sentence to see how it is interpreted")
     inspect_parser.add_argument("sentence", help="The Gorgus sentence to inspect", type=str)
+    inspect_parser.add_argument("--json", action="store_true", help="Output in JSON format")
+    inspect_parser.add_argument("--morph", action="store_true", help="Include morphological analysis")
+    inspect_parser.add_argument("--verbose", action="store_true", help="Show full inspection details")
+    inspect_parser.add_argument("--phonetics", action="store_true", help="Include IPA pronounciation guide")
+    inspect_parser.add_argument("--translate", action="store_true", help="Include translation")
+    inspect_parser.add_argument("--notes", action="store_true", help="Show additional interpretation notes")
+    inspect_parser.add_argument("-o", "--output", type=str, help="Save output to file")
     inspect_parser.set_defaults(func=cli_inspect)
 
     args = arg_parser.parse_args()

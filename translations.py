@@ -802,3 +802,10 @@ modifier_info = {
     "lit": "formality",
     "mot": "formality",
 }
+
+grammar_note_rules = [
+    {
+        "condition": lambda word: word["pos"] == "particle" and word["features"].get("role","") == "Interrogative",
+        "note": "Sentence begins with an interrogative particle — question structure detected."
+    }
+]
