@@ -147,10 +147,12 @@ def remove_all_except(text, accents_to_keep = {'\u0302', '\u0303', '\u0310', "\u
 console.print("[bold bright_green]INFO[/bold bright_green] Normalising [bold]translations[/bold]..")
 normalized_translation_dict = {k: ([v] if isinstance(v, str) else v) for k, v in translation_dictionary.items()}
 deaccented_translation_dict = {remove_all_except(k): ([v] if isinstance(v, str) else v) for k, v in translation_dictionary.items()}
+no_accent_to_accented = {}
 reverse_mapping = {}
 for norm_key in normalized_translation_dict:
     deaccented = remove_all_except(norm_key)
     reverse_mapping[norm_key] = deaccented
+    no_accent_to_accented[deaccented] = norm_key
 
 def detect_verb_tense(verb, previous_word = None):
     try:
@@ -547,13 +549,13 @@ def from_gorgus(user_input: str):
     inspection = {
         "input": user_input,
         "words": [],
-        "notes": ["Sentence structure: SVO"],
+        "notes": ["Sentence structure: [blue]SVO[/blue]"],
         "morphology": []
     }
 
     user_input = remove_all_except(user_input)
 
-    # Replace phrases with english words      
+    # Replace phrases with english words
     for gorgus, english in phrase_translations.items():
         if type(english) == list:
             for phrase in english:
@@ -566,6 +568,7 @@ def from_gorgus(user_input: str):
     for word in words:
         if word == "lunk":
             translated = translated[:-1] + "? "
+            
             inspection["words"].append({
                 "word": "lunk",
                 "pos": "particle",
@@ -576,20 +579,20 @@ def from_gorgus(user_input: str):
             })
             inspection["notes"].append("\"lunk\" at the end confirms this is a direct question.")
             continue
-
-        # start creating the word's inspection
-        current_words_inspection = {
-            "word": word,
-            "pos": "unkown",
-            "features": {
-            },
-        }
-
+        
         suffix = ""
         trailing = get_trailing_punctuation(word, translation_dictionary["<EXAGGERATED_VERB>"] + translation_dictionary["<GENTLE_VERB>"] + translation_dictionary["<MORE_VERB>"] + translation_dictionary["<LESS_VERB>"])
         suffix += trailing
 
         word = word.translate(str.maketrans('', '', ".,?!$:()=/\\[]"))
+
+        # start creating the word's inspection
+        current_words_inspection = {
+            "word": no_accent_to_accented.get(word.lower(), word),
+            "pos": "unkown",
+            "features": {
+            },
+        }
 
         word_before_translation = word
 
@@ -957,6 +960,12 @@ def cli_inspect(args):
     console.print("\n[bold][Grammar Notes][/bold]")
     for x in inspection["notes"]:
         console.print(f"- {x}")
+
+    # Display pronounciation
+    console.print("\n[bold][Pronounciation Guide][/bold]")
+    for word in inspection["words"]:
+        final_pronounciation_string = f"- {word['word']} → [green]{get_ipa_pronounciation(word['word'])}[/green]"
+        console.print(final_pronounciation_string, highlight=False)
 
 if __name__ == '__main__':
     arg_parser = argparse.ArgumentParser(
