@@ -910,6 +910,7 @@ def run_selected_tests(test_names):
 
     console.print(table)
 
+
 def cli_translate(args):
     user_input = args.input
     output_lang = args.output
@@ -940,7 +941,16 @@ def cli_inspect(args):
             features_string = f"{k.capitalize()}={str(v).capitalize()}"
 
         word_table.add_row(word["word"], word["lemma"], word["pos"], features_string)
-    console.print(word_table)
+    console.print(word_table, end='\n\n')
+
+    # Display morphology breakdown
+    console.print("\n[bold][Morphology Breakdown][/bold]")
+    for x in inspection["morphology"]:
+        console.print(f"- {x}")
+
+    # Display translation
+    console.print("\n[bold][Translation][/bold]")
+    console.print(f"\"{inspection['translation']}\"")
 
 if __name__ == '__main__':
     arg_parser = argparse.ArgumentParser(
