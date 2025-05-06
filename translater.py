@@ -953,6 +953,11 @@ def cli_inspect(args):
     console.print("\n[bold][Translation][/bold]")
     console.print(f"\"{inspection['translation']}\"")
 
+    # Display grammar notes
+    console.print("\n[bold][Grammar Notes][/bold]")
+    for x in inspection["notes"]:
+        console.print(f"- {x}")
+
 if __name__ == '__main__':
     arg_parser = argparse.ArgumentParser(
         prog="Gorgus Translater",
