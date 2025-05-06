@@ -114,7 +114,8 @@ def get_word_type(word):
         "ADVERB": ["RBS"],
         "ADPOSITION": ["IN"],
         "PRONOUN": ["PRP"],
-        "PARTICLE": ["WRB"]
+        "PARTICLE": ["WRB"],
+        "DETERMINER": ["PRP$"]
     }
     for known_tag, list_of_tags in KNOWN_TAGS.items():
         if tag in list_of_tags:
@@ -936,11 +937,11 @@ def cli_inspect(args):
     # Display word analisys
     word_table = Table("Word", "Lemma", "POS", "Features", title="Word Analisys")
     for word in inspection["words"]:
-        features_string = ""
+        features_list = []
         for k,v in word["features"].items():
-            features_string = f"{k.capitalize()}={str(v).capitalize()}"
+            features_list.append(f"{k.capitalize()}={str(v).capitalize()}")
 
-        word_table.add_row(word["word"], word["lemma"], word["pos"], features_string)
+        word_table.add_row(word["word"], word["lemma"], word["pos"], ', '.join(features_list))
     console.print(word_table, end='\n\n')
 
     # Display morphology breakdown
