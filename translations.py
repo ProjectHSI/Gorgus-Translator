@@ -518,7 +518,7 @@ translation_dictionary = {
     "mivac": ["particular", "specific"],
     "apolocheese̱": "sorry",
     "qugger": ["same", "equal"],
-    "kithrak": ["angry", "enraged"],
+    "kithrark": ["angry", "enraged"],
     "spink": ["sharp", "pointy"],
     "mump": ["first"],
     "mimp": ["final", "last"],
