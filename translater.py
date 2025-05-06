@@ -724,8 +724,6 @@ def from_gorgus(user_input: str):
                 f"\"{word_before_translation}\" shows {'intensification' if current_words_inspection['features']['intensity'] in ['high', 'more'] else 'reduced intensification'} via diacritic"
             )
 
-        current_words_inspection["lemma"] = no_accent_to_accented.get(word.lower(), word)
-
         if word == "ji":
             translated += "ji "
             continue
@@ -740,8 +738,17 @@ def from_gorgus(user_input: str):
         for word_type_suffix in word_type_suffixes:
             if word.endswith(word_type_suffix) or word.endswith(remove_all_except(word_type_suffix)):
                 word = word.removesuffix(word_type_suffix).removesuffix(remove_all_except(word_type_suffix))
-                suffixes.append(word_type_suffix)
+
+                if len(suffixes) > 0: # we need to move the most recent suffix before the formality suffix in suffixes list for the inspect tool
+                    most_recent_suffix = suffixes.pop()
+                    suffixes.append(word_type_suffix)
+                    suffixes.append(most_recent_suffix)
+                else:
+                    suffixes.append(word_type_suffix)
+
                 break
+
+        current_words_inspection["lemma"] = no_accent_to_accented.get(word.lower(), word)
 
         #return f'{word, translation_dictionary, translation_dictionary.get(word, " Not found!")}'
         translation = deaccented_translation_dict.get(remove_all_except(word.lower()))
@@ -813,6 +820,11 @@ def from_gorgus(user_input: str):
                         entire_word = prefixes + [current_words_inspection["lemma"]] + suffixes
 
                         morphology += ' + '.join(entire_word)
+
+                        morphology += f"\n    → Root: {current_words_inspection['lemma']} (\"{final}\")"
+
+                        for suffix in suffixes:
+                            morphology += f"\n    → Suffix: [red]-{suffix}[/red] (\"{modifier_info[suffix]}\")"
 
                     
                 inspection["morphology"].append(morphology)
@@ -933,6 +945,7 @@ class TranslationTester(unittest.TestCase):
         to_gorgus(sentence, formal=True)
         translation_time = time() - start
 
+        print(translation_time)
         self.assertLess(translation_time, 0.1, f"Translation is too slow! ({round(translation_time,2)}s) Optimize your damn code!")
 
     def test_tense_detection(self):

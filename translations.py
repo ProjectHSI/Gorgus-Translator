@@ -787,3 +787,18 @@ ignored_actor_nouns = [ # words that can't be turned into actor nouns
     "weather",
     "dearer"
 ]
+
+modifier_info = {
+    "ik": "plural",
+    "ak": "actor noun",
+
+    "ra": "past tense",
+    "ok": "continuous action",
+    "et": "future tense",
+
+    "pas": "formality",
+    "yat": "formality",
+    "ató": "formality",
+    "lit": "formality",
+    "mot": "formality",
+}
