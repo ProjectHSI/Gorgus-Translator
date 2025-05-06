@@ -8,11 +8,6 @@ Gorgus also has a wiki where you can learn to speak it fluently! Take a look [he
 Here is the phonology of the Gorgus conlang:
 
 ## Consonants
-<style>
-    .grey {
-        background: grey;
-    }
-</style>
 
 <table>
   <thead>
