@@ -821,6 +821,9 @@ def from_gorgus(user_input: str):
 
                         morphology += ' + '.join(entire_word)
 
+                        for prefix in prefixes:
+                            morphology += f"\n    → Prefix: [red]-{prefix}[/red] (\"{modifier_info[prefix]}\")"
+
                         morphology += f"\n    → Root: {current_words_inspection['lemma']} (\"{final}\")"
 
                         for suffix in suffixes:
@@ -945,7 +948,6 @@ class TranslationTester(unittest.TestCase):
         to_gorgus(sentence, formal=True)
         translation_time = time() - start
 
-        print(translation_time)
         self.assertLess(translation_time, 0.1, f"Translation is too slow! ({round(translation_time,2)}s) Optimize your damn code!")
 
     def test_tense_detection(self):
@@ -1064,8 +1066,7 @@ def cli_run_tests(args):
     run_selected_tests(args.tests)
 
 def cli_inspect(args):
-    _, inspection = from_gorgus(args.sentence)
-    console.print(inspection)
+    translation, inspection = from_gorgus(args.sentence)
 
     # Display input
     console.print("[bold]Input:[/bold]", inspection["input"], end="\n\n", highlight=False)
@@ -1087,7 +1088,7 @@ def cli_inspect(args):
 
     # Display translation
     console.print("\n[bold][Translation][/bold]")
-    console.print(f"\"{inspection['translation']}\"")
+    console.print(f"\"{translation}\"")
 
     # Display grammar notes
     console.print("\n[bold][Grammar Notes][/bold]")
