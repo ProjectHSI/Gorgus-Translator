@@ -544,6 +544,63 @@ def to_gorgus(user_input, formal = True):
 
     return translated
 
+def analyze_pronoun(pronoun):
+    """Figure out which person, and which gender a pronoun is.
+
+    Person will be `-1` if the word is not a pronoun.
+    """
+    pronoun = pronoun.lower()
+
+    # Define dictionaries
+    person_map = {
+        'i': 1,
+        'me': 1,
+        'my': 1,
+        'mine': 1,
+        'we': 1,
+        'us': 1,
+        'our': 1,
+        'ours': 1,
+
+        'you': 2,
+        'your': 2,
+        'yours': 2,
+
+        'he': 3,
+        'him': 3,
+        'his': 3,
+        'she': 3,
+        'her': 3,
+        'hers': 3,
+        'it': 3,
+        'its': 3,
+        'they': 3,
+        'them': 3,
+        'their': 3,
+        'theirs': 3,
+    }
+
+    gender_map = {
+        'he': 'masculine',
+        'him': 'masculine',
+        'his': 'masculine',
+        'she': 'feminine',
+        'her': 'feminine',
+        'hers': 'feminine',
+        'it': 'neuter',
+        'its': 'neuter',
+        'they': 'neutral',
+        'them': 'neutral',
+        'their': 'neutral',
+        'theirs': 'neutral',
+        # Others are gender-neutral
+    }
+
+    person = person_map.get(pronoun, -1)
+    gender = gender_map.get(pronoun, 'neutral')
+
+    return person, gender
+
 def from_gorgus(user_input: str):
     translated = ""
     inspection = {
@@ -578,6 +635,7 @@ def from_gorgus(user_input: str):
                 }
             })
             inspection["notes"].append("\"lunk\" at the end confirms this is a direct question.")
+            inspection["morphology"].append("lunk = sentence-final question marker")
             continue
         
         suffix = ""
@@ -600,12 +658,18 @@ def from_gorgus(user_input: str):
         actor = False
 
         tense = "norm"
+
+        # the suffixes and prefixes lists are used by the inspector
+        suffixes = []
+        prefixes = []
+
         for tense_key, tense_value in {translation_dictionary["<CONT_TENSE>"]: "cont", translation_dictionary["<PAST_TENSE>"]: "past", translation_dictionary["<FUTR_TENSE>"]: "futr"}.items():
             #if tense_key in word:
             if word.endswith(tense_key):
                 #word = word.replace(tense_key, "")
                 word = word.removesuffix(tense_key)
                 tense = tense_value
+                suffixes.append(tense_key)
 
                 if tense != "cont":
                     current_words_inspection["features"]["tense"] = tense
@@ -619,10 +683,12 @@ def from_gorgus(user_input: str):
 
         if word.startswith(translation_dictionary["<PLURAL>"]):
             word = word.removeprefix(translation_dictionary["<PLURAL>"])
+            prefixes.append(translation_dictionary["<PLURAL>"])
             plural = True
 
         if word.endswith(translation_dictionary["<ACTOR>"]):
             word = word.removesuffix(translation_dictionary["<ACTOR>"])
+            suffixes.append(translation_dictionary["<ACTOR>"])
             actor = True
 
         uses_diacritic = False
@@ -658,7 +724,7 @@ def from_gorgus(user_input: str):
                 f"\"{word_before_translation}\" shows {'intensification' if current_words_inspection['features']['intensity'] in ['high', 'more'] else 'reduced intensification'} via diacritic"
             )
 
-        current_words_inspection["lemma"] = word
+        current_words_inspection["lemma"] = no_accent_to_accented.get(word.lower(), word)
 
         if word == "ji":
             translated += "ji "
@@ -674,6 +740,7 @@ def from_gorgus(user_input: str):
         for word_type_suffix in word_type_suffixes:
             if word.endswith(word_type_suffix) or word.endswith(remove_all_except(word_type_suffix)):
                 word = word.removesuffix(word_type_suffix).removesuffix(remove_all_except(word_type_suffix))
+                suffixes.append(word_type_suffix)
                 break
 
         #return f'{word, translation_dictionary, translation_dictionary.get(word, " Not found!")}'
@@ -695,11 +762,64 @@ def from_gorgus(user_input: str):
                     current_words_inspection["features"].update(features)
 
             output_english = f"{final}{suffix} "
+            word_type = get_word_type(output_english)
+
+            person_lookup = {
+                1: "first",
+                2: "second",
+                3: "third"
+            }
+            person, gender = analyze_pronoun(final) # only used if word is pronoun
+            if word_type == "PRONOUN":
+                current_words_inspection["features"]["Person"] = person
+                current_words_inspection["features"]["Gender"] = gender.capitalize()
+
+            # handle morphology inspection stuff
+
+            if not uses_diacritic: # if the word has a diacritic, we have already handled its morphology
+                morphology = f"{current_words_inspection['word']} = "
+                features = word_features.get(final.lower()) # some words have some manually added info to them
+                should_add_root_tag = not (actor or plural or tense != "norm") # is the word a root word?
+                if features: # does the word have extra info?
+                    if word_type != "DETERMINER":
+                        if should_add_root_tag:
+                            morphology += "[Root] "
+                        
+                        
+
+                    possessive = features.get("possessive", "")
+                    if possessive:
+                        morphology += "possessive "
+                    else:
+                        morphology += "("
+
+                    morphology += word_type.lower()
+
+                    if possessive:
+                        morphology += f" (\"{possessive.lower()}\")"
+                    else:
+                        morphology += ")"
+                    
+                    
+                else: # word does not have extra info
+                    if should_add_root_tag: # word is a wroot word
+
+                        if word_type == "PRONOUN": # if the word is a pronoun, we add information about the person and gender of the pronoun in the morphology
+                            morphology += f"[Root] ({person_lookup[person]} person {gender} pronoun)"
+                        else: # it is just a regular root word
+                            morphology += f"[Root] (\"{final}\")" 
+                    else: # word is not a root word! let's see what suffixes and prefixes it has...
+                        
+                        entire_word = prefixes + [current_words_inspection["lemma"]] + suffixes
+
+                        morphology += ' + '.join(entire_word)
+
+                    
+                inspection["morphology"].append(morphology)
         else:
             output_english = f"{word}{suffix} "
+            word_type = get_word_type(output_english)
         translated += output_english
-
-        word_type = get_word_type(output_english)
 
         current_words_inspection["pos"] = word_type.lower()
 
@@ -894,7 +1014,7 @@ def run_selected_tests(test_names):
     result = unittest.TestResult()
     suite.run(result)
 
-    table = Table(title="Translation Test Results", show_lines=True)
+    table = Table(title="Translation Test Results", show_lines=True, highlight=True)
     table.add_column("Test Name", style="bold")
     table.add_column("Result", style="bold")
 
@@ -932,7 +1052,7 @@ def cli_run_tests(args):
 
 def cli_inspect(args):
     _, inspection = from_gorgus(args.sentence)
-    #console.print(inspection)
+    console.print(inspection)
 
     # Display input
     console.print("[bold]Input:[/bold]", inspection["input"], end="\n\n", highlight=False)

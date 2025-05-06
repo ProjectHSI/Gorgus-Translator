@@ -704,10 +704,6 @@ word_features = {
     "how": {"role": "Interrogative"},
     "why": {"role": "Interrogative"},
 
-    # Pronouns
-    "he": {"person": 3, "gender": "masc"},
-    "she": {"person": 3, "gender": "fem"},
-
     # Possessives
     "my": {"possessive": "my"}
 }
