@@ -860,13 +860,13 @@ class TranslationTester(unittest.TestCase):
         # key = gorgus, value = expected english translation
         tests_from_gorgus = {
             "Dink, dup pritterok lunk": "Hello, how are you going?",
-            "Henġer agger ikfren!": "I love dogs!",
+            "Henġer agger ikfren!": "Me love dogs!",
             "Glonk chonġle̱ok migtir omnom!": "Stop eating all food!",
             "Googrung kiff!": "You smell!",
             "Minġer goob'rung ji dagsâ dublub. :)": "I hope you have a really nice day. :)",
-            "Jid shrerack, henġer huffer clor'ge dagsa.": "That person, I believe they're nice.",
-            "Ikshmack horge kithrak̂.": "Cats are really angry.",
-            "Toopyat": "Shit"
+            "Jid shrerack, henġer huffer clor'ge dagsa.": "That person, me believe they're nice.",
+            "Ikshmack horge kithrark̂.": "Cats are really angry.",
+            "Toopyat!": "Shit!"
         }
 
         # go through each test
@@ -927,7 +927,20 @@ def cli_run_tests(args):
 
 def cli_inspect(args):
     _, inspection = from_gorgus(args.sentence)
-    console.print(inspection)
+    #console.print(inspection)
+
+    # Display input
+    console.print("[bold]Input:[/bold]", inspection["input"], end="\n\n", highlight=False)
+
+    # Display word analisys
+    word_table = Table("Word", "Lemma", "POS", "Features", title="Word Analisys")
+    for word in inspection["words"]:
+        features_string = ""
+        for k,v in word["features"].items():
+            features_string = f"{k.capitalize()}={str(v).capitalize()}"
+
+        word_table.add_row(word["word"], word["lemma"], word["pos"], features_string)
+    console.print(word_table)
 
 if __name__ == '__main__':
     arg_parser = argparse.ArgumentParser(
