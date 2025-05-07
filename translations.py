@@ -810,6 +810,6 @@ grammar_note_rules = [
     },
     {
         "condition": lambda word: word["word"].lower() == "dink",
-        "note": "**\"dink\"** → Greeting at the start of a conversation."
+        "note": "[bold]\"dink\"[/bold] → Greeting at the start of a conversation."
     }
 ]
