@@ -636,7 +636,7 @@ def from_gorgus(user_input: str):
                     "role": "QuestionMarker"
                 }
             })
-            inspection["notes"].append("**\"lunk\"** at the end confirms this is a direct question.")
+            inspection["notes"].append("[bold]\"lunk\"[/bold] at the end confirms this is a direct question.")
             inspection["morphology"].append("lunk = sentence-final question marker")
             continue
         
