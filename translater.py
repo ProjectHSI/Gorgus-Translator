@@ -826,7 +826,7 @@ def from_gorgus(user_input: str):
                         for prefix in prefixes:
                             morphology += f"\n    → Prefix: [red]-{prefix}[/red] (\"{modifier_info[prefix]}\")"
 
-                        morphology += f"\n    → Root: {current_words_inspection['lemma']} (\"{final}\")"
+                        morphology += f"\n    → Root: {current_words_inspection['lemma']} (\"{lemmatizer.lemmatize(final)}\")"
 
                         for suffix in suffixes:
                             morphology += f"\n    → Suffix: [red]-{suffix}[/red] (\"{modifier_info[suffix]}\")"
