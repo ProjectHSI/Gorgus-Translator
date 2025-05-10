@@ -567,6 +567,7 @@ def analyze_pronoun(pronoun):
         'you': 2,
         'your': 2,
         'yours': 2,
+        "yourself": 2,
 
         'he': 3,
         'him': 3,
