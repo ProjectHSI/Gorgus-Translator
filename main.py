@@ -639,9 +639,9 @@ These are the people that make this possible! *(all of these are Discord usernam
                     self.app.query_one("#version-label").classes = "error"
                     git_version_string = f"Branch: {self.git_info[0]} | Version: {self.git_info[1]} | Failed to check for updates!"
                     self.app.query_one("#version-label").update(git_version_string)
-                    self.app.notify("Failed to check for updates. :(", severity="error", timeout=10)
                 except NoMatches: # i hate MacOS
                     pass
+                self.app.notify("Failed to check for updates. :(", severity="error", timeout=10)
 
     def on_mount(self):
         self.update_dictionary_table(self.query_one("#dict-pane").query_one("#dict-table"), "")
