@@ -224,6 +224,7 @@ translation_dictionary = {
     "håni": ["gift", "present"],
     "clidó": "weather",
     "súshól": ["entirety", "totality"],
+    "shćhnorg": "boat",
 
     # metals
     "steel": "steel",
