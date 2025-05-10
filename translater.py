@@ -68,7 +68,7 @@ wordnet_download_success = nltk_download("corpora/wordnet.zip", "wordnet")
 brown_download_success = nltk_download("corpora/brown.zip", "brown")
 punkt_download_success = nltk_download("tokenizers/punkt_tab.zip", "punkt_tab")
 if not (wordnet_download_success and brown_download_success and punkt_download_success):
-    raise Exception("WordNet Download Failed!")
+    raise Exception("NLTK Resources Download Failed!")
 
 console.print("[bold bright_green]INFO[/bold bright_green] Importing [bold]nltk.corpus[/bold]..")
 import nltk.corpus
