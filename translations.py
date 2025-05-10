@@ -554,6 +554,7 @@ translation_dictionary = {
     "jaka": "sacred",
     "latwa": ["precious", "dearer", "valuable"],
     "wedidigó": "lost",
+    "yipi": "excited",
 
     # temperatures
     "sisf": "hot",
