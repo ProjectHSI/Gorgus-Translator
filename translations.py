@@ -424,6 +424,7 @@ translation_dictionary = {
     "estäól": "study", 
     "hag": "hunt",
     "yipi": "excite",
+    "frinch": "mangle",
 
     # Proper Nouns
     "googrung": ["you", "thee"],
