@@ -2,13 +2,162 @@
 #  translater.py
 #
 #import spacy
-import inflect
-import re
-import nltk
-import unicodedata
-import unittest
 import argparse
 import json
+import unittest
+
+# CLI LOGIC #
+def patched_addSuccess(self, test):
+    if not hasattr(self, 'successes'):
+        self.successes = []
+    self.successes.append(test)
+
+unittest.TestResult.addSuccess = patched_addSuccess
+
+def run_selected_tests(test_names):
+    suite = unittest.TestSuite()
+    for name in test_names:
+        suite.addTest(TranslationTester(name))
+
+    result = unittest.TestResult()
+    suite.run(result)
+
+    table = Table(title="Translation Test Results", show_lines=True, highlight=True)
+    table.add_column("Test Name", style="bold")
+    table.add_column("Result", style="bold")
+
+    for test in result.successes if hasattr(result, 'successes') else []:
+        table.add_row(str(test), "[green]PASS")
+
+    for test, failure_message in result.failures:
+        table.add_row(str(test), "[red]FAIL")
+        table.add_row("", f"[red]Failure: {failure_message}")
+
+    for test, error_message in result.errors:
+        table.add_row(str(test), "[red]ERROR")
+        table.add_row("", f"[red]Error: {error_message}")
+
+    for test, _ in result.skipped:
+        table.add_row(str(test), "[yellow]SKIPPED")
+
+    console.print(table)
+
+
+def cli_translate(args):
+    user_input = args.input
+    output_lang = args.output
+    formal = args.formal
+
+    translated = translate(text=user_input, to=output_lang, formal=formal)
+
+    print("\nTranslation: " + translated)
+    if args.ipa:
+        console.print(f"[dim]{get_ipa_pronounciation(translated)}[/dim]", highlight=False)
+
+def cli_run_tests(args):
+    console.print(Rule(title="[dim white]Running tests..."), style="dim")
+    run_selected_tests(args.tests)
+
+def cli_inspect(args):
+    translation, inspection = from_gorgus(args.sentence)
+
+    if not args.json: # text format
+        console.print(Rule())
+
+        # Display input
+        console.print("[bold]Input:[/bold]", inspection["input"], end="\n\n", highlight=False)
+
+        # Display word analisys
+        word_table = Table("Word", "Lemma", "POS", "Features", title="Word Analisys", box=box.ROUNDED)
+        for word in inspection["words"]:
+            features_list = []
+            for k,v in word["features"].items():
+                features_list.append(f"{k.capitalize()}={str(v).capitalize()}")
+
+            word_table.add_row(word["word"], word["lemma"], word["pos"], ', '.join(features_list))
+        console.print(word_table, end='\n\n')
+
+        # Display morphology breakdown
+        if args.verbose or args.morph:
+            console.print("\n[bold][Morphology Breakdown][/bold]")
+            for x in inspection["morphology"]:
+                console.print(f"- {x}")
+
+        # Display translation
+        if args.verbose or args.translate:
+            console.print("\n[bold][Translation][/bold]")
+            console.print(f"\"{translation}\"")
+
+        # Display grammar notes
+        if args.verbose or args.notes:
+            console.print("\n[bold][Grammar Notes][/bold]")
+            for x in inspection["notes"]:
+                console.print(f"- {x}")
+
+        # Display pronounciation
+        if args.verbose or args.phonetics:
+            console.print("\n[bold][Pronounciation Guide][/bold]")
+            for word in inspection["words"]:
+                final_pronounciation_string = f"- {word['word']} → [green]{get_ipa_pronounciation(word['word'])}[/green]"
+                console.print(final_pronounciation_string, highlight=False)
+
+
+        console.print(Rule())
+    else: # json format
+        console.print(inspection)
+
+    if args.output:
+        console.print('[dim]Exporting to JSON file...[/dim]', highlight=False)
+        f = open(args.output, "w")
+        json.dump(inspection, f, indent=4)
+        f.close()
+
+if __name__ == '__main__':
+    arg_parser = argparse.ArgumentParser(
+        prog="Gorgus Translater",
+        description="The CLI interface for the Gorgus Translator, you can translate text to and from Gorgus, run tests, etc..."
+    )
+
+    subparsers = arg_parser.add_subparsers()
+
+    # oh boy
+    translate_parser = subparsers.add_parser("translate", help="Translate text to and from Gorgus", description="Translate text to and from Gorgus")
+    translate_parser.add_argument("input", help="The text input", type=str)
+    translate_parser.add_argument("-o", "--output", type=str, help="The output language", default="gorgus", choices=["gorgus", "english"])
+    translate_parser.add_argument("-f", "--formal", action="store_true", help="Enable formal speach")
+    translate_parser.add_argument("--ipa", action="store_true", help="Include an IPA transcription if translating from English to Gorgus")
+    translate_parser.set_defaults(func=cli_translate)
+
+    tests_parser = subparsers.add_parser("run_tests", help="Run tests", description="Run tests")
+    tests_parser.add_argument("tests", nargs="*", default=["test_to_gorgus", "test_from_gorgus", "test_tense_detection", "test_translation_speed"])
+    tests_parser.set_defaults(func=cli_run_tests)
+
+    inspect_parser = subparsers.add_parser("inspect", help="Inspect a Gorgus sentence to see how it is interpreted")
+    inspect_parser.add_argument("sentence", help="The Gorgus sentence to inspect", type=str)
+    inspect_parser.add_argument("--json", action="store_true", help="Output in JSON format")
+    inspect_parser.add_argument("--morph", action="store_true", help="Include morphological analysis")
+    inspect_parser.add_argument("--verbose", action="store_true", help="Show full inspection details")
+    inspect_parser.add_argument("--phonetics", action="store_true", help="Include IPA pronounciation guide")
+    inspect_parser.add_argument("--translate", action="store_true", help="Include translation")
+    inspect_parser.add_argument("--notes", action="store_true", help="Show additional interpretation notes")
+    inspect_parser.add_argument("-o", "--output", type=str, help="Save output to file")
+    inspect_parser.set_defaults(func=cli_inspect)
+
+    args = arg_parser.parse_args()
+
+    try:
+        args.func
+    except AttributeError:
+        print("You didn't provide a command!")
+        arg_parser.print_usage()
+        exit(1)
+# END OF CLI LOGIC #
+
+import re
+import unicodedata
+
+import nltk
+import inflect
 
 from translations import *
 from word_forms.word_forms import get_word_forms
@@ -76,28 +225,7 @@ import nltk.corpus
 console.print("[bold bright_green]INFO[/bold bright_green] Getting [bold]NLTK Unigram Tagger[/bold]..")
 # the default tagger is not good, for some reason.
 unigram_tagger = nltk.UnigramTagger(nltk.corpus.brown.tagged_sents())
-"""
-try:
-    nltk.data.find('corpora/wordnet.zip')
-    nltk.data.find('corpora/brown.zip')
-    wordnet_download_success = True
-    console.print("[bold bright_green]Success![/bold bright_green] Wordnet was found. :)")
-except LookupError:
-    console.print("[bold orange1]Warning![/bold orange] Wordnet was not found! Attempting to automatically install..")
-    console.print("[dim]Disabling SSL check to prevent issues on certain operating systems (MacOS, I'm looking at you)...[/dim]")
-    import ssl
-    try:
-        _create_unverified_https_context = ssl._create_unverified_context
-    except AttributeError:
-        pass
-    else:
-        ssl._create_default_https_context = _create_unverified_https_context
-    wordnet_download_success = nltk.download("wordnet")
-    if not wordnet_download_success:
-        console.print("[bold red]I couldn't download the wordnet AI mdoel... :([/bold red]")
-        console.print("The app will still open, but you will have some missing language features.")
-        console.input("Press enter to continue.", password=True)
-        """
+
 
 def get_word_type(word):
     if word.strip() == "":
@@ -1026,147 +1154,9 @@ class TranslationTester(unittest.TestCase):
             self.assertEqual(translate(gorgus, "english", formal=False), english, "Translation from Gorgus to English does not match!")
 
 
-# CLI LOGIC #
-def patched_addSuccess(self, test):
-    if not hasattr(self, 'successes'):
-        self.successes = []
-    self.successes.append(test)
-
-unittest.TestResult.addSuccess = patched_addSuccess
-
-def run_selected_tests(test_names):
-    suite = unittest.TestSuite()
-    for name in test_names:
-        suite.addTest(TranslationTester(name))
-
-    result = unittest.TestResult()
-    suite.run(result)
-
-    table = Table(title="Translation Test Results", show_lines=True, highlight=True)
-    table.add_column("Test Name", style="bold")
-    table.add_column("Result", style="bold")
-
-    for test in result.successes if hasattr(result, 'successes') else []:
-        table.add_row(str(test), "[green]PASS")
-
-    for test, failure_message in result.failures:
-        table.add_row(str(test), "[red]FAIL")
-        table.add_row("", f"[red]Failure: {failure_message}")
-
-    for test, error_message in result.errors:
-        table.add_row(str(test), "[red]ERROR")
-        table.add_row("", f"[red]Error: {error_message}")
-
-    for test, _ in result.skipped:
-        table.add_row(str(test), "[yellow]SKIPPED")
-
-    console.print(table)
-
-
-def cli_translate(args):
-    user_input = args.input
-    output_lang = args.output
-    formal = args.formal
-
-    translated = translate(text=user_input, to=output_lang, formal=formal)
-
-    print("\nTranslation: " + translated)
-    if args.ipa:
-        console.print(f"[dim]{get_ipa_pronounciation(translated)}[/dim]", highlight=False)
-
-def cli_run_tests(args):
-    console.print(Rule(title="[dim white]Running tests..."), style="dim")
-    run_selected_tests(args.tests)
-
-def cli_inspect(args):
-    translation, inspection = from_gorgus(args.sentence)
-
-    if not args.json: # text format
-        console.print(Rule())
-
-        # Display input
-        console.print("[bold]Input:[/bold]", inspection["input"], end="\n\n", highlight=False)
-
-        # Display word analisys
-        word_table = Table("Word", "Lemma", "POS", "Features", title="Word Analisys", box=box.ROUNDED)
-        for word in inspection["words"]:
-            features_list = []
-            for k,v in word["features"].items():
-                features_list.append(f"{k.capitalize()}={str(v).capitalize()}")
-
-            word_table.add_row(word["word"], word["lemma"], word["pos"], ', '.join(features_list))
-        console.print(word_table, end='\n\n')
-
-        # Display morphology breakdown
-        if args.verbose or args.morph:
-            console.print("\n[bold][Morphology Breakdown][/bold]")
-            for x in inspection["morphology"]:
-                console.print(f"- {x}")
-
-        # Display translation
-        if args.verbose or args.translate:
-            console.print("\n[bold][Translation][/bold]")
-            console.print(f"\"{translation}\"")
-
-        # Display grammar notes
-        if args.verbose or args.notes:
-            console.print("\n[bold][Grammar Notes][/bold]")
-            for x in inspection["notes"]:
-                console.print(f"- {x}")
-
-        # Display pronounciation
-        if args.verbose or args.phonetics:
-            console.print("\n[bold][Pronounciation Guide][/bold]")
-            for word in inspection["words"]:
-                final_pronounciation_string = f"- {word['word']} → [green]{get_ipa_pronounciation(word['word'])}[/green]"
-                console.print(final_pronounciation_string, highlight=False)
-
-
-        console.print(Rule())
-    else: # json format
-        console.print(inspection)
-
-    if args.output:
-        console.print('[dim]Exporting to JSON file...[/dim]', highlight=False)
-        f = open(args.output, "w")
-        json.dump(inspection, f, indent=4)
-        f.close()
-
-if __name__ == '__main__':
-    arg_parser = argparse.ArgumentParser(
-        prog="Gorgus Translater",
-        description="The CLI interface for the Gorgus Translator, you can translate text to and from Gorgus, run tests, etc..."
-    )
-
-    subparsers = arg_parser.add_subparsers()
-
-    translate_parser = subparsers.add_parser("translate", help="Translate text to and from Gorgus", description="Translate text to and from Gorgus")
-    translate_parser.add_argument("input", help="The text input", type=str)
-    translate_parser.add_argument("-o", "--output", type=str, help="The output language", default="gorgus", choices=["gorgus", "english"])
-    translate_parser.add_argument("-f", "--formal", action="store_true", help="Enable formal speach")
-    translate_parser.add_argument("--ipa", action="store_true", help="Include an IPA transcription if translating from English to Gorgus")
-    translate_parser.set_defaults(func=cli_translate)
-
-    tests_parser = subparsers.add_parser("run_tests", help="Run tests", description="Run tests")
-    tests_parser.add_argument("tests", nargs="*", default=["test_to_gorgus", "test_from_gorgus", "test_tense_detection", "test_translation_speed"])
-    tests_parser.set_defaults(func=cli_run_tests)
-
-    inspect_parser = subparsers.add_parser("inspect", help="Inspect a Gorgus sentence to see how it is interpreted")
-    inspect_parser.add_argument("sentence", help="The Gorgus sentence to inspect", type=str)
-    inspect_parser.add_argument("--json", action="store_true", help="Output in JSON format")
-    inspect_parser.add_argument("--morph", action="store_true", help="Include morphological analysis")
-    inspect_parser.add_argument("--verbose", action="store_true", help="Show full inspection details")
-    inspect_parser.add_argument("--phonetics", action="store_true", help="Include IPA pronounciation guide")
-    inspect_parser.add_argument("--translate", action="store_true", help="Include translation")
-    inspect_parser.add_argument("--notes", action="store_true", help="Show additional interpretation notes")
-    inspect_parser.add_argument("-o", "--output", type=str, help="Save output to file")
-    inspect_parser.set_defaults(func=cli_inspect)
-
-    args = arg_parser.parse_args()
-    
+if __name__ == "__main__":
     try: # the user executed a subcommand
         args.func(args)
     except AttributeError: # user didn't type anything ;-;
         arg_parser.print_help()
         exit(0)
-# END OF CLI LOGIC #
