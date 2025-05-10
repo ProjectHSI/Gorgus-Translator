@@ -422,6 +422,7 @@ translation_dictionary = {
     "majikle̱": "computer",
     "estäól": "study", 
     "hag": "hunt",
+    "yipi": "excite",
 
     # Proper Nouns
     "googrung": ["you", "thee"],
@@ -554,7 +555,6 @@ translation_dictionary = {
     "jaka": "sacred",
     "latwa": ["precious", "dearer", "valuable"],
     "wedidigó": "lost",
-    "yipi": "excited",
 
     # temperatures
     "sisf": "hot",
