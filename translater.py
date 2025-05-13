@@ -158,6 +158,8 @@ import unicodedata
 import nltk
 import inflect
 
+import unigram_tagger_model_trainer
+
 from translations import *
 from word_forms.word_forms import get_word_forms
 from nltk.stem import WordNetLemmatizer, LancasterStemmer
@@ -223,7 +225,7 @@ console.print("[bold bright_green]INFO[/bold bright_green] Importing [bold]nltk.
 import nltk.corpus
 console.print("[bold bright_green]INFO[/bold bright_green] Getting [bold]NLTK Unigram Tagger[/bold]..")
 # the default tagger is not good, for some reason.
-unigram_tagger = nltk.UnigramTagger(nltk.corpus.brown.tagged_sents())
+unigram_tagger = unigram_tagger_model_trainer.get_tagger_and_train_if_not_found()
 
 
 def get_word_type(word):
