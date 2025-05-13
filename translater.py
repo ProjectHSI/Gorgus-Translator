@@ -1,7 +1,6 @@
 #
 #  translater.py
 #
-#import spacy
 import argparse
 import json
 import unittest
