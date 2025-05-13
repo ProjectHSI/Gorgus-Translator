@@ -6,7 +6,7 @@ import argparse
 import json
 import unittest
 
-# CLI LOGIC #
+#region CLI Logic
 def patched_addSuccess(self, test):
     if not hasattr(self, 'successes'):
         self.successes = []
@@ -151,7 +151,7 @@ if __name__ == '__main__':
         print("You didn't provide a command!")
         arg_parser.print_usage()
         exit(1)
-# END OF CLI LOGIC #
+#endregion
 
 import re
 import unicodedata
